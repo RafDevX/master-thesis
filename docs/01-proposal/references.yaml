@@ -1,0 +1,36 @@
+# Hayagriva: https://github.com/typst/hayagriva/blob/main/docs/file-format.md
+
+bell-lapadula:
+  type: report
+  title: "Secure computer systems: Mathematical foundations"
+  author: ["D. Elliot Bell", "Leonard J. LaPadula"]
+  organization: "The MITRE Corporation"
+  date: 1973-11
+
+dorothy:
+  type: article
+  title: "A Lattice Model of Secure Information Flow"
+  author: "Dorothy E. Denning"
+  date: 1976-05
+  serial-number:
+    doi: "10.1145/360051.360056"
+  page-range: 236-243
+  parent:
+    type: periodical
+    title: "Communications of the ACM"
+    volume: 19
+    issue: 5
+
+sabelfeld:
+  type: article
+  title: "Language-Based Information-Flow Security"
+  author: ["Andrei Sabelfeld", "Andrew C. Myers"]
+  date: 2003-01
+  serial-number:
+    doi: "10.1109/JSAC.2002.806121"
+  page-range: 5-19
+  parent:
+    type: periodical
+    title: "IEEE Journal on Selected Areas in Communications"
+    volume: 21
+    issue: 1
