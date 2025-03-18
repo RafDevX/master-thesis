@@ -1,0 +1,102 @@
+# Hayagriva: https://github.com/typst/hayagriva/blob/main/docs/file-format.md
+
+bell-lapadula:
+  type: report
+  title: "Secure computer systems: Mathematical foundations"
+  author: ["D. Elliot Bell", "Leonard J. LaPadula"]
+  organization: "The MITRE Corporation"
+  date: 1973-11
+
+dorothy:
+  type: article
+  title: "A Lattice Model of Secure Information Flow"
+  author: "Dorothy E. Denning"
+  date: 1976-05
+  serial-number:
+    doi: "10.1145/360051.360056"
+  page-range: 236-243
+  parent:
+    type: periodical
+    title: "Communications of the ACM"
+    volume: 19
+    issue: 5
+
+sabelfeld:
+  type: article
+  title: "Language-Based Information-Flow Security"
+  author: ["Andrei Sabelfeld", "Andrew C. Myers"]
+  date: 2003-01
+  serial-number:
+    doi: "10.1109/JSAC.2002.806121"
+  page-range: 5-19
+  parent:
+    type: periodical
+    title: "IEEE Journal on Selected Areas in Communications"
+    volume: 21
+    issue: 1
+
+bodden:
+  type: article
+  title: "Information Flow Analysis for Go"
+  author:
+    - "Eric Bodden"
+    - "Ka I. Pun"
+    - "Martin Steffen"
+    - "Volker Stolz"
+    - "Anna-Katharina Wickert"
+  editor: ["Tiziana Margaria", "Bernhard Steffen"]
+  date: 2016-10
+  serial-number:
+    doi: "10.1007/978-3-319-47166-2_30"
+  page-range: 431-445
+  parent:
+    type: proceedings
+    title: "Leveraging Applications of Formal Methods, Verification and Validation: Foundational Techniques"
+    volume: 9952
+    issue: 1
+    publisher: "Springer International Publishing"
+    serial-number:
+      doi: "10.1007/978-3-319-47166-2"
+      isbn: "978-3-319-47166-2"
+
+challenges:
+  type: article
+  title: "Challenges for Information-Flow Security"
+  author: "Steve Zdancewic"
+  date: 2004
+  parent:
+    type: proceedings
+    title: "Proceedings of the 1st International Workshop on the Programming Language Interference and Dependence (PLID'04)"
+    volume: 6
+
+interprocedural:
+  type: article
+  title: "Parallelizing Top-Down Interprocedural Analyses"
+  author:
+    - "Aws Albarghouthi"
+    - "Rahul Kumar"
+    - "Aditya V. Nori"
+    - "Srimram K. Rajamani"
+  date: 2012-06
+  serial-number:
+    doi: "10.1145/2345156.2254091"
+  page-range: 217-228
+  parent:
+    type: periodical
+    title: "ACM SIGPLAN Notices"
+    volume: 47
+    issue: 6
+    publisher: "Association for Computing Machinery"
+
+go-1.18:
+  type: article
+  title: "Go 1.18 is released!"
+  author:
+    name: "The Go Team"
+    verbatim: true
+  parent:
+    type: blog
+    title: "The Go Blog"
+    url:
+      value: https://go.dev/blog/go1.18
+      date: 2025-02-19

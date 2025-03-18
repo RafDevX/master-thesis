@@ -4,12 +4,13 @@
 
 #let full_author = [Rafael Serra e Oliveira (#link("mailto:rmfseo@kth.se"))]
 
-#let header(title, doc_name) = {
+#let header(title, doc_name, scoped) = {
   context if [#here().page()] == [1] { } else {
     set text(10pt)
     smallcaps(title)
     h(1fr)
-    smallcaps[KTH MSc Cybersecurity: #doc_name]
+    let scope = if scoped [KTH MSc Cybersecurity: ] else []
+    smallcaps[#scope#doc_name]
     line(length: 100%, stroke: 0.5pt + rgb("#888"))
   }
 }
@@ -28,6 +29,7 @@
   doc_name: none,
   keywords: (),
   written_date: none,
+  scoped_header: true,
   content,
 ) = {
   set document(
@@ -37,7 +39,11 @@
     date: written_date,
   )
 
-  set page("a4", header: header(title, doc_name), footer: footer())
+  set page(
+    "a4",
+    header: header(title, doc_name, scoped_header),
+    footer: footer(),
+  )
   set par(justify: true)
   show link: it => text(fill: kthblue, underline(it))
 
