@@ -97,9 +97,9 @@
 
 #include "./content/ch01-introduction.typ"
 #include "./content/ch02-background.typ"
-#include "./content/ch03-method.typ"
-#include "./content/ch04-the-thing.typ"
-#include "./content/ch05-results.typ"
+#include "./content/ch03-methods.typ"
+#include "./content/ch04-glowy.typ"
+#include "./content/ch05-evaluation.typ"
 #include "./content/ch06-discussion.typ"
 #include "./content/ch07-conclusion.typ"
 
@@ -107,4 +107,4 @@
 
 #show: setup-appendices
 #include "./content/zz-a-usage.typ"
-#include "./content/zz-b-else.typ"
+#include "./content/zz-b-results.typ"

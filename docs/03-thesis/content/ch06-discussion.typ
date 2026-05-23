@@ -1,9 +1,35 @@
 = Discussion
 
-Let's talk about acronyms: when referring to a single @os, the first time we mention it the @os gets expanded, but not any further.
+chapter overview
 
-We can also discuss multiple @os:pl at once, in plural.
+== Research Questions
 
-#line(length: 50%)
+results interpreted to each research question
 
-#lorem(200)
+=== The First One
+
+...
+
+=== The Second One, etc.
+
+...
+
+== Limitations
+
+...
+
+== Future Work
+
+- other covert channels @bg:ifc:covert
+
+== Reflections
+
+[relevant economic/social/environmental/ethical aspects]
+
+UN SDGs maybe
+
+why is this work good for society, industry, and research
+
+== Summary
+
+...
