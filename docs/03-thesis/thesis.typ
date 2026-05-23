@@ -1,4 +1,4 @@
-#import "@preview/kthesis:0.1.5": kth-thesis, setup-appendices
+#import "@preview/kthesis:0.1.6": kth-thesis, setup-appendices
 
 #import "@preview/glossarium:0.5.8": (
   make-glossary, print-glossary, register-glossary,
@@ -91,6 +91,7 @@
   style: (
     use-arial: false,
     more-sans-serif: false,
+    fancy-chapters: true,
   ),
 )
 
