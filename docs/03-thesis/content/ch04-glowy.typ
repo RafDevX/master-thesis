@@ -1,6 +1,8 @@
-= Glowy
+= Glowy <glowy>
 
 tool overview
+
+(either here or in a subsection) Rust#footnote(link("https://rust-lang.org/"))
 
 chapter overview
 

@@ -4,8 +4,12 @@
   make-glossary, print-glossary, register-glossary,
 )
 #import "./acronyms.typ": acronyms
+#import "./utils/enum-refs.typ": setup-enum-refs
+
 #show: make-glossary
 #register-glossary(acronyms)
+
+#show: setup-enum-refs
 
 // --------------------------------------------------------------------- //
 // ---------- MAIN THESIS TEMPLATE ENTRYPOINT & CONFIGURATION ---------- //

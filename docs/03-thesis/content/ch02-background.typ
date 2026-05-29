@@ -1,4 +1,4 @@
-= Background
+= Background <bg>
 
 chapter overview
 
@@ -131,6 +131,8 @@ declassification
 
 what is go
 
+Go#footnote(link("https://go.dev/"))
+
 created by google in 2007
 
 systems language but not just, etc.
@@ -160,6 +162,16 @@ some constructs relevant to point out
 ==== Channels
 
 ...
+
+== Past Incidents
+
+this would fix, specifically in go, ...
+@cve20208563kubernetes @cve20208564kubernetes @cve20208565kubernetes
+@cve20208566kubernetes @cve20257445kubernetes
+
+also CVE-2024-6104, CVE-2026-27900 - really anything in CWE 532 prolly
+
+try to find integrity examples
 
 == Previous Work
 

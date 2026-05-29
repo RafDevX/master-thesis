@@ -1,18 +1,283 @@
 # Hayagriva: https://github.com/typst/hayagriva/blob/main/docs/file-format.md
 
-bevet:
+haberzarsky2017reliance:
   type: article
-  title: 'You can''t "nudge" nuggets: An investigation of college late-night dining with behavioral economics interventions'
+  title: "Cybersecurity for Infrastructure: A Critical Analysis"
   author:
-    - Samuel Bevet
-    - Meredith T. Niles
-    - Lizzy Pope
-  date: 2018-05-31
-  serial-number:
-    doi: "10.1371/journal.pone.0198162"
+    - Haber, Eldar
+    - Zarsky, Tal
+  date: 2017
+  page-range: 515-578
+  url: https://ir.law.fsu.edu/lr/vol44/iss2/3/
   parent:
     type: periodical
-    title: "PLoS ONE"
-    volume: 13
-    issue: 5
-    publisher: Public Library of Science
+    title: "Florida State University Law Review"
+    volume: 44
+    issue: 2
+    publisher: Florida State University College of Law
+
+liliu2021attacks:
+  type: article
+  title: >-
+    A comprehensive review study of cyber-attacks and cyber security;
+    Emerging trends and recent developments
+  author:
+    - Li, Yuchong
+    - Liu, Qinghui
+  date: 2021-11
+  page-range: 8176-8186
+  serial-number:
+    doi: "10.1016/j.egyr.2021.08.126"
+  parent:
+    type: periodical
+    title: Energy Reports
+    volume: 7
+    publisher: Elsevier
+
+vonsolms2013cybersec:
+  type: article
+  title: "From information security to cyber security"
+  author:
+    - von Solms, Rossouw
+    - van Niekerk, Johan
+  date: 2013-04
+  page-range: 97-102
+  serial-number:
+    doi: "10.1016/j.cose.2013.04.004"
+  parent:
+    type: periodical
+    title: "Computers & Security"
+    volume: 38
+    publisher: Elsevier
+
+iso27000:
+  type: report
+  title: >-
+    Information technology — Security techniques — Information security
+    management systems — Overview and vocabulary
+  author: ISO/IEC
+  date: 2018-02
+  edition: 5
+  genre: International Standard
+  serial-number: "ISO/IEC 27000:2018"
+  publisher:
+    name: ISO
+    location: Geneva, Switzerland
+
+skala2004colour:
+  type: article
+  title: "What Colour are your bits?"
+  author: Skala, Matthew
+  date: 2004-06-10
+  url:
+    value: https://ansuz.sooke.bc.ca/entry/23
+    date: 2026-05-23
+  parent:
+    type: blog
+    title: Ansuz
+
+pike2012go:
+  type: article
+  title: "Go at Google: Language Design in the Service of Software Engineering"
+  author: Pike, Rob
+  date: 2012-10-25
+  page-range: 5-6
+  serial-number:
+    doi: "10.1145/2384716.2384720"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 3rd Annual Conference on Systems, Programming, and
+      Applications: Software for Humanity
+    publisher: Association for Computing Machinery
+    location: Tucson, Arizona, USA
+    serial-number:
+      isbn: "978-1-4503-1563-0"
+
+stackoverflow2025:
+  type: report
+  title: "2025 Developer Survey"
+  author: Stack Overflow
+  date: 2025-07-29
+  url:
+    value: https://survey.stackoverflow.co/2025
+    date: 2026-05-23
+
+ufliand2025jetbrains:
+  type: article
+  title: >-
+    The Go Ecosystem in 2025: Key Trends in Frameworks, Tools, and Developer
+    Practices
+  author: Ufliand, Elena
+  organization: Jetbrains
+  date: 2025-11-10
+  url:
+    value: https://blog.jetbrains.com/go/2025/11/10/go-language-trends-ecosystem-2025/
+    date: 2026-05-23
+  parent:
+    type: blog
+    title: The GoLand Blog
+    publisher: Jetbrains
+
+beuke2023githut:
+  type: web
+  title: "GitHut 2.0: GitHub Language Statistics"
+  author: Beuke, Fabian
+  date: 2023
+  url:
+    value: https://madnight.github.io/githut
+    date: 2026-05-23
+
+cve20208563kubernetes:
+  type: entry
+  title: "CVE-2020-8563"
+  date: 2020-12-07
+  serial-number:
+    cve: "CVE-2020-8563"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/cve-2020-8563
+    date: 2026-05-23
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: NIST
+
+cve20208564kubernetes:
+  type: entry
+  title: "CVE-2020-8564"
+  date: 2020-12-07
+  serial-number:
+    cve: "CVE-2020-8564"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/cve-2020-8564
+    date: 2026-05-23
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: NIST
+
+cve20208565kubernetes:
+  type: entry
+  title: "CVE-2020-8565"
+  date: 2020-12-07
+  serial-number:
+    cve: "CVE-2020-8565"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/cve-2020-8565
+    date: 2026-05-23
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: NIST
+
+cve20208566kubernetes:
+  type: entry
+  title: "CVE-2020-8566"
+  date: 2020-12-07
+  serial-number:
+    cve: "CVE-2020-8566"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/cve-2020-8566
+    date: 2026-05-23
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: NIST
+
+cve20257445kubernetes:
+  type: entry
+  title: "CVE-2025-7445"
+  date: 2025-09-04
+  serial-number:
+    cve: "CVE-2025-7445"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/cve-2025-7445
+    date: 2026-05-23
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: NIST
+
+go126spec:
+  type: reference
+  title: "The Go Programming Language Specification"
+  author: The Go Authors
+  date: 2026-02-10
+  edition: go1.26
+  url:
+    value: https://go.dev/ref/spec
+    date: 2026-05-23
+
+santiagocalderon2022oss:
+  type: report
+  title: "Measuring the Cost of Open Source Software Innovation on GitHub"
+  author:
+    - Santiago Calderón, José Bayoán
+    - Guci, Ledia
+    - Robbins, Carol A.
+    - Korkmaz, Gizem
+    - Kramer, Brandon L.
+  date: 2022-07
+  genre: Working Paper
+  serial-number: WP2022-10
+  publisher:
+    name: U.S. Bureau of Economic Analysis
+    location: Washington, D.C.
+
+udhr:
+  type: legislation
+  title: "Universal Declaration on Human Rights"
+  date: 1948-12-10
+  serial-number:
+    un-res: "A/RES/217(III)"
+  publisher: United Nations
+  url:
+    value: https://www.un.org/en/about-us/universal-declaration-of-human-rights
+    date: 2026-05-23
+
+iccpr:
+  type: legislation
+  title: "International Covenant on Civil and Political Rights"
+  date: 1966-12-16
+  serial-number:
+    unts: "999 UNTS 171"
+    un-res: "A/RES/2200(XXI)"
+  publisher: United Nations
+  url:
+    value: https://www.ohchr.org/en/instruments-mechanisms/instruments/international-covenant-civil-and-political-rights
+    date: 2026-05-23
+
+ahrcres4215:
+  type: legislation
+  title: "The right to privacy in the digital age"
+  date: 2019-09-26
+  serial-number:
+    un-doc: "A/HRC/RES/42/15"
+  publisher: United Nations Human Rights Council
+  url:
+    value: https://undocs.org/A/HRC/RES/42/15
+    date: 2026-05-23
+
+duenascid2023distrust:
+  type: article
+  title: "Dis/Trust and data-driven technologies"
+  author:
+    - Duenas-Cid, David
+    - Calzati, Stefano
+  date: 2023-11-24
+  serial-number:
+    doi: "10.14763/2023.4.1727"
+  parent:
+    type: periodical
+    title: Internet Policy Review
+    volume: 12
+    issue: 4
+
+thales2025trust:
+  type: report
+  title: "2025 Digital Trust Index - Consumer Edition"
+  author: Thales
+  date: 2025-03-18
+  url:
+    value: https://cpl.thalesgroup.com/sites/default/files/content/campaigns/trust-index/2025-thales-consumer-digital-trust-index.pdf
+    date: 2026-05-23

@@ -1,4 +1,4 @@
-= Methods
+= Methods <methods>
 
 chapter overview
 
@@ -44,6 +44,13 @@ to answer RQ4
 // maybe move this section somewhere else; see what makes sense (after writing)
 
 the above process comprises a inductive/deductive ... with a ... study, following a ... model etc etc (ak2030)
+
+== Go Subset
+
+probably rename this, but specify here in detail everything supported in Go
+(or just summarize it, and be detailed in an appendix, but ideally not)
+
+unsafe is not supported
 
 == Data Collection <methods:collection>
 

@@ -1,15 +1,17 @@
 #let acronyms = (
   (
-    key: "kth",
-    short: "KTH",
-    long: "KTH Royal Institute of Technology",
-    description: "A university in Stockholm",
+    key: "ast",
+    short: "AST",
+    long: "Abstract Syntax Tree",
   ),
   (
-    key: "os",
-    short: "OS",
-    plural: "OSes",
-    long: "Operating System",
-    longplural: "Operating Systems",
+    key: "cli",
+    short: "CLI",
+    long: "Command Line Interface",
+  ),
+  (
+    key: "ifc",
+    short: "IFC",
+    long: "Information Flow Control",
   ),
 )
