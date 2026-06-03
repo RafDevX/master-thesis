@@ -1,6 +1,6 @@
 #import "@preview/kthesis:0.1.6": kth-thesis, setup-appendices
 
-#import "@preview/glossarium:0.5.8": (
+#import "@preview/glossarium:0.5.10": (
   make-glossary, print-glossary, register-glossary,
 )
 #import "./acronyms.typ": acronyms
