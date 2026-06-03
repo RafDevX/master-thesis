@@ -86,7 +86,10 @@
   presentation: none,
   acknowledgements: include "content/acknowledgements.typ",
   extra-preambles: (
-    (heading: "Acronyms and Abbreviations", body: print-glossary(acronyms)),
+    (
+      heading: "Acronyms and Abbreviations",
+      body: print-glossary(acronyms, disable-back-references: true),
+    ),
   ),
   doc-date: datetime.today(), // TODO
   doc-city: "Stockholm",
