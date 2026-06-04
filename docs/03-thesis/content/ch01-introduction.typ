@@ -1,6 +1,4 @@
-#import "@preview/fletcher:0.5.8" as fletcher
-#import "@preview/zero:0.6.1" as zero
-
+#import "../utils/dependencies.typ": fletcher, zero
 #import "../utils/enum-refs.typ": enum-label, wrapped-enum-numbering
 
 #let source = what => box(fill: fuchsia, text(fill: black)[#what \[?\]])

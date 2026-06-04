@@ -1,10 +1,9 @@
-#import "@preview/kthesis:0.1.6": kth-thesis, setup-appendices
-
-#import "@preview/glossarium:0.5.10": (
-  make-glossary, print-glossary, register-glossary,
-)
 #import "./acronyms.typ": acronyms
+#import "./utils/dependencies.typ": glossarium, kthesis
 #import "./utils/enum-refs.typ": setup-enum-refs
+
+#import glossarium: make-glossary, print-glossary, register-glossary
+#import kthesis: kth-thesis, setup-appendices
 
 #show: make-glossary
 #register-glossary(acronyms)
