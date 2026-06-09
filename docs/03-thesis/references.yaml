@@ -281,3 +281,148 @@ thales2025trust:
   url:
     value: https://cpl.thalesgroup.com/sites/default/files/content/campaigns/trust-index/2025-thales-consumer-digital-trust-index.pdf
     date: 2026-05-23
+
+cecchetti2017nonmalleable:
+  type: article
+  title: "Nonmalleable Information Flow Control"
+  author:
+    - Cecchetti, Ethan
+    - Myers, Andrew C.
+    - Arden, Owen
+  date: 2017-10-30
+  serial-number:
+    doi: "10.1145/3133956.3134054"
+  parent:
+    type: proceedings
+    title: "Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security"
+    publisher: ACM
+
+belllapadula1973mls:
+  type: report
+  title: "Secure Computer Systems: Mathematical Foundations"
+  author:
+    - Bell, D. Elliot
+    - LaPadula, Leonard J.
+  date: 1973-11
+  volume: 1
+  genre: Technical Report
+  serial-number:
+    dtic: "AD0770768"
+  publisher:
+    name: The MITRE Corporation
+    location: Bedford, Massachusetts
+
+denning1976lattice:
+  type: article
+  title: "A Lattice Model of Secure Information Flow"
+  author: Denning, Dorothy E.
+  date: 1976-05-01
+  page-range: 236-243
+  serial-number:
+    doi: "10.1145/360051.360056"
+  parent:
+    type: periodical
+    title: "Communications of the ACM"
+    volume: 19
+    issue: 5
+    publisher: ACM
+
+hedinsabelfeld2012perspective:
+  type: anthos
+  title: "A Perspective on Information-Flow Control"
+  author:
+    - Hedin, Daniel
+    - Sabelfeld, Andrei
+  date: 2012-05
+  page-range: 319-347
+  serial-number:
+    doi: "10.3233/978-1-61499-028-4-319"
+  parent:
+    type: anthology
+    title: "Software Safety and Security: Tools for Analysis and Verification"
+    editor:
+      - Nipkow, Tobias
+      - Grumberg, Orna
+      - Hauptmann, Benedikt
+    volume: 33
+    serial-number:
+      isbn: "978-1-61499-027-7"
+    publisher: IOS Press
+
+denningdenning1977certification:
+  type: article
+  title: "Certification of Programs for Secure Information Flow"
+  author:
+    - Denning, Dorothy E.
+    - Denning, Peter J.
+  date: 1977-07-01
+  page-range: 504-513
+  serial-number:
+    doi: "10.1145/359636.359712"
+  parent:
+    type: periodical
+    title: Communications of the ACM
+    volume: 20
+    issue: 7
+    publisher: ACM
+
+sabelfeldmyers2003lang:
+  type: article
+  title: "Language-Based Information-Flow Security"
+  author:
+    - Sabelfeld, Andrei
+    - Myers, Andrew C.
+  date: 2003-01
+  serial-number:
+    doi: "10.1109/JSAC.2002.806121"
+  page-range: 5-19
+  parent:
+    type: periodical
+    title: "IEEE Journal on Selected Areas in Communications"
+    volume: 21
+    issue: 1
+
+turing1936computable:
+  type: article
+  title: "On Computable Numbers, with an Application to the Entscheidungsproblem"
+  author: Turing, Alan M.
+  date: 1937
+  page-range: 230-265
+  serial-number:
+    doi: "10.1112/plms/s2-42.1.230"
+  parent:
+    type: periodical
+    title: "Proceedings of the London Mathematical Society"
+    volume: s2-42
+    issue: 1
+    publisher: London Mathematical Society
+
+goguenmesseguer1982noninterference:
+  type: article
+  title: "Security Policies and Security Models"
+  author:
+    - Goguen, Joseph A.
+    - Messeguer, José
+  date: 1982-04-26
+  page-range: 11-20
+  serial-number:
+    doi: "10.1109/SP.1982.10014"
+  parent:
+    type: periodical
+    title: "Proceedings of the 1982 IEEE Symposium on Security and Privacy"
+    publisher: IEEE Computer Society
+    location: Oakland, California
+
+mclean1990noninterference:
+  type: article
+  title: "Security Models and Information Flow"
+  author: McLean, John
+  date: 1990-05-07
+  page-range: 180-187
+  serial-number:
+    doi: "10.1109/RISP.1990.63849"
+  parent:
+    type: proceedings
+    title: "Proceedings of the 1990 IEEE Computer Society Symposium on Research in Security and Privacy"
+    publisher: IEEE Computer Society
+    location: Oakland, California

@@ -33,8 +33,8 @@ integrity safeguards that the information remains accurate and complete, and
 availability refers to the information being accessible and usable on demand
 by authorized principals.
 
-These three properties, collectively known as the _CIA triad,_ represent the
-chief qualities desired from most information systems, thus justifying their
+These three properties, collectively known as the _@cia:short triad,_ represent
+the chief qualities desired from most information systems, thus justifying their
 central roles in Information Security and qualifying them as prime targets for
 Cybersecurity developments across the field. It is crucial to continuously work
 towards a balanced improvement of each of these three properties without
@@ -161,11 +161,6 @@ This degree project aims to answer the following research questions:
 
 These research questions reflect the implementation and validation of the
 proposed solution to the problem previously stated.
-
-#place(dy: -5%, box(
-  fill: orange,
-)[have a subsection per research question here, or in another
-  chapter like methodology? explaining them in detail])
 
 == Purpose
 
@@ -344,6 +339,13 @@ means that while reported errors can be very useful, an absence of errors cannot
 be construed as an absolute endorsement that the program is fully secure. Glowy
 makes no assurances of finding all possible issues.
 
+In particular, analysis is focused on identifying explicit and implicit data
+flows in Go programs, but it may be possible for information to be propagated
+through other covert means, such as by the (non-)termination of the program or
+by how much time it takes to execute. Although these are valid security
+concerns, due to time and simplicity limitations, such alternative channels are
+not considered to be in scope for this degree project.
+
 Finally, regarding the automatic scaffolding of an initial security policy for
 easy onboarding of projects without one defined, this process is extremely
 coarse and does not use any domain-specific knowledge, so it is not perfect.
@@ -412,7 +414,7 @@ organizations can use the tool, which is helpful to society as a whole, since
 more reliance on security mechanisms is presumed to lead to more secure
 software, in general. When combined with society's present day dependence on
 critical software and digital systems (as described at the beginning of this
-Chapter), this means that the present work comprises a development promoting
+chapter), this means that the present work comprises a development promoting
 both economic and social sustainability.
 
 By the same token, this degree project can also indirectly benefit ecological
@@ -446,7 +448,7 @@ manual analysis or more coarse chaining of existing tools.
 
 == Structure of the Thesis
 
-This document is divided into Chapters for easier readability and reference,
+This document is divided into chapters for easier readability and reference,
 with the present @intro purely giving an overview of the topics under this
 discussion, which are further developed throughout the rest of this report.
 

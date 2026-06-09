@@ -1,7 +1,9 @@
 #import "./acronyms.typ": acronyms
-#import "./utils/dependencies.typ": glossarium, kthesis
+#import "./utils/code-blocks.typ": setup-codly
+#import "./utils/dependencies.typ": codly, glossarium, kthesis
 #import "./utils/enum-refs.typ": setup-enum-refs
 
+#import codly: codly, codly-init
 #import glossarium: make-glossary, print-glossary, register-glossary
 #import kthesis: kth-thesis, setup-appendices
 
@@ -9,6 +11,8 @@
 #register-glossary(acronyms)
 
 #show: setup-enum-refs
+#show: codly-init
+#setup-codly()
 
 // --------------------------------------------------------------------- //
 // ---------- MAIN THESIS TEMPLATE ENTRYPOINT & CONFIGURATION ---------- //
