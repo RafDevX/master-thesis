@@ -85,8 +85,9 @@
   trita-number: "2026:0000", // TODO
   host-company: none,
   host-org: none,
-  opponents: none, // TODO
+  opponents: ("John Doe",), // TODO
   presentation: none,
+  cover-image: none,
   acknowledgements: include "content/acknowledgements.typ",
   extra-preambles: (
     (
