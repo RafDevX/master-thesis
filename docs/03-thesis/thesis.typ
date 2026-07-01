@@ -86,7 +86,23 @@
   host-company: none,
   host-org: none,
   opponents: ("John Doe",), // TODO
-  presentation: none,
+  presentation: (
+    language: "en",
+    slot: datetime(
+      year: 2026,
+      month: 8,
+      day: 25,
+      hour: 11,
+      minute: 0,
+      second: 0,
+    ),
+    online: none, // TODO
+    location: (
+      room: "4523 (Stefan Arnborg)",
+      address: "Lindstedtsvägen 5",
+      city: "Stockholm",
+    ),
+  ),
   cover-image: none,
   acknowledgements: include "content/acknowledgements.typ",
   extra-preambles: (
