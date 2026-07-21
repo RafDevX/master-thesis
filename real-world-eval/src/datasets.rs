@@ -77,3 +77,13 @@ pub trait Dataset {
         Ok(rank as u8)
     }
 }
+
+pub fn dataset_by_key(key: &str) -> Option<&'static dyn Dataset> {
+    for dataset in ALL {
+        if dataset.key() == key {
+            return Some(*dataset);
+        }
+    }
+
+    None
+}

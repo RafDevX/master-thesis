@@ -1,4 +1,4 @@
-use std::io;
+use std::{io, str};
 
 pub type AppResult<T> = Result<T, AppError>;
 
@@ -23,4 +23,7 @@ pub enum AppError {
         response: String,
     },
     GoProxyCorruptedZip(#[from] zip::result::ZipError),
+    ProjectFilesRootNotFound(String),
+    AnalyzerExecutionFailure(#[source] io::Error),
+    AnalysisOutputNotUtf8(#[from] str::Utf8Error),
 }

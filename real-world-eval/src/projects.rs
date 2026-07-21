@@ -1,4 +1,4 @@
-use std::{fmt, fs, path::PathBuf};
+use std::{ffi::OsStr, fmt, fs, path::PathBuf};
 
 use chrono::Utc;
 use url::Url;
@@ -33,6 +33,48 @@ impl Project {
         &self.0.as_str()[(self.0.scheme().len() + "://".len())..]
     }
 
+    pub fn files_root(&self) -> AppResult<PathBuf> {
+        // this is not very pretty and there is probably a better way to
+        // refactor the code so this is not needed, but it works for now.
+        // we assume the files root is just PROJECT_FILES_DIR + host + path,
+        // which it should be for most cases, but if the original dataset source
+        // is a Go Proxy then the root actually has `@{version}` on its last
+        // component -- and, helpfully, this is only the case if our URL scheme
+        // is "proxy". it would be cleaner to just strip the `@{version}` suffix
+        // from the project root on directory creation, but that would also be
+        // less sound since in theory it could clash with the same project in a
+        // different dataset (not necessarily the same version)
+        let naive = crate::PROJECT_FILES_DIR.join(self.as_base());
+
+        if self.0.scheme() == "proxy"
+            && let Some(parent) = naive.parent()
+            && let Some(last) = naive.file_name().and_then(OsStr::to_str)
+        {
+            for entry in fs::read_dir(parent)? {
+                let entry = entry?;
+                let file_name = entry.file_name();
+
+                let Some(file_name) = file_name.to_str() else {
+                    continue;
+                };
+
+                let mut split = file_name.split('@');
+
+                if let Some(name) = split.next()
+                    && split.next().is_some()
+                    && split.next().is_none()
+                    && name == last
+                {
+                    return Ok(entry.path());
+                }
+            }
+
+            Err(AppError::ProjectFilesRootNotFound(self.to_string()))
+        } else {
+            Ok(naive)
+        }
+    }
+
     pub fn already_exists(&self, conn: &DbConn) -> AppResult<bool> {
         conn.project_already_exists(self)
     }
@@ -61,7 +103,7 @@ impl Project {
 
         let mut modules = Vec::new();
 
-        for entry in WalkDir::new(&root) {
+        for entry in WalkDir::new(&root).follow_links(true) {
             let entry = match entry.map_err(walkdir::Error::into_io_error) {
                 Ok(entry) => entry,
                 Err(None) => continue,
@@ -98,7 +140,7 @@ impl Project {
 
                 // triple check
                 assert!(
-                    entry.path().starts_with(&*crate::PROJECT_FILES_DIR),
+                    entry.path().starts_with(crate::PROJECT_FILES_DIR.as_path()),
                     "Arbitrary deletion"
                 );
 
@@ -108,7 +150,7 @@ impl Project {
 
         // do a second pass just to remove empty directories, now that we've
         // already deleted all irrelevant files
-        for entry in WalkDir::new(&root) {
+        for entry in WalkDir::new(&root).follow_links(true) {
             let entry = match entry.map_err(walkdir::Error::into_io_error) {
                 Ok(entry) => entry,
                 Err(None) => continue,
@@ -125,7 +167,7 @@ impl Project {
 
                 // triple check
                 assert!(
-                    entry.path().starts_with(&*crate::PROJECT_FILES_DIR),
+                    entry.path().starts_with(crate::PROJECT_FILES_DIR.as_path()),
                     "Arbitrary deletion"
                 );
 

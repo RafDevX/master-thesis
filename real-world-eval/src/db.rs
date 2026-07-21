@@ -3,8 +3,11 @@ use std::path::{Path, PathBuf};
 use rusqlite::{OptionalExtension, params};
 
 use crate::{
+    datasets,
     errors::{AppError, AppResult},
+    modules::Module,
     projects::Project,
+    reports::AnalysisReport,
     samples::{Band, Sample},
 };
 
@@ -40,13 +43,25 @@ impl DbConn {
                     CHECK (relative_rank BETWEEN 0 and 100)
             ) STRICT;
 
-            CREATE TABLE IF NOT EXISTS "modules" (
+            CREATE TABLE IF NOT EXISTS modules (
                 path TEXT PRIMARY KEY,
                 project TEXT NOT NULL
                     REFERENCES projects(url),
-                sloc INTEGER,
                 pending INTEGER NOT NULL DEFAULT 1
                     CHECK (pending IN (0, 1))
+            ) STRICT;
+
+            CREATE TABLE IF NOT EXISTS reports (
+                module TEXT PRIMARY KEY
+                    REFERENCES modules(path),
+                status TEXT NOT NULL
+                    CHECK (status IN ('S', 'F', 'C')),
+                n_errors INTEGER,
+                n_warnings INTEGER,
+                n_confidentiality_flows INTEGER,
+                n_integrity_flows INTEGER,
+                sloc INTEGER NOT NULL,
+                run_time INTEGER NOT NULL
             ) STRICT;
             "#,
         )?;
@@ -54,23 +69,33 @@ impl DbConn {
         Ok(())
     }
 
-    pub fn first_pending_module(&self) -> AppResult<Option<PathBuf>> {
-        let pending: Option<String> = self
+    pub fn first_pending_module(&self) -> AppResult<Option<Module>> {
+        let result: Option<(String, String, String)> = self
             .0
             .query_one(
                 r#"
-                SELECT path
-                FROM modules
-                WHERE pending
-                ORDER BY path
+                SELECT m.path, m.project, p.dataset
+                FROM modules m
+                JOIN projects p
+                    ON m.project = p.url
+                WHERE m.pending
+                ORDER BY m.path
                 LIMIT 1
                 "#,
                 [],
-                extract_single,
+                |row| row.try_into(),
             )
             .optional()?;
 
-        Ok(pending.map(PathBuf::from))
+        let Some((path, project, dataset_key)) = result else {
+            return Ok(None);
+        };
+
+        let dataset = datasets::dataset_by_key(&dataset_key).unwrap();
+        let project = dataset.project_from_entry(&project)?;
+        let path = PathBuf::from(path);
+
+        Ok(Some(Module::new(path, project)))
     }
 
     pub fn project_count_per_sample(&self) -> AppResult<Vec<(String, Band, i64)>> {
@@ -140,8 +165,49 @@ impl DbConn {
 
         Ok(())
     }
+
+    pub fn insert_report(&mut self, module: &Module, report: &AnalysisReport) -> AppResult<()> {
+        let txn = self.0.transaction()?;
+
+        let module_path = module.path().to_string_lossy();
+
+        txn.execute(
+            r#"
+            INSERT INTO reports (
+                module, status, n_errors, n_warnings,
+                n_confidentiality_flows, n_integrity_flows, sloc, run_time
+            ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)
+            "#,
+            params![
+                &module_path,
+                report.status().key(),
+                report.n_errors().map(into_i64_saturating),
+                report.n_warnings().map(into_i64_saturating),
+                report.n_confidentiality_flows().map(into_i64_saturating),
+                report.n_integrity_flows().map(into_i64_saturating),
+                into_i64_saturating(report.sloc()),
+                into_i64_saturating(report.run_time().as_nanos())
+            ],
+        )?;
+
+        txn.execute(
+            r#"
+            UPDATE modules
+            SET pending = 0
+            WHERE path = ?1
+            "#,
+            [module_path],
+        )?;
+
+        txn.commit()?;
+
+        Ok(())
+    }
 }
 
-fn extract_single<T: rusqlite::types::FromSql>(row: &rusqlite::Row<'_>) -> rusqlite::Result<T> {
-    row.get(0)
+fn into_i64_saturating<T>(value: T) -> i64
+where
+    i64: TryFrom<T>,
+{
+    i64::try_from(value).unwrap_or(i64::MAX)
 }

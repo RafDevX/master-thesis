@@ -123,27 +123,25 @@
 )]
 
 use std::{
-    collections::HashSet,
     env, fs,
-    io::{self, Write},
     path::{self, PathBuf},
-    process::Command,
     sync::LazyLock,
 };
 
-use crate::{
-    db::DbConn,
-    errors::AppResult,
-    network::NetworkClient,
-    samples::{Band, Sample},
-};
+use chrono::Utc;
 
+use crate::{errors::AppResult, network::NetworkClient};
+
+mod analysis;
 mod datasets;
 mod db;
 mod errors;
+mod modules;
 mod network;
 mod projects;
+mod reports;
 mod samples;
+mod selection;
 
 macro_rules! absolute_path {
     ($name:ident = $path:expr) => {
@@ -156,6 +154,7 @@ macro_rules! absolute_path {
 absolute_path!(DB_FILE = "./data.sqlite");
 absolute_path!(SAMPLES_DIR = "./input-projects/sampled");
 absolute_path!(PROJECT_FILES_DIR = "./project-files");
+absolute_path!(FAILURE_OUTPUTS_DIR = "./failure-outputs");
 
 #[expect(clippy::panic_in_result_fn, reason = "More user-friendly error")]
 fn main() -> AppResult<()> {
@@ -169,76 +168,14 @@ fn main() -> AppResult<()> {
 
     let client = NetworkClient::new()?;
 
-    let output = Command::new(binary)
-        .env_clear()
-        .output()
-        .expect("Failed to execute Glowy");
+    while let Some(module) = selection::next_module(&mut conn, &client)? {
+        analysis::process_module(&module, &binary, &mut conn)?;
+    }
 
-    io::stdout().write_all(&output.stdout).unwrap();
-    io::stdout().write_all(&output.stderr).unwrap();
-
-    println!("Hello, world!");
-
-    println!("{:?}", next_module(&mut conn, &client));
+    println!(
+        "[now: {}] No further modules - evaluation complete",
+        Utc::now(),
+    );
 
     Ok(())
-}
-
-fn next_module(conn: &mut DbConn, client: &NetworkClient) -> AppResult<Option<PathBuf>> {
-    if let Some(pending) = conn.first_pending_module()? {
-        // there might be modules pending analysis (e.g., if a project had
-        // multiple modules, or if we crashed in the middle of analysis), so
-        // start with those first until we run out of pending modules
-        return Ok(Some(pending));
-    }
-
-    // we try to alternate between datasets by choosing the first one with least
-    // analyzed projects so far, but cannot choose a dataset with no remaining
-    // outstanding projects to analyze, so we need to exclude those
-    let mut excluding = HashSet::new(); // cheap until first insert
-
-    while let Some(sample) = next_sample(conn, &excluding)? {
-        while let Some(project) = sample.next_project(conn)? {
-            let Some(first_module) = project.init(&sample, conn, client)? else {
-                // no modules found in this project; move on to the next one
-                continue;
-            };
-
-            return Ok(Some(first_module));
-        }
-
-        // nothing left in this sample; use the next one available
-        excluding.insert(sample.key());
-    }
-
-    // no datasets have outstanding projects, so we're done
-    Ok(None)
-}
-
-fn next_sample(conn: &DbConn, excluding: &HashSet<(&str, Band)>) -> AppResult<Option<Sample>> {
-    let counts = conn.project_count_per_sample()?;
-
-    let min = counts
-        .iter()
-        .filter(|(dataset_key, band, _)| !excluding.contains(&(dataset_key, *band)))
-        .min_by_key(|(_, _, count)| *count)
-        .map(|(dataset_key, band, _)| (dataset_key, band));
-
-    for dataset in datasets::ALL {
-        let key = dataset.key();
-
-        let is_fully_excluded = excluding
-            .iter()
-            .filter(|(excluded_key, _)| *excluded_key == key)
-            .count()
-            == Band::N_BANDS;
-
-        if !is_fully_excluded && min.is_none_or(|(min_key, _)| dataset.key() == min_key) {
-            let band = min.map_or(Band::I, |(_, min_band)| *min_band);
-
-            return Ok(Some(Sample::new(*dataset, band)));
-        }
-    }
-
-    Ok(None)
 }
