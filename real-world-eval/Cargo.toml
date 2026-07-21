@@ -1,0 +1,32 @@
+[package]
+name = "glowy-eval"
+description = "Evaluation orchestrator for Glowy analysis of real-world Go projects"
+version = "1.0.0"
+edition = "2024"
+authors = ["Rafael Oliveira"]
+license = "MIT"
+rust-version = "1.91"
+
+# make the binary leaner and more optimized
+# (at the cost of a slower compile time, though only for release mode)
+[profile.release]
+lto = true
+strip = true
+codegen-units = 1
+panic = "abort"
+
+[dependencies]
+backon = { version = "1.6.0", default-features = false, features = [
+    "std",
+    "std-blocking-sleep",
+] }
+chrono = "0.4.45"
+justerror = "1.1.0"
+regex = "1.13.1"
+reqwest = { version = "0.13.4", features = ["blocking", "brotli", "gzip"] }
+rusqlite = { version = "0.40.1", features = ["bundled"] }
+tempfile = "3.27.0"
+thiserror = "2.0.19"
+url = "2.5.8"
+walkdir = "2.5.0"
+zip = { version = "8.6.0", default-features = false, features = ["deflate"] }

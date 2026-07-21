@@ -1,0 +1,26 @@
+use std::io;
+
+pub type AppResult<T> = Result<T, AppError>;
+
+#[justerror::Error]
+pub enum AppError {
+    DbConnectionFailed(#[source] rusqlite::Error),
+    Database(#[from] rusqlite::Error),
+    FileSystem(#[from] io::Error),
+    Network(#[from] reqwest::Error),
+    InvalidBand(String),
+    MalformedProjectPath(#[from] url::ParseError),
+    NonUtf8Path(String),
+    ProjectNotInDatasetSource {
+        project: String,
+        dataset_key: &'static str,
+    },
+    ProjectDownloadTargetAlreadyExists {
+        project: String,
+    },
+    GoProxyNoValidLatestVersion {
+        project: String,
+        response: String,
+    },
+    GoProxyCorruptedZip(#[from] zip::result::ZipError),
+}

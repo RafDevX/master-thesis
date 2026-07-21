@@ -19,6 +19,11 @@
         unstablePkgs = import unstable { inherit system; };
       in
       {
+        packages = rec {
+          glowy-eval = pkgs.callPackage ./package.nix { };
+          default = glowy-eval;
+        };
+
         devShells.default = pkgs.mkShellNoCC {
           buildInputs =
             (with pkgs; [
