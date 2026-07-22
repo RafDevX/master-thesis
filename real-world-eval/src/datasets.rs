@@ -85,16 +85,6 @@ pub trait Dataset {
     }
 }
 
-pub fn dataset_by_key(key: &str) -> Option<&'static dyn Dataset> {
-    for dataset in ALL {
-        if dataset.key() == key {
-            return Some(*dataset);
-        }
-    }
-
-    None
-}
-
 pub struct ProjectDownloadMetadata {
     pub root: PathBuf,
     pub rev_name: String,

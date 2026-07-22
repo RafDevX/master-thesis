@@ -4,9 +4,9 @@ use std::{
 };
 
 use rusqlite::{OptionalExtension, params};
+use url::Url;
 
 use crate::{
-    datasets,
     errors::{AppError, AppResult},
     modules::Module,
     projects::Project,
@@ -75,16 +75,14 @@ impl DbConn {
     }
 
     pub fn first_pending_module(&self) -> AppResult<Option<Module>> {
-        let result: Option<(String, String, String)> = self
+        let result: Option<(String, String)> = self
             .0
             .query_one(
                 r#"
-                SELECT m.path, m.project, p.dataset
-                FROM modules m
-                JOIN projects p
-                    ON m.project = p.url
-                WHERE m.pending
-                ORDER BY m.path
+                SELECT path, project
+                FROM modules
+                WHERE pending
+                ORDER BY path
                 LIMIT 1
                 "#,
                 [],
@@ -92,12 +90,14 @@ impl DbConn {
             )
             .optional()?;
 
-        let Some((path, project, dataset_key)) = result else {
+        let Some((path, project)) = result else {
             return Ok(None);
         };
 
-        let dataset = datasets::dataset_by_key(&dataset_key).unwrap();
-        let project = dataset.project_from_entry(&project)?;
+        // we don't go through dataset.project_from_entry because the project
+        // URL has already been calculated before being stored in the database;
+        // we already have the final URL, not a relative dataset entry
+        let project = Project::new(Url::parse(&project)?);
         let path = PathBuf::from(path);
 
         Ok(Some(Module::new(path, project)))
