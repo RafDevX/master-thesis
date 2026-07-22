@@ -40,7 +40,9 @@ impl DbConn {
                 dataset TEXT NOT NULL,
                 band TEXT NOT NULL,
                 relative_rank INTEGER NOT NULL
-                    CHECK (relative_rank BETWEEN 0 and 100)
+                    CHECK (relative_rank BETWEEN 0 and 100),
+                rev_name TEXT NOT NULL,
+                rev_hash TEXT
             ) STRICT;
 
             CREATE TABLE IF NOT EXISTS modules (
@@ -134,20 +136,25 @@ impl DbConn {
         project: &Project,
         sample: &Sample,
         relative_rank: u8,
+        rev_name: &str,
+        rev_hash: Option<&str>,
         modules: &[String],
     ) -> AppResult<()> {
         let txn = self.0.transaction()?;
 
         txn.execute(
             r#"
-            INSERT INTO projects (url, dataset, band, relative_rank)
-            VALUES (?1, ?2, ?3, ?4)
+            INSERT INTO projects (
+                url, dataset, band, relative_rank, rev_name, rev_hash
+            ) VALUES (?1, ?2, ?3, ?4, ?5, ?6)
             "#,
             params![
                 project.url().as_str(),
                 sample.dataset().key(),
                 sample.band().as_str(),
-                relative_rank
+                relative_rank,
+                rev_name,
+                rev_hash,
             ],
         )?;
 

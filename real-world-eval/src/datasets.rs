@@ -23,7 +23,11 @@ pub trait Dataset {
 
     fn project_from_entry(&self, entry: &str) -> AppResult<Project>;
 
-    fn download_project(&self, project: &Project, client: &NetworkClient) -> AppResult<PathBuf>;
+    fn download_project(
+        &self,
+        project: &Project,
+        client: &NetworkClient,
+    ) -> AppResult<ProjectDownloadMetadata>;
 
     fn calculate_relative_rank_of(&self, project: &Project) -> AppResult<u8> {
         // we avoid `fs::read_to_string` because dataset source can have
@@ -86,4 +90,10 @@ pub fn dataset_by_key(key: &str) -> Option<&'static dyn Dataset> {
     }
 
     None
+}
+
+pub struct ProjectDownloadMetadata {
+    pub root: PathBuf,
+    pub rev_name: String,
+    pub rev_hash: Option<String>,
 }

@@ -5,6 +5,7 @@ use url::Url;
 use walkdir::WalkDir;
 
 use crate::{
+    datasets::ProjectDownloadMetadata,
     db::DbConn,
     errors::{AppError, AppResult},
     network::NetworkClient,
@@ -99,7 +100,11 @@ impl Project {
             relative_rank
         );
 
-        let root = dataset.download_project(self, client)?;
+        let ProjectDownloadMetadata {
+            root,
+            rev_name,
+            rev_hash,
+        } = dataset.download_project(self, client)?;
 
         let mut modules = Vec::new();
 
@@ -175,7 +180,14 @@ impl Project {
             }
         }
 
-        conn.insert_project(self, sample, relative_rank, &modules)?;
+        conn.insert_project(
+            self,
+            sample,
+            relative_rank,
+            rev_name.as_str(),
+            rev_hash.as_deref(),
+            &modules,
+        )?;
 
         let first_module = modules.into_iter().map(PathBuf::from).next();
 
