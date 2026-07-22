@@ -25,4 +25,9 @@
     short: "MLS",
     long: "Multi-Level Security",
   ),
+  (
+    key: "toml",
+    short: "TOML",
+    long: "Tom's Obvious Minimal Language",
+  ),
 )
