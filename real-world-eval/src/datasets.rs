@@ -11,8 +11,11 @@ use crate::{
 };
 
 mod dependents;
+mod git_generic;
+mod github;
+mod gitlab;
 
-pub const ALL: &[&dyn Dataset] = &[&dependents::Dependents];
+pub const ALL: &[&dyn Dataset] = &[&dependents::Dependents, &github::GitHub, &gitlab::GitLab];
 
 pub trait Dataset {
     fn key(&self) -> &'static str;

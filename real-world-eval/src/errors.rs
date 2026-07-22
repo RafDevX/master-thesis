@@ -8,6 +8,7 @@ pub enum AppError {
     Database(#[from] rusqlite::Error),
     FileSystem(#[from] io::Error),
     Network(#[from] reqwest::Error),
+    Git(#[from] git2::Error),
     InvalidBand(String),
     MalformedProjectPath(#[from] url::ParseError),
     NonUtf8Path(String),
