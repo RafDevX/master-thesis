@@ -1,4 +1,7 @@
-use std::path::{Path, PathBuf};
+use std::{
+    collections::HashMap,
+    path::{Path, PathBuf},
+};
 
 use rusqlite::{OptionalExtension, params};
 
@@ -100,7 +103,7 @@ impl DbConn {
         Ok(Some(Module::new(path, project)))
     }
 
-    pub fn project_count_per_sample(&self) -> AppResult<Vec<(String, Band, i64)>> {
+    pub fn project_count_by_sample(&self) -> AppResult<HashMap<(String, Band), i64>> {
         let mut stmt = self.0.prepare(
             r#"
             SELECT dataset, band, COUNT(*) AS project_count
@@ -114,7 +117,7 @@ impl DbConn {
             .map(|result| {
                 let (dataset, band, count): (_, String, _) = result?;
 
-                Ok((dataset, Band::try_from(band.as_str())?, count))
+                Ok(((dataset, Band::try_from(band.as_str())?), count))
             })
             .collect()
     }

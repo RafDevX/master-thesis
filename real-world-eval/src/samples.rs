@@ -80,7 +80,7 @@ pub enum Band {
 }
 
 impl Band {
-    pub const N_BANDS: usize = 4;
+    pub const ALL: &[Self] = &[Self::I, Self::II, Self::III, Self::IV];
 
     pub fn as_str(self) -> &'static str {
         match self {

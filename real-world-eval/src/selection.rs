@@ -48,29 +48,19 @@ pub fn next_module(conn: &mut DbConn, client: &NetworkClient) -> AppResult<Optio
 }
 
 fn next_sample(conn: &DbConn, excluding: &HashSet<(&str, Band)>) -> AppResult<Option<Sample>> {
-    let counts = conn.project_count_per_sample()?;
+    let counts = conn.project_count_by_sample()?;
 
-    let min = counts
+    let next = datasets::ALL
         .iter()
-        .filter(|(dataset_key, band, _)| !excluding.contains(&(dataset_key, *band)))
-        .min_by_key(|(_, _, count)| *count)
-        .map(|(dataset_key, band, _)| (dataset_key, band));
+        .flat_map(|dataset| Band::ALL.iter().map(|band| (*dataset, *band)))
+        .filter(|(dataset, band)| !excluding.contains(&(dataset.key(), *band)))
+        .min_by_key(|(dataset, band)| {
+            counts
+                .get(&(dataset.key().to_owned(), *band))
+                .copied()
+                .unwrap_or(0)
+        })
+        .map(|(dataset, band)| Sample::new(dataset, band));
 
-    for dataset in datasets::ALL {
-        let key = dataset.key();
-
-        let is_fully_excluded = excluding
-            .iter()
-            .filter(|(excluded_key, _)| *excluded_key == key)
-            .count()
-            == Band::N_BANDS;
-
-        if !is_fully_excluded && min.is_none_or(|(min_key, _)| dataset.key() == min_key) {
-            let band = min.map_or(Band::I, |(_, min_band)| *min_band);
-
-            return Ok(Some(Sample::new(*dataset, band)));
-        }
-    }
-
-    Ok(None)
+    Ok(next)
 }
