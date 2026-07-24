@@ -41,6 +41,7 @@ pub fn process_module(module: &Module, binary: &str, conn: &mut DbConn) -> AppRe
     let output = Command::new(binary)
         .arg(root)
         .env_clear()
+        .env("GLOWY_VERBOSE", "true")
         .output()
         .map_err(AppError::AnalyzerExecutionFailure)?;
 
@@ -53,39 +54,15 @@ pub fn process_module(module: &Module, binary: &str, conn: &mut DbConn) -> AppRe
 
     // check success message since warnings are still considered a failure even
     // if the execution returns a success exit code
-    let report = if status.success() && stdout.trim() == GLOWY_SUCCESS_MESSAGE {
-        AnalysisReport::new_succeeded(sloc, run_time)
+    let report = if status.success()
+        && stdout.lines().last().map(str::trim) == Some(GLOWY_SUCCESS_MESSAGE)
+    {
+        AnalysisReport::new_succeeded(sloc, run_time, stdout)
     } else if status.code().is_some_and(|code| code != RUST_PANIC_CODE) {
         // if the status is not considered a success but there is still an
         // associated exit code, then analysis necessarily failed
 
-        let mut n_errors = 0;
-        let mut n_warnings = 0;
-        let mut n_confidentiality_flows = 0;
-        let mut n_integrity_flows = 0;
-
-        for line in stderr.lines() {
-            if line.starts_with("error[") {
-                n_errors += 1;
-            } else if line.starts_with("warning[") {
-                n_warnings += 1;
-            } else if !line.starts_with("   | ") {
-                // if a line number is provided, then it's actually source code
-            } else if line.contains("has label {secret:*}, but") {
-                n_confidentiality_flows += 1;
-            } else if line.contains("has label {untrusted:*}, but") {
-                n_integrity_flows += 1;
-            }
-        }
-
-        AnalysisReport::new_failed(
-            sloc,
-            run_time,
-            n_errors,
-            n_warnings,
-            n_confidentiality_flows,
-            n_integrity_flows,
-        )
+        AnalysisReport::new_failed(sloc, run_time, stdout, stderr)
     } else {
         // if there is no associated exit code, then the process crashed
         // (this is also true even if there is a code, but representing a panic)
