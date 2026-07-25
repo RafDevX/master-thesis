@@ -13,7 +13,7 @@ use crate::{
     db::DbConn,
     errors::{AppError, AppResult},
     modules::Module,
-    reports::{AnalysisReport, AnalysisStatus},
+    reports::AnalysisReport,
 };
 
 const GLOWY_SUCCESS_MESSAGE: &str = "Analysis succeeded with no errors found!";
@@ -36,9 +36,11 @@ pub fn process_module(module: &Module, binary: &str, conn: &mut DbConn) -> AppRe
 
     let root = module.files_root()?;
 
-    let (output, report) = analyze_module(&root, binary)?;
+    let (report, output) = analyze_module(&root, binary)?;
 
-    if report.status() != AnalysisStatus::Succeeded {
+    if report.status().should_store_output()
+        && let Some(output) = output
+    {
         // if we failed or crashed, store the output for later inspection
         fs::create_dir_all(crate::FAILURE_OUTPUTS_DIR.as_path())?;
 
@@ -79,8 +81,19 @@ pub fn process_module(module: &Module, binary: &str, conn: &mut DbConn) -> AppRe
     Ok(())
 }
 
-fn analyze_module(root: &Path, binary: &str) -> AppResult<(process::Output, AnalysisReport)> {
+fn analyze_module(
+    root: &Path,
+    binary: &str,
+) -> AppResult<(AnalysisReport, Option<process::Output>)> {
     let sloc = calculate_sloc(root)?;
+
+    if sloc == 0 {
+        // don't waste time running analysis
+
+        let report = AnalysisReport::new_empty();
+
+        return Ok((report, None));
+    }
 
     let start = time::Instant::now();
 
@@ -119,7 +132,7 @@ fn analyze_module(root: &Path, binary: &str) -> AppResult<(process::Output, Anal
         AnalysisReport::new_crashed(sloc, run_time)
     };
 
-    Ok((output, report))
+    Ok((report, Some(output)))
 }
 
 fn calculate_sloc(root: &Path) -> AppResult<usize> {

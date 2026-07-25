@@ -60,7 +60,7 @@ impl DbConn {
                 module TEXT PRIMARY KEY
                     REFERENCES modules(path),
                 status TEXT NOT NULL
-                    CHECK (status IN ('S', 'F', 'C')),
+                    CHECK (status IN ('S', 'F', 'C', 'E')),
                 n_errors INTEGER,
                 n_warnings INTEGER,
                 n_confidentiality_flows INTEGER,

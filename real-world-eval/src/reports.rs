@@ -43,11 +43,25 @@ impl AnalysisReport {
         }
     }
 
+    pub fn new_empty() -> Self {
+        Self {
+            results: None,
+            sloc: 0,
+            run_time: time::Duration::ZERO,
+        }
+    }
+
     pub fn status(&self) -> AnalysisStatus {
         match self.results.as_ref().map(|results| results.success) {
             Some(true) => AnalysisStatus::Succeeded,
             Some(false) => AnalysisStatus::Failed,
-            None => AnalysisStatus::Crashed,
+            None => {
+                if self.sloc > 0 {
+                    AnalysisStatus::Crashed
+                } else {
+                    AnalysisStatus::Empty
+                }
+            }
         }
     }
 
@@ -234,6 +248,7 @@ pub enum AnalysisStatus {
     Succeeded,
     Failed,
     Crashed,
+    Empty,
 }
 
 impl AnalysisStatus {
@@ -242,7 +257,12 @@ impl AnalysisStatus {
             Self::Succeeded => "S",
             Self::Failed => "F",
             Self::Crashed => "C",
+            Self::Empty => "E",
         }
+    }
+
+    pub fn should_store_output(self) -> bool {
+        matches!(self, Self::Failed | Self::Crashed)
     }
 }
 
@@ -252,6 +272,7 @@ impl fmt::Display for AnalysisStatus {
             Self::Succeeded => write!(f, "SUCCEEDED"),
             Self::Failed => write!(f, "FAILED"),
             Self::Crashed => write!(f, "CRASHED"),
+            Self::Empty => write!(f, "EMPTY"),
         }
     }
 }
