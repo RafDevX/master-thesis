@@ -154,8 +154,9 @@ impl Project {
         }
 
         // do a second pass just to remove empty directories, now that we've
-        // already deleted all irrelevant files
-        for entry in WalkDir::new(&root).follow_links(true) {
+        // already deleted all irrelevant files (we enable contents-first mode
+        // since otherwise higher-level empty directories would not be deleted)
+        for entry in WalkDir::new(&root).follow_links(true).contents_first(true) {
             let entry = match entry.map_err(walkdir::Error::into_io_error) {
                 Ok(entry) => entry,
                 Err(None) => continue,
