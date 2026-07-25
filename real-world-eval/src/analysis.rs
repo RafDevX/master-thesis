@@ -19,8 +19,11 @@ use crate::{
 
 const GLOWY_SUCCESS_MESSAGE: &str = "Analysis succeeded with no errors found!";
 
-// by convention, this is the exit code that Rust uses when a panic happens
-const RUST_PANIC_CODE: i32 = 101;
+// by convention, these are the exit codes that Rust uses when a panic happens
+const RUST_PANIC_CODES: &[i32] = &[
+    101, // normal unwinding panic
+    134, // aborting panic
+];
 
 // file names are usually limited to 255 characters, so we cannot exceed that
 const MAX_FAILURE_OUTPUT_NAME_BYTES: usize = 255 - ".stderr".len();
@@ -58,7 +61,10 @@ pub fn process_module(module: &Module, binary: &str, conn: &mut DbConn) -> AppRe
         && stdout.lines().last().map(str::trim) == Some(GLOWY_SUCCESS_MESSAGE)
     {
         AnalysisReport::new_succeeded(sloc, run_time, stdout)
-    } else if status.code().is_some_and(|code| code != RUST_PANIC_CODE) {
+    } else if status
+        .code()
+        .is_some_and(|code| !RUST_PANIC_CODES.contains(&code))
+    {
         // if the status is not considered a success but there is still an
         // associated exit code, then analysis necessarily failed
 
