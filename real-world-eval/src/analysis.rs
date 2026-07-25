@@ -3,8 +3,7 @@ use std::{
     fs::{self, File},
     io::{BufRead, BufReader},
     path::Path,
-    process::Command,
-    time,
+    process, time,
 };
 
 use chrono::Utc;
@@ -37,44 +36,7 @@ pub fn process_module(module: &Module, binary: &str, conn: &mut DbConn) -> AppRe
 
     let root = module.files_root()?;
 
-    let sloc = calculate_sloc(&root)?;
-
-    let start = time::Instant::now();
-
-    let output = Command::new(binary)
-        .arg(root)
-        .env_clear()
-        .env("GLOWY_VERBOSE", "true")
-        .output()
-        .map_err(AppError::AnalyzerExecutionFailure)?;
-
-    let run_time = start.elapsed();
-
-    let status = output.status;
-
-    let stdout = str::from_utf8(&output.stdout)?;
-    let stderr = str::from_utf8(&output.stderr)?;
-
-    // check success message since warnings are still considered a failure even
-    // if the execution returns a success exit code
-    let report = if status.success()
-        && stdout.lines().last().map(str::trim) == Some(GLOWY_SUCCESS_MESSAGE)
-    {
-        AnalysisReport::new_succeeded(sloc, run_time, stdout)
-    } else if status
-        .code()
-        .is_some_and(|code| !RUST_PANIC_CODES.contains(&code))
-    {
-        // if the status is not considered a success but there is still an
-        // associated exit code, then analysis necessarily failed
-
-        AnalysisReport::new_failed(sloc, run_time, stdout, stderr)
-    } else {
-        // if there is no associated exit code, then the process crashed
-        // (this is also true even if there is a code, but representing a panic)
-
-        AnalysisReport::new_crashed(sloc, run_time)
-    };
+    let (output, report) = analyze_module(&root, binary)?;
 
     if report.status() != AnalysisStatus::Succeeded {
         // if we failed or crashed, store the output for later inspection
@@ -109,12 +71,55 @@ pub fn process_module(module: &Module, binary: &str, conn: &mut DbConn) -> AppRe
         module.path().display(),
         report.status(),
         paren,
-        run_time
+        report.run_time()
     );
 
     conn.insert_report(module, &report)?;
 
     Ok(())
+}
+
+fn analyze_module(root: &Path, binary: &str) -> AppResult<(process::Output, AnalysisReport)> {
+    let sloc = calculate_sloc(root)?;
+
+    let start = time::Instant::now();
+
+    let output = process::Command::new(binary)
+        .arg(root)
+        .env_clear()
+        .env("GLOWY_VERBOSE", "true")
+        .output()
+        .map_err(AppError::AnalyzerExecutionFailure)?;
+
+    let run_time = start.elapsed();
+
+    let status = output.status;
+
+    let stdout = str::from_utf8(&output.stdout)?;
+    let stderr = str::from_utf8(&output.stderr)?;
+
+    // check success message since warnings are still considered a failure even
+    // if the execution returns a success exit code
+    let report = if status.success()
+        && stdout.lines().last().map(str::trim) == Some(GLOWY_SUCCESS_MESSAGE)
+    {
+        AnalysisReport::new_succeeded(sloc, run_time, stdout)
+    } else if status
+        .code()
+        .is_some_and(|code| !RUST_PANIC_CODES.contains(&code))
+    {
+        // if the status is not considered a success but there is still an
+        // associated exit code, then analysis necessarily failed
+
+        AnalysisReport::new_failed(sloc, run_time, stdout, stderr)
+    } else {
+        // if there is no associated exit code, then the process crashed
+        // (this is also true even if there is a code, but representing a panic)
+
+        AnalysisReport::new_crashed(sloc, run_time)
+    };
+
+    Ok((output, report))
 }
 
 fn calculate_sloc(root: &Path) -> AppResult<usize> {
