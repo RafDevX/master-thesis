@@ -31,7 +31,7 @@ const PROJECTS_URL: &str = "https://gitlab.com/api/v4/projects";
 const DB_FILE: &str = "data.sqlite";
 const OUTPUT_FILE: &str = "02-gitlab-repos-by-stars.txt";
 
-const MIN_STARS: i64 = 100;
+const MIN_STARS: i64 = 10;
 const PER_PAGE: u32 = 100;
 
 const MAX_SERVER_RETRIES: u64 = 8;
@@ -192,6 +192,7 @@ fn build_url(page: u32) -> String {
             "{}",
             "?order_by=star_count",
             "&sort=desc",
+            "&with_programming_language=go",
             "&archived=false",
             "&per_page={}",
             "&page={}",
