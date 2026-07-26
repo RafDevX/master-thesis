@@ -20,9 +20,15 @@ pub fn download_project_from_git_remote(project: &Project) -> AppResult<ProjectD
     // actual leaf directory also exists (as long as it's empty)
     fs::create_dir_all(&target)?;
 
-    // we don't specify any options so that git automatically clones using the
-    // remote's default branch, which will become our local default branch
-    let repo = git2::Repository::clone(project.url().as_str(), &target)?;
+    // avoid cloning rich git history when we won't ever use it
+    let mut fetch_opts = git2::FetchOptions::new();
+    fetch_opts.depth(1);
+
+    // we don't specify any other options so that git automatically clones using
+    // the remote's default branch, which will become our local default branch
+    let repo = git2::build::RepoBuilder::new()
+        .fetch_options(fetch_opts)
+        .clone(project.url().as_str(), &target)?;
 
     let head = repo.head()?;
     let default_branch = head.resolve()?;
