@@ -51,14 +51,18 @@ impl DbConn {
             CREATE TABLE IF NOT EXISTS modules (
                 path TEXT PRIMARY KEY,
                 project TEXT NOT NULL
-                    REFERENCES projects(url),
+                    REFERENCES projects(url)
+                        ON UPDATE CASCADE
+                        ON DELETE CASCADE,
                 pending INTEGER NOT NULL DEFAULT 1
                     CHECK (pending IN (0, 1))
             ) STRICT;
 
             CREATE TABLE IF NOT EXISTS reports (
                 module TEXT PRIMARY KEY
-                    REFERENCES modules(path),
+                    REFERENCES modules(path)
+                        ON UPDATE CASCADE
+                        ON DELETE CASCADE,
                 status TEXT NOT NULL
                     CHECK (status IN ('S', 'F', 'C', 'E')),
                 n_errors INTEGER,
