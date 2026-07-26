@@ -149,11 +149,7 @@ fn calculate_sloc(root: &Path) -> AppResult<usize> {
     let mut total = 0;
 
     for entry in WalkDir::new(root).follow_links(true) {
-        let entry = match entry.map_err(walkdir::Error::into_io_error) {
-            Ok(entry) => entry,
-            Err(None) => continue,
-            Err(Some(err)) => return Err(err.into()),
-        };
+        let entry = entry.map_err(io::Error::from)?;
 
         if entry.file_type().is_dir() {
             continue;

@@ -1,4 +1,4 @@
-use std::{ffi::OsStr, fmt, fs, path::PathBuf};
+use std::{ffi::OsStr, fmt, fs, io, path::PathBuf};
 
 use chrono::Utc;
 use url::Url;
@@ -106,14 +106,44 @@ impl Project {
             rev_hash,
         } = dataset.download_project(self, client)?;
 
+        macro_rules! handle_walkdir_result {
+            ($result:expr) => {
+                match $result {
+                    Ok(entry) => entry,
+                    Err(err) => {
+                        if err
+                            .io_error()
+                            .map(io::Error::kind)
+                            .is_some_and(|kind| kind == io::ErrorKind::NotFound)
+                            && let Some(path) = err.path()
+                        {
+                            // we assume that this is a broken symlink that
+                            // became broken because we previously deleted its
+                            // target (because walkdir "arbitrarily" yielded the
+                            // target before the link).if we're wrong, the
+                            // remove_file call below should fail anyway
+
+                            // triple check
+                            assert!(
+                                path.starts_with(crate::PROJECT_FILES_DIR.as_path()),
+                                "Arbitrary deletion"
+                            );
+
+                            fs::remove_file(path)?;
+
+                            continue;
+                        }
+
+                        return Err(io::Error::from(err).into());
+                    }
+                }
+            };
+        }
+
         let mut modules = Vec::new();
 
         for entry in WalkDir::new(&root).follow_links(true) {
-            let entry = match entry.map_err(walkdir::Error::into_io_error) {
-                Ok(entry) => entry,
-                Err(None) => continue,
-                Err(Some(err)) => return Err(err.into()),
-            };
+            let entry = handle_walkdir_result!(entry);
 
             if entry.file_type().is_dir() {
                 continue;
@@ -157,11 +187,7 @@ impl Project {
         // already deleted all irrelevant files (we enable contents-first mode
         // since otherwise higher-level empty directories would not be deleted)
         for entry in WalkDir::new(&root).follow_links(true).contents_first(true) {
-            let entry = match entry.map_err(walkdir::Error::into_io_error) {
-                Ok(entry) => entry,
-                Err(None) => continue,
-                Err(Some(err)) => return Err(err.into()),
-            };
+            let entry = handle_walkdir_result!(entry);
 
             if entry.file_type().is_dir()
                 && entry.path().parent().is_some()
