@@ -161,6 +161,10 @@ impl Project {
                         AppError::NonUtf8Path(dir_path.to_string_lossy().into_owned())
                     })?;
 
+                if relative.starts_with("vendor/") || relative.contains("/vendor/") {
+                    continue;
+                }
+
                 let with_base = if relative.is_empty() {
                     // project root itself
                     self.as_base().to_owned()
