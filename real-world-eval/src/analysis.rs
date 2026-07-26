@@ -1,12 +1,13 @@
 use std::{
     borrow::Cow,
     fs::{self, File},
-    io::{BufRead, BufReader},
+    io::{self, BufRead, BufReader},
     path::Path,
     process, time,
 };
 
 use chrono::Utc;
+use regex::regex;
 use walkdir::WalkDir;
 
 use crate::{
@@ -124,7 +125,16 @@ fn analyze_module(
         // if the status is not considered a success but there is still an
         // associated exit code, then analysis necessarily failed
 
-        AnalysisReport::new_failed(sloc, run_time, stdout, stderr)
+        if regex!(r"(?mR)^Finished parsing \d+ file\(s\)$").is_match(stdout) {
+            // parsing finished, so there are real errors
+            AnalysisReport::new_failed(sloc, run_time, stdout, stderr)
+        } else {
+            // no analysis took place because parsing failed; we treat it as a
+            // crash, for simplicity, since we cannot derive a results summary,
+            // but set run_time to 0 since it is negligible and this special
+            // behavior allows identifying these situations in the future
+            AnalysisReport::new_crashed(sloc, time::Duration::ZERO)
+        }
     } else {
         // if there is no associated exit code, then the process crashed
         // (this is also true even if there is a code, but representing a panic)
