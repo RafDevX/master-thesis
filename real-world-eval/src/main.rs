@@ -152,6 +152,7 @@ macro_rules! absolute_path {
 }
 
 absolute_path!(DB_FILE = "./data.sqlite");
+absolute_path!(EXCLUDED_PROJECTS_FILE = "./input-projects/excluded.txt");
 absolute_path!(SAMPLES_DIR = "./input-projects/sampled");
 absolute_path!(PROJECT_FILES_DIR = "./project-files");
 absolute_path!(FAILURE_OUTPUTS_DIR = "./failure-outputs");
@@ -168,7 +169,11 @@ fn main() -> AppResult<()> {
 
     let client = NetworkClient::new()?;
 
-    while let Some(module) = selection::next_module(&mut conn, &client)? {
+    while let Some(module) = selection::next_module(
+        EXCLUDED_PROJECTS_FILE.as_path(), // list of excluded projects
+        &mut conn,
+        &client,
+    )? {
         analysis::process_module(&module, &binary, &mut conn)?;
     }
 

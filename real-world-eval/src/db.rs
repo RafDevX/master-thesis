@@ -184,6 +184,30 @@ impl DbConn {
         Ok(())
     }
 
+    pub fn skip_excluded_project(
+        &mut self,
+        project: &Project,
+        sample: &Sample,
+        relative_rank: u8,
+    ) -> AppResult<()> {
+        self.0.execute(
+            r#"
+            INSERT INTO projects (
+                url, dataset, band, relative_rank, rev_name
+            ) VALUES (?1, ?2, ?3, ?4, ?5)
+            "#,
+            params![
+                project.url().as_str(),
+                sample.dataset().key(),
+                sample.band().as_str(),
+                relative_rank,
+                "[MANUALLY EXCLUDED]",
+            ],
+        )?;
+
+        Ok(())
+    }
+
     pub fn insert_report(&mut self, module: &Module, report: &AnalysisReport) -> AppResult<()> {
         let txn = self.0.transaction()?;
 

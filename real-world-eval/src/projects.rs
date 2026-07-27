@@ -1,4 +1,8 @@
-use std::{ffi::OsStr, fmt, fs, io, path::PathBuf};
+use std::{
+    ffi::OsStr,
+    fmt, fs, io,
+    path::{Path, PathBuf},
+};
 
 use chrono::Utc;
 use url::Url;
@@ -81,15 +85,31 @@ impl Project {
     }
 
     #[expect(clippy::panic_in_result_fn, reason = "Triple-check before delete")]
+    #[expect(clippy::too_many_lines, reason = "Tight coupling")]
     pub fn init(
         &self,
         sample: &Sample,
+        exclude_list: &Path,
         conn: &mut DbConn,
         client: &NetworkClient,
     ) -> AppResult<Option<PathBuf>> {
         let dataset = sample.dataset();
 
         let relative_rank = dataset.calculate_relative_rank_of(self)?;
+
+        if self.is_excluded(exclude_list)? {
+            println!(
+                "[now: {}] Skip init project `{}` from sample {}.{} (EXCLUDED)",
+                Utc::now(),
+                self.0.as_str(),
+                dataset.key(),
+                sample.band().as_str(),
+            );
+
+            conn.skip_excluded_project(self, sample, relative_rank)?;
+
+            return Ok(None);
+        }
 
         println!(
             "[now: {}] Init project `{}` from sample {}.{} (rank {}/100)",
@@ -223,6 +243,27 @@ impl Project {
         let first_module = modules.into_iter().map(PathBuf::from).next();
 
         Ok(first_module)
+    }
+
+    fn is_excluded(&self, exclude_list_path: &Path) -> AppResult<bool> {
+        let list = match fs::read_to_string(exclude_list_path) {
+            Ok(list) => list,
+            Err(err) if err.kind() == io::ErrorKind::NotFound => return Ok(false),
+            Err(err) => return Err(err.into()),
+        };
+
+        for line in list.lines() {
+            let line = line
+                .split_once('#')
+                .map_or(line, |(before, _)| before)
+                .trim();
+
+            if !line.is_empty() && line == self.url().as_str() {
+                return Ok(true);
+            }
+        }
+
+        Ok(false)
     }
 }
 

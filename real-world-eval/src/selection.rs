@@ -1,4 +1,4 @@
-use std::{collections::HashSet, fs};
+use std::{collections::HashSet, fs, path::Path};
 
 use crate::{
     datasets,
@@ -9,7 +9,11 @@ use crate::{
     samples::{Band, Sample},
 };
 
-pub fn next_module(conn: &mut DbConn, client: &NetworkClient) -> AppResult<Option<Module>> {
+pub fn next_module(
+    proj_exclude_list: &Path,
+    conn: &mut DbConn,
+    client: &NetworkClient,
+) -> AppResult<Option<Module>> {
     if let Some(pending) = conn.first_pending_module()? {
         // there might be modules pending analysis (e.g., if a project had
         // multiple modules, or if we crashed in the middle of analysis), so
@@ -24,7 +28,7 @@ pub fn next_module(conn: &mut DbConn, client: &NetworkClient) -> AppResult<Optio
 
     while let Some(sample) = next_sample(conn, &excluding)? {
         while let Some(project) = sample.next_project(conn)? {
-            let Some(first_module) = project.init(&sample, conn, client)? else {
+            let Some(first_module) = project.init(&sample, proj_exclude_list, conn, client)? else {
                 // no modules found in this project; move on to the next one
                 continue;
             };
