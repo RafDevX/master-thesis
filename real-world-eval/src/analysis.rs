@@ -125,7 +125,11 @@ fn analyze_module(
         // if the status is not considered a success but there is still an
         // associated exit code, then analysis necessarily failed
 
-        if regex!(r"(?mR)^Finished parsing \d+ file\(s\)$").is_match(stdout) {
+        if regex!(r"(?mR)^warning[S001]: no registered Go source code files$").is_match(stderr) {
+            // this can happen even if our calculated sloc was 0, since build
+            // tag constraints can lead the analyzer to ignore all files
+            AnalysisReport::new_empty()
+        } else if regex!(r"(?mR)^Finished parsing \d+ file\(s\)$").is_match(stdout) {
             // parsing finished, so there are real errors
             AnalysisReport::new_failed(sloc, run_time, stdout, stderr)
         } else {
