@@ -148,7 +148,7 @@ fn analyze_module(
 fn calculate_sloc(root: &Path) -> AppResult<usize> {
     let mut total = 0;
 
-    for entry in WalkDir::new(root).follow_links(true) {
+    'walker: for entry in WalkDir::new(root).follow_links(true) {
         let entry = entry.map_err(io::Error::from)?;
 
         if entry.file_type().is_dir() {
@@ -170,7 +170,30 @@ fn calculate_sloc(root: &Path) -> AppResult<usize> {
         let mut in_raw_string = false;
 
         while reader.read_line(&mut line)? > 0 {
-            if line_has_code(&line, &mut in_block_comment, &mut in_raw_string) {
+            let trimmed = line.trim();
+
+            if let Some(constraint) = trimmed
+                .strip_prefix("//go:build")
+                .or_else(|| trimmed.strip_prefix("// +build"))
+                && constraint.trim() == "ignore"
+            {
+                // the `ignore` tag is conventionally unsatisfiable, typically
+                // corresponding to generated code or irrelevant fixtures, so we
+                // ignore files requiring it
+
+                // we do not go through all the trouble of evaluating complex
+                // constraints (e.g. `!ignore || tools`) since it is very rare
+                // in real-world projects for `ignore` to be used in any other
+                // position than by itself, and we really just want to quickly
+                // exclude files that should be ignored
+
+                // note that in theory there should be no code before build
+                // constraints, so `total` has not been changed for this file
+                // yet, and so we do not need a per-file tally
+                continue 'walker;
+            }
+
+            if line_has_code(trimmed, &mut in_block_comment, &mut in_raw_string) {
                 total += 1;
             }
 
