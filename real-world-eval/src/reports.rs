@@ -3,10 +3,10 @@ use std::{fmt, sync::LazyLock, time};
 use regex::Regex;
 
 static BUILD_PERMUTATIONS_REGEX: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r#"(?mR)^Detected (\d+) distinct build-constraint permutation\(s\):$"#).unwrap()
+    Regex::new(r#"(?mR)^Detected (\d+) distinct build-constraint permutations:$"#).unwrap()
 });
 static CONVERGENCE_ITERATIONS_REGEX: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r#"(?mR)Finished Stage 2 in (\d+) iterations$"#).unwrap());
+    LazyLock::new(|| Regex::new(r#"(?mR)Finished Stage 2 in (\d+) iterations"#).unwrap());
 
 pub struct AnalysisReport {
     results: Option<AnalysisResultsSummary>,
