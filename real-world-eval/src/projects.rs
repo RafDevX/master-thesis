@@ -231,7 +231,7 @@ impl Project {
             }
         }
 
-        conn.insert_project(
+        let first_new_module = conn.insert_project(
             self,
             sample,
             relative_rank,
@@ -240,9 +240,7 @@ impl Project {
             &modules,
         )?;
 
-        let first_module = modules.into_iter().map(PathBuf::from).next();
-
-        Ok(first_module)
+        Ok(first_new_module.map(PathBuf::from))
     }
 
     fn is_excluded(&self, exclude_list_path: &Path) -> AppResult<bool> {

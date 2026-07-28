@@ -14,6 +14,9 @@ use crate::{
     samples::{Band, Sample},
 };
 
+// per https://sqlite.org/rescode.html#constraint_primarykey
+const SQLITE_PRIMARY_KEY_CONSTRAINT_ERROR_CODE: i32 = 1555;
+
 pub struct DbConn(rusqlite::Connection);
 
 impl DbConn {
@@ -50,10 +53,14 @@ impl DbConn {
 
             CREATE TABLE IF NOT EXISTS modules (
                 path TEXT PRIMARY KEY,
-                project TEXT NOT NULL
+                primary_project TEXT NOT NULL
                     REFERENCES projects(url)
                         ON UPDATE CASCADE
-                        ON DELETE CASCADE,
+                        ON DELETE RESTRICT,
+                secondary_project TEXT
+                    REFERENCES projects(url)
+                        ON UPDATE CASCADE
+                        ON DELETE SET NULL,
                 pending INTEGER NOT NULL DEFAULT 1
                     CHECK (pending IN (0, 1))
             ) STRICT;
@@ -87,7 +94,7 @@ impl DbConn {
             .0
             .query_one(
                 r#"
-                SELECT path, project
+                SELECT path, primary_project
                 FROM modules
                 WHERE pending
                 ORDER BY path
@@ -142,15 +149,15 @@ impl DbConn {
         Ok(stmt.exists([project.url().as_str()])?)
     }
 
-    pub fn insert_project(
+    pub fn insert_project<'m>(
         &mut self,
         project: &Project,
         sample: &Sample,
         relative_rank: u8,
         rev_name: &str,
         rev_hash: Option<&str>,
-        modules: &[String],
-    ) -> AppResult<()> {
+        modules: &'m [String],
+    ) -> AppResult<Option<&'m String>> {
         let txn = self.0.transaction()?;
 
         txn.execute(
@@ -169,19 +176,58 @@ impl DbConn {
             ],
         )?;
 
+        let mut first_new_module = None;
+
         for module in modules {
-            txn.execute(
+            let result = txn.execute(
                 r#"
-                INSERT INTO modules (path, project)
+                INSERT INTO modules (path, primary_project)
                 VALUES (?1, ?2)
                 "#,
                 [module, project.url().as_str()],
-            )?;
+            );
+
+            if let Err(Some(err)) = result.as_ref().map_err(rusqlite::Error::sqlite_error)
+                && err.extended_code == SQLITE_PRIMARY_KEY_CONSTRAINT_ERROR_CODE
+            {
+                // each module is only analyzed once, within the scope of the
+                // first project that mentions it, but sometimes overlapping
+                // datasets can lead to 2 samples having the same effective
+                // project source (with the same or very similar set of modules)
+                // despite seeming like different projects at first glance.
+                // we deal with this by just logging that there is a second
+                // pointer to the module from another project, even though it
+                // was already analyzed as part of its primary project.
+                // note that the current dataset configuration does not allow
+                // for more than 2 projects per module, so we only support 2 and
+                // raise an error if a third somehow appears
+
+                let updated = txn.execute(
+                    r#"
+                    UPDATE modules
+                    SET secondary_project = ?2
+                    WHERE path = ?1
+                        AND secondary_project IS NULL
+                    "#,
+                    [module, project.url().as_str()],
+                )?;
+
+                if updated != 1 {
+                    return Err(AppError::TriplicateModule {
+                        module: module.clone(),
+                        new_project: project.to_string(),
+                    });
+                }
+            } else {
+                result?;
+
+                first_new_module = Some(module);
+            }
         }
 
         txn.commit()?;
 
-        Ok(())
+        Ok(first_new_module)
     }
 
     pub fn skip_excluded_project(

@@ -12,6 +12,10 @@ pub enum AppError {
     InvalidBand(String),
     MalformedProjectPath(#[from] url::ParseError),
     NonUtf8Path(String),
+    TriplicateModule {
+        module: String,
+        new_project: String,
+    },
     ProjectNotInDatasetSource {
         project: String,
         dataset_key: &'static str,
