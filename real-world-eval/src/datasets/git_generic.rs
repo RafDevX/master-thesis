@@ -42,7 +42,7 @@ pub fn download_project_from_git_remote(project: &Project) -> AppResult<ProjectD
 
     let head = repo.head()?;
     let default_branch = head.resolve()?;
-    let default_branch_name = default_branch.name()?.to_owned();
+    let default_branch_name = default_branch.shorthand()?.to_owned();
     let rev_hash = default_branch.target().as_ref().map(git2::Oid::to_string);
 
     // we don't need this anymore
