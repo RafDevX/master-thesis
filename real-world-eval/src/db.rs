@@ -10,7 +10,7 @@ use crate::{
     errors::{AppError, AppResult},
     modules::Module,
     projects::Project,
-    reports::AnalysisReport,
+    reports::{AnalysisAbortReason, AnalysisReport},
     samples::{Band, Sample},
 };
 
@@ -71,7 +71,9 @@ impl DbConn {
                         ON UPDATE CASCADE
                         ON DELETE CASCADE,
                 status TEXT NOT NULL
-                    CHECK (status IN ('S', 'F', 'C', 'E')),
+                    CHECK (status IN ('S', 'F', 'A', 'C', 'E')),
+                abort_reason TEXT
+                    CHECK (abort_reason IN ('P', 'W', 'B')),
                 n_errors INTEGER,
                 n_warnings INTEGER,
                 n_confidentiality_flows INTEGER,
@@ -262,7 +264,7 @@ impl DbConn {
         txn.execute(
             r#"
             INSERT INTO reports (
-                module, status, n_errors, n_warnings,
+                module, status, abort_reason, n_errors, n_warnings,
                 n_confidentiality_flows, n_integrity_flows,
                 n_build_constraint_permutations,
                 min_convergence_iterations, max_convergence_iterations,
@@ -272,6 +274,7 @@ impl DbConn {
             params![
                 &module_path,
                 report.status().key(),
+                report.abort_reason().map(AnalysisAbortReason::key),
                 report.n_errors().map(into_i64_saturating),
                 report.n_warnings().map(into_i64_saturating),
                 report.n_confidentiality_flows().map(into_i64_saturating),

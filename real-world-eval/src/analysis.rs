@@ -14,7 +14,7 @@ use crate::{
     db::DbConn,
     errors::{AppError, AppResult},
     modules::Module,
-    reports::AnalysisReport,
+    reports::{AnalysisAbortReason, AnalysisReport},
 };
 
 const GLOWY_SUCCESS_MESSAGE: &str = "Analysis succeeded with no errors found!";
@@ -133,11 +133,8 @@ fn analyze_module(
             // parsing finished, so there are real errors
             AnalysisReport::new_failed(sloc, run_time, stdout, stderr)
         } else {
-            // no analysis took place because parsing failed; we treat it as a
-            // crash, for simplicity, since we cannot derive a results summary,
-            // but set run_time to 0 since it is negligible and this special
-            // behavior allows identifying these situations in the future
-            AnalysisReport::new_crashed(sloc, time::Duration::ZERO)
+            // no analysis took place because parsing failed
+            AnalysisReport::new_aborted(sloc, run_time, AnalysisAbortReason::ParsingFailed)
         }
     } else {
         // if there is no associated exit code, then the process crashed

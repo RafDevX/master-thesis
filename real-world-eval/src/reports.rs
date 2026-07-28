@@ -9,27 +9,84 @@ static CONVERGENCE_ITERATIONS_REGEX: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r#"(?mR)Finished Stage 2 in (\d+) iterations"#).unwrap());
 
 pub struct AnalysisReport {
-    results: Option<AnalysisResultsSummary>,
+    status: AnalysisStatus,
+    abort_reason: Option<AnalysisAbortReason>,
+    n_errors: Option<usize>,
+    n_warnings: Option<usize>,
+    n_confidentiality_flows: Option<usize>,
+    n_integrity_flows: Option<usize>,
+    n_build_constraint_permutations: Option<usize>,
+    min_convergence_iterations: Option<usize>,
+    max_convergence_iterations: Option<usize>,
+    total_convergence_iterations: Option<usize>,
     sloc: usize,
     run_time: time::Duration,
 }
 
 impl AnalysisReport {
     pub fn new_succeeded(sloc: usize, run_time: time::Duration, stdout: &str) -> Self {
-        let results = AnalysisResultsSummary::new_succeeded(stdout);
+        let (
+            n_build_constraint_permutations,
+            min_convergence_iterations,
+            max_convergence_iterations,
+            total_convergence_iterations,
+        ) = Self::summarize_stdout(stdout);
 
         Self {
-            results: Some(results),
+            status: AnalysisStatus::Succeeded,
+            abort_reason: None,
+            n_errors: Some(0),
+            n_warnings: Some(0),
+            n_confidentiality_flows: None,
+            n_integrity_flows: None,
+            n_build_constraint_permutations: Some(n_build_constraint_permutations),
+            min_convergence_iterations: Some(min_convergence_iterations),
+            max_convergence_iterations: Some(max_convergence_iterations),
+            total_convergence_iterations: Some(total_convergence_iterations),
             sloc,
             run_time,
         }
     }
 
     pub fn new_failed(sloc: usize, run_time: time::Duration, stdout: &str, stderr: &str) -> Self {
-        let results = AnalysisResultsSummary::new_failed(stdout, stderr);
+        let (n_errors, n_warnings, n_confidentiality_flows, n_integrity_flows) =
+            Self::summarize_stderr(stderr);
+
+        let (
+            n_build_constraint_permutations,
+            min_convergence_iterations,
+            max_convergence_iterations,
+            total_convergence_iterations,
+        ) = Self::summarize_stdout(stdout);
 
         Self {
-            results: Some(results),
+            status: AnalysisStatus::Failed,
+            abort_reason: None,
+            n_errors: Some(n_errors),
+            n_warnings: Some(n_warnings),
+            n_confidentiality_flows: Some(n_confidentiality_flows),
+            n_integrity_flows: Some(n_integrity_flows),
+            n_build_constraint_permutations: Some(n_build_constraint_permutations),
+            min_convergence_iterations: Some(min_convergence_iterations),
+            max_convergence_iterations: Some(max_convergence_iterations),
+            total_convergence_iterations: Some(total_convergence_iterations),
+            sloc,
+            run_time,
+        }
+    }
+
+    pub fn new_aborted(sloc: usize, run_time: time::Duration, reason: AnalysisAbortReason) -> Self {
+        Self {
+            status: AnalysisStatus::Aborted,
+            abort_reason: Some(reason),
+            n_errors: None,
+            n_warnings: None,
+            n_confidentiality_flows: None,
+            n_integrity_flows: None,
+            n_build_constraint_permutations: None,
+            min_convergence_iterations: None,
+            max_convergence_iterations: None,
+            total_convergence_iterations: None,
             sloc,
             run_time,
         }
@@ -37,7 +94,16 @@ impl AnalysisReport {
 
     pub fn new_crashed(sloc: usize, run_time: time::Duration) -> Self {
         Self {
-            results: None,
+            status: AnalysisStatus::Crashed,
+            abort_reason: None,
+            n_errors: None,
+            n_warnings: None,
+            n_confidentiality_flows: None,
+            n_integrity_flows: None,
+            n_build_constraint_permutations: None,
+            min_convergence_iterations: None,
+            max_convergence_iterations: None,
+            total_convergence_iterations: None,
             sloc,
             run_time,
         }
@@ -45,134 +111,18 @@ impl AnalysisReport {
 
     pub fn new_empty() -> Self {
         Self {
-            results: None,
+            status: AnalysisStatus::Empty,
+            abort_reason: None,
+            n_errors: None,
+            n_warnings: None,
+            n_confidentiality_flows: None,
+            n_integrity_flows: None,
+            n_build_constraint_permutations: None,
+            min_convergence_iterations: None,
+            max_convergence_iterations: None,
+            total_convergence_iterations: None,
             sloc: 0,
             run_time: time::Duration::ZERO,
-        }
-    }
-
-    pub fn status(&self) -> AnalysisStatus {
-        match self.results.as_ref().map(|results| results.success) {
-            Some(true) => AnalysisStatus::Succeeded,
-            Some(false) => AnalysisStatus::Failed,
-            None => {
-                if self.sloc > 0 {
-                    AnalysisStatus::Crashed
-                } else {
-                    AnalysisStatus::Empty
-                }
-            }
-        }
-    }
-
-    pub fn n_errors(&self) -> Option<usize> {
-        self.results.as_ref().map(|results| results.n_errors)
-    }
-
-    pub fn n_warnings(&self) -> Option<usize> {
-        self.results.as_ref().map(|results| results.n_warnings)
-    }
-
-    pub fn n_confidentiality_flows(&self) -> Option<usize> {
-        self.results
-            .as_ref()
-            .map(|results| results.n_confidentiality_flows)
-    }
-
-    pub fn n_integrity_flows(&self) -> Option<usize> {
-        self.results
-            .as_ref()
-            .map(|results| results.n_integrity_flows)
-    }
-
-    pub fn n_build_constraint_permutations(&self) -> Option<usize> {
-        self.results
-            .as_ref()
-            .map(|results| results.n_build_constraint_permutations)
-    }
-
-    pub fn min_convergence_iterations(&self) -> Option<usize> {
-        self.results
-            .as_ref()
-            .map(|results| results.min_convergence_iterations)
-    }
-
-    pub fn max_convergence_iterations(&self) -> Option<usize> {
-        self.results
-            .as_ref()
-            .map(|results| results.max_convergence_iterations)
-    }
-
-    pub fn total_convergence_iterations(&self) -> Option<usize> {
-        self.results
-            .as_ref()
-            .map(|results| results.total_convergence_iterations)
-    }
-
-    pub fn sloc(&self) -> usize {
-        self.sloc
-    }
-
-    pub fn run_time(&self) -> time::Duration {
-        self.run_time
-    }
-}
-
-struct AnalysisResultsSummary {
-    success: bool,
-    n_errors: usize,
-    n_warnings: usize,
-    n_confidentiality_flows: usize,
-    n_integrity_flows: usize,
-    n_build_constraint_permutations: usize,
-    min_convergence_iterations: usize,
-    max_convergence_iterations: usize,
-    total_convergence_iterations: usize,
-}
-
-impl AnalysisResultsSummary {
-    pub fn new_succeeded(stdout: &str) -> Self {
-        let (
-            n_build_constraint_permutations,
-            min_convergence_iterations,
-            max_convergence_iterations,
-            total_convergence_iterations,
-        ) = Self::summarize_stdout(stdout);
-
-        Self {
-            success: true,
-            n_errors: 0,
-            n_warnings: 0,
-            n_confidentiality_flows: 0,
-            n_integrity_flows: 0,
-            n_build_constraint_permutations,
-            min_convergence_iterations,
-            max_convergence_iterations,
-            total_convergence_iterations,
-        }
-    }
-
-    pub fn new_failed(stdout: &str, stderr: &str) -> Self {
-        let (
-            n_build_constraint_permutations,
-            min_convergence_iterations,
-            max_convergence_iterations,
-            total_convergence_iterations,
-        ) = Self::summarize_stdout(stdout);
-
-        let (n_errors, n_warnings, n_confidentiality_flows, n_integrity_flows) =
-            Self::summarize_stderr(stderr);
-
-        Self {
-            success: false,
-            n_errors,
-            n_warnings,
-            n_confidentiality_flows,
-            n_integrity_flows,
-            n_build_constraint_permutations,
-            min_convergence_iterations,
-            max_convergence_iterations,
-            total_convergence_iterations,
         }
     }
 
@@ -241,12 +191,61 @@ impl AnalysisResultsSummary {
             n_integrity_flows,
         )
     }
+
+    pub fn status(&self) -> AnalysisStatus {
+        self.status
+    }
+
+    pub fn abort_reason(&self) -> Option<AnalysisAbortReason> {
+        self.abort_reason
+    }
+
+    pub fn n_errors(&self) -> Option<usize> {
+        self.n_errors
+    }
+
+    pub fn n_warnings(&self) -> Option<usize> {
+        self.n_warnings
+    }
+
+    pub fn n_confidentiality_flows(&self) -> Option<usize> {
+        self.n_confidentiality_flows
+    }
+
+    pub fn n_integrity_flows(&self) -> Option<usize> {
+        self.n_integrity_flows
+    }
+
+    pub fn n_build_constraint_permutations(&self) -> Option<usize> {
+        self.n_build_constraint_permutations
+    }
+
+    pub fn min_convergence_iterations(&self) -> Option<usize> {
+        self.min_convergence_iterations
+    }
+
+    pub fn max_convergence_iterations(&self) -> Option<usize> {
+        self.max_convergence_iterations
+    }
+
+    pub fn total_convergence_iterations(&self) -> Option<usize> {
+        self.total_convergence_iterations
+    }
+
+    pub fn sloc(&self) -> usize {
+        self.sloc
+    }
+
+    pub fn run_time(&self) -> time::Duration {
+        self.run_time
+    }
 }
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub enum AnalysisStatus {
     Succeeded,
     Failed,
+    Aborted,
     Crashed,
     Empty,
 }
@@ -256,13 +255,14 @@ impl AnalysisStatus {
         match self {
             Self::Succeeded => "S",
             Self::Failed => "F",
+            Self::Aborted => "A",
             Self::Crashed => "C",
             Self::Empty => "E",
         }
     }
 
     pub fn should_store_output(self) -> bool {
-        matches!(self, Self::Failed | Self::Crashed)
+        matches!(self, Self::Failed | Self::Aborted | Self::Crashed)
     }
 }
 
@@ -271,8 +271,30 @@ impl fmt::Display for AnalysisStatus {
         match self {
             Self::Succeeded => write!(f, "SUCCEEDED"),
             Self::Failed => write!(f, "FAILED"),
+            Self::Aborted => write!(f, "ABORTED"),
             Self::Crashed => write!(f, "CRASHED"),
             Self::Empty => write!(f, "EMPTY"),
+        }
+    }
+}
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub enum AnalysisAbortReason {
+    ParsingFailed,
+}
+
+impl AnalysisAbortReason {
+    pub fn key(self) -> &'static str {
+        match self {
+            Self::ParsingFailed => "P",
+        }
+    }
+}
+
+impl fmt::Display for AnalysisAbortReason {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::ParsingFailed => write!(f, "PARSING"),
         }
     }
 }
