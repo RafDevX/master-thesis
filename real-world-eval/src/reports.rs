@@ -281,12 +281,16 @@ impl fmt::Display for AnalysisStatus {
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub enum AnalysisAbortReason {
     ParsingFailed,
+    WorldLimitExceeded,
+    BuildPermutationLimitExceeded,
 }
 
 impl AnalysisAbortReason {
     pub fn key(self) -> &'static str {
         match self {
             Self::ParsingFailed => "P",
+            Self::WorldLimitExceeded => "W",
+            Self::BuildPermutationLimitExceeded => "B",
         }
     }
 }
@@ -295,6 +299,8 @@ impl fmt::Display for AnalysisAbortReason {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::ParsingFailed => write!(f, "PARSING"),
+            Self::WorldLimitExceeded => write!(f, "WORLDS"),
+            Self::BuildPermutationLimitExceeded => write!(f, "BUILD"),
         }
     }
 }

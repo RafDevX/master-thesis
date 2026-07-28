@@ -123,9 +123,25 @@ fn analyze_module(
         .is_some_and(|code| !RUST_PANIC_CODES.contains(&code))
     {
         // if the status is not considered a success but there is still an
-        // associated exit code, then analysis necessarily failed
+        // associated exit code, then analysis necessarily failed (or aborted)
 
-        if regex!(r"(?mR)^warning[S001]: no registered Go source code files$").is_match(stderr) {
+        if regex!(r"(?mR)^error[C002]: too many enumerable build worlds:").is_match(stderr) {
+            // more than ~20 independent build tag dimensions, so enumeration
+            // would take virtually forever, meaning analysis is aborted
+            AnalysisReport::new_aborted(sloc, run_time, AnalysisAbortReason::WorldLimitExceeded)
+        } else if regex!(r"(?mR)^error[C003]: too many distinct build permutations:")
+            .is_match(stderr)
+        {
+            // way too many permutations for analysis to ever finish (could take
+            // centuries), so analysis is aborted
+            AnalysisReport::new_aborted(
+                sloc,
+                run_time,
+                AnalysisAbortReason::BuildPermutationLimitExceeded,
+            )
+        } else if regex!(r"(?mR)^warning[S001]: no registered Go source code files$")
+            .is_match(stderr)
+        {
             // this can happen even if our calculated sloc was 0, since build
             // tag constraints can lead the analyzer to ignore all files
             AnalysisReport::new_empty()
