@@ -74,7 +74,7 @@ pub fn process_module(module: &Module, binary: &str, conn: &mut DbConn) -> AppRe
         module.path().display(),
         report.status(),
         paren,
-        report.run_time()
+        report.global_run_time()
     );
 
     conn.insert_report(module, &report)?;
@@ -145,7 +145,7 @@ fn analyze_module(
             // this can happen even if our calculated sloc was 0, since build
             // tag constraints can lead the analyzer to ignore all files
             AnalysisReport::new_empty()
-        } else if regex!(r"(?mR)^Finished parsing \d+ file\(s\)$").is_match(stdout) {
+        } else if regex!(r"(?mR)^Finished parsing \d+ file\(s\)").is_match(stdout) {
             // parsing finished, so there are real errors
             AnalysisReport::new_failed(sloc, run_time, stdout, stderr)
         } else {

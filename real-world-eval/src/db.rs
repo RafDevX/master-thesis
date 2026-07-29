@@ -1,6 +1,7 @@
 use std::{
     collections::HashMap,
     path::{Path, PathBuf},
+    time,
 };
 
 use rusqlite::{OptionalExtension, params};
@@ -82,8 +83,12 @@ impl DbConn {
                 min_convergence_iterations INTEGER,
                 max_convergence_iterations INTEGER,
                 total_convergence_iterations INTEGER,
-                sloc INTEGER NOT NULL,
-                run_time INTEGER NOT NULL
+                parsing_time INTEGER,
+                avg_stage1_time INTEGER,
+                avg_stage2_time INTEGER,
+                avg_stage3_time INTEGER,
+                global_run_time INTEGER NOT NULL,
+                sloc INTEGER NOT NULL
             ) STRICT;
             "#,
         )?;
@@ -268,8 +273,13 @@ impl DbConn {
                 n_confidentiality_flows, n_integrity_flows,
                 n_build_constraint_permutations,
                 min_convergence_iterations, max_convergence_iterations,
-                total_convergence_iterations, sloc, run_time
-            ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)
+                total_convergence_iterations, parsing_time,
+                avg_stage1_time, avg_stage2_time, avg_stage3_time,
+                global_run_time, sloc
+            ) VALUES (
+                ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9,
+                ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17
+            )
             "#,
             params![
                 &module_path,
@@ -287,8 +297,28 @@ impl DbConn {
                 report
                     .total_convergence_iterations()
                     .map(into_i64_saturating),
+                report
+                    .parsing_time()
+                    .as_ref()
+                    .map(time::Duration::as_nanos)
+                    .map(into_i64_saturating),
+                report
+                    .avg_stage1_time()
+                    .as_ref()
+                    .map(time::Duration::as_nanos)
+                    .map(into_i64_saturating),
+                report
+                    .avg_stage2_time()
+                    .as_ref()
+                    .map(time::Duration::as_nanos)
+                    .map(into_i64_saturating),
+                report
+                    .avg_stage3_time()
+                    .as_ref()
+                    .map(time::Duration::as_nanos)
+                    .map(into_i64_saturating),
+                into_i64_saturating(report.global_run_time().as_nanos()),
                 into_i64_saturating(report.sloc()),
-                into_i64_saturating(report.run_time().as_nanos())
             ],
         )?;
 

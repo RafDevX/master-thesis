@@ -1,64 +1,67 @@
-use std::{fmt, sync::LazyLock, time};
+use std::{fmt, time};
 
-use regex::Regex;
-
-static BUILD_PERMUTATIONS_REGEX: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r#"(?mR)^Detected (\d+) distinct build-constraint permutations:$"#).unwrap()
-});
-static CONVERGENCE_ITERATIONS_REGEX: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r#"(?mR)Finished Stage 2 in (\d+) iterations"#).unwrap());
+use regex::regex;
 
 pub struct AnalysisReport {
     status: AnalysisStatus,
     abort_reason: Option<AnalysisAbortReason>,
     stdout: Option<AnalysisStdoutSummary>,
     stderr: Option<AnalysisStderrSummary>,
+    global_run_time: time::Duration,
     sloc: usize,
-    run_time: time::Duration,
 }
 
 impl AnalysisReport {
-    pub fn new_succeeded(sloc: usize, run_time: time::Duration, stdout: &str) -> Self {
+    pub fn new_succeeded(sloc: usize, global_run_time: time::Duration, stdout: &str) -> Self {
         Self {
             status: AnalysisStatus::Succeeded,
             abort_reason: None,
             stdout: Some(AnalysisStdoutSummary::new(stdout)),
             stderr: None,
+            global_run_time,
             sloc,
-            run_time,
         }
     }
 
-    pub fn new_failed(sloc: usize, run_time: time::Duration, stdout: &str, stderr: &str) -> Self {
+    pub fn new_failed(
+        sloc: usize,
+        global_run_time: time::Duration,
+        stdout: &str,
+        stderr: &str,
+    ) -> Self {
         Self {
             status: AnalysisStatus::Failed,
             abort_reason: None,
             stdout: Some(AnalysisStdoutSummary::new(stdout)),
             stderr: Some(AnalysisStderrSummary::new(stderr)),
+            global_run_time,
             sloc,
-            run_time,
         }
     }
 
-    pub fn new_aborted(sloc: usize, run_time: time::Duration, reason: AnalysisAbortReason) -> Self {
+    pub fn new_aborted(
+        sloc: usize,
+        global_run_time: time::Duration,
+        reason: AnalysisAbortReason,
+    ) -> Self {
         Self {
             status: AnalysisStatus::Aborted,
             abort_reason: Some(reason),
             stdout: None,
             stderr: None,
+            global_run_time,
             sloc,
-            run_time,
         }
     }
 
-    pub fn new_crashed(sloc: usize, run_time: time::Duration) -> Self {
+    pub fn new_crashed(sloc: usize, global_run_time: time::Duration) -> Self {
         Self {
             status: AnalysisStatus::Crashed,
             abort_reason: None,
             stdout: None,
             stderr: None,
+            global_run_time,
             sloc,
-            run_time,
         }
     }
 
@@ -68,8 +71,8 @@ impl AnalysisReport {
             abort_reason: None,
             stdout: None,
             stderr: None,
+            global_run_time: time::Duration::ZERO,
             sloc: 0,
-            run_time: time::Duration::ZERO,
         }
     }
 
@@ -125,12 +128,28 @@ impl AnalysisReport {
             .map(|summary| summary.total_convergence_iterations)
     }
 
+    pub fn parsing_time(&self) -> Option<time::Duration> {
+        self.stdout.as_ref().map(|summary| summary.parsing_time)
+    }
+
+    pub fn avg_stage1_time(&self) -> Option<time::Duration> {
+        self.stdout.as_ref().map(|summary| summary.avg_stage1_time)
+    }
+
+    pub fn avg_stage2_time(&self) -> Option<time::Duration> {
+        self.stdout.as_ref().map(|summary| summary.avg_stage2_time)
+    }
+
+    pub fn avg_stage3_time(&self) -> Option<time::Duration> {
+        self.stdout.as_ref().map(|summary| summary.avg_stage3_time)
+    }
+
     pub fn sloc(&self) -> usize {
         self.sloc
     }
 
-    pub fn run_time(&self) -> time::Duration {
-        self.run_time
+    pub fn global_run_time(&self) -> time::Duration {
+        self.global_run_time
     }
 }
 
@@ -204,44 +223,103 @@ struct AnalysisStdoutSummary {
     min_convergence_iterations: usize,
     max_convergence_iterations: usize,
     total_convergence_iterations: usize,
+    parsing_time: time::Duration,
+    avg_stage1_time: time::Duration,
+    avg_stage2_time: time::Duration,
+    avg_stage3_time: time::Duration,
 }
 
 impl AnalysisStdoutSummary {
     fn new(stdout: &str) -> Self {
-        let n_build_constraint_permutations = BUILD_PERMUTATIONS_REGEX
-            .captures(stdout)
-            .and_then(|captures| captures.get(1))
-            .as_ref()
-            .map(regex::Match::as_str)
-            .map(str::parse)
-            .and_then(Result::ok)
-            .unwrap_or(1);
+        let n_build_constraint_permutations =
+            regex!(r#"(?mR)^Detected (\d+) distinct build-constraint permutations:$"#)
+                .captures(stdout)
+                .and_then(|captures| captures.get(1))
+                .as_ref()
+                .map(regex::Match::as_str)
+                .map(str::parse)
+                .and_then(Result::ok)
+                .unwrap_or(1);
         // ^ permutation count is only printed if 2+, so we default to 1
 
-        let n_convergence_iterations_per_permutation: Vec<usize> = CONVERGENCE_ITERATIONS_REGEX
-            .captures_iter(stdout)
-            .filter_map(|captures| captures.get(1))
-            .map(|capture| capture.as_str().parse())
-            .filter_map(Result::ok)
-            .collect();
+        let n_convergence_iterations_per_permutation: Vec<_> =
+            regex!(r#"(?mR)Finished Stage 2 in (\d+) iterations \((.+)\)$"#)
+                .captures_iter(stdout)
+                .map(|captures| captures.extract().1)
+                .map(|[n, elapsed]| (n.parse::<usize>(), parse_duration(elapsed)))
+                .filter_map(|(n, elapsed)| n.ok().zip(elapsed))
+                .collect();
 
         let min_convergence_iterations = n_convergence_iterations_per_permutation
             .iter()
+            .map(|(n, _)| n)
             .min()
             .copied()
             .unwrap(); // surely the Vec is not empty
         let max_convergence_iterations = n_convergence_iterations_per_permutation
             .iter()
+            .map(|(n, _)| n)
             .max()
             .copied()
             .unwrap(); // surely the Vec is not empty
-        let total_convergence_iterations = n_convergence_iterations_per_permutation.iter().sum();
+        let total_convergence_iterations = n_convergence_iterations_per_permutation
+            .iter()
+            .map(|(n, _)| n)
+            .sum();
+
+        let n_permutations = n_convergence_iterations_per_permutation
+            .len()
+            .try_into()
+            .unwrap();
+
+        let total_stage2_time: time::Duration = n_convergence_iterations_per_permutation
+            .iter()
+            .map(|(_, elapsed)| elapsed)
+            .sum();
+        let avg_stage2_time = total_stage2_time / n_permutations;
+
+        let parsing_time = regex!(r#"(?mR)^Finished parsing \d+ file\(s\) in (.+)$"#)
+            .captures(stdout)
+            .and_then(|captures| captures.get(1))
+            .and_then(|r#match| parse_duration(r#match.as_str()))
+            .unwrap();
+
+        let all_stage1_times: Vec<_> =
+            regex!(r#"(?mR)Finished Stage 1 in (.+) \(deferred type resolution: .+\)$"#)
+                .captures_iter(stdout)
+                .filter_map(|captures| captures.get(1))
+                .filter_map(|r#match| parse_duration(r#match.as_str()))
+                .collect();
+        let total_stage1_time: time::Duration = all_stage1_times.iter().sum();
+        assert_eq!(
+            all_stage1_times.len(),
+            n_permutations as usize,
+            "Missing datapoints"
+        );
+        let avg_stage1_time = total_stage1_time / n_permutations;
+
+        let all_stage3_times: Vec<_> = regex!(r#"(?mR)Finished Stage 3 in (.+)$"#)
+            .captures_iter(stdout)
+            .filter_map(|captures| captures.get(1))
+            .filter_map(|r#match| parse_duration(r#match.as_str()))
+            .collect();
+        let total_stage3_time: time::Duration = all_stage3_times.iter().sum();
+        assert_eq!(
+            all_stage3_times.len(),
+            n_permutations as usize,
+            "Missing datapoints"
+        );
+        let avg_stage3_time = total_stage3_time / n_permutations;
 
         Self {
             n_build_constraint_permutations,
             min_convergence_iterations,
             max_convergence_iterations,
             total_convergence_iterations,
+            parsing_time,
+            avg_stage1_time,
+            avg_stage2_time,
+            avg_stage3_time,
         }
     }
 }
@@ -283,4 +361,37 @@ impl AnalysisStderrSummary {
             n_integrity_flows,
         }
     }
+}
+
+fn parse_duration(s: &str) -> Option<time::Duration> {
+    let (s, multiplier) = if let Some(s) = s.strip_suffix("ns") {
+        (s, 1)
+    } else if let Some(s) = s.strip_suffix("µs") {
+        (s, 1000)
+    } else if let Some(s) = s.strip_suffix("ms") {
+        (s, 1_000_000)
+    } else if let Some(s) = s.strip_suffix('s') {
+        (s, 1_000_000_000)
+    } else {
+        return None;
+    };
+
+    let (whole, frac) = s.split_once('.').unzip();
+
+    let whole: u128 = whole.unwrap_or(s).parse().ok()?;
+
+    let frac_nanos = if let Some(frac) = frac {
+        let digits = u32::try_from(frac.len()).ok()?;
+        let divisor = 10_u128.checked_pow(digits)?;
+
+        let frac: u128 = frac.parse().ok()?;
+
+        frac.checked_mul(multiplier)?.checked_div(divisor)?
+    } else {
+        0
+    };
+
+    let nanos = whole.checked_mul(multiplier)?.checked_add(frac_nanos)?;
+
+    Some(time::Duration::from_nanos_u128(nanos))
 }
