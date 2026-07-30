@@ -166,10 +166,14 @@ fn analyze_module(
 fn calculate_sloc(root: &Path) -> AppResult<usize> {
     let mut total = 0;
 
-    'walker: for entry in WalkDir::new(root).follow_links(true) {
+    'walker: for entry in WalkDir::new(root) {
         let entry = entry.map_err(io::Error::from)?;
 
-        if entry.file_type().is_dir() {
+        #[expect(
+            clippy::filetype_is_file,
+            reason = "We want to exclude symlinks (could point to outside project)"
+        )]
+        if !entry.file_type().is_file() {
             continue;
         }
 

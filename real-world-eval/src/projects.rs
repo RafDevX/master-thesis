@@ -85,7 +85,6 @@ impl Project {
     }
 
     #[expect(clippy::panic_in_result_fn, reason = "Triple-check before delete")]
-    #[expect(clippy::too_many_lines, reason = "Tight coupling")]
     pub fn init(
         &self,
         sample: &Sample,
@@ -126,46 +125,16 @@ impl Project {
             rev_hash,
         } = dataset.download_project(self, client)?;
 
-        macro_rules! handle_walkdir_result {
-            ($result:expr) => {
-                match $result {
-                    Ok(entry) => entry,
-                    Err(err) => {
-                        if err
-                            .io_error()
-                            .map(io::Error::kind)
-                            .is_some_and(|kind| kind == io::ErrorKind::NotFound)
-                            && let Some(path) = err.path()
-                        {
-                            // we assume that this is a broken symlink that
-                            // became broken because we previously deleted its
-                            // target (because walkdir "arbitrarily" yielded the
-                            // target before the link).if we're wrong, the
-                            // remove_file call below should fail anyway
-
-                            // triple check
-                            assert!(
-                                path.starts_with(crate::PROJECT_FILES_DIR.as_path()),
-                                "Arbitrary deletion"
-                            );
-
-                            fs::remove_file(path)?;
-
-                            continue;
-                        }
-
-                        return Err(io::Error::from(err).into());
-                    }
-                }
-            };
-        }
-
         let mut modules = Vec::new();
 
-        for entry in WalkDir::new(&root).follow_links(true) {
-            let entry = handle_walkdir_result!(entry);
+        for entry in WalkDir::new(&root) {
+            let entry = entry.map_err(io::Error::from)?;
 
-            if entry.file_type().is_dir() {
+            #[expect(
+                clippy::filetype_is_file,
+                reason = "We want to exclude symlinks (could point to outside project)"
+            )]
+            if !entry.file_type().is_file() {
                 continue;
             }
 
@@ -210,8 +179,8 @@ impl Project {
         // do a second pass just to remove empty directories, now that we've
         // already deleted all irrelevant files (we enable contents-first mode
         // since otherwise higher-level empty directories would not be deleted)
-        for entry in WalkDir::new(&root).follow_links(true).contents_first(true) {
-            let entry = handle_walkdir_result!(entry);
+        for entry in WalkDir::new(&root).contents_first(true) {
+            let entry = entry.map_err(io::Error::from)?;
 
             if entry.file_type().is_dir()
                 && entry.path().parent().is_some()
