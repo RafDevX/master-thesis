@@ -102,6 +102,7 @@ fn analyze_module(
         .arg(root)
         .env_clear()
         .env("GLOWY_VERBOSE", "true")
+        .env("GLOWY_MAX_THREADS", "2")
         .output()
         .map_err(AppError::AnalyzerExecutionFailure)?;
 
