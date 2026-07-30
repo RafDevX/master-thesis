@@ -1,13 +1,13 @@
 use std::{
     fs::File,
-    io::{BufWriter, Write},
+    io::{BufWriter, Seek, Write},
     time,
 };
 
 use backon::BlockingRetryable;
 use url::Url;
 
-use crate::errors::AppResult;
+use crate::errors::{AppError, AppResult};
 
 const USER_AGENT: &str = concat!(env!("CARGO_PKG_NAME"), "/", env!("CARGO_PKG_VERSION"));
 const NETWORK_TIMEOUT: Option<time::Duration> = Some(time::Duration::from_mins(2));
@@ -30,46 +30,63 @@ impl NetworkClient {
     }
 
     pub fn get(&self, url: impl reqwest::IntoUrl + Copy) -> AppResult<String> {
-        let response = self.get_with_exponential_backoff(url)?;
-
-        response.text().map_err(Into::into)
+        self.get_with_exponential_backoff(url, |response| response.text().map_err(Into::into))
     }
 
     pub fn download(&self, url: impl reqwest::IntoUrl + Copy) -> AppResult<File> {
-        let mut response = self.get_with_exponential_backoff(url)?;
+        self.get_with_exponential_backoff(url, |mut response| {
+            let mut file = tempfile::tempfile()?;
 
-        let file = tempfile::tempfile()?;
+            let mut writer = BufWriter::new(file.try_clone()?);
 
-        let mut writer = BufWriter::new(file.try_clone()?);
+            response.copy_to(&mut writer)?;
 
-        response.copy_to(&mut writer)?;
+            writer.flush()?;
+            file.rewind()?;
 
-        writer.flush()?;
-
-        Ok(file)
+            Ok(file)
+        })
     }
 
-    fn get_with_exponential_backoff(
+    fn get_with_exponential_backoff<R>(
         &self,
         url: impl reqwest::IntoUrl + Copy,
-    ) -> AppResult<reqwest::blocking::Response> {
+        process_response: impl Fn(reqwest::blocking::Response) -> AppResult<R>,
+    ) -> AppResult<R> {
         (|| {
-            self.0
+            let response = self
+                .0
                 .get(url)
                 .send()
-                .and_then(reqwest::blocking::Response::error_for_status)
+                .and_then(reqwest::blocking::Response::error_for_status)?;
+
+            process_response(response)
         })
         .retry(EXPONENTIAL_RETRY)
+        .when(|err| {
+            if let AppError::Network(inner) = err {
+                inner
+                    .status()
+                    .is_none_or(|status| status != reqwest::StatusCode::NOT_FOUND)
+            } else {
+                // io errors during response processing should not retry the
+                // request, since it's not really the remote server's fault
+                false
+            }
+        })
         .notify(|err, duration| {
-            println!(
-                "Retrying GET request to `{}` in {:?}: {}",
-                err.url().map_or("<unknown>", Url::as_str),
-                duration,
-                // cannot use `err.without_url` as we only have &err
-                err.to_string().split(" for url ").next().unwrap()
-            );
+            if let AppError::Network(inner) = err {
+                println!(
+                    "Retrying GET request to `{}` in {:?}: {}",
+                    inner.url().map_or("<unknown>", Url::as_str),
+                    duration,
+                    // cannot use `err.without_url` as we only have &err
+                    inner.to_string().split(" for url ").next().unwrap()
+                );
+            } else {
+                unreachable!("already filtered above ({err:?})");
+            }
         })
         .call()
-        .map_err(Into::into)
     }
 }
