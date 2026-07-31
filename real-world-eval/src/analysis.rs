@@ -64,6 +64,8 @@ pub fn process_module(module: &Module, binary: &str, conn: &mut DbConn) -> AppRe
         && let Some(n_warnings) = report.n_warnings()
     {
         Cow::Owned(format!(" ({n_errors}/{n_warnings})"))
+    } else if let Some(abort_reason) = report.abort_reason() {
+        Cow::Owned(format!(" ({abort_reason})"))
     } else {
         Cow::Borrowed("")
     };
