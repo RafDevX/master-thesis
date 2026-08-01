@@ -1,4 +1,4 @@
-use std::{fmt, time};
+use std::{collections::HashSet, fmt, time};
 
 use regex::regex;
 
@@ -102,6 +102,12 @@ impl AnalysisReport {
         self.stderr
             .as_ref()
             .map(|summary| summary.n_integrity_flows)
+    }
+
+    pub fn n_distinct_build_tags(&self) -> Option<usize> {
+        self.stdout
+            .as_ref()
+            .map(|summary| summary.n_distinct_build_tags)
     }
 
     pub fn n_build_constraint_permutations(&self) -> Option<usize> {
@@ -219,6 +225,7 @@ impl fmt::Display for AnalysisAbortReason {
 
 #[derive(Clone, Copy)]
 struct AnalysisStdoutSummary {
+    n_distinct_build_tags: usize,
     n_build_constraint_permutations: usize,
     min_convergence_iterations: usize,
     max_convergence_iterations: usize,
@@ -241,6 +248,22 @@ impl AnalysisStdoutSummary {
                 .and_then(Result::ok)
                 .unwrap_or(1);
         // ^ permutation count is only printed if 2+, so we default to 1
+
+        let distinct_build_tags: HashSet<_> =
+            regex!(r#"(?mR)^\tPermutation #\d+: \d+ file\(s\) with tags = (.+)$"#)
+                .captures_iter(stdout)
+                .filter_map(|captures| captures.get(1))
+                .map(|r#match| r#match.as_str())
+                .flat_map(|full| full.split('/'))
+                .map(str::trim)
+                .filter_map(|constraint| constraint.strip_prefix('['))
+                .filter_map(|constraint| constraint.strip_suffix(']'))
+                .flat_map(|constraint| constraint.split(','))
+                .map(str::trim)
+                .filter(|tag| !tag.is_empty())
+                .collect();
+
+        let n_distinct_build_tags = distinct_build_tags.len();
 
         let n_convergence_iterations_per_permutation: Vec<_> =
             regex!(r#"(?mR)Finished Stage 2 in (\d+) iterations \((.+)\)$"#)
@@ -312,6 +335,7 @@ impl AnalysisStdoutSummary {
         let avg_stage3_time = total_stage3_time / n_permutations;
 
         Self {
+            n_distinct_build_tags,
             n_build_constraint_permutations,
             min_convergence_iterations,
             max_convergence_iterations,
