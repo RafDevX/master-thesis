@@ -104,6 +104,14 @@ impl AnalysisReport {
             .map(|summary| summary.n_integrity_flows)
     }
 
+    pub fn n_parsed_files(&self) -> Option<usize> {
+        self.stdout.as_ref().map(|summary| summary.n_parsed_files)
+    }
+
+    pub fn n_parsed_bytes(&self) -> Option<usize> {
+        self.stdout.as_ref().map(|summary| summary.n_parsed_bytes)
+    }
+
     pub fn n_distinct_build_tags(&self) -> Option<usize> {
         self.stdout
             .as_ref()
@@ -225,6 +233,8 @@ impl fmt::Display for AnalysisAbortReason {
 
 #[derive(Clone, Copy)]
 struct AnalysisStdoutSummary {
+    n_parsed_files: usize,
+    n_parsed_bytes: usize,
     n_distinct_build_tags: usize,
     n_build_constraint_permutations: usize,
     min_convergence_iterations: usize,
@@ -237,7 +247,18 @@ struct AnalysisStdoutSummary {
 }
 
 impl AnalysisStdoutSummary {
+    #[expect(
+        clippy::too_many_lines,
+        reason = "Splitting would not make the code clearer"
+    )]
     fn new(stdout: &str) -> Self {
+        let (n_parsed_files, n_parsed_bytes) =
+            regex!(r#"(?mR)^Parsing (\d+) Go file\(s\) corresponding to a total of (\d+) bytes$"#)
+                .captures(stdout)
+                .map(|captures| captures.extract().1)
+                .map(|[files, bytes]| (files.parse().unwrap(), bytes.parse().unwrap()))
+                .unwrap();
+
         let n_build_constraint_permutations =
             regex!(r#"(?mR)^Detected (\d+) distinct build-constraint permutations:$"#)
                 .captures(stdout)
@@ -335,6 +356,8 @@ impl AnalysisStdoutSummary {
         let avg_stage3_time = total_stage3_time / n_permutations;
 
         Self {
+            n_parsed_files,
+            n_parsed_bytes,
             n_distinct_build_tags,
             n_build_constraint_permutations,
             min_convergence_iterations,

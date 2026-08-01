@@ -79,6 +79,8 @@ impl DbConn {
                 n_warnings INTEGER,
                 n_confidentiality_flows INTEGER,
                 n_integrity_flows INTEGER,
+                n_parsed_files INTEGER,
+                n_parsed_bytes INTEGER,
                 n_distinct_build_tags INTEGER,
                 n_build_constraint_permutations INTEGER,
                 min_convergence_iterations INTEGER,
@@ -272,14 +274,15 @@ impl DbConn {
             INSERT INTO reports (
                 module, status, abort_reason, n_errors, n_warnings,
                 n_confidentiality_flows, n_integrity_flows,
+                n_parsed_files, n_parsed_bytes,
                 n_distinct_build_tags, n_build_constraint_permutations,
                 min_convergence_iterations, max_convergence_iterations,
                 total_convergence_iterations, parsing_time,
                 avg_stage1_time, avg_stage2_time, avg_stage3_time,
                 global_run_time, sloc
             ) VALUES (
-                ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9,
-                ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18
+                ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10,
+                ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20
             )
             "#,
             params![
@@ -290,6 +293,8 @@ impl DbConn {
                 report.n_warnings().map(into_i64_saturating),
                 report.n_confidentiality_flows().map(into_i64_saturating),
                 report.n_integrity_flows().map(into_i64_saturating),
+                report.n_parsed_files().map(into_i64_saturating),
+                report.n_parsed_bytes().map(into_i64_saturating),
                 report.n_distinct_build_tags().map(into_i64_saturating),
                 report
                     .n_build_constraint_permutations()
