@@ -7,7 +7,7 @@ use crate::{
     datasets::{Dataset, ProjectDownloadMetadata},
     errors::{AppError, AppResult},
     network::NetworkClient,
-    projects::Project,
+    projects::{Project, ProjectVersion},
 };
 
 const SOURCE_FILE_PATH: &str = "./input-projects/by-dependents/02-modules-by-dependents.txt";
@@ -83,10 +83,14 @@ impl Dataset for Dependents {
 
         zip.extract(crate::PROJECT_FILES_DIR.as_path())?;
 
-        let metadata = ProjectDownloadMetadata {
-            root: target,
+        let version = ProjectVersion {
             rev_name: version.to_owned(),
             rev_hash,
+        };
+
+        let metadata = ProjectDownloadMetadata {
+            root: target,
+            version,
         };
 
         Ok(metadata)

@@ -119,11 +119,7 @@ impl Project {
             relative_rank
         );
 
-        let ProjectDownloadMetadata {
-            root,
-            rev_name,
-            rev_hash,
-        } = dataset.download_project(self, client)?;
+        let ProjectDownloadMetadata { root, version } = dataset.download_project(self, client)?;
 
         let mut modules = Vec::new();
 
@@ -204,8 +200,7 @@ impl Project {
             self,
             sample,
             relative_rank,
-            rev_name.as_str(),
-            rev_hash.as_deref(),
+            &version, // rev info
             &modules,
         )?;
 
@@ -238,4 +233,9 @@ impl fmt::Display for Project {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         self.0.fmt(f)
     }
+}
+
+pub struct ProjectVersion {
+    pub rev_name: String,
+    pub rev_hash: Option<String>,
 }

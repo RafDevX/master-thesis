@@ -7,7 +7,7 @@ use std::{
 use crate::{
     errors::{AppError, AppResult},
     network::NetworkClient,
-    projects::Project,
+    projects::{Project, ProjectVersion},
 };
 
 mod dependents;
@@ -87,6 +87,5 @@ pub trait Dataset {
 
 pub struct ProjectDownloadMetadata {
     pub root: PathBuf,
-    pub rev_name: String,
-    pub rev_hash: Option<String>,
+    pub version: ProjectVersion,
 }

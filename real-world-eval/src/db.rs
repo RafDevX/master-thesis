@@ -10,7 +10,7 @@ use url::Url;
 use crate::{
     errors::{AppError, AppResult},
     modules::Module,
-    projects::Project,
+    projects::{Project, ProjectVersion},
     reports::{AnalysisAbortReason, AnalysisReport},
     samples::{Band, Sample},
 };
@@ -164,8 +164,7 @@ impl DbConn {
         project: &Project,
         sample: &Sample,
         relative_rank: u8,
-        rev_name: &str,
-        rev_hash: Option<&str>,
+        version: &ProjectVersion,
         modules: &'m [String],
     ) -> AppResult<Option<&'m String>> {
         let txn = self.0.transaction()?;
@@ -181,8 +180,8 @@ impl DbConn {
                 sample.dataset().key(),
                 sample.band().as_str(),
                 relative_rank,
-                rev_name,
-                rev_hash,
+                version.rev_name,
+                version.rev_hash,
             ],
         )?;
 

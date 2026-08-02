@@ -5,7 +5,7 @@ use backon::BlockingRetryable;
 use crate::{
     datasets::ProjectDownloadMetadata,
     errors::{AppError, AppResult},
-    projects::Project,
+    projects::{Project, ProjectVersion},
 };
 
 const EXPONENTIAL_RETRY: backon::ExponentialBuilder = backon::ExponentialBuilder::new()
@@ -54,10 +54,14 @@ pub fn download_project_from_git_remote(project: &Project) -> AppResult<ProjectD
     );
     fs::remove_dir_all(git_dir)?;
 
-    let metadata = ProjectDownloadMetadata {
-        root: target,
+    let version = ProjectVersion {
         rev_name: default_branch_name,
         rev_hash,
+    };
+
+    let metadata = ProjectDownloadMetadata {
+        root: target,
+        version,
     };
 
     Ok(metadata)
