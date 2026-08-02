@@ -21,6 +21,7 @@
     ),
     languages: (
       go: (name: "Go", color: colors.go-blue),
+      sql: (name: "SQL", color: orange),
     ),
   )
 }

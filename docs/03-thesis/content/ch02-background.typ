@@ -110,13 +110,13 @@ faults, but only insofar as the intersection with the field of integrity.
 
 In any case, @ifc is profoundly related with studying the relationships between
 a program's inputs and its outputs. Many inputs tend to be noteworthy in some
-way, either because they comprise secrets (such as API tokens) or because they
-are attacker-controlled (such as HTTP form fields), and most outputs are either
-attacker-visible (such as a @cli application's writes to `stdout`) or critical
-parts (such as database entries), with the latter case often becoming inputs to
-other programs. It is therefore vital and a measure of security to track if and
-how these inputs flow into outputs over the course of the program's lifetime,
-across all possible execution paths.
+way, either because they comprise secrets (such as @api:short tokens) or because
+they are attacker-controlled (such as @http form fields), and most outputs are
+either attacker-visible (such as a @cli application's writes to `stdout`) or
+critical parts (such as database entries), with the latter case often becoming
+inputs to other programs. It is therefore vital and a relevant measure of
+security to track if and how these inputs flow into outputs over the course of
+the program's lifetime, across all possible execution paths.
 
 Tracking flows between inputs and outputs can detect certain kinds of security
 problems, as insecure programs may allow attackers to derive information about

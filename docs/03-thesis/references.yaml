@@ -426,3 +426,27 @@ mclean1990noninterference:
     title: "Proceedings of the 1990 IEEE Computer Society Symposium on Research in Security and Privacy"
     publisher: IEEE Computer Society
     location: Oakland, California
+
+github2025octoverse:
+  type: report
+  title: "Octoverse 2025"
+  author: GitHub
+  date: 2025-10-28
+  url:
+    value: https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/
+    date: 2026-07-31
+
+lee2026gopkgsiteapi:
+  type: article
+  title: "Introducing the pkg.go.dev API"
+  author:
+    - Lee, Ethan
+    - Kim, Hana
+    - Amsterdam, Jonathan
+  date: 2026-05-21
+  url:
+    value: https://go.dev/blog/pkgsite-api
+    date: 2026-07-31
+  parent:
+    type: blog
+    title: The Go Blog

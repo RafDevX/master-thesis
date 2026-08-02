@@ -129,7 +129,7 @@ vulnerabilities regarding secret leakage @cve20208563kubernetes
 
 #pagebreak()
 
-== Research Questions
+== Research Questions <intro:rq>
 
 This degree project aims to answer the following research questions:
 
@@ -150,12 +150,12 @@ This degree project aims to answer the following research questions:
       of secret data to public outputs? #smallcaps[(Confidentiality)]
     + #enum-label("rq-ifc-integrity") How to systematically detect flows of
       untrusted inputs to critical parts? #smallcaps[(Integrity)]
-  + #enum-label("rq-base-policy") How to reliably scaffold a reasonable security
+  + #enum-label("rq-base-policy") How to reliably define a reasonable security
     policy applicable to arbitrary Go projects, without domain-specific
     knowledge, as a starting point before human intervention?
-  + #enum-label("rq-min-config") Can information flow analysis effectively
+  + #enum-label("rq-find-vulns") Can information flow analysis effectively
     identify true security vulnerabilities in Go projects with minimal
-    configuration or domain-specific knowledge?
+    configuration, generic and without domain-specific knowledge?
   + #enum-label("rq-prevalence") How prevalent are detectable security issues in
     popular production-grade applications and libraries written in Go?
 ]
@@ -185,7 +185,7 @@ Go software, requiring less human effort in security consciousness.
 
 #pagebreak()
 
-== Goals
+== Goals <intro:goals>
 
 Given the research questions and the purpose laid out above, the following
 primary project goals are established:
@@ -361,17 +361,21 @@ Nevertheless, despite the above limitations (essential due to the necessarily
 reduced scope), this work still produces considerable strides within its field,
 both from a scientific and an ecosystem point of view.
 
-== Methodology
+== Research Methodology
 
-[or "Research Methodology"]
+The present work employs deductive methods to derive sound propagation and
+enforcement rules from the Go language specification, especially for the initial
+development of the parser, analyzer, and correctness benchmark suites. After the
+completion of a first version, empirical observations of real-world Go projects
+become a major factor driving additional developments, such as when adding
+support for more Go constructs and functionalities, following an iterative
+approach to gradually widen the project's scope.
 
-["present philosophical assumptions, research methods and approaches"]
-
-#box(fill: orange)[not sure what concretely to say here]
-
-#box(
-  fill: purple,
-)["study the state of the art to identify missing points and space to contribute to, deductive/inductive (prolly deductive or a mix of the 2), ak2030. deductive initially for first version but then empirically add support for more lang constructs etc; iterative approach small scale to big scale"]
+In terms of evaluation, stratified sampling is used to randomly select
+open-source Go projects, and the tool's findings on them are subject to
+statistical review so that observed relations and metrics can be inductively
+inferred to apply to the entire population when sufficiently meaningful and
+robust.
 
 == Ethics & Sustainability
 
@@ -381,7 +385,14 @@ decisions that support the work's agreement with these two areas.
 
 Firstly, all data from external sources used throughout this project is openly
 available, and all Go projects analyzed are open-source. This bolsters result
-reproducibility and avoids licensing complications.
+reproducibility and avoids licensing complications. In addition, per convention
+and good practices, all crawling, traversing, and queries to external services
+use an identifiable `User-Agent` @http:short header
+#footnote(link("https://httpwg.org/specs/rfc9110.html#field.user-agent")) and
+respect the appropriate rate limits, using exponential backoff to avoid
+overloading such external servers, including if requested via a `Retry-After`
+@http header
+#footnote(link("https://httpwg.org/specs/rfc9110.html#field.retry-after")).
 
 Secondly, from the very beginning of the project, a commitment has been made and
 upheld to report (via responsible disclosure channels) any and all potential
