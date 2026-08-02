@@ -39,33 +39,46 @@ impl Dataset for Dependents {
         Ok(Project::new(url))
     }
 
+    fn owns_project(&self, project: &Project) -> bool {
+        project.url().scheme() == "proxy"
+    }
+
     fn download_project(
         &self,
         project: &Project,
+        at_version: Option<ProjectVersion>,
         client: &NetworkClient,
     ) -> AppResult<ProjectDownloadMetadata> {
         let module = project.as_base();
 
-        let latest = client.get(&escape_case(format!("{BASE_URL}/{module}/@latest")))?;
+        let (version, rev_hash) = if let Some(at_version) = at_version {
+            // we have no choice but to use the required version
+            (at_version.rev_name, at_version.rev_hash)
+        } else {
+            // we use the latest available version
+            let latest = client.get(&escape_case(format!("{BASE_URL}/{module}/@latest")))?;
 
-        // not worth it deserializing JSON (which requires more dependencies)
-        // when we can just extract what we need using regex; API won't change
-        let version = VERSION_REGEX
-            .captures(&latest)
-            .and_then(|captures| captures.get(1))
-            .as_ref()
-            .map(regex::Match::as_str)
-            .ok_or_else(|| AppError::GoProxyNoValidLatestVersion {
-                project: project.to_string(),
-                response: latest.clone(),
-            })?;
+            // not worth it deserializing JSON (which requires more dependencies)
+            // when we can just extract what we need using regex; API won't change
+            let version = VERSION_REGEX
+                .captures(&latest)
+                .and_then(|captures| captures.get(1))
+                .as_ref()
+                .map(regex::Match::as_str)
+                .ok_or_else(|| AppError::GoProxyNoValidLatestVersion {
+                    project: project.to_string(),
+                    response: latest.clone(),
+                })?;
 
-        let rev_hash = REV_HASH_REGEX
-            .captures(&latest)
-            .and_then(|captures| captures.get(1))
-            .as_ref()
-            .map(regex::Match::as_str)
-            .map(str::to_owned);
+            let rev_hash = REV_HASH_REGEX
+                .captures(&latest)
+                .and_then(|captures| captures.get(1))
+                .as_ref()
+                .map(regex::Match::as_str)
+                .map(str::to_owned);
+
+            (version.to_owned(), rev_hash)
+        };
 
         let target = crate::PROJECT_FILES_DIR.join(format!("./{module}@{version}"));
 
@@ -84,7 +97,7 @@ impl Dataset for Dependents {
         zip.extract(crate::PROJECT_FILES_DIR.as_path())?;
 
         let version = ProjectVersion {
-            rev_name: version.to_owned(),
+            rev_name: version,
             rev_hash,
         };
 

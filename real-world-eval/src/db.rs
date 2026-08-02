@@ -18,6 +18,8 @@ use crate::{
 // per https://sqlite.org/rescode.html#constraint_primarykey
 const SQLITE_PRIMARY_KEY_CONSTRAINT_ERROR_CODE: i32 = 1555;
 
+const EXCLUDED_REV_NAME: &str = "[MANUALLY EXCLUDED]";
+
 pub struct DbConn(rusqlite::Connection);
 
 impl DbConn {
@@ -159,6 +161,33 @@ impl DbConn {
         Ok(stmt.exists([project.url().as_str()])?)
     }
 
+    pub fn all_projects_and_versions(&self) -> AppResult<Vec<(Project, ProjectVersion)>> {
+        let mut stmt = self.0.prepare(
+            r#"
+            SELECT url, rev_name, rev_hash
+            FROM projects
+            WHERE rev_name <> ?1
+            ORDER BY url
+            "#,
+        )?;
+
+        stmt.query_map([EXCLUDED_REV_NAME], |row| row.try_into())?
+            .map(|result| {
+                let (url, rev_name, rev_hash): (String, _, _) = result?;
+
+                // we don't go through dataset.project_from_entry because the
+                // project URL has already been calculated before being stored
+                // in the database; we already have the final URL, not a
+                // relative dataset entry
+                let project = Project::new(Url::parse(&url)?);
+
+                let version = ProjectVersion { rev_name, rev_hash };
+
+                Ok((project, version))
+            })
+            .collect()
+    }
+
     pub fn insert_project<'m>(
         &mut self,
         project: &Project,
@@ -256,7 +285,7 @@ impl DbConn {
                 sample.dataset().key(),
                 sample.band().as_str(),
                 relative_rank,
-                "[MANUALLY EXCLUDED]",
+                EXCLUDED_REV_NAME,
             ],
         )?;
 

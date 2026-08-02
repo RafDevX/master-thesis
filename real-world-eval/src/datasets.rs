@@ -26,9 +26,12 @@ pub trait Dataset {
 
     fn project_from_entry(&self, entry: &str) -> AppResult<Project>;
 
+    fn owns_project(&self, project: &Project) -> bool;
+
     fn download_project(
         &self,
         project: &Project,
+        at_version: Option<ProjectVersion>, // if None, latest is used
         client: &NetworkClient,
     ) -> AppResult<ProjectDownloadMetadata>;
 

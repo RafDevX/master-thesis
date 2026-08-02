@@ -9,7 +9,7 @@ use url::Url;
 use walkdir::WalkDir;
 
 use crate::{
-    datasets::ProjectDownloadMetadata,
+    datasets::{self, Dataset, ProjectDownloadMetadata},
     db::DbConn,
     errors::{AppError, AppResult},
     network::NetworkClient,
@@ -29,6 +29,16 @@ impl Project {
 
     pub fn url(&self) -> &Url {
         &self.0
+    }
+
+    pub fn dataset(&self) -> Option<&'static dyn Dataset> {
+        for dataset in datasets::ALL {
+            if dataset.owns_project(self) {
+                return Some(*dataset);
+            }
+        }
+
+        None
     }
 
     pub fn as_base(&self) -> &str {
@@ -84,7 +94,6 @@ impl Project {
         conn.project_already_exists(self)
     }
 
-    #[expect(clippy::panic_in_result_fn, reason = "Triple-check before delete")]
     pub fn init(
         &self,
         sample: &Sample,
@@ -119,11 +128,51 @@ impl Project {
             relative_rank
         );
 
-        let ProjectDownloadMetadata { root, version } = dataset.download_project(self, client)?;
+        let ProjectDownloadMetadata { root, version } = dataset.download_project(
+            self, // this one at...
+            None, // ...latest version
+            client,
+        )?;
 
+        let modules = self.process_downloaded_files(&root)?;
+
+        let first_new_module = conn.insert_project(
+            self,
+            sample,
+            relative_rank,
+            &version, // rev info
+            &modules,
+        )?;
+
+        Ok(first_new_module.map(PathBuf::from))
+    }
+
+    fn is_excluded(&self, exclude_list_path: &Path) -> AppResult<bool> {
+        let list = match fs::read_to_string(exclude_list_path) {
+            Ok(list) => list,
+            Err(err) if err.kind() == io::ErrorKind::NotFound => return Ok(false),
+            Err(err) => return Err(err.into()),
+        };
+
+        for line in list.lines() {
+            let line = line
+                .split_once('#')
+                .map_or(line, |(before, _)| before)
+                .trim();
+
+            if !line.is_empty() && line == self.url().as_str() {
+                return Ok(true);
+            }
+        }
+
+        Ok(false)
+    }
+
+    #[expect(clippy::panic_in_result_fn, reason = "Triple-check before delete")]
+    fn process_downloaded_files(&self, root: &Path) -> AppResult<Vec<String>> {
         let mut modules = Vec::new();
 
-        for entry in WalkDir::new(&root) {
+        for entry in WalkDir::new(root) {
             let entry = entry.map_err(io::Error::from)?;
 
             #[expect(
@@ -139,7 +188,7 @@ impl Project {
                 let dir_path = go_mod_path.parent().unwrap();
 
                 let relative = dir_path
-                    .strip_prefix(&root)
+                    .strip_prefix(root)
                     .unwrap() // safe (entry is a subdirectory of root)
                     .to_str()
                     .ok_or_else(|| {
@@ -175,7 +224,7 @@ impl Project {
         // do a second pass just to remove empty directories, now that we've
         // already deleted all irrelevant files (we enable contents-first mode
         // since otherwise higher-level empty directories would not be deleted)
-        for entry in WalkDir::new(&root).contents_first(true) {
+        for entry in WalkDir::new(root).contents_first(true) {
             let entry = entry.map_err(io::Error::from)?;
 
             if entry.file_type().is_dir()
@@ -196,36 +245,7 @@ impl Project {
             }
         }
 
-        let first_new_module = conn.insert_project(
-            self,
-            sample,
-            relative_rank,
-            &version, // rev info
-            &modules,
-        )?;
-
-        Ok(first_new_module.map(PathBuf::from))
-    }
-
-    fn is_excluded(&self, exclude_list_path: &Path) -> AppResult<bool> {
-        let list = match fs::read_to_string(exclude_list_path) {
-            Ok(list) => list,
-            Err(err) if err.kind() == io::ErrorKind::NotFound => return Ok(false),
-            Err(err) => return Err(err.into()),
-        };
-
-        for line in list.lines() {
-            let line = line
-                .split_once('#')
-                .map_or(line, |(before, _)| before)
-                .trim();
-
-            if !line.is_empty() && line == self.url().as_str() {
-                return Ok(true);
-            }
-        }
-
-        Ok(false)
+        Ok(modules)
     }
 }
 
@@ -238,4 +258,44 @@ impl fmt::Display for Project {
 pub struct ProjectVersion {
     pub rev_name: String,
     pub rev_hash: Option<String>,
+}
+
+pub fn download_all_files(conn: &DbConn, client: &NetworkClient) -> AppResult<()> {
+    let projects = conn.all_projects_and_versions()?;
+    let count = projects.len();
+    let width = (usize::max(count, 1).ilog10() as usize) + 1;
+
+    for (index, (project, version)) in projects.into_iter().enumerate() {
+        let rev_hash = version
+            .rev_hash
+            .as_deref()
+            .map_or("<unknown>", |hash| hash.get(..7).unwrap_or(hash));
+
+        println!(
+            "[now: {}] Download project #{:0width$}/{} `{}` at version `{}#{}`",
+            Utc::now(),
+            index + 1,
+            count,
+            project.url().as_str(),
+            &version.rev_name,
+            rev_hash
+        );
+
+        let dataset = project.dataset().unwrap();
+
+        let ProjectDownloadMetadata { root, .. } = dataset.download_project(
+            &project,
+            Some(version), // specifically at the stored version
+            client,
+        )?;
+
+        project.process_downloaded_files(&root)?;
+    }
+
+    println!(
+        "[now: {}] No further projects in database - download complete",
+        Utc::now(),
+    );
+
+    Ok(())
 }

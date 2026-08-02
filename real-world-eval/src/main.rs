@@ -169,6 +169,12 @@ fn main() -> AppResult<()> {
 
     let client = NetworkClient::new()?;
 
+    if binary.trim() == "--download-processed" {
+        // note that this only downloads files for projects that have already
+        // been processed; the database is not modified!
+        return projects::download_all_files(&conn, &client);
+    }
+
     while let Some(module) = selection::next_module(
         EXCLUDED_PROJECTS_FILE.as_path(), // list of excluded projects
         &mut conn,

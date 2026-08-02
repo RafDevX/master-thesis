@@ -6,7 +6,7 @@ use crate::{
     datasets::{Dataset, ProjectDownloadMetadata},
     errors::AppResult,
     network::NetworkClient,
-    projects::Project,
+    projects::{Project, ProjectVersion},
 };
 
 const SOURCE_FILE_PATH: &str = "./input-projects/by-stars/02-gitlab-repos-by-stars.txt";
@@ -32,11 +32,18 @@ impl Dataset for GitLab {
         Ok(Project::new(url))
     }
 
+    fn owns_project(&self, project: &Project) -> bool {
+        let url = project.url();
+
+        url.scheme() == "https" && url.domain() == Some("gitlab.com")
+    }
+
     fn download_project(
         &self,
         project: &Project,
+        at_version: Option<ProjectVersion>,
         _client: &NetworkClient,
     ) -> AppResult<ProjectDownloadMetadata> {
-        super::git_generic::download_project_from_git_remote(project)
+        super::git_generic::download_project_from_git_remote(project, at_version)
     }
 }
