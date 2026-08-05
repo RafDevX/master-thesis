@@ -1,4 +1,4 @@
-use std::{collections::HashSet, fs, path::Path};
+use std::{collections::HashSet, path::Path};
 
 use crate::{
     datasets,
@@ -38,13 +38,6 @@ pub fn next_module(
 
         // nothing left in this sample; use the next one available
         excluding.insert(sample.key());
-
-        // before switching to a new  sample, we delete all project files so we
-        // don't accumulate too many (and this is a safe point to do it)
-        fs::remove_dir_all(crate::PROJECT_FILES_DIR.as_path())?;
-        fs::create_dir_all(crate::PROJECT_FILES_DIR.as_path())?;
-        // ^ deleting and recreating is easier than looping through its children
-        // to delete each of them, even if it does not really support symlinks
     }
 
     // no datasets have outstanding projects, so we're done
