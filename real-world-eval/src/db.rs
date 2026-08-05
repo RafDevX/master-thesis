@@ -20,6 +20,41 @@ const SQLITE_PRIMARY_KEY_CONSTRAINT_ERROR_CODE: i32 = 1555;
 
 const EXCLUDED_REV_NAME: &str = "[MANUALLY EXCLUDED]";
 
+pub const REPORT_TEXTUAL_DESCRIPTOR_HEADINGS: &[&str] = &[
+    "module",
+    "primary_project",
+    "primary_project_dataset",
+    "primary_project_band",
+    "primary_project_relative_rank",
+    "primary_project_rev_name",
+    "primary_project_rev_hash",
+    "secondary_project",
+    "secondary_project_dataset",
+    "secondary_project_band",
+    "secondary_project_relative_rank",
+    "secondary_project_rev_name",
+    "secondary_project_rev_hash",
+    "status",
+    "abort_reason",
+    "n_errors",
+    "n_warnings",
+    "n_confidentiality_flows",
+    "n_integrity_flows",
+    "n_parsed_files",
+    "n_parsed_bytes",
+    "n_distinct_build_tags",
+    "n_build_constraint_permutations",
+    "min_convergence_iterations",
+    "max_convergence_iterations",
+    "total_convergence_iterations",
+    "parsing_time",
+    "avg_stage1_time",
+    "avg_stage2_time",
+    "avg_stage3_time",
+    "global_run_time",
+    "sloc",
+];
+
 pub struct DbConn(rusqlite::Connection);
 
 impl DbConn {
@@ -186,6 +221,61 @@ impl DbConn {
                 Ok((project, version))
             })
             .collect()
+    }
+
+    pub fn all_reports_as_textual_descriptors(&self) -> AppResult<Vec<Vec<Option<String>>>> {
+        let mut stmt = self.0.prepare(
+            r#"
+            SELECT
+                r.module,
+                m.primary_project,
+                pp.dataset AS primary_project_dataset,
+                pp.band AS primary_project_band,
+                CAST(pp.relative_rank AS TEXT) AS primary_project_relative_rank,
+                pp.rev_name AS primary_project_rev_name,
+                pp.rev_hash AS primary_project_rev_hash,
+                m.secondary_project,
+                sp.dataset AS secondary_project_dataset,
+                sp.band AS secondary_project_band,
+                CAST(sp.relative_rank AS TEXT) AS secondary_project_relative_rank,
+                sp.rev_name AS secondary_project_rev_name,
+                sp.rev_hash AS secondary_project_rev_hash,
+                r.status,
+                r.abort_reason,
+                CAST(r.n_errors AS TEXT) AS n_errors,
+                CAST(r.n_warnings AS TEXT) AS n_warnings,
+                CAST(r.n_confidentiality_flows AS TEXT) AS n_confidentiality_flows,
+                CAST(r.n_integrity_flows AS TEXT) AS n_integrity_flows,
+                CAST(r.n_parsed_files AS TEXT) AS n_parsed_files,
+                CAST(r.n_parsed_bytes AS TEXT) AS n_parsed_bytes,
+                CAST(r.n_distinct_build_tags AS TEXT) AS n_distinct_build_tags,
+                CAST(r.n_build_constraint_permutations AS TEXT) AS n_build_constraint_permutations,
+                CAST(r.min_convergence_iterations AS TEXT) AS min_convergence_iterations,
+                CAST(r.max_convergence_iterations AS TEXT) AS max_convergence_iterations,
+                CAST(r.total_convergence_iterations AS TEXT) AS total_convergence_iterations,
+                CAST(r.parsing_time AS TEXT) AS parsing_time,
+                CAST(r.avg_stage1_time AS TEXT) AS avg_stage1_time,
+                CAST(r.avg_stage2_time AS TEXT) AS avg_stage2_time,
+                CAST(r.avg_stage3_time AS TEXT) AS avg_stage3_time,
+                CAST(r.global_run_time AS TEXT) AS global_run_time,
+                CAST(r.sloc AS TEXT) AS sloc
+            FROM reports r
+            JOIN modules m
+                ON m.path = r.module
+            JOIN projects AS pp
+                ON pp.url = m.primary_project
+            LEFT JOIN projects AS sp
+                ON sp.url = m.secondary_project
+            "#,
+        )?;
+
+        stmt.query_map([], |row| {
+            (0..REPORT_TEXTUAL_DESCRIPTOR_HEADINGS.len())
+                .map(|i| row.get(i))
+                .collect()
+        })?
+        .map(|result| result.map_err(Into::into))
+        .collect()
     }
 
     pub fn insert_project<'m>(

@@ -124,13 +124,14 @@
 
 use std::{
     env, fs,
-    path::{self, PathBuf},
+    io::{self, Write},
+    path::{self, Path, PathBuf},
     sync::LazyLock,
 };
 
 use chrono::Utc;
 
-use crate::{errors::AppResult, network::NetworkClient};
+use crate::{db::DbConn, errors::AppResult, network::NetworkClient};
 
 mod analysis;
 mod datasets;
@@ -152,6 +153,7 @@ macro_rules! absolute_path {
 }
 
 absolute_path!(DB_FILE = "./data.sqlite");
+absolute_path!(RESULTS_FILE = "./results.csv");
 absolute_path!(EXCLUDED_PROJECTS_FILE = "./input-projects/excluded.txt");
 absolute_path!(SAMPLES_DIR = "./input-projects/sampled");
 absolute_path!(PROJECT_FILES_DIR = "./project-files");
@@ -187,6 +189,59 @@ fn main() -> AppResult<()> {
         "[now: {}] No further modules - evaluation complete",
         Utc::now(),
     );
+
+    let written = write_results(RESULTS_FILE.as_path(), &conn)?;
+
+    println!(
+        "[now: {}] Wrote results to {} ({written} reports)",
+        Utc::now(),
+        RESULTS_FILE.display()
+    );
+
+    Ok(())
+}
+
+fn write_results(path: &Path, conn: &DbConn) -> AppResult<usize> {
+    let reports = conn.all_reports_as_textual_descriptors()?;
+    let count = reports.len();
+
+    let file = fs::File::create(path)?;
+    let mut writer = io::BufWriter::new(file);
+
+    write_csv_line(db::REPORT_TEXTUAL_DESCRIPTOR_HEADINGS, &mut writer)?;
+
+    for report in reports {
+        write_csv_line(
+            report.iter().map(|field| field.as_deref().unwrap_or("")),
+            &mut writer,
+        )?;
+    }
+
+    writer.flush()?; // catch any errors before returning
+
+    Ok(count)
+}
+
+fn write_csv_line(
+    fields: impl IntoIterator<Item = impl AsRef<str>>,
+    writer: &mut impl Write,
+) -> AppResult<()> {
+    let mut fields = fields.into_iter();
+
+    let Some(first) = fields.next() else {
+        return Ok(());
+    };
+
+    writer.write_all(first.as_ref().as_bytes())?;
+
+    for field in fields {
+        // we know the fields don't have commas, quotes, or newlines, so no need
+        // to enclose them in quotes and make everything more complicated
+        writer.write_all(b",")?;
+        writer.write_all(field.as_ref().as_bytes())?;
+    }
+
+    writer.write_all(b"\n")?;
 
     Ok(())
 }
