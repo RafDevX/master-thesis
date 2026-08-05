@@ -266,6 +266,7 @@ impl DbConn {
                 ON pp.url = m.primary_project
             LEFT JOIN projects AS sp
                 ON sp.url = m.secondary_project
+            ORDER BY r.module
             "#,
         )?;
 
