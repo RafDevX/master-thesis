@@ -8,7 +8,7 @@ haberzarsky2017reliance:
     - Zarsky, Tal
   date: 2017
   page-range: 515-578
-  url: https://ir.law.fsu.edu/lr/vol44/iss2/3/
+  url: https://ir.law.fsu.edu/lr/vol44/iss2/3
   parent:
     type: periodical
     title: "Florida State University Law Review"
@@ -90,7 +90,7 @@ pike2012go:
       Proceedings of the 3rd Annual Conference on Systems, Programming, and
       Applications: Software for Humanity
     publisher: Association for Computing Machinery
-    location: Tucson, Arizona, USA
+    location: Tucson, Arizona
     serial-number:
       isbn: "978-1-4503-1563-0"
 
@@ -112,7 +112,7 @@ ufliand2025jetbrains:
   organization: Jetbrains
   date: 2025-11-10
   url:
-    value: https://blog.jetbrains.com/go/2025/11/10/go-language-trends-ecosystem-2025/
+    value: https://blog.jetbrains.com/go/2025/11/10/go-language-trends-ecosystem-2025
     date: 2026-05-23
   parent:
     type: blog
@@ -135,12 +135,12 @@ cve20208563kubernetes:
   serial-number:
     cve: "CVE-2020-8563"
   url:
-    value: https://nvd.nist.gov/vuln/detail/cve-2020-8563
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-8563
     date: 2026-05-23
   parent:
     type: reference
     title: National Vulnerability Database
-    publisher: NIST
+    publisher: National Institute of Standards and Technology
 
 cve20208564kubernetes:
   type: entry
@@ -149,12 +149,12 @@ cve20208564kubernetes:
   serial-number:
     cve: "CVE-2020-8564"
   url:
-    value: https://nvd.nist.gov/vuln/detail/cve-2020-8564
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-8564
     date: 2026-05-23
   parent:
     type: reference
     title: National Vulnerability Database
-    publisher: NIST
+    publisher: National Institute of Standards and Technology
 
 cve20208565kubernetes:
   type: entry
@@ -163,12 +163,12 @@ cve20208565kubernetes:
   serial-number:
     cve: "CVE-2020-8565"
   url:
-    value: https://nvd.nist.gov/vuln/detail/cve-2020-8565
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-8565
     date: 2026-05-23
   parent:
     type: reference
     title: National Vulnerability Database
-    publisher: NIST
+    publisher: National Institute of Standards and Technology
 
 cve20208566kubernetes:
   type: entry
@@ -177,12 +177,12 @@ cve20208566kubernetes:
   serial-number:
     cve: "CVE-2020-8566"
   url:
-    value: https://nvd.nist.gov/vuln/detail/cve-2020-8566
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-8566
     date: 2026-05-23
   parent:
     type: reference
     title: National Vulnerability Database
-    publisher: NIST
+    publisher: National Institute of Standards and Technology
 
 cve20257445kubernetes:
   type: entry
@@ -191,12 +191,12 @@ cve20257445kubernetes:
   serial-number:
     cve: "CVE-2025-7445"
   url:
-    value: https://nvd.nist.gov/vuln/detail/cve-2025-7445
+    value: https://nvd.nist.gov/vuln/detail/CVE-2025-7445
     date: 2026-05-23
   parent:
     type: reference
     title: National Vulnerability Database
-    publisher: NIST
+    publisher: National Institute of Standards and Technology
 
 go126spec:
   type: reference
@@ -219,7 +219,7 @@ santiagocalderon2022oss:
     - Kramer, Brandon L.
   date: 2022-07
   genre: Working Paper
-  serial-number: WP2022-10
+  serial-number: "WP2022-10"
   publisher:
     name: U.S. Bureau of Economic Analysis
     location: Washington, D.C.
@@ -294,8 +294,10 @@ cecchetti2017nonmalleable:
     doi: "10.1145/3133956.3134054"
   parent:
     type: proceedings
-    title: "Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security"
-    publisher: ACM
+    title: >-
+      Proceedings of the 2017 ACM SIGSAC Conference on Computer and
+      Communications Security
+    publisher: Association for Computing Machinery
 
 belllapadula1973mls:
   type: report
@@ -325,7 +327,7 @@ denning1976lattice:
     title: "Communications of the ACM"
     volume: 19
     issue: 5
-    publisher: ACM
+    publisher: Association for Computing Machinery
 
 hedinsabelfeld2012perspective:
   type: anthos
@@ -364,7 +366,7 @@ denningdenning1977certification:
     title: Communications of the ACM
     volume: 20
     issue: 7
-    publisher: ACM
+    publisher: Association for Computing Machinery
 
 sabelfeldmyers2003lang:
   type: article
@@ -384,7 +386,8 @@ sabelfeldmyers2003lang:
 
 turing1936computable:
   type: article
-  title: "On Computable Numbers, with an Application to the Entscheidungsproblem"
+  title: >-
+    On Computable Numbers, with an Application to the Entscheidungsproblem
   author: Turing, Alan M.
   date: 1937
   page-range: 230-265
@@ -413,6 +416,39 @@ goguenmesseguer1982noninterference:
     publisher: IEEE Computer Society
     location: Oakland, California
 
+rushby1992noninterference:
+  type: report
+  title: "Noninterference, Transitivity, and Channel-Control Security Policies"
+  author: Rushby, John
+  date: 1992-12
+  genre: Technical Report
+  serial-number: "CSL-92-02"
+  publisher:
+    name: SRI International, Computer Science Laboratory
+    location: Menlo Park, California
+
+mantel2025noninterference:
+  type: anthos
+  title: "Information Flow and Noninterference"
+  author: Mantel, Heiko
+  date: 2025
+  page-range: 1217-1221
+  serial-number:
+    doi: "10.1007/978-3-030-71522-9_874"
+  parent:
+    type: anthology
+    title: "Encyclopedia of Cryptography, Security and Privacy"
+    editor:
+      - Jajodia, Sushil
+      - Samarati, Pierangela
+      - Yung, Moti
+    edition: 3
+    serial-number:
+      isbn: "978-3-030-71520-5"
+    publisher:
+      name: Springer
+      location: Cham, Switzerland
+
 mclean1990noninterference:
   type: article
   title: "Security Models and Information Flow"
@@ -423,9 +459,1563 @@ mclean1990noninterference:
     doi: "10.1109/RISP.1990.63849"
   parent:
     type: proceedings
-    title: "Proceedings of the 1990 IEEE Computer Society Symposium on Research in Security and Privacy"
+    title: >-
+      Proceedings of the 1990 IEEE Computer Society Symposium on Research in
+      Security and Privacy
     publisher: IEEE Computer Society
     location: Oakland, California
+
+clarksonschneider2010hyperproperties:
+  type: article
+  title: "Hyperproperties"
+  author:
+    - Clarkson, Michael R.
+    - Schneider, Fred B.
+  date: 2010-09-20
+  page-range: 1157-1210
+  serial-number:
+    doi: "10.3233/JCS-2009-0393"
+  parent:
+    type: periodical
+    title: "Journal of Computer Security"
+    volume: 18
+    issue: 6
+    publisher: IOS Press
+
+arden2015flam:
+  type: article
+  title: "Flow-Limited Authorization"
+  author:
+    - Arden, Owen
+    - Liu, Jed
+    - Myers, Andrew C.
+  date: 2015
+  page-range: 569-583
+  serial-number:
+    doi: "10.1109/CSF.2015.42"
+  parent:
+    type: proceedings
+    title: "2015 IEEE 28th Computer Security Foundations Symposium"
+    publisher: IEEE Computer Society
+
+palsbergorbek1995trust:
+  type: article
+  title: "Trust in the λ-calculus"
+  author:
+    - Palsberg, Jens
+    - Ørbæk, Peter
+  date: 1995-09-25
+  page-range: 314-329
+  serial-number:
+    doi: "10.1007/3-540-60360-3_47"
+  parent:
+    type: proceedings
+    title: "Static Analysis: Second International Symposium"
+    editor: Mycroft, Alan
+    serial-number:
+      isbn: "978-3-540-60360-3"
+    publisher:
+      name: Springer
+      location: Cham, Switzerland
+
+smithvolpano1998multithreaded:
+  type: article
+  title: "Secure Information Flow in a Multi-threaded Imperative Language"
+  author:
+    - Smith, Geoffrey
+    - Volpano, Dennis
+  date: 1998-01-21
+  page-range: 355-364
+  serial-number:
+    doi: "10.1145/268946.268975"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 25th ACM SIGPLAN-SIGACT symposium on Principles of
+      Programming Languages
+    publisher: Association for Computing Machinery
+    location: San Diego, California
+
+heintzeriecke1998slam:
+  type: article
+  title: "The SLam Calculus: Programming with Secrecy and Integrity"
+  author:
+    - Heintze, Nevin
+    - Riecke, Jon G.
+  date: 1998-01-21
+  page-range: 365-377
+  serial-number:
+    doi: "10.1145/268946.268976"
+  parent:
+    type: proceedings
+    title: >
+      Proceedings of the 25th ACM SIGPLAN-SIGACT symposium on Principles of
+      Programming Languages
+    publisher: Association for Computing Machinery
+    location: San Diego, California
+
+banerjee2002javalike:
+  type: article
+  title: >-
+    Secure Information Flow and Pointer Confinement in a Java-like Language
+  author:
+    - Banerjee, Anindya
+    - Naumann, David A.
+  date: 2002-06-24
+  page-range: 253-267
+  serial-number:
+    doi: "10.1109/CSFW.2002.1021820"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 15th IEEE Workshop on Computer Security Foundations
+    publisher: IEEE Computer Society
+
+myers1999jflow:
+  type: article
+  title: "JFlow: Practical Mostly-Static Information Flow Control"
+  author: Myers, Andrew C.
+  date: 1999-01-20
+  page-range: 228-241
+  serial-number:
+    doi: "10.1145/292540.292561"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 26th ACM SIGPLAN-SIGACT symposium on Principles of
+      Programming Languages
+    publisher: Association for Computing Machinery
+    location: San Antonio, Texas
+
+myersliskov2000jif:
+  type: article
+  title: "Protecting Privacy Using the Decentralized Label Model"
+  author:
+    - Myers, Andrew C.
+    - Liskov, Barbara
+  date: 2000-10
+  page-range: 410-442
+  serial-number:
+    doi: "10.1145/363516.363526"
+  parent:
+    type: periodical
+    title: "ACM Transactions on Software Engineering and Methodology"
+    volume: 9
+    issue: 4
+    publisher: Association for Computing Machinery
+
+pottiersimonet2003ml:
+  type: article
+  title: "Information Flow Inference for ML"
+  author:
+    - Pottier, François
+    - Simonet, Vincent
+  date: 2003-01
+  page-range: 117-158
+  serial-number:
+    doi: "10.1145/596980.596983"
+  parent:
+    type: periodical
+    title: "ACM Transactions on Programming Languages and Systems"
+    volume: 25
+    issue: 1
+    publisher: Association for Computing Machinery
+
+stefan2011lio:
+  type: article
+  title: "Flexible Dynamic Information Flow Control in Haskell"
+  author:
+    - Stefan, Deian
+    - Russo, Alejandro
+    - Mitchell, John C.
+    - Mazières, David
+  date: 2011-09-22
+  page-range: 95-106
+  serial-number:
+    doi: "10.1145/2034675.2034688"
+  parent:
+    type: proceedings
+    title: "Proceedings of the 4th ACM SIGPLAN Symposium on Haskell"
+    publisher: Association for Computing Machinery
+    location: Tokyo, Japan
+
+yang2012jeeves:
+  type: article
+  title: "A Language for Automatically Enforcing Privacy Policies"
+  author:
+    - Yang, Jean
+    - Yessenov, Kuat
+    - Solar-Lezama, Armando
+  date: 2012-01-25
+  page-range: 85-96
+  serial-number:
+    doi: "10.1145/2103621.2103669"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 39th Annual ACM SIGPLAN-SIGACT Symposium on Principles
+      of Programming Languages
+    publisher: Association for Computing Machinery
+    location: Philadelphia, Pennsylvania
+
+enck2014taintdroid:
+  type: article
+  title: >-
+    TaintDroid: An Information-Flow Tracking System for Realtime Privacy
+    Monitoring on Smartphones
+  author:
+    - Enck, William
+    - Gilbert, Peter
+    - Han, Seungyeop
+    - Tendulkar, Vasant
+    - Chun, Byung-Gon
+    - Cox, Landon P.
+    - Jung, Jaeyeon
+    - McDaniel, Patrick
+    - Sheth, Anmol N.
+  date: 2014-06
+  page-range: 5:1-5:29
+  serial-number:
+    doi: "10.1145/2619091"
+  parent:
+    type: periodical
+    title: "ACM Transactions on Computer Systems"
+    volume: 32
+    issue: 2
+    publisher: Association for Computing Machinery
+
+vachharajani2004rifle:
+  type: article
+  title: >-
+    RIFLE: An Architectural Framework for User-Centric Information-Flow Security
+  author:
+    - Vachharajani, Neil
+    - Bridges, Matthew J.
+    - Chang, Jonathan
+    - Rangan, Ram
+    - Ottoni, Guilherme
+    - Blome, Jason A.
+    - Reis, George A.
+    - Vachharajani, Manish
+    - August, David I.
+  date: 2004-12-04
+  page-range: 243-254
+  serial-number:
+    doi: "10.1109/MICRO.2004.31"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 37th Annual IEEE/ACM International Symposium on
+      Microarchitecture
+    publisher: IEEE Computer Society
+    location: Portland, Oregon
+
+chen2021dynamic:
+  type: article
+  title: >-
+    Dynamic Information Flow Tracking: Taxonomy, Challenges, and Opportunities
+  author:
+    - Chen, Kejun
+    - Guo, Xiaolong
+    - Deng, Qingxu
+    - Jin, Yier
+  date: 2021-07-29
+  serial-number:
+    doi: "10.3390/mi12080898"
+    serial: 898 # journal uses article numbers instead of page numbers
+  parent:
+    type: periodical
+    title: "Micromachines"
+    volume: 12
+    issue: 8
+    publisher: MDPI
+
+balakrishnan2010wysinwyx:
+  type: article
+  title: "WYSINWYX: What You See Is Not What You eXecute"
+  author:
+    - Balakrishnan, Gogul
+    - Reps, Thomas
+  date: 2010-08-13
+  page-range: 1-84
+  serial-number:
+    doi: "10.1145/1749608.1749612"
+  parent:
+    type: periodical
+    title: "ACM Transactions on Programming Languages and Systems"
+    volume: 32
+    issue: 6
+    publisher: Association for Computing Machinery
+
+thompson1984trusting:
+  type: article
+  title: "Reflections on Trusting Trust"
+  author: Thompson, Ken
+  date: 1984-08
+  page-range: 761-763
+  serial-number:
+    doi: "10.1145/358198.358210"
+  parent:
+    type: periodical
+    title: "Communications of the ACM"
+    volume: 27
+    issue: 8
+    publisher: Association for Computing Machinery
+
+xu2023cisb:
+  type: article
+  title: "Silent Bugs Matter: A Study of Compiler-Introduced Security Bugs"
+  author:
+    - Xu, Jianhao
+    - Lu, Kangjie
+    - Du, Zhengjie
+    - Ding, Zhu
+    - Li, Linke
+    - Wu, Qiushi
+    - Payer, Mathias
+    - Mao, Bing
+  date: 2023-08
+  page-range: 3655-3672
+  parent:
+    type: proceedings
+    title: "Proceedings of the 32nd USENIX Security Symposium"
+    publisher: USENIX Association
+    location: Anaheim, California
+
+russosabelfeld2010vs:
+  type: article
+  title: "Dynamic vs. Static Flow-Sensitive Security Analysis"
+  author:
+    - Russo, Alejandro
+    - Sabelfeld, Andrei
+  date: 2010-07
+  page-range: 186-199
+  serial-number:
+    doi: "10.1109/CSF.2010.20"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 23rd IEEE Computer Security Foundations Symposium
+    publisher: IEEE Computer Society
+
+livshitslam2005taint:
+  type: article
+  title: >-
+    Finding Security Vulnerabilities in Java Applications with Static Analysis
+  author:
+    - Livshits, V. Benjamin
+    - Lam, Monica S.
+  date: 2005-07
+  parent:
+    type: proceedings
+    title: "Proceedings of the 14th USENIX Security Symposium"
+    publisher: USENIX Association
+    location: Baltimore, Maryland
+
+hardekopflin2011flowsensitive:
+  type: article
+  title: "Flow-Sensitive Pointer Analysis for Millions of Lines of Code"
+  author:
+    - Hardekopf, Ben
+    - Lin, Calvin
+  date: 2011-04-02
+  page-range: 289-298
+  serial-number:
+    doi: "10.1109/CGO.2011.5764696"
+  parent:
+    type: proceedings
+    title: >-
+      International Symposium on Code Generation and Optimization
+    publisher: IEEE
+    location: Chamonix, France
+
+sharirpnueli1981interprocedural:
+  type: anthos
+  title: "Two Approaches to Interprocedural Data Flow Analysis"
+  author:
+    - Sharir, Micha
+    - Pnueli, Amir
+  date: 1981
+  page-range: 189-233
+  parent:
+    type: anthology
+    title: "Program Flow Analysis: Theory and Applications"
+    editor:
+      - Muchnick, Steven S.
+      - Jones, Neil D.
+    publisher:
+      name: Prentice-Hall
+      location: Englewood Cliffs, New Jersey
+
+gorepo:
+  type: web
+  title: "The Go Programming Language"
+  author: The Go Authors
+  date: 2009-11-10
+  genre: GitHub Repository
+  url:
+    value: https://github.com/golang/go
+    date: 2026-07-31
+
+godocs:
+  type: reference
+  title: "Go User Manual"
+  author: The Go Authors
+  url:
+    value: https://go.dev/doc
+    date: 2026-07-31
+
+gofaq:
+  type: reference
+  title: "Frequently Asked Questions (FAQ)"
+  author: The Go Authors
+  url:
+    value: https://go.dev/doc/faq
+    date: 2026-07-31
+
+gogoogle:
+  type: web
+  title: "Using Go at Google"
+  author: The Go Authors
+  date: 2020-08-27
+  url:
+    value: https://go.dev/solutions/google
+    date: 2026-07-31
+  parent:
+    type: web
+    title: "The Go Programming Language"
+    publisher: Google
+
+microsoftgo:
+  type: article
+  title: >-
+    Ready, Set, Go lang: Brian Ketelsen explains Go's fast growing popularity
+  author: Segala, Alessandro
+  date: 2018-02-21
+  url:
+    value: https://opensource.microsoft.com/blog/2018/02/21/go-lang-brian-ketelsen-explains-fast-growth
+    date: 2026-07-31
+  parent:
+    type: blog
+    title: "Microsoft Open Source Blog"
+
+cloudflarego:
+  type: article
+  title: "Graceful Upgrades in Go"
+  author: Bauer, Lorenz
+  date: 2018-10-11
+  url:
+    value: https://blog.cloudflare.com/graceful-upgrades-in-go
+    date: 2026-07-31
+  parent:
+    type: blog
+    title: "The Cloudflare Blog"
+    publisher: Cloudflare
+
+gopaypal:
+  type: web
+  title: "PayPal Taps Go to Modernize and Scale"
+  author: The Go Authors
+  date: 2020-06-01
+  url:
+    value: https://go.dev/solutions/paypal
+    date: 2026-07-31
+  parent:
+    type: web
+    title: "The Go Programming Language"
+    publisher: Google
+
+netflixgo:
+  type: article
+  title: "Application data caching using SSDs"
+  author:
+    - Mansfield, Scott
+    - Nguyen, Vu Tuan
+    - Enugula, Sridhar
+    - Madappa, Shashi
+  date: 2016-05-25
+  url:
+    value: https://netflixtechblog.com/application-data-caching-using-ssds-5bf25df851ef
+    date: 2026-07-31
+  parent:
+    type: blog
+    title: "Netflix TechBlog"
+    publisher: Medium
+
+ubergo:
+  type: article
+  title: "Data Race Patterns in Go"
+  author:
+    - Chabbi, Milind
+    - Ramananthan, Murali Krishna
+  date: 2022-06-02
+  url:
+    value: https://www.uber.com/in/en/blog/data-race-patterns-in-go
+    date: 2026-07-31
+  parent:
+    type: blog
+    title: "Uber Blog"
+    publisher: Uber
+
+gomod:
+  type: reference
+  title: "Go Modules Reference"
+  author: The Go Authors
+  url:
+    value: https://go.dev/ref/mod
+    date: 2026-07-31
+
+gerrand2013waza:
+  type: article
+  title: "Concurrency is not Parallelism"
+  author: Gerrand, Andrew
+  date: 2013-01-16
+  url:
+    value: https://go.dev/blog/waza-talk
+    date: 2026-07-31
+  parent:
+    type: blog
+    title: "The Go Blog"
+
+gobuildconstraints:
+  type: entry
+  title: "Build Constraints"
+  url:
+    value: https://pkg.go.dev/cmd/go#hdr-Build_constraints
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: "cmd/go"
+    author: The Go Authors
+    date: 2026-07-07
+    edition: go1.26.5
+
+cwefaq:
+  type: reference
+  title: "Frequently Asked Questions (FAQ)"
+  author: The MITRE Corporation
+  date: 2026-04-01
+  url:
+    value: https://cwe.mitre.org/about/faq.html
+    date: 2026-07-31
+
+cvefaq:
+  type: reference
+  title: "Frequently Asked Questions (FAQ)"
+  author: The MITRE Corporation
+  date: 2026-04-01
+  url:
+    value: https://www.cve.org/ResourcesSupport/FAQs
+    date: 2026-07-31
+
+nvdfaq:
+  type: reference
+  title: "General FAQs"
+  author: Information Technology Laboratory
+  date: 2022-09-20
+  url:
+    value: https://nvd.nist.gov/general/FAQ-Sections/General-FAQs
+    date: 2026-07-31
+
+cwe200sensitive:
+  type: entry
+  title: "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor"
+  date: 2006-07-19
+  serial-number:
+    cwe: "CWE-200"
+  url:
+    value: https://cwe.mitre.org/data/definitions/200.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve20231831mattermost:
+  type: entry
+  title: "CVE-2023-1831"
+  date: 2023-04-17
+  serial-number:
+    cve: "CVE-2023-1831"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2023-1831
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve20232514mattermost:
+  type: entry
+  title: "CVE-2023-2514"
+  date: 2023-05-12
+  serial-number:
+    cve: "CVE-2023-2514"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2023-2514
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202010750jaeger:
+  type: entry
+  title: "CVE-2020-10750"
+  date: 2020-06-19
+  serial-number:
+    cve: "CVE-2020-10750"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-10750
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202334236weave:
+  type: entry
+  title: "CVE-2023-34236"
+  date: 2023-07-14
+  serial-number:
+    cve: "CVE-2023-34236"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2023-34236
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202428236vela:
+  type: entry
+  title: "CVE-2024-28236"
+  date: 2024-03-12
+  serial-number:
+    cve: "CVE-2024-28236"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2024-28236
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202324827syft:
+  type: entry
+  title: "CVE-2023-24827"
+  date: 2023-02-06
+  serial-number:
+    cve: "CVE-2023-24827"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2023-24827
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cwe532logs:
+  type: entry
+  title: "CWE-532: Insertion of Sensitive Information into Log File"
+  date: 2006-07-19
+  serial-number:
+    cwe: "CWE-532"
+  url:
+    value: https://cwe.mitre.org/data/definitions/532.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve20181264cloudfoundry:
+  type: entry
+  title: "CVE-2018-1264"
+  date: 2018-10-05
+  serial-number:
+    cve: "CVE-2018-1264"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2018-1264
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve201911283cloudfoundry:
+  type: entry
+  title: "CVE-2019-11283"
+  date: 2019-10-23
+  serial-number:
+    cve: "CVE-2019-11283"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2019-11283
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve201913509docker:
+  type: entry
+  title: "CVE-2019-13509"
+  date: 2019-07-18
+  serial-number:
+    cve: "CVE-2019-13509"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2019-13509
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202013223vault:
+  type: entry
+  title: "CVE-2020-13223"
+  date: 2020-06-10
+  serial-number:
+    cve: "CVE-2020-13223"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-13223
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202238149consultemplate:
+  type: entry
+  title: "CVE-2022-38149"
+  date: 2022-08-17
+  serial-number:
+    cve: "CVE-2022-38149"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2022-38149
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202137861mattermost:
+  type: entry
+  title: "CVE-2021-37861"
+  date: 2021-12-09
+  serial-number:
+    cve: "CVE-2021-37861"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2021-37861
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202452009atlantis:
+  type: entry
+  title: "CVE-2024-52009"
+  date: 2024-12-05
+  serial-number:
+    cve: "CVE-2024-52009"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2024-52009
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202340029argocd:
+  type: entry
+  title: "CVE-2023-40029"
+  date: 2023-09-07
+  serial-number:
+    cve: "CVE-2023-40029"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2023-40029
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202231098weave:
+  type: entry
+  title: "CVE-2022-31098"
+  date: 2022-06-27
+  serial-number:
+    cve: "CVE-2022-31098"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2022-31098
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve20213528noobaa:
+  type: entry
+  title: "CVE-2021-3528"
+  date: 2026-05-13
+  serial-number:
+    cve: "CVE-2021-3528"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2021-3528
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202010752openshift:
+  type: entry
+  title: "CVE-2020-10752"
+  date: 2020-06-12
+  serial-number:
+    cve: "CVE-2020-10752"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-10752
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202010712openshift:
+  type: entry
+  title: "CVE-2020-10712"
+  date: 2020-04-22
+  serial-number:
+    cve: "CVE-2020-10712"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-10712
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202627900linode:
+  type: entry
+  title: "CVE-2026-27900"
+  date: 2026-06-25
+  serial-number:
+    cve: "CVE-2026-27900"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-27900
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202447083microsoft:
+  type: entry
+  title: "CVE-2024-47083"
+  date: 2024-09-25
+  serial-number:
+    cve: "CVE-2024-47083"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2024-47083
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202652855pterodactyl:
+  type: entry
+  title: "CVE-2026-52855"
+  date: 2026-07-31
+  serial-number:
+    cve: "CVE-2026-52855"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-52855
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202231130grafana:
+  type: entry
+  title: "CVE-2022-31130"
+  date: 2022-10-13
+  serial-number:
+    cve: "CVE-2022-31130"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2022-31130
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202239201grafana:
+  type: entry
+  title: "CVE-2022-39201"
+  date: 2022-10-13
+  serial-number:
+    cve: "CVE-2022-39201"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2022-39201
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve20262476mattermost:
+  type: entry
+  title: "CVE-2026-2476"
+  date: 2026-03-16
+  serial-number:
+    cve: "CVE-2026-2476"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-2476
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve20266346mattermost:
+  type: entry
+  title: "CVE-2026-6346"
+  date: 2026-05-18
+  serial-number:
+    cve: "CVE-2026-6346"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-6346
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve20266347mattermost:
+  type: entry
+  title: "CVE-2026-6347"
+  date: 2026-05-18
+  serial-number:
+    cve: "CVE-2026-6347"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-6347
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202344312servicecomb:
+  type: entry
+  title: "CVE-2023-44312"
+  date: 2024-01-31
+  serial-number:
+    cve: "CVE-2023-44312"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2023-44312
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202126923argocd:
+  type: entry
+  title: "CVE-2021-26923"
+  date: 2021-03-15
+  serial-number:
+    cve: "CVE-2021-26923"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2021-26923
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202558445atlantis:
+  type: entry
+  title: "CVE-2025-58445"
+  date: 2025-09-06
+  serial-number:
+    cve: "CVE-2025-58445"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2025-58445
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202337916kubepi:
+  type: entry
+  title: "CVE-2023-37916"
+  date: 2023-07-21
+  serial-number:
+    cve: "CVE-2023-37916"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2023-37916
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202652101linxserver:
+  type: entry
+  title: "CVE-2026-52101"
+  date: 2026-07-14
+  serial-number:
+    cve: "CVE-2026-52101"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-52101
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cwe209error:
+  type: entry
+  title: "CWE-209: Generation of Error Message Containing Sensitive Information"
+  date: 2006-07-19
+  serial-number:
+    cwe: "CWE-209"
+  url:
+    value: https://cwe.mitre.org/data/definitions/209.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve202642459free5gc:
+  type: entry
+  title: "CVE-2026-42459"
+  date: 2026-05-27
+  serial-number:
+    cve: "CVE-2026-42459"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-42459
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202641644monetr:
+  type: entry
+  title: "CVE-2026-41644"
+  date: 2026-05-07
+  serial-number:
+    cve: "CVE-2026-41644"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-41644
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202645728algernon:
+  type: entry
+  title: "CVE-2026-45728"
+  date: 2026-05-26
+  serial-number:
+    cve: "CVE-2026-45728"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-45728
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cwe212removal:
+  type: entry
+  title: >-
+    CWE-212: Improper Removal of Sensitive Information Before Storage or
+    Transfer
+  date: 2006-07-19
+  serial-number:
+    cwe: "CWE-212"
+  url:
+    value: https://cwe.mitre.org/data/definitions/212.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve202565965grype:
+  type: entry
+  title: "CVE-2025-65965"
+  date: 2025-11-25
+  serial-number:
+    cve: "CVE-2025-65965"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2025-65965
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cwe312storage:
+  type: entry
+  title: "CWE-312: Cleartext Storage of Sensitive Information"
+  date: 2006-07-19
+  serial-number:
+    cwe: "CWE-312"
+  url:
+    value: https://cwe.mitre.org/data/definitions/312.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve202627877grafana:
+  type: entry
+  title: "CVE-2026-27877"
+  date: 2026-03-27
+  serial-number:
+    cve: "CVE-2026-27877"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-27877
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cwe22path:
+  type: entry
+  title: >-
+    CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path
+    Traversal')
+  date: 2006-07-19
+  serial-number:
+    cwe: "CWE-22"
+  url:
+    value: https://cwe.mitre.org/data/definitions/22.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve202635392goshs:
+  type: entry
+  title: "CVE-2026-35392"
+  date: 2026-04-06
+  serial-number:
+    cve: "CVE-2026-35392"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-35392
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202635393goshs:
+  type: entry
+  title: "CVE-2026-35393"
+  date: 2026-04-06
+  serial-number:
+    cve: "CVE-2026-35393"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-35393
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve20204053helm:
+  type: entry
+  title: "CVE-2020-4053"
+  date: 2026-06-16
+  serial-number:
+    cve: "CVE-2020-4053"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-4053
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202013347gitlab:
+  type: entry
+  title: "CVE-2020-13347"
+  date: 2026-10-07
+  serial-number:
+    cve: "CVE-2020-13347"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2020-13347
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve20245182localai:
+  type: entry
+  title: "CVE-2024-5182"
+  date: 2024-06-19
+  serial-number:
+    cve: "CVE-2024-5182"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2024-5182
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202559352dragonfly:
+  type: entry
+  title: "CVE-2025-59352"
+  date: 2025-09-17
+  serial-number:
+    cve: "CVE-2025-59352"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2025-59352
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cwe74injection:
+  type: entry
+  title: >-
+    CWE-74: Improper Neutralization of Special Elements in Output Used by a
+    Downstream Component ('Injection')
+  date: 2006-07-19
+  serial-number:
+    cwe: "CWE-74"
+  url:
+    value: https://cwe.mitre.org/data/definitions/74.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve202141232thunderdome:
+  type: entry
+  title: "CVE-2021-41232"
+  date: 2021-11-02
+  serial-number:
+    cve: "CVE-2021-41232"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2021-41232
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cwe77cmd:
+  type: entry
+  title: >-
+    CWE-77: Improper Neutralization of Special Elements used in a Command
+    ('Command Injection')
+  date: 2006-07-19
+  serial-number:
+    cwe: "CWE-77"
+  url:
+    value: https://cwe.mitre.org/data/definitions/77.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve202452308github:
+  type: entry
+  title: "CVE-2024-52308"
+  date: 2024-11-14
+  serial-number:
+    cve: "CVE-2024-52308"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2024-52308
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202626068emp3r0r:
+  type: entry
+  title: "CVE-2026-26068"
+  date: 2026-02-12
+  serial-number:
+    cve: "CVE-2026-26068"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-26068
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cwe79xss:
+  type: entry
+  title: >-
+    CWE-79: Improper Neutralization of Input During Web Page Generation
+    ('Cross-site Scripting')
+  date: 2006-07-19
+  serial-number:
+    cwe: "CWE-79"
+  url:
+    value: https://cwe.mitre.org/data/definitions/79.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve202530223beego:
+  type: entry
+  title: "CVE-2025-30223"
+  date: 2025-03-31
+  serial-number:
+    cve: "CVE-2025-30223"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2025-30223
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cwe601redirect:
+  type: entry
+  title: "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')"
+  date: 2007-05-07
+  serial-number:
+    cwe: "CWE-601"
+  url:
+    value: https://cwe.mitre.org/data/definitions/601.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cwe918ssrf:
+  type: entry
+  title: "CWE-918: Server-Side Request Forgery (SSRF)"
+  date: 2013-02-17
+  serial-number:
+    cwe: "CWE-918"
+  url:
+    value: https://cwe.mitre.org/data/definitions/918.html
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Comon Weakness Enumeration
+    publisher: The MITRE Corporation
+
+cve202629067zitadel:
+  type: entry
+  title: "CVE-2026-29067"
+  date: 2026-03-07
+  serial-number:
+    cve: "CVE-2026-29067"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-29067
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+cve202654735prebid:
+  type: entry
+  title: "CVE-2026-54735"
+  date: 2026-07-29
+  serial-number:
+    cve: "CVE-2026-54735"
+  url:
+    value: https://nvd.nist.gov/vuln/detail/CVE-2026-54735
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: National Vulnerability Database
+    publisher: National Institute of Standards and Technology
+
+likang2022odgen:
+  type: article
+  title: "Mining Node.js Vulnerabilities via Object Dependene Graph and Query"
+  author:
+    - Li, Song
+    - Kang, Mingqing
+  date: 2022-08
+  page-range: 143-160
+  parent:
+    type: proceedings
+    title: "Proceedings of the 31st USENIX Security Symposium"
+    publisher: USENIX Association
+    location: Boston, Massachusetts
+
+arzt2014flowdroid:
+  type: article
+  title: >-
+    FlowDroid: Precise Context, Flow, Field, Object-sensitive and
+    Lifecycle-aware Taint Analysis for Android Apps
+  author:
+    - Arzt, Steven
+    - Rasthofer, Siegfried
+    - Fritz, Christian
+    - Bodden, Eric
+    - Bartel, Alexandre
+    - Klein, Jacques
+    - Le Traon, Yves
+    - Octeau, Damien
+    - McDaniel, Patrick
+  date: 2014-06-09
+  page-range: 259-269
+  serial-number:
+    doi: "10.1145/2666356.2594299"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 35th ACM SIGPLAN Conference on Programming Language
+      Design and Implementation
+    publisher: Association for Computing Machinery
+    location: Edinburgh, United Kingdom
+
+crichton2022flowistry:
+  type: article
+  title: "Modular Information Flow through Ownership"
+  author:
+    - Crichton, Will
+    - Patrignani, Marco
+    - Agrawala, Maneesh
+    - Hanrahan, Pat
+  date: 2022-06-09
+  page-range: 1-14
+  serial-number:
+    doi: "10.1145/3519939.3523445"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 43rd ACM SIGPLAN International Conference on
+      Programming Language Design and Implementation
+    publisher: Association for Computing Machinery
+    location: San Diego, California
+
+andersen1994pointers:
+  type: thesis
+  title: "Program Analysis and Specialization for the C Programming Language"
+  author: Andersen, Lars Ole
+  date: 1994-05
+  genre: PhD Thesis
+  serial-number:
+    diku: "94/19"
+  publisher:
+    name: University of Copenhagen
+    location: Copenhagen, Denmark
+
+donovan2023pointer:
+  type: entry
+  title: "x/tools/go/pointer: isolate, tag, and delete the pointer analysis"
+  author: Donovan, Alan
+  date: 2023-04-17
+  serial-number:
+    github-issue: "golang/go#59676"
+  url:
+    value: https://github.com/golang/go/issues/59676
+    date: 2026-07-31
+  parent:
+    type: repository
+    title: golang/go
+    publisher: GitHub
+
+bodden2016gotcha:
+  type: article
+  title: "Information Flow Analysis for Go"
+  author:
+    - Bodden, Eric
+    - Pun, Ka I.
+    - Steffen, Martin
+    - Stolz, Volker
+    - Wickert, Anna-Katharina
+  date: 2016-10-05
+  page-range: 431-445
+  serial-number:
+    doi: "10.1007/978-3-319-47166-2_30"
+  parent:
+    type: proceedings
+    title: >-
+      Leveraging Applications of Formal Methods, Verification and Validation:
+      Foundational Techniques
+    editor:
+      - Margaria, Tiziana
+      - Steffen, Bernhard
+    volume: 9952
+    publisher:
+      name: Springer
+      location: Cham, Switzerland
+
+praetorian2021gokart:
+  type: article
+  title: "Introducing GoKart, a Smarter Go Security Scanner"
+  author: Austgen, James
+  date: 2021-08-18
+  url:
+    value: https://www.praetorian.com/blog/introducing-gokart
+    date: 2026-07-31
+  parent:
+    type: blog
+    title: "Security Blog"
+    publisher: Praetorian
+
+trailofbits2019kubernetes:
+  type: report
+  title: "Kubernetes Security Review"
+  author:
+    - Edwards, Stefan
+    - Czarnota, Dominik
+    - Tonic, Robert
+    - Perez, Ben
+  date: 2019-08-06
+  genre: Security Assessment Report
+  publisher: Trail of Bits
+  url:
+    value: https://github.com/trailofbits/audit-kubernetes/blob/master/reports/Kubernetes%20Security%20Review.pdf
+    date: 2026-07-31
+
+kep1933levee:
+  type: report
+  title: "Defend Against Logging Secrets via Static Analysis"
+  author: Rhomberg, Patrick
+  date: 2020-08-12
+  genre: Kubernetes Enhancement Proposal
+  serial-number:
+    kep: "KEP-1933"
+  publisher: Kubernetes
+  url:
+    value: https://github.com/kubernetes/enhancements/blob/master/keps/sig-security/1933-secret-logging-static-analysis
+    date: 2026-07-31
+
+gosecrules:
+  type: reference
+  title: "Rules Documentation"
+  author: The Gosec Authors
+  genre: Software Documentation
+  url:
+    value: https://github.com/securego/gosec/blob/master/RULES.md
+    date: 2026-07-31
 
 github2025octoverse:
   type: report
@@ -433,7 +2023,7 @@ github2025octoverse:
   author: GitHub
   date: 2025-10-28
   url:
-    value: https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/
+    value: https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1
     date: 2026-07-31
 
 lee2026gopkgsiteapi:

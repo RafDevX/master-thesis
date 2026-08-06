@@ -566,7 +566,7 @@ The second dataset considered by this degree project focuses on GitHub
 #footnote(link("https://github.com")), a
 project hosting platform widely used across the entire open-source community,
 which has Go as its 10#super[th] most common programming language across all
-630 million git#footnote(link("https://git-scm.com")) repositories, as of
+630 million Git#footnote(link("https://git-scm.com")) repositories, as of
 Octoverse 2025 @github2025octoverse. This complements the real-world projects
 population under consideration since not all relevant Go modules are dependency
 libraries, especially in the case of end-user-oriented applications, which are
@@ -654,7 +654,7 @@ unequivocally infeasible at large scale.
 Secondly, Google maintains #link("https://deps.dev"), a public service tracking
 various insights for open-source dependencies across different ecosystems,
 including Go's. As part of this initiative, a public BigQuery dataset is made
-available#footnote(link("https://docs.deps.dev/bigquery/v1/")), which includes
+available#footnote(link("https://docs.deps.dev/bigquery/v1")), which includes
 pre-calculated direct and indirect dependents information for all public Go
 modules as part of its `Dependents` table, which also uses modules (rather than
 packages) as its unit of operation, as desired. A very appropriate alternative
@@ -740,7 +740,7 @@ It ought to be noted that, throughout this degree project, the definition of "Go
 project" is intentionally kept vague, since the term can mean different levels
 of granularity in different contexts, depending on what is most appropriate,
 which is necessarily dataset-specific. For Dataset A, each project corresponds
-to a single Go module, but for Datasets B and C, a project denotes a hosted git
+to a single Go module, but for Datasets B and C, a project denotes a hosted Git
 repository, which may contain multiple related modules.
 
 === Inter-Dataset Duplicates
