@@ -234,6 +234,77 @@ conventionally prioritizing descriptive identifiers. Several clean, high-level
 constructs support an intuitive codebase, while low-level utilities are still
 available when necessary.
 
+In addition, its first-class support for powerful algebraic data types (via
+`enum`) makes it easier to represent many concepts important to this work, such
+as @ast nodes, and allows more expressive pattern matching.
+
+#v(1fr)
+#highlight[more stuff]
+
+#pagebreak()
+
+==== First-Party Parser
+
+An important point regarding the tool architecture is whether to use an existent
+third-party Go parser to obtain @ast:longplural from raw textual source code,
+given the task's complexity and maintainability requirements.
+
+The Rust ecosystem does not presently have a strong native candidate: the only
+relevant published crate is `go-parser`
+#footnote(link("https://crates.io/crates/go-parser")), a part of the Goscript
+project#footnote(link("https://github.com/oxfeeefeee/goscript")), which has
+since been discontinued#footnote[A successor exists, Vo
+  (#link("https://volang.dev")), but it defines its own nonstandard flavor of
+  Go, therefore making its parser unsuitable for use in this work.]\;
+`go-parser` has not been updated since 2023 and only has support up to Go 1.12,
+which is not compatible with this degree project's goal of targeting the latest
+stable release, Go 1.26.
+
+A viable option would be to depend on Tree-sitter
+#footnote(link("https://github.com/tree-sitter/tree-sitter")), a widely-used
+multi-language parsing framework with a C runtime. Rust bindings
+#footnote(link("https://crates.io/crates/tree-sitter")) and a Go grammar
+#footnote(link("https://crates.io/crates/tree-sitter-go")) are available and
+actively maintained, allowing consumers to parse Go code into queryable Rust
+structures. Since is it very beneficial for analysis to be able to
+pattern-match across @ast nodes, a possible solution could be to define new
+@ast types for use in this work, as well as a translation mechanism to move from
+string-based fields to expressive strong typing. This would result in a
+controlled interface operating as a thin wrapper around Tree-sitter's existing
+third-party implementation, via @ffi bindings.
+
+However, such an approach would ultimately prove less effective than
+implementing a custom project-specific first-party parser. Besides it being
+simpler to build a single @ast once rather than converting a C structure into
+more manageable types, most of Tree-sitter's competitive advantages are not
+relevant for this use case, or even form drawbacks. For instance, Tree-sitter is
+designed for performant incremental re-parsing, but that is not appropriate for
+this work, which means the overhead penalty brings no additional value.
+Moreover, Tree-sitter supports error recovery and partially-correct trees, but
+silently analyzing an incorrectly-formed @ast is unsound and much less clear
+than aborting parsing and returning an error.
+
+#pagebreak()
+
+In contrast, a fully-custom implementation can be much better tailored for taint
+analysis, as the parser can be developed with knowledge of how its output will
+be used. This also allows the parser and the analyzer to be developed in tandem,
+with new semantic distinctions being added to the parser whenever they are
+required by the analyzer, as part of a generalized iterative process exploiting
+the tight coupling between the two components.
+
+An owned, custom parsing procedure keeps semantic control close to the analyzer,
+besides being simpler to version and distribute with the consumer, forming a
+safe and native abstraction, rather than relying on @ffi with limited safety
+guarantees, as is required with Tree-sitter. Customized behavior specific to the
+Go language is much more convenient than generic and language-agnostic
+data structuring, even if in some cases the latter could be converted into the
+former for simpler and safer manipulation.
+
+Given the points considered above, the present degree project provides a
+full-fledged first-party custom parser implementation, depending on its own
+parsing rules in accordance with the Go language specification @go126spec.
+
 ==== Implementation Process
 
 Taking into account the subsections above, the analyzer's implementation is an
@@ -246,6 +317,11 @@ The core analyzer rules for modeling information flow and enforcement are
 derived from the thorough interpretation of the Go language specification,
 which is this work's primary reference material and offers authoritative
 guidelines for all development work.
+
+#v(1fr)
+#highlight[more stuff]
+
+#pagebreak()
 
 === Base Security Policy Definition <methods:process:base-policy>
 
@@ -418,7 +494,8 @@ pointer usage may be correctly handled, as in most cases pointers are here
 considered equivalent to their targets, but more complex patterns can lead to
 unsound results. Alias relationships in general may not be preserved, and calls
 do not perform mutation write-backs through reference-holding arguments (e.g.,
-pointers, maps, slices, channels) nor through pointer-typed receivers.
+pointers, maps, slices, channels) nor through pointer-typed receivers, in the
+case of methods.
 
 Secondly, interface-typed dynamic dispatch is not supported, nor is method
 promotion through embedded interfaces. Simple generic constructs are handled
@@ -461,11 +538,17 @@ sound in general because it does not take into account any potential
 side-effects. In addition, external dependency resolution (including through
 `replace` directives) is also not supported.
 
+#v(1fr)
+#highlight[more]
+#v(1fr)
+
 Overall, these limitations are considerable, but many of the excluded language
 features are relatively niche and used only in hyper-specialized contexts. This
 means that a very significant share of all Go programs is considered to be in
 scope for this work and are modeled correctly, which is appropriate for a degree
 project of this nature.
+
+#pagebreak()
 
 == Data Collection <methods:collection>
 
@@ -505,6 +588,11 @@ best-scoring (according to the dataset's own metric) and down to the
 lowest-scoring project that still meets the dataset's specific admission
 criteria.
 
+#v(1fr)
+#highlight[more]
+
+#pagebreak()
+
 ==== Dataset A: Published Modules by Dependents <methods:collection:discovery:a>
 
 The first dataset focuses primarily on libraries and makes use of Go's official
@@ -524,8 +612,8 @@ open-source Go modules throughout the ecosystem.
 In parallel, another service provided by the Go team and hosted by Google is the
 index at #link("https://index.golang.org"), which serves a feed of module
 versions published to `proxy.golang.org` since April 10, 2019 at 19:08:52.997264
-@utc:short. Each entry contains the module path, version, and publication
-timestamp.
+@utc:short, corresponding to when the service entered operation. Each entry
+contains the module path, version, and publication timestamp.
 
 Since `pkg.go.dev`'s @api does not support listing
 modules#footnote[As part of this degree project, a request was made at
@@ -615,22 +703,22 @@ Since GitLab operates at a much smaller scale than GitHub (especially since only
 the main `gitlab.com` instance is considered, and GitLab is often self-hosted
 for proprietary contexts), the minimum star threshold is reduced two orders of
 magnitude compared to Dataset B, which results in a minimum requirement of at
-least 10 stars for admission.
+least 10 stars for admission. Despite being very low in absolute terms, this
+threshold strikes a balance appropriate for GitLab.
 
 As such, the final Dataset C is the list of public repositories on GitLab with
 at least #zero.num(10) stars and any detected Go usage, at a particular date,
 ordered from most to least stars, excluding those marked as archived.
 
-#pagebreak()
-
 ==== Rejected Alternatives
 
 It should be noted that other selection processes are worthy of consideration,
-especially in alternative to Dataset A as described above.
+especially in alternative to Dataset A as described above. The present
+subsection describes some of the possibilities explored.
 
 Firstly, `pkg.go.dev` has an experimental publicly-available
 @api#footnote(link("https://pkg.go.dev/v1beta/api")) released at the end of May
-2026 @lee2026gopkgsiteapi which, while it does not allow listing modules,
+2026 @lee2026gopkgsiteapi which, while still not supporting module listing,
 provides an `/imported-by` endpoint to list a module's dependents, which could
 replace the manual tallying used by the present work. However, this considers
 direct dependencies only, which is not a representative metric of overall
@@ -658,16 +746,8 @@ available#footnote(link("https://docs.deps.dev/bigquery/v1")), which includes
 pre-calculated direct and indirect dependents information for all public Go
 modules as part of its `Dependents` table, which also uses modules (rather than
 packages) as its unit of operation, as desired. A very appropriate alternative
-to this work's Dataset A could thus be obtained through a query such as the one
-in @methods:collection:discovery:rejected:bigquery below.
-
-// figure should be here, but doesn't fit in page
-
-Nevertheless, while Google allows queries to this BigQuery dataset up to 1 TiB
-of processing per month, Google Cloud Console estimates the query in
-@methods:collection:discovery:rejected:bigquery as processing 54.32 TiB of data,
-which would cost an equivalent to approximately \$340 U.S. dollars to run and is
-thus not suitable for this work.
+to this work's Dataset A could thus be obtained through an @sql query such as
+the one in @methods:collection:discovery:rejected:bigquery below.
 
 #figure(
   ```sql
@@ -684,6 +764,15 @@ thus not suitable for this work.
   ```,
   caption: [Example dependents query to `deps.dev`'s BigQuery dataset],
 ) <methods:collection:discovery:rejected:bigquery>
+
+Nevertheless, while Google allows queries to this BigQuery dataset up to 1 TiB
+of processing per month, Google Cloud Console estimates the query in
+@methods:collection:discovery:rejected:bigquery as processing 54.32 TiB of data,
+which would reportedly cost an equivalent to approximately \$340 U.S. dollars to
+run and is thus not suitable for this work, even if the resulting dataset would
+likely be of higher quality.
+
+#pagebreak()
 
 Instead of using the BigQuery dataset directly, it would also be reasonable to
 query `deps.dev`'s @api for each module in the set derived from the
@@ -730,11 +819,10 @@ collectively include tens of thousands of projects.
 
 As such, this work uses stratified sampling to randomly select $25$ projects
 from each of the $12$ strata defined in @methods:collection:stratification, thus
-resulting in a final list of $300$ selected projects.
-
-All the $12$ samples (with $25$ projects each) are kept separate, so that
-dataset and band information is preserved. The sampling seed (for
-pseudo-randomness) is likewise stored to ensure reproducibility.
+resulting in a final list of $300$ selected projects. All the $12$ samples (with
+$25$ projects each) are kept separate, so that dataset and band information is
+preserved. The sampling seed (for pseudo-randomness) is likewise stored to
+ensure reproducibility.
 
 It ought to be noted that, throughout this degree project, the definition of "Go
 project" is intentionally kept vague, since the term can mean different levels
@@ -746,9 +834,9 @@ repository, which may contain multiple related modules.
 === Inter-Dataset Duplicates
 
 It is possible for the same module to be selected from separate datasets, since
-sampling is conducted independently for each strata. While each dataset's
-entries are guaranteed unique within that dataset, nothing prevents duplication
-across datasets.
+sampling is conducted independently for each strata. While entries are
+guaranteed unique within each dataset, duplication is possible across datasets,
+making this a real concern.
 
 Concretely, for the three datasets defined in @methods:collection:discovery,
 the only possible configuration for a duplicate to occur is by a clash between
