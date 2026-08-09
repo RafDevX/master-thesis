@@ -216,7 +216,7 @@ by the cycle between nodes E, F, G, and H in the diagram from
 The final Go subset considered for analysis is further detailed in
 @methods:subset.
 
-==== Rust
+==== Rust <methods:process:tool:rust>
 
 While many valid tooling alternatives exist, this degree project uses the Rust
 programming language to implement the static analyzer and all other supporting

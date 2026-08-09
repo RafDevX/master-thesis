@@ -2040,3 +2040,50 @@ lee2026gopkgsiteapi:
   parent:
     type: blog
     title: The Go Blog
+
+jung2021rust:
+  type: article
+  title: "Safe Systems Programming in Rust"
+  author:
+    - Jung, Ralf
+    - Jourdan, Jacques-Henri
+    - Krebbers, Robbert
+    - Dreyer, Derek
+  date: 2021-03-22
+  page-range: 144-152
+  serial-number:
+    doi: "10.1145/3418295"
+  parent:
+    type: periodical
+    title: "Communications of the ACM"
+    volume: 64
+    issue: 4
+    publisher: Association for Computing Machinery
+
+klabnik2026rust:
+  type: book
+  title: "The Rust Programming Language"
+  author:
+    - Klabnik, Steve
+    - Nichols, Carol
+    - Krycho, Chris
+  date: 2026-03-31
+  edition: 3
+  serial-number:
+    isbn: 978-1-7185-0444-8
+  publisher: No Starch Press
+
+kahn1962topological:
+  type: article
+  title: "Topological Sorting of Large Networks"
+  author: Kahn, Arthur B.
+  date: 1962-11
+  page-range: 558-562
+  serial-number:
+    doi: "10.1145/368996.369025"
+  parent:
+    type: periodical
+    title: "Communications of the ACM"
+    volume: 5
+    issue: 11
+    publisher: Association for Computing Machinery

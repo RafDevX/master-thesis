@@ -22,6 +22,7 @@
     languages: (
       go: (name: "Go", color: colors.go-blue),
       sql: (name: "SQL", color: orange),
+      toml: (name: "TOML", color: rgb("#7b341e")),
     ),
   )
 }

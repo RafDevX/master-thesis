@@ -53,7 +53,7 @@ depending on the concrete application of the program in question. However, the
 empty label ${}$ with no namespaces is often referred to as *Bottom* (denoted
 $bot$), as it constitutes the lower boundary of the security lattice and is
 thus always lesser than any other label, i.e.,
-$forall n, quad L_n eq.not bot ==> L_n > bot$.
+$forall n, quad L_n != bot ==> L_n > bot$.
 
 Furthermore, the terms *high* and *low* are often used in the context of
 confidentiality to mean secret and public data (respectively), with information
@@ -171,7 +171,7 @@ attacker to fully derive the exact value of `secret` just from the value of
 this case, it follows trivially from the source code that
 $"secret" = "output" - 4$.
 
-==== Implicit Flows
+==== Implicit Flows <bg:ifc:flows:implicit>
 
 On the other hand, implicit flows are more subtle, as they propagate information
 based on contextual details, especially based on conditional operations that
@@ -267,7 +267,6 @@ consider even implicit flows to be covert channels and thus part of the category
 under description here, but this work explicitly opts to distinguish implicit
 flows from the rest due their importance and first-class focus in this degree
 project.
-
 
 === Axes and Label Polarity <intro:ifc:axes>
 
@@ -767,7 +766,7 @@ analyzer employing taint analysis, thus representing the primary interface for
 interaction with such a tool. In this work, a specific composition of controls
 is denoted a *security policy* and used as input for taint analysis.
 
-=== Security Controls
+=== Security Controls <bg:taint:controls>
 
 This degree project defines the following controls as available to be used in a
 security policy:
@@ -788,7 +787,7 @@ as an exceptional escape hatch for intentionally overriding taint analysis, such
 as in sanitizers. Revocations are unsafe by nature, but represent calculated
 and informed manual risk acceptance. Nevertheless, it should be stressed that
 revocation uses subtraction rather than full overriding (i.e.,
-$L' eq.not cal(L)_"Revocation"$) to force stakeholders to be exhaustively aware
+$L' != cal(L)_"Revocation"$) to force stakeholders to be exhaustively aware
 about which tags are being removed. For the same reason, it is redundant for
 $cal(L)_"Revocation"$ to ever be $bot$.
 
@@ -889,7 +888,7 @@ boundaries.
 
 #pagebreak()
 
-=== Flow Sensitivity
+=== Flow Sensitivity <bg:taint:flow-sensitivity>
 
 A flow-sensitive taint analysis respects the order of statements, while a
 flow-insensitive analysis models operations as an unordered set of constraints
@@ -1113,7 +1112,7 @@ reference. The notable exception is for what regards Go's module system, which
 is not part of the core language and is thus described in a separate document
 @gomod.
 
-==== Scoping, Packages, and Modules
+==== Scoping, Packages, and Modules <bg:go:overview:org>
 
 Go programs are organized into _packages,_ which are the language's fundamental
 compilation unit. A package named `main` containing a `main` function becomes an
@@ -1395,7 +1394,7 @@ the next iteration. @bg:go:overview:select:event exemplifies this pattern.
 Overall, `select` statements can prove very useful when orchestrating tasks at a
 higher level, especially when combined with other constructs.
 
-==== Closures
+==== Closures <bg:go:overview:closures>
 
 As already shown in several of the earlier examples in this chapter, Go supports
 function literals, which define in-line anonymous functions.
@@ -1431,7 +1430,7 @@ susceptible to mutations from both inside and outside the closure. This means
 that the anonymous function always sees an up-to-date version of the captured
 binding, even if it was changed after the closure's definition.
 
-==== Structs, Embedding, and Promotions
+==== Structs, Embedding, and Promotions <bg:go:overview:structs>
 
 Go supports C-style `struct` datatypes, aggregating typed _fields_ under a
 common structure. Each field declaration may specify an optional tag, which is a
@@ -1518,7 +1517,7 @@ The predeclared identifier `any` is syntactic sugar for the empty interface,
 of interfaces exist, but they are omitted here for simplicity, especially given
 that the base concept is essentially the same.
 
-==== Build-Tag Constraints
+==== Build-Tag Constraints <bg:go:overview:build-constraints>
 
 The Go toolchain supports the conditional inclusion of source files depending on
 specific environment considerations. This is accomplished through _build

@@ -8,6 +8,7 @@
     key: "ast",
     short: "AST",
     long: "Abstract Syntax Tree",
+    longplural: "Abstract Syntax Trees",
   ),
   (
     key: "c2",
@@ -41,6 +42,11 @@
     key: "cwe",
     short: "CWE",
     long: "Common Weakness Enumeration",
+  ),
+  (
+    key: "dsl",
+    short: "DSL",
+    long: "Domain-Specific Language",
   ),
   (
     key: "ffi",

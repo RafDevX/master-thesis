@@ -1,4 +1,5 @@
 #import "./acronyms.typ": acronyms
+#import "./utils/algorithms.typ": setup-algorithms
 #import "./utils/code-blocks.typ": setup-codly
 #import "./utils/dependencies.typ": codly, glossarium, kthesis
 #import "./utils/enum-refs.typ": setup-enum-refs
@@ -11,6 +12,7 @@
 #register-glossary(acronyms)
 
 #show: setup-enum-refs
+#show: setup-algorithms
 #show: codly-init
 #setup-codly()
 
@@ -107,8 +109,24 @@
   acknowledgements: include "content/acknowledgements.typ",
   extra-preambles: (
     (
+      heading: "List of Algorithms",
+      body: outline(title: none, target: figure.where(
+        kind: "algorithm",
+        outlined: true,
+      )),
+    ),
+    (
       heading: "Acronyms and Abbreviations",
-      body: print-glossary(acronyms, disable-back-references: true),
+      body: print-glossary(
+        acronyms,
+        disable-back-references: true,
+        shorthands: (
+          "short",
+          "long",
+          "plural",
+          "longplural",
+        ),
+      ),
     ),
   ),
   doc-date: datetime.today(), // TODO
