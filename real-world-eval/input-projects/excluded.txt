@@ -1,0 +1,29 @@
+########################################################################
+### MANUAL EXCLUSION LIST - These projects are skipped from analysis ###
+########################################################################
+
+# Entire Android is enormous and is mostly C (has no significant Go modules)
+https://gitlab.com/friendlyelec/rk3399-android-8.1
+
+# Public project with private code (indistinguishable in GitLab API results)
+https://gitlab.com/go-htmx/go-htmx
+
+# Recursive call cycles with transitive capture relays (never converges)
+# [problematic symbol: `parseDir`; oscillates infinitely without stabilizing]
+proxy://github.com/ajankovic/xdiff
+https://github.com/slimtoolkit/slim
+https://gitlab.com/esr/reposurgeon
+
+# Memory explodes (even for cc, not just v3)
+https://gitlab.com/cznic/cc
+
+# Memory explodes
+# [126 permutations with ~12GB base + 0.1GB per permutation = >24GB RAM usage]
+https://github.com/hashicorp/boundary
+
+# Memory runs out after an hour
+# [64 permutations, would probably finish but not within available memory]
+https://gitlab.com/thorchain/thornode
+
+# 404, and had a single dependent
+proxy://github.com/yndd/ndda-network

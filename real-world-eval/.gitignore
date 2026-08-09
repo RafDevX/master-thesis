@@ -1,7 +1,6 @@
 /target
 
 project-files/
-failure-outputs/
 
 .vscode/
 .direnv/

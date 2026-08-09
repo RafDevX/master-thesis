@@ -1,3 +1,6 @@
+real-world-eval/*.sqlite filter=lfs diff=lfs merge=lfs -text
 real-world-eval/input-projects/**/*.sqlite filter=lfs diff=lfs merge=lfs -text
 real-world-eval/input-projects/by-dependents/*.txt filter=lfs diff=lfs merge=lfs -text
 real-world-eval/input-projects/by-stars/*.txt filter=lfs diff=lfs merge=lfs -text
+real-world-eval/failure-outputs/*.stdout filter=lfs diff=lfs merge=lfs -text
+real-world-eval/failure-outputs/*.stderr filter=lfs diff=lfs merge=lfs -text

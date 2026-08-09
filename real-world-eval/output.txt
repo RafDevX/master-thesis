@@ -1,0 +1,1044 @@
+[now: 2026-08-09 07:30:00.422974502 UTC] Init project `proxy://github.com/abadojack/whatlanggo` from sample A.I (rank 6/100)
+[now: 2026-08-09 07:30:01.471258296 UTC] 	> Processing module `github.com/abadojack/whatlanggo`
+[now: 2026-08-09 07:30:01.703161487 UTC] 	< Module `github.com/abadojack/whatlanggo` SUCCEEDED in 228.63766ms
+[now: 2026-08-09 07:30:01.751304687 UTC] Init project `proxy://github.com/jotaen/kong-completion` from sample A.II (rank 26/100)
+[now: 2026-08-09 07:30:02.083479970 UTC] 	> Processing module `github.com/jotaen/kong-completion`
+[now: 2026-08-09 07:30:02.161246096 UTC] 	< Module `github.com/jotaen/kong-completion` SUCCEEDED in 77.053494ms
+[now: 2026-08-09 07:30:02.208333709 UTC] Init project `proxy://github.com/godogx/resource` from sample A.III (rank 52/100)
+[now: 2026-08-09 07:30:04.342454511 UTC] 	> Processing module `github.com/godogx/resource`
+[now: 2026-08-09 07:30:04.353893174 UTC] 	< Module `github.com/godogx/resource` SUCCEEDED in 11.226348ms
+[now: 2026-08-09 07:30:04.400785667 UTC] Init project `proxy://arhat.dev/tlang` from sample A.IV (rank 77/100)
+[now: 2026-08-09 07:30:06.633514433 UTC] 	> Processing module `arhat.dev/tlang`
+[now: 2026-08-09 07:30:07.885848414 UTC] 	< Module `arhat.dev/tlang` SUCCEEDED in 1.250648572s
+[now: 2026-08-09 07:30:07.915808371 UTC] Init project `https://github.com/yorukot/superfile` from sample B.I (rank 5/100)
+[now: 2026-08-09 07:30:30.077416857 UTC] 	> Processing module `github.com/yorukot/superfile`
+[now: 2026-08-09 07:30:51.048034136 UTC] 	< Module `github.com/yorukot/superfile` FAILED (1/9) in 20.963920421s
+[now: 2026-08-09 07:30:51.063123922 UTC] Init project `https://github.com/mr-karan/doggo` from sample B.II (rank 28/100)
+[now: 2026-08-09 07:30:55.757480148 UTC] 	> Processing module `github.com/mr-karan/doggo`
+[now: 2026-08-09 07:30:56.911592661 UTC] 	< Module `github.com/mr-karan/doggo` FAILED (16/0) in 1.152048738s
+[now: 2026-08-09 07:30:56.936334855 UTC] Init project `https://github.com/Azure/aztfexport` from sample B.III (rank 60/100)
+[now: 2026-08-09 07:31:02.766477930 UTC] 	> Processing module `github.com/Azure/aztfexport`
+[now: 2026-08-09 07:31:03.440516639 UTC] 	< Module `github.com/Azure/aztfexport` SUCCEEDED in 671.592222ms
+[now: 2026-08-09 07:31:03.467569172 UTC] Init project `https://github.com/rest-sh/restish` from sample B.IV (rank 82/100)
+[now: 2026-08-09 07:31:07.251084824 UTC] 	> Processing module `github.com/rest-sh/restish`
+[now: 2026-08-09 07:33:25.806181517 UTC] 	< Module `github.com/rest-sh/restish` FAILED (7/0) in 138.53822828s
+[now: 2026-08-09 07:33:25.826908442 UTC] 	> Processing module `github.com/rest-sh/restish/site`
+[now: 2026-08-09 07:33:25.826980416 UTC] 	< Module `github.com/rest-sh/restish/site` EMPTY in 0ns
+[now: 2026-08-09 07:33:25.839109848 UTC] Init project `https://gitlab.com/cznic/ql` from sample C.I (rank 21/100)
+[now: 2026-08-09 07:33:27.740110848 UTC] 	> Processing module `gitlab.com/cznic/ql`
+[now: 2026-08-09 07:34:13.939211430 UTC] 	< Module `gitlab.com/cznic/ql` SUCCEEDED in 46.191531243s
+[now: 2026-08-09 07:34:13.961799779 UTC] 	> Processing module `gitlab.com/cznic/ql/sqlitebench`
+[now: 2026-08-09 07:34:13.961855883 UTC] 	< Module `gitlab.com/cznic/ql/sqlitebench` EMPTY in 0ns
+[now: 2026-08-09 07:34:13.973372848 UTC] Init project `https://gitlab.com/gitlab-org/ci-cd/runner-tools/grit` from sample C.II (rank 28/100)
+[now: 2026-08-09 07:34:18.910782883 UTC] 	> Processing module `gitlab.com/gitlab-org/ci-cd/runner-tools/grit/deployer`
+[now: 2026-08-09 07:34:19.262348417 UTC] 	< Module `gitlab.com/gitlab-org/ci-cd/runner-tools/grit/deployer` FAILED (0/5) in 348.368415ms
+[now: 2026-08-09 07:34:19.284569915 UTC] 	> Processing module `gitlab.com/gitlab-org/ci-cd/runner-tools/grit`
+[now: 2026-08-09 07:34:19.590455530 UTC] 	< Module `gitlab.com/gitlab-org/ci-cd/runner-tools/grit` SUCCEEDED in 302.392083ms
+[now: 2026-08-09 07:34:19.614129876 UTC] Init project `https://gitlab.com/akitaonrails/clip-cutter` from sample C.III (rank 64/100)
+[now: 2026-08-09 07:34:22.134988474 UTC] Init project `https://gitlab.com/opennota/fb2index` from sample C.III (rank 56/100)
+[now: 2026-08-09 07:34:29.548273516 UTC] 	> Processing module `gitlab.com/opennota/fb2index`
+[now: 2026-08-09 07:34:30.036675041 UTC] 	< Module `gitlab.com/opennota/fb2index` FAILED (25/0) in 486.499179ms
+[now: 2026-08-09 07:34:30.058744672 UTC] Init project `https://gitlab.com/smoores/open-devcontainer` from sample C.IV (rank 99/100)
+[now: 2026-08-09 07:34:31.792861741 UTC] 	> Processing module `gitlab.com/smoores/open-devcontainer`
+[now: 2026-08-09 07:34:31.944114347 UTC] 	< Module `gitlab.com/smoores/open-devcontainer` SUCCEEDED in 150.173364ms
+[now: 2026-08-09 07:34:31.999219591 UTC] Init project `proxy://gitlab.com/gitlab-org/api/client-go` from sample A.I (rank 4/100)
+[now: 2026-08-09 07:34:33.598066535 UTC] 	> Processing module `gitlab.com/gitlab-org/api/client-go`
+[now: 2026-08-09 07:34:59.713191582 UTC] 	< Module `gitlab.com/gitlab-org/api/client-go` FAILED (16/0) in 26.077956707s
+[now: 2026-08-09 07:34:59.769253114 UTC] Init project `proxy://github.com/invopop/gobl` from sample A.II (rank 35/100)
+[now: 2026-08-09 07:35:01.381771858 UTC] 	> Processing module `github.com/invopop/gobl`
+[now: 2026-08-09 07:35:07.860215262 UTC] 	< Module `github.com/invopop/gobl` FAILED (0/1) in 6.460098814s
+[now: 2026-08-09 07:35:07.921165190 UTC] Init project `proxy://github.com/netdata/go-orchestrator` from sample A.III (rank 70/100)
+[now: 2026-08-09 07:35:09.623644087 UTC] 	> Processing module `github.com/netdata/go-orchestrator`
+[now: 2026-08-09 07:35:10.071295090 UTC] 	< Module `github.com/netdata/go-orchestrator` SUCCEEDED in 445.712377ms
+[now: 2026-08-09 07:35:10.122138283 UTC] Init project `proxy://github.com/gkzy/gini` from sample A.IV (rank 97/100)
+[now: 2026-08-09 07:35:11.716706392 UTC] 	> Processing module `github.com/gkzy/gini`
+[now: 2026-08-09 07:35:11.748163851 UTC] 	< Module `github.com/gkzy/gini` SUCCEEDED in 31.158822ms
+[now: 2026-08-09 07:35:11.762188748 UTC] Init project `https://github.com/bytebase/bytebase` from sample B.I (rank 7/100)
+[now: 2026-08-09 07:37:21.396856209 UTC] 	> Processing module `github.com/bytebase/bytebase`
+[now: 2026-08-09 07:48:41.720198357 UTC] 	< Module `github.com/bytebase/bytebase` FAILED (59/35) in 680.200054332s
+[now: 2026-08-09 07:48:41.752368078 UTC] Init project `https://github.com/Finb/bark-server` from sample B.II (rank 35/100)
+[now: 2026-08-09 07:48:43.363592663 UTC] 	> Processing module `github.com/Finb/bark-server`
+[now: 2026-08-09 07:48:43.516139472 UTC] 	< Module `github.com/Finb/bark-server` SUCCEEDED in 151.612419ms
+[now: 2026-08-09 07:48:43.541862295 UTC] Init project `https://github.com/zema1/watchvuln` from sample B.III (rank 61/100)
+[now: 2026-08-09 07:48:45.525213040 UTC] 	> Processing module `github.com/zema1/watchvuln`
+[now: 2026-08-09 07:48:47.418412391 UTC] 	< Module `github.com/zema1/watchvuln` SUCCEEDED in 1.889351532s
+[now: 2026-08-09 07:48:47.448557679 UTC] Init project `https://github.com/loft-sh/kiosk` from sample B.IV (rank 95/100)
+[now: 2026-08-09 07:49:50.446688628 UTC] 	> Processing module `github.com/loft-sh/kiosk`
+[now: 2026-08-09 07:49:53.780327740 UTC] 	< Module `github.com/loft-sh/kiosk` SUCCEEDED in 2.938600864s
+[now: 2026-08-09 07:49:53.810606907 UTC] Init project `https://gitlab.com/comentario/comentario` from sample C.I (rank 13/100)
+[now: 2026-08-09 07:49:59.058648949 UTC] 	> Processing module `gitlab.com/comentario/comentario`
+[now: 2026-08-09 07:50:04.655327635 UTC] 	< Module `gitlab.com/comentario/comentario` FAILED (3/4) in 5.589870539s
+[now: 2026-08-09 07:50:04.681117200 UTC] Init project `https://gitlab.com/magitrickle/magitrickle` from sample C.II (rank 50/100)
+[now: 2026-08-09 07:50:07.573082368 UTC] 	> Processing module `gitlab.com/magitrickle/magitrickle/src/backend`
+[now: 2026-08-09 07:50:20.312509457 UTC] 	< Module `gitlab.com/magitrickle/magitrickle/src/backend` FAILED (3/14) in 12.735667544s
+[now: 2026-08-09 07:50:20.334604921 UTC] Init project `https://gitlab.com/frenchutouch/futify` from sample C.IV (rank 88/100)
+[now: 2026-08-09 07:50:22.388910295 UTC] 	> Processing module `gitlab.com/frenchutouch/futify`
+[now: 2026-08-09 07:50:22.589743767 UTC] 	< Module `gitlab.com/frenchutouch/futify` SUCCEEDED in 199.529178ms
+[now: 2026-08-09 07:50:22.645243458 UTC] Init project `proxy://github.com/aws/aws-sdk-go-v2/service/wafv2` from sample A.I (rank 14/100)
+[now: 2026-08-09 07:50:23.539300307 UTC] 	> Processing module `github.com/aws/aws-sdk-go-v2/service/wafv2`
+[now: 2026-08-09 07:50:33.262727950 UTC] 	< Module `github.com/aws/aws-sdk-go-v2/service/wafv2` FAILED (0/2) in 9.709420134s
+[now: 2026-08-09 07:50:33.316347990 UTC] Init project `proxy://go.lumeweb.com/gswagger` from sample A.II (rank 31/100)
+[now: 2026-08-09 07:50:33.817144284 UTC] 	> Processing module `go.lumeweb.com/gswagger`
+[now: 2026-08-09 07:50:33.983244055 UTC] 	< Module `go.lumeweb.com/gswagger` SUCCEEDED in 164.955567ms
+[now: 2026-08-09 07:50:34.039535733 UTC] Init project `proxy://github.com/nais/unleasherator` from sample A.III (rank 53/100)
+[now: 2026-08-09 07:50:36.135092417 UTC] 	> Processing module `github.com/nais/unleasherator`
+[now: 2026-08-09 07:50:38.092250603 UTC] 	< Module `github.com/nais/unleasherator` SUCCEEDED in 1.953309394s
+[now: 2026-08-09 07:50:38.153161388 UTC] Init project `proxy://github.com/zkfy/go-cache` from sample A.IV (rank 86/100)
+[now: 2026-08-09 07:50:39.830859008 UTC] Init project `proxy://github.com/go-spring/gs-mock` from sample A.IV (rank 99/100)
+[now: 2026-08-09 07:50:41.845554295 UTC] 	> Processing module `github.com/go-spring/gs-mock`
+[now: 2026-08-09 07:50:43.269664426 UTC] 	< Module `github.com/go-spring/gs-mock` SUCCEEDED in 1.421549884s
+[now: 2026-08-09 07:50:43.296168925 UTC] Init project `https://github.com/vale-cli/vale` from sample B.I (rank 22/100)
+[now: 2026-08-09 07:51:07.500211675 UTC] 	> Processing module `github.com/vale-cli/vale`
+[now: 2026-08-09 07:51:43.431491197 UTC] 	< Module `github.com/vale-cli/vale` FAILED (2/0) in 35.924856114s
+[now: 2026-08-09 07:51:43.453677197 UTC] Init project `https://github.com/kubernetes-sigs/aws-load-balancer-controller` from sample B.II (rank 28/100)
+[now: 2026-08-09 07:52:01.534852343 UTC] 	> Processing module `github.com/kubernetes-sigs/aws-load-balancer-controller`
+[now: 2026-08-09 07:52:23.456772230 UTC] 	< Module `github.com/kubernetes-sigs/aws-load-balancer-controller` SUCCEEDED in 21.889323685s
+[now: 2026-08-09 07:52:23.479653476 UTC] Init project `https://github.com/kelindar/column` from sample B.III (rank 73/100)
+[now: 2026-08-09 07:52:25.443394689 UTC] 	> Processing module `github.com/kelindar/column`
+[now: 2026-08-09 07:52:25.982724549 UTC] 	< Module `github.com/kelindar/column` SUCCEEDED in 537.432594ms
+[now: 2026-08-09 07:52:26.011798862 UTC] Init project `https://github.com/qi4L/qscan` from sample B.IV (rank 88/100)
+[now: 2026-08-09 07:52:28.777785435 UTC] 	> Processing module `github.com/qi4L/qscan`
+[now: 2026-08-09 07:52:39.732478265 UTC] 	< Module `github.com/qi4L/qscan` FAILED (2/0) in 10.934710037s
+[now: 2026-08-09 07:52:39.757793725 UTC] Init project `https://gitlab.com/michenriksen/jdam` from sample C.I (rank 25/100)
+[now: 2026-08-09 07:52:46.830080024 UTC] 	> Processing module `gitlab.com/michenriksen/jdam`
+[now: 2026-08-09 07:52:46.843094547 UTC] 	< Module `gitlab.com/michenriksen/jdam` ABORTED (PARSING) in 11.663942ms
+[now: 2026-08-09 07:52:46.855360518 UTC] Skip init project `https://gitlab.com/friendlyelec/rk3399-android-8.1` from sample C.II (EXCLUDED)
+[now: 2026-08-09 07:52:46.866651962 UTC] Init project `https://gitlab.com/Misaka-blog/x-ui-msk` from sample C.II (rank 36/100)
+[now: 2026-08-09 07:57:19.212319385 UTC] 	> Processing module `gitlab.com/Misaka-blog/x-ui-msk`
+[now: 2026-08-09 07:57:20.492175818 UTC] 	< Module `gitlab.com/Misaka-blog/x-ui-msk` FAILED (2/2) in 1.277235939s
+[now: 2026-08-09 07:57:20.515889108 UTC] Init project `https://gitlab.com/cznic/quickjs` from sample C.III (rank 64/100)
+[now: 2026-08-09 07:57:22.513595729 UTC] 	> Processing module `gitlab.com/cznic/quickjs`
+[now: 2026-08-09 07:57:23.884445884 UTC] 	< Module `gitlab.com/cznic/quickjs` FAILED (0/10) in 1.369485255s
+[now: 2026-08-09 07:57:23.912377713 UTC] 	> Processing module `gitlab.com/cznic/quickjs/compare`
+[now: 2026-08-09 07:57:23.912490435 UTC] 	< Module `gitlab.com/cznic/quickjs/compare` EMPTY in 0ns
+[now: 2026-08-09 07:57:23.925666749 UTC] Init project `https://gitlab.com/gitlab-org/security-products/ci-templates` from sample C.IV (rank 95/100)
+[now: 2026-08-09 07:57:25.842810402 UTC] 	> Processing module `gitlab.com/gitlab-org/security-products/ci-templates/scripts/check-docker-image-size`
+[now: 2026-08-09 07:57:25.871148864 UTC] 	< Module `gitlab.com/gitlab-org/security-products/ci-templates/scripts/check-docker-image-size` FAILED (3/0) in 27.828015ms
+[now: 2026-08-09 07:57:25.919489699 UTC] Init project `proxy://github.com/aws/aws-sdk-go-v2/service/configservice` from sample A.I (rank 12/100)
+[now: 2026-08-09 07:57:26.992207557 UTC] 	> Processing module `github.com/aws/aws-sdk-go-v2/service/configservice`
+[now: 2026-08-09 07:57:45.939904972 UTC] 	< Module `github.com/aws/aws-sdk-go-v2/service/configservice` FAILED (0/2) in 18.926979601s
+[now: 2026-08-09 07:57:46.001938532 UTC] Init project `proxy://github.com/InjectiveLabs/metrics` from sample A.II (rank 32/100)
+[now: 2026-08-09 07:57:46.355068853 UTC] 	> Processing module `github.com/InjectiveLabs/metrics`
+[now: 2026-08-09 07:57:46.595327886 UTC] 	< Module `github.com/InjectiveLabs/metrics` SUCCEEDED in 239.317789ms
+[now: 2026-08-09 07:57:46.653510706 UTC] Init project `proxy://github.com/whosonfirst/go-whosonfirst-database` from sample A.III (rank 65/100)
+[now: 2026-08-09 07:57:48.696105648 UTC] 	> Processing module `github.com/whosonfirst/go-whosonfirst-database`
+[now: 2026-08-09 07:57:50.834294973 UTC] 	< Module `github.com/whosonfirst/go-whosonfirst-database` FAILED (0/10) in 2.134732223s
+[now: 2026-08-09 07:57:50.865169702 UTC] Init project `https://github.com/allegro/bigcache` from sample B.I (rank 14/100)
+[now: 2026-08-09 07:57:52.381269572 UTC] 	> Processing module `github.com/allegro/bigcache`
+[now: 2026-08-09 07:57:52.634746831 UTC] 	< Module `github.com/allegro/bigcache` SUCCEEDED in 252.616154ms
+[now: 2026-08-09 07:57:52.668416951 UTC] Init project `https://github.com/qax-os/goreporter` from sample B.II (rank 39/100)
+[now: 2026-08-09 07:57:59.737803925 UTC] Init project `https://github.com/skanehira/docui` from sample B.II (rank 50/100)
+[now: 2026-08-09 07:58:27.083997395 UTC] 	> Processing module `github.com/skanehira/docui`
+[now: 2026-08-09 07:58:27.455252425 UTC] 	< Module `github.com/skanehira/docui` SUCCEEDED in 369.037403ms
+[now: 2026-08-09 07:58:27.479143879 UTC] Init project `https://github.com/matryer/vice` from sample B.III (rank 71/100)
+[now: 2026-08-09 07:58:29.004921217 UTC] 	> Processing module `github.com/matryer/vice`
+[now: 2026-08-09 07:58:29.670303790 UTC] 	< Module `github.com/matryer/vice` FAILED (0/2) in 662.223885ms
+[now: 2026-08-09 07:58:29.699282709 UTC] Init project `https://github.com/Code-Hex/pget` from sample B.IV (rank 88/100)
+[now: 2026-08-09 07:58:31.603434677 UTC] 	> Processing module `github.com/Code-Hex/pget`
+[now: 2026-08-09 07:58:31.669133975 UTC] 	< Module `github.com/Code-Hex/pget` SUCCEEDED in 65.162304ms
+[now: 2026-08-09 07:58:31.682809412 UTC] Init project `https://gitlab.com/gitlab-org/gitlab-shell` from sample C.I (rank 5/100)
+[now: 2026-08-09 07:58:37.723228652 UTC] 	> Processing module `gitlab.com/gitlab-org/gitlab-shell`
+[now: 2026-08-09 07:58:41.825744631 UTC] 	< Module `gitlab.com/gitlab-org/gitlab-shell` SUCCEEDED in 4.098012055s
+[now: 2026-08-09 07:58:41.849698875 UTC] Init project `https://gitlab.com/sj1k/gorice` from sample C.III (rank 67/100)
+[now: 2026-08-09 07:58:44.428913148 UTC] Init project `https://gitlab.com/shar-workflow/shar` from sample C.III (rank 75/100)
+[now: 2026-08-09 08:00:40.616023586 UTC] 	> Processing module `gitlab.com/shar-workflow/shar`
+[now: 2026-08-09 08:03:03.220900514 UTC] 	< Module `gitlab.com/shar-workflow/shar` SUCCEEDED in 142.584361046s
+[now: 2026-08-09 08:03:03.245745407 UTC] Init project `https://gitlab.com/libvirt/libvirt-go-module` from sample C.IV (rank 78/100)
+[now: 2026-08-09 08:03:05.190997535 UTC] 	> Processing module `gitlab.com/libvirt/libvirt-go-module`
+[now: 2026-08-09 08:03:15.839807066 UTC] 	< Module `gitlab.com/libvirt/libvirt-go-module` FAILED (0/5) in 10.638911461s
+[now: 2026-08-09 08:03:15.897513155 UTC] Init project `proxy://github.com/cakturk/go-netstat` from sample A.I (rank 11/100)
+[now: 2026-08-09 08:03:16.446354896 UTC] 	> Processing module `github.com/cakturk/go-netstat`
+[now: 2026-08-09 08:03:16.515385046 UTC] 	< Module `github.com/cakturk/go-netstat` FAILED (0/7) in 68.179238ms
+[now: 2026-08-09 08:03:16.559045709 UTC] Init project `proxy://github.com/algorand/go-deadlock` from sample A.II (rank 36/100)
+[now: 2026-08-09 08:03:18.340373543 UTC] 	> Processing module `github.com/algorand/go-deadlock`
+[now: 2026-08-09 08:03:18.511858605 UTC] 	< Module `github.com/algorand/go-deadlock` SUCCEEDED in 170.980317ms
+[now: 2026-08-09 08:03:18.569217525 UTC] Init project `proxy://github.com/incognitochain/go-libp2p-pubsub` from sample A.III (rank 72/100)
+[now: 2026-08-09 08:03:20.423282908 UTC] 	> Processing module `github.com/incognitochain/go-libp2p-pubsub`
+[now: 2026-08-09 08:03:23.546476396 UTC] 	< Module `github.com/incognitochain/go-libp2p-pubsub` SUCCEEDED in 3.119476018s
+[now: 2026-08-09 08:03:23.603308191 UTC] Init project `proxy://github.com/KidCarmi/Sluice` from sample A.IV (rank 100/100)
+[now: 2026-08-09 08:03:25.628404779 UTC] 	> Processing module `github.com/KidCarmi/Sluice`
+[now: 2026-08-09 08:03:26.233017895 UTC] 	< Module `github.com/KidCarmi/Sluice` FAILED (4/0) in 601.712325ms
+[now: 2026-08-09 08:03:26.260706867 UTC] Init project `https://github.com/claudiodangelis/qrcp` from sample B.I (rank 10/100)
+[now: 2026-08-09 08:03:40.374605420 UTC] 	> Processing module `github.com/claudiodangelis/qrcp`
+[now: 2026-08-09 08:03:40.487125727 UTC] 	< Module `github.com/claudiodangelis/qrcp` FAILED (2/0) in 110.50779ms
+[now: 2026-08-09 08:03:40.514725895 UTC] Init project `https://github.com/uniqush/uniqush-push` from sample B.III (rank 71/100)
+[now: 2026-08-09 08:03:42.246701091 UTC] 	> Processing module `github.com/uniqush/uniqush-push`
+[now: 2026-08-09 08:03:43.201506824 UTC] 	< Module `github.com/uniqush/uniqush-push` FAILED (0/1) in 951.891648ms
+[now: 2026-08-09 08:03:43.227779867 UTC] Init project `https://github.com/apenella/go-ansible` from sample B.IV (rank 92/100)
+[now: 2026-08-09 08:03:44.940716358 UTC] 	> Processing module `github.com/apenella/go-ansible`
+[now: 2026-08-09 08:03:45.292295347 UTC] 	< Module `github.com/apenella/go-ansible` FAILED (12/0) in 347.321606ms
+[now: 2026-08-09 08:03:45.316588873 UTC] 	> Processing module `github.com/apenella/go-ansible/examples/ansibleplaybook-embed-python`
+[now: 2026-08-09 08:03:45.324330068 UTC] 	< Module `github.com/apenella/go-ansible/examples/ansibleplaybook-embed-python` SUCCEEDED in 7.344041ms
+[now: 2026-08-09 08:03:45.336424463 UTC] Init project `https://gitlab.com/fforster/gitlab-mcp` from sample C.I (rank 19/100)
+[now: 2026-08-09 08:03:47.061167818 UTC] 	> Processing module `gitlab.com/fforster/gitlab-mcp`
+[now: 2026-08-09 08:03:47.965206538 UTC] 	< Module `gitlab.com/fforster/gitlab-mcp` SUCCEEDED in 901.561091ms
+[now: 2026-08-09 08:03:47.994628237 UTC] Skip init project `https://gitlab.com/go-htmx/go-htmx` from sample C.II (EXCLUDED)
+[now: 2026-08-09 08:03:48.006751907 UTC] Init project `https://gitlab.com/alta3/simplegoservice` from sample C.II (rank 42/100)
+[now: 2026-08-09 08:03:49.618518216 UTC] 	> Processing module `gitlab.com/alta3/simplegoservice`
+[now: 2026-08-09 08:03:49.627313795 UTC] 	< Module `gitlab.com/alta3/simplegoservice` FAILED (1/0) in 8.345576ms
+[now: 2026-08-09 08:03:49.640294520 UTC] Init project `https://gitlab.com/gitlab-org/analytics-section/siphon` from sample C.IV (rank 94/100)
+[now: 2026-08-09 08:03:52.756660807 UTC] 	> Processing module `gitlab.com/gitlab-org/analytics-section/siphon`
+[now: 2026-08-09 08:04:00.951442576 UTC] 	< Module `gitlab.com/gitlab-org/analytics-section/siphon` SUCCEEDED in 8.18594918s
+[now: 2026-08-09 08:04:01.010845084 UTC] Init project `proxy://k8s.io/kms` from sample A.I (rank 2/100)
+[now: 2026-08-09 08:04:01.223762311 UTC] 	> Processing module `k8s.io/kms`
+[now: 2026-08-09 08:04:01.269765640 UTC] 	< Module `k8s.io/kms` SUCCEEDED in 44.956198ms
+[now: 2026-08-09 08:04:01.319299660 UTC] Init project `proxy://github.com/mailgun/metrics` from sample A.II (rank 37/100)
+[now: 2026-08-09 08:04:01.600881368 UTC] Init project `proxy://moul.io/roundtripper` from sample A.II (rank 49/100)
+[now: 2026-08-09 08:04:03.242683931 UTC] 	> Processing module `moul.io/roundtripper`
+[now: 2026-08-09 08:04:03.250217888 UTC] 	< Module `moul.io/roundtripper` SUCCEEDED in 7.285613ms
+[now: 2026-08-09 08:04:03.296896011 UTC] Init project `proxy://github.com/nickwells/snippet.mod` from sample A.III (rank 50/100)
+[now: 2026-08-09 08:04:05.175230032 UTC] 	> Processing module `github.com/nickwells/snippet.mod`
+[now: 2026-08-09 08:04:05.259475579 UTC] 	< Module `github.com/nickwells/snippet.mod` SUCCEEDED in 83.570122ms
+[now: 2026-08-09 08:04:05.307574172 UTC] Init project `proxy://buf.build/gen/go/hollaemor/cake-service-proto/protocolbuffers/go` from sample A.IV (rank 86/100)
+[now: 2026-08-09 08:04:07.109976646 UTC] 	> Processing module `buf.build/gen/go/hollaemor/cake-service-proto/protocolbuffers/go`
+[now: 2026-08-09 08:04:07.137038609 UTC] 	< Module `buf.build/gen/go/hollaemor/cake-service-proto/protocolbuffers/go` SUCCEEDED in 26.348577ms
+[now: 2026-08-09 08:04:07.152821162 UTC] Init project `https://github.com/garethgeorge/backrest` from sample B.I (rank 17/100)
+[now: 2026-08-09 08:04:11.993974448 UTC] 	> Processing module `github.com/garethgeorge/backrest`
+[now: 2026-08-09 08:04:34.014297881 UTC] 	< Module `github.com/garethgeorge/backrest` FAILED (2/6) in 22.008442125s
+[now: 2026-08-09 08:04:34.038987134 UTC] Init project `https://github.com/yassinebenaid/bunster` from sample B.II (rank 44/100)
+[now: 2026-08-09 08:04:37.914621029 UTC] 	> Processing module `github.com/yassinebenaid/bunster`
+[now: 2026-08-09 08:04:44.505205784 UTC] 	< Module `github.com/yassinebenaid/bunster` SUCCEEDED in 6.587219865s
+[now: 2026-08-09 08:04:44.534330695 UTC] Init project `https://github.com/wa-lang/wa` from sample B.III (rank 63/100)
+[now: 2026-08-09 08:05:16.424897477 UTC] 	> Processing module `github.com/wa-lang/wa`
+[now: 2026-08-09 08:05:17.666160054 UTC] 	< Module `github.com/wa-lang/wa` ABORTED (BUILD) in 1.163170939s
+[now: 2026-08-09 08:05:17.695341394 UTC] Init project `https://github.com/twitchyliquid64/subnet` from sample B.IV (rank 96/100)
+[now: 2026-08-09 08:05:21.515191736 UTC] Init project `https://github.com/schemahero/schemahero` from sample B.IV (rank 91/100)
+[now: 2026-08-09 08:05:26.719318385 UTC] 	> Processing module `github.com/schemahero/schemahero`
+[now: 2026-08-09 08:05:29.801012022 UTC] 	< Module `github.com/schemahero/schemahero` SUCCEEDED in 3.068422403s
+[now: 2026-08-09 08:05:29.822138368 UTC] 	> Processing module `github.com/schemahero/schemahero/plugins/cassandra`
+[now: 2026-08-09 08:05:29.932876782 UTC] 	< Module `github.com/schemahero/schemahero/plugins/cassandra` SUCCEEDED in 110.038563ms
+[now: 2026-08-09 08:05:29.954254969 UTC] 	> Processing module `github.com/schemahero/schemahero/plugins/mysql`
+[now: 2026-08-09 08:05:30.210635706 UTC] 	< Module `github.com/schemahero/schemahero/plugins/mysql` SUCCEEDED in 255.453842ms
+[now: 2026-08-09 08:05:30.232057666 UTC] 	> Processing module `github.com/schemahero/schemahero/plugins/postgres`
+[now: 2026-08-09 08:05:30.661474029 UTC] 	< Module `github.com/schemahero/schemahero/plugins/postgres` SUCCEEDED in 428.324448ms
+[now: 2026-08-09 08:05:30.687383453 UTC] 	> Processing module `github.com/schemahero/schemahero/plugins/rqlite`
+[now: 2026-08-09 08:05:30.862135374 UTC] 	< Module `github.com/schemahero/schemahero/plugins/rqlite` SUCCEEDED in 174.06279ms
+[now: 2026-08-09 08:05:30.886665004 UTC] 	> Processing module `github.com/schemahero/schemahero/plugins/sqlite`
+[now: 2026-08-09 08:05:31.055717771 UTC] 	< Module `github.com/schemahero/schemahero/plugins/sqlite` SUCCEEDED in 168.3709ms
+[now: 2026-08-09 08:05:31.077153697 UTC] 	> Processing module `github.com/schemahero/schemahero/plugins/timescaledb`
+[now: 2026-08-09 08:05:31.160586352 UTC] 	< Module `github.com/schemahero/schemahero/plugins/timescaledb` SUCCEEDED in 82.835868ms
+[now: 2026-08-09 08:05:31.174061639 UTC] Init project `https://gitlab.com/gitlab-org/gitlab-pages` from sample C.I (rank 9/100)
+[now: 2026-08-09 08:05:40.067471618 UTC] 	> Processing module `gitlab.com/gitlab-org/gitlab-pages`
+[now: 2026-08-09 08:05:42.131930440 UTC] 	< Module `gitlab.com/gitlab-org/gitlab-pages` FAILED (17/1) in 2.058420292s
+[now: 2026-08-09 08:05:42.158660051 UTC] Init project `https://gitlab.com/esr/pytogo` from sample C.III (rank 55/100)
+[now: 2026-08-09 08:05:43.733289797 UTC] Init project `https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files` from sample C.III (rank 71/100)
+[now: 2026-08-09 08:05:45.330707147 UTC] 	> Processing module `gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files`
+[now: 2026-08-09 08:05:45.344623721 UTC] 	< Module `gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files` FAILED (2/0) in 13.493351ms
+[now: 2026-08-09 08:05:45.357072667 UTC] Init project `https://gitlab.com/cznic/b` from sample C.IV (rank 81/100)
+[now: 2026-08-09 08:05:47.033047747 UTC] 	> Processing module `gitlab.com/cznic/b`
+[now: 2026-08-09 08:05:47.397518772 UTC] 	< Module `gitlab.com/cznic/b` SUCCEEDED in 363.104937ms
+[now: 2026-08-09 08:05:47.420738340 UTC] 	> Processing module `gitlab.com/cznic/b/v2`
+[now: 2026-08-09 08:05:47.527896316 UTC] 	< Module `gitlab.com/cznic/b/v2` SUCCEEDED in 106.713934ms
+[now: 2026-08-09 08:05:47.588672824 UTC] Init project `proxy://github.com/mholt/archives` from sample A.I (rank 3/100)
+[now: 2026-08-09 08:05:48.121445280 UTC] 	> Processing module `github.com/mholt/archives`
+[now: 2026-08-09 08:05:48.414324613 UTC] 	< Module `github.com/mholt/archives` SUCCEEDED in 291.156255ms
+[now: 2026-08-09 08:05:48.474788866 UTC] Init project `proxy://github.com/quant1x/pandas` from sample A.III (rank 57/100)
+[now: 2026-08-09 08:05:50.413466768 UTC] 	> Processing module `github.com/quant1x/pandas`
+[now: 2026-08-09 08:05:50.862417670 UTC] 	< Module `github.com/quant1x/pandas` SUCCEEDED in 445.711656ms
+[now: 2026-08-09 08:05:50.918276709 UTC] Init project `proxy://github.com/mus-format/common-go` from sample A.IV (rank 92/100)
+[now: 2026-08-09 08:05:52.563021637 UTC] 	> Processing module `github.com/mus-format/common-go`
+[now: 2026-08-09 08:05:52.573510452 UTC] 	< Module `github.com/mus-format/common-go` SUCCEEDED in 9.994279ms
+[now: 2026-08-09 08:05:52.599619121 UTC] Init project `https://github.com/go-co-op/gocron` from sample B.I (rank 16/100)
+[now: 2026-08-09 08:05:54.269313810 UTC] 	> Processing module `github.com/go-co-op/gocron`
+[now: 2026-08-09 08:05:54.626693413 UTC] 	< Module `github.com/go-co-op/gocron` SUCCEEDED in 355.710758ms
+[now: 2026-08-09 08:05:54.648822799 UTC] 	> Processing module `github.com/go-co-op/gocron/mocks`
+[now: 2026-08-09 08:05:54.669556462 UTC] 	< Module `github.com/go-co-op/gocron/mocks` SUCCEEDED in 20.260717ms
+[now: 2026-08-09 08:05:54.693175899 UTC] Init project `https://github.com/acme-dns/acme-dns` from sample B.II (rank 43/100)
+[now: 2026-08-09 08:05:56.859702100 UTC] 	> Processing module `github.com/acme-dns/acme-dns`
+[now: 2026-08-09 08:05:56.979736475 UTC] 	< Module `github.com/acme-dns/acme-dns` SUCCEEDED in 118.250495ms
+[now: 2026-08-09 08:05:57.005608261 UTC] Init project `https://github.com/ncabatoff/process-exporter` from sample B.III (rank 54/100)
+[now: 2026-08-09 08:05:58.666792567 UTC] 	> Processing module `github.com/ncabatoff/process-exporter`
+[now: 2026-08-09 08:05:58.849741940 UTC] 	< Module `github.com/ncabatoff/process-exporter` SUCCEEDED in 181.925034ms
+[now: 2026-08-09 08:05:58.876766194 UTC] Init project `https://gitlab.com/gitlab-org/api/client-go` from sample C.I (rank 14/100)
+[now: 2026-08-09 08:06:03.763283260 UTC] Init project `https://gitlab.com/minds/minds` from sample C.I (rank 12/100)
+[now: 2026-08-09 08:06:10.038248238 UTC] Init project `https://gitlab.com/orobardet/gitlab-ci-linter` from sample C.I (rank 25/100)
+[now: 2026-08-09 08:06:11.661586067 UTC] 	> Processing module `gitlab.com/orobardet/gitlab-ci-linter`
+[now: 2026-08-09 08:06:11.818313604 UTC] 	< Module `gitlab.com/orobardet/gitlab-ci-linter` SUCCEEDED in 156.100113ms
+[now: 2026-08-09 08:06:11.843821180 UTC] Init project `https://gitlab.com/ksxack/administrator-kubernetes-junior` from sample C.II (rank 41/100)
+[now: 2026-08-09 08:06:13.568222159 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/05_Lifecycle/053-step5`
+[now: 2026-08-09 08:06:13.572657496 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/05_Lifecycle/053-step5` SUCCEEDED in 4.278534ms
+[now: 2026-08-09 08:06:13.583345595 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/022-step5`
+[now: 2026-08-09 08:06:13.587107561 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/022-step5` SUCCEEDED in 3.607256ms
+[now: 2026-08-09 08:06:13.597723675 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/023-step2`
+[now: 2026-08-09 08:06:13.601693480 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/023-step2` SUCCEEDED in 3.843389ms
+[now: 2026-08-09 08:06:13.612310445 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/025-step3`
+[now: 2026-08-09 08:06:13.615929584 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/025-step3` SUCCEEDED in 3.499835ms
+[now: 2026-08-09 08:06:13.626551379 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/025-step4`
+[now: 2026-08-09 08:06:13.631085451 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/025-step4` SUCCEEDED in 4.398058ms
+[now: 2026-08-09 08:06:13.641780883 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/025-step5`
+[now: 2026-08-09 08:06:13.646216080 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/025-step5` SUCCEEDED in 4.318619ms
+[now: 2026-08-09 08:06:13.658090571 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/026-step6`
+[now: 2026-08-09 08:06:13.663782763 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/02_Docker/026-step6` SUCCEEDED in 5.553802ms
+[now: 2026-08-09 08:06:13.675124035 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/03_Kubernetes/036-step1/http-server`
+[now: 2026-08-09 08:06:13.678627887 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/03_Kubernetes/036-step1/http-server` SUCCEEDED in 3.39032ms
+[now: 2026-08-09 08:06:13.689125569 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/05_Lifecycle/054-step3-5`
+[now: 2026-08-09 08:06:13.692927240 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/05_Lifecycle/054-step3-5` SUCCEEDED in 3.680183ms
+[now: 2026-08-09 08:06:13.703479284 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/07_Lifehacks/076-step2/kubectl-access`
+[now: 2026-08-09 08:06:13.712288914 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/07_Lifehacks/076-step2/kubectl-access` SUCCEEDED in 8.616128ms
+[now: 2026-08-09 08:06:13.723101776 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/084-step1/payment-server`
+[now: 2026-08-09 08:06:13.726546548 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/084-step1/payment-server` SUCCEEDED in 3.315109ms
+[now: 2026-08-09 08:06:13.737118429 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/084-step2/payment-server`
+[now: 2026-08-09 08:06:13.741600174 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/084-step2/payment-server` SUCCEEDED in 4.361489ms
+[now: 2026-08-09 08:06:13.752127842 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/084-step3/payment-server`
+[now: 2026-08-09 08:06:13.756046031 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/084-step3/payment-server` SUCCEEDED in 3.793505ms
+[now: 2026-08-09 08:06:13.766697521 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/084-step4/payment-server`
+[now: 2026-08-09 08:06:13.769187484 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/084-step4/payment-server` SUCCEEDED in 2.384095ms
+[now: 2026-08-09 08:06:13.779547118 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/085-step1/payment-server`
+[now: 2026-08-09 08:06:13.784074648 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/085-step1/payment-server` SUCCEEDED in 4.405061ms
+[now: 2026-08-09 08:06:13.794718273 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/086-step1/payment-server`
+[now: 2026-08-09 08:06:13.799111642 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/086-step1/payment-server` SUCCEEDED in 4.265369ms
+[now: 2026-08-09 08:06:13.809815630 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/086-step2/payment-server`
+[now: 2026-08-09 08:06:13.812375395 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/086-step2/payment-server` SUCCEEDED in 2.444028ms
+[now: 2026-08-09 08:06:13.822747121 UTC] 	> Processing module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/086-step3/payment-server`
+[now: 2026-08-09 08:06:13.827327650 UTC] 	< Module `gitlab.com/ksxack/administrator-kubernetes-junior/08_CICD/086-step3/payment-server` SUCCEEDED in 4.441569ms
+[now: 2026-08-09 08:06:13.838441106 UTC] Init project `https://gitlab.com/nunet/device-management-service` from sample C.IV (rank 79/100)
+[now: 2026-08-09 08:08:31.488612552 UTC] 	> Processing module `gitlab.com/nunet/device-management-service`
+[now: 2026-08-09 08:11:13.403079642 UTC] 	< Module `gitlab.com/nunet/device-management-service` FAILED (5/17) in 161.884432953s
+[now: 2026-08-09 08:11:13.457517858 UTC] Init project `proxy://cosmossdk.io/store` from sample A.I (rank 3/100)
+[now: 2026-08-09 08:11:23.717590915 UTC] 	> Processing module `cosmossdk.io/store`
+[now: 2026-08-09 08:11:25.690768493 UTC] 	< Module `cosmossdk.io/store` SUCCEEDED in 1.968334052s
+[now: 2026-08-09 08:11:25.747431560 UTC] Init project `proxy://github.com/CircleCI-Public/circle-policy-agent` from sample A.II (rank 37/100)
+[now: 2026-08-09 08:11:26.128932484 UTC] 	> Processing module `github.com/CircleCI-Public/circle-policy-agent`
+[now: 2026-08-09 08:11:26.372738824 UTC] 	< Module `github.com/CircleCI-Public/circle-policy-agent` SUCCEEDED in 242.804793ms
+[now: 2026-08-09 08:11:26.429275934 UTC] Init project `proxy://buf.build/gen/go/lekkodev/sdk/connectrpc/go` from sample A.III (rank 69/100)
+[now: 2026-08-09 08:11:28.359320880 UTC] 	> Processing module `buf.build/gen/go/lekkodev/sdk/connectrpc/go`
+[now: 2026-08-09 08:11:28.372676245 UTC] 	< Module `buf.build/gen/go/lekkodev/sdk/connectrpc/go` SUCCEEDED in 12.708613ms
+[now: 2026-08-09 08:11:28.423046110 UTC] Init project `proxy://github.com/ptiger10/tablewriter` from sample A.IV (rank 97/100)
+[now: 2026-08-09 08:11:30.394556592 UTC] 	> Processing module `github.com/ptiger10/tablewriter`
+[now: 2026-08-09 08:11:30.432851329 UTC] 	< Module `github.com/ptiger10/tablewriter` SUCCEEDED in 37.860834ms
+[now: 2026-08-09 08:11:30.447073199 UTC] Init project `https://github.com/vmware-archive/kubeless` from sample B.I (rank 17/100)
+[now: 2026-08-09 08:11:42.401703956 UTC] 	> Processing module `github.com/vmware-archive/kubeless`
+[now: 2026-08-09 08:11:43.344849612 UTC] 	< Module `github.com/vmware-archive/kubeless` FAILED (102/0) in 936.526634ms
+[now: 2026-08-09 08:11:43.366851921 UTC] 	> Processing module `github.com/vmware-archive/kubeless/examples/golang`
+[now: 2026-08-09 08:11:43.372881129 UTC] 	< Module `github.com/vmware-archive/kubeless/examples/golang` SUCCEEDED in 5.817461ms
+[now: 2026-08-09 08:11:43.386675748 UTC] Init project `https://github.com/Knetic/govaluate` from sample B.II (rank 31/100)
+[now: 2026-08-09 08:11:44.694980022 UTC] Init project `https://github.com/burke/zeus` from sample B.II (rank 37/100)
+[now: 2026-08-09 08:11:47.305540968 UTC] 	> Processing module `github.com/burke/zeus`
+[now: 2026-08-09 08:11:47.849689968 UTC] 	< Module `github.com/burke/zeus` FAILED (2/0) in 542.646845ms
+[now: 2026-08-09 08:11:47.877692872 UTC] Init project `https://github.com/kyma-project/kyma` from sample B.III (rank 71/100)
+[now: 2026-08-09 08:12:25.001174006 UTC] 	> Processing module `github.com/kyma-project/kyma/hack/table-gen`
+[now: 2026-08-09 08:12:25.032906471 UTC] 	< Module `github.com/kyma-project/kyma/hack/table-gen` SUCCEEDED in 31.467157ms
+[now: 2026-08-09 08:12:25.044204783 UTC] 	> Processing module `github.com/kyma-project/kyma/common`
+[now: 2026-08-09 08:12:25.055761409 UTC] 	< Module `github.com/kyma-project/kyma/common` FAILED (0/1) in 10.895657ms
+[now: 2026-08-09 08:12:25.066686993 UTC] 	> Processing module `github.com/kyma-project/kyma/common/logging`
+[now: 2026-08-09 08:12:25.080681818 UTC] 	< Module `github.com/kyma-project/kyma/common/logging` SUCCEEDED in 13.669806ms
+[now: 2026-08-09 08:12:25.094804964 UTC] Init project `https://github.com/grpc-ecosystem/go-grpc-prometheus` from sample B.IV (rank 80/100)
+[now: 2026-08-09 08:12:26.448030065 UTC] 	> Processing module `github.com/grpc-ecosystem/go-grpc-prometheus`
+[now: 2026-08-09 08:12:26.510988965 UTC] 	< Module `github.com/grpc-ecosystem/go-grpc-prometheus` SUCCEEDED in 62.042373ms
+[now: 2026-08-09 08:12:26.524130642 UTC] Init project `https://gitlab.com/hetznercloud/fleeting-plugin-hetzner` from sample C.II (rank 47/100)
+[now: 2026-08-09 08:12:28.279573525 UTC] 	> Processing module `gitlab.com/hetznercloud/fleeting-plugin-hetzner`
+[now: 2026-08-09 08:12:28.386669426 UTC] 	< Module `gitlab.com/hetznercloud/fleeting-plugin-hetzner` SUCCEEDED in 105.914988ms
+[now: 2026-08-09 08:12:28.415150838 UTC] 	> Processing module `gitlab.com/hetznercloud/fleeting-plugin-hetzner/tools`
+[now: 2026-08-09 08:12:28.415209127 UTC] 	< Module `gitlab.com/hetznercloud/fleeting-plugin-hetzner/tools` EMPTY in 0ns
+[now: 2026-08-09 08:12:28.428614899 UTC] Init project `https://gitlab.com/Nefix/marmota` from sample C.III (rank 73/100)
+[now: 2026-08-09 08:12:29.986966309 UTC] 	> Processing module `gitlab.com/Nefix/marmota`
+[now: 2026-08-09 08:12:30.028565174 UTC] 	< Module `gitlab.com/Nefix/marmota` SUCCEEDED in 40.557484ms
+[now: 2026-08-09 08:12:30.040749968 UTC] Init project `https://gitlab.com/q-dev/q-client` from sample C.IV (rank 98/100)
+[now: 2026-08-09 08:12:52.314206304 UTC] 	> Processing module `gitlab.com/q-dev/q-client`
+[now: 2026-08-09 08:12:53.535435790 UTC] 	< Module `gitlab.com/q-dev/q-client` ABORTED (PARSING) in 737.384492ms
+[now: 2026-08-09 08:12:53.612860862 UTC] Init project `proxy://github.com/jtolio/noiseconn` from sample A.I (rank 11/100)
+[now: 2026-08-09 08:12:53.800928207 UTC] 	> Processing module `github.com/jtolio/noiseconn`
+[now: 2026-08-09 08:12:53.862841441 UTC] 	< Module `github.com/jtolio/noiseconn` SUCCEEDED in 61.433374ms
+[now: 2026-08-09 08:12:53.907563990 UTC] Init project `proxy://sigs.k8s.io/cluster-api-ipam-provider-in-cluster` from sample A.II (rank 42/100)
+[now: 2026-08-09 08:12:54.389717245 UTC] 	> Processing module `sigs.k8s.io/cluster-api-ipam-provider-in-cluster`
+[now: 2026-08-09 08:12:54.678418084 UTC] 	< Module `sigs.k8s.io/cluster-api-ipam-provider-in-cluster` FAILED (0/2) in 284.962063ms
+[now: 2026-08-09 08:12:54.741211517 UTC] Init project `proxy://github.com/koud-fi/pkg/fetch` from sample A.III (rank 50/100)
+[now: 2026-08-09 08:12:56.650426672 UTC] 	> Processing module `github.com/koud-fi/pkg/fetch`
+[now: 2026-08-09 08:12:56.715645631 UTC] 	< Module `github.com/koud-fi/pkg/fetch` SUCCEEDED in 64.752925ms
+[now: 2026-08-09 08:12:56.763152888 UTC] Init project `proxy://github.com/fenglyu/go-dmidecode` from sample A.IV (rank 87/100)
+[now: 2026-08-09 08:12:57.009222959 UTC] 	> Processing module `github.com/fenglyu/go-dmidecode`
+[now: 2026-08-09 08:12:57.028691022 UTC] 	< Module `github.com/fenglyu/go-dmidecode` SUCCEEDED in 19.047695ms
+[now: 2026-08-09 08:12:57.044184286 UTC] Init project `https://github.com/tailscale/tailscale` from sample B.I (rank 2/100)
+[now: 2026-08-09 08:13:52.215623005 UTC] 	> Processing module `github.com/tailscale/tailscale`
+[now: 2026-08-09 08:13:53.391393550 UTC] 	< Module `github.com/tailscale/tailscale` ABORTED (WORLDS) in 1.069657612s
+[now: 2026-08-09 08:13:53.428387298 UTC] Init project `https://github.com/xianlubird/mydocker` from sample B.III (rank 54/100)
+[now: 2026-08-09 08:13:55.631840136 UTC] Init project `https://github.com/bazil/fuse` from sample B.III (rank 64/100)
+[now: 2026-08-09 08:13:57.204588452 UTC] 	> Processing module `github.com/bazil/fuse`
+[now: 2026-08-09 08:14:02.396716739 UTC] 	< Module `github.com/bazil/fuse` FAILED (0/15) in 5.188892543s
+[now: 2026-08-09 08:14:02.425386729 UTC] Init project `https://github.com/wa8n/wblog` from sample B.IV (rank 88/100)
+[now: 2026-08-09 08:14:12.219359830 UTC] 	> Processing module `github.com/wa8n/wblog`
+[now: 2026-08-09 08:14:12.444271997 UTC] 	< Module `github.com/wa8n/wblog` FAILED (27/1) in 223.063663ms
+[now: 2026-08-09 08:14:12.458306690 UTC] Init project `https://gitlab.com/gitlab-org/security-products/analyzers/semgrep` from sample C.II (rank 38/100)
+[now: 2026-08-09 08:14:28.411145777 UTC] 	> Processing module `gitlab.com/gitlab-org/security-products/analyzers/semgrep`
+[now: 2026-08-09 08:14:28.517149511 UTC] 	< Module `gitlab.com/gitlab-org/security-products/analyzers/semgrep` SUCCEEDED in 104.536564ms
+[now: 2026-08-09 08:14:28.541312495 UTC] Init project `https://gitlab.com/tuxether/anancus` from sample C.III (rank 52/100)
+[now: 2026-08-09 08:14:30.301651912 UTC] Init project `https://gitlab.com/NebulousLabs/go-upnp` from sample C.III (rank 72/100)
+[now: 2026-08-09 08:14:31.945593044 UTC] 	> Processing module `gitlab.com/NebulousLabs/go-upnp`
+[now: 2026-08-09 08:14:32.410361522 UTC] 	< Module `gitlab.com/NebulousLabs/go-upnp` SUCCEEDED in 462.828673ms
+[now: 2026-08-09 08:14:32.434398110 UTC] Init project `https://gitlab.com/hctrdev/grafana-matrix-forwarder` from sample C.IV (rank 83/100)
+[now: 2026-08-09 08:14:43.898777936 UTC] 	> Processing module `gitlab.com/hctrdev/grafana-matrix-forwarder`
+[now: 2026-08-09 08:14:43.989447213 UTC] 	< Module `gitlab.com/hctrdev/grafana-matrix-forwarder` SUCCEEDED in 89.757157ms
+[now: 2026-08-09 08:14:44.036642693 UTC] Init project `proxy://github.com/KirkDiggler/rpg-toolkit/events` from sample A.I (rank 20/100)
+[now: 2026-08-09 08:14:46.081760512 UTC] 	> Processing module `github.com/KirkDiggler/rpg-toolkit/events`
+[now: 2026-08-09 08:14:46.098847115 UTC] 	< Module `github.com/KirkDiggler/rpg-toolkit/events` SUCCEEDED in 16.488442ms
+[now: 2026-08-09 08:14:46.144389758 UTC] Init project `proxy://github.com/evcc-io/openapi-mcp` from sample A.II (rank 44/100)
+[now: 2026-08-09 08:14:47.568387554 UTC] 	> Processing module `github.com/evcc-io/openapi-mcp`
+[now: 2026-08-09 08:14:48.136448071 UTC] 	< Module `github.com/evcc-io/openapi-mcp` SUCCEEDED in 566.35975ms
+[now: 2026-08-09 08:14:48.195210160 UTC] Init project `proxy://github.com/grafana/grafana/pkg/storage/unified/resource` from sample A.III (rank 69/100)
+[now: 2026-08-09 08:14:48.677709043 UTC] 	> Processing module `github.com/grafana/grafana/pkg/storage/unified/resource`
+[now: 2026-08-09 08:14:49.226309761 UTC] 	< Module `github.com/grafana/grafana/pkg/storage/unified/resource` SUCCEEDED in 546.791006ms
+[now: 2026-08-09 08:14:49.286479257 UTC] Init project `proxy://github.com/vikpe/qw-hub-api` from sample A.IV (rank 78/100)
+[now: 2026-08-09 08:14:51.028765779 UTC] 	> Processing module `github.com/vikpe/qw-hub-api`
+[now: 2026-08-09 08:14:51.240568318 UTC] 	< Module `github.com/vikpe/qw-hub-api` FAILED (1/1) in 209.662789ms
+[now: 2026-08-09 08:14:51.271661061 UTC] Init project `https://github.com/go-chi/chi` from sample B.I (rank 4/100)
+[now: 2026-08-09 08:14:53.053379748 UTC] 	> Processing module `github.com/go-chi/chi`
+[now: 2026-08-09 08:14:53.680688801 UTC] 	< Module `github.com/go-chi/chi` FAILED (3/1) in 624.34683ms
+[now: 2026-08-09 08:14:53.707655220 UTC] 	> Processing module `github.com/go-chi/chi/_examples/rest`
+[now: 2026-08-09 08:14:53.743454163 UTC] 	< Module `github.com/go-chi/chi/_examples/rest` SUCCEEDED in 35.492238ms
+[now: 2026-08-09 08:14:53.754900475 UTC] 	> Processing module `github.com/go-chi/chi/_examples/versions`
+[now: 2026-08-09 08:14:53.767223500 UTC] 	< Module `github.com/go-chi/chi/_examples/versions` SUCCEEDED in 11.969773ms
+[now: 2026-08-09 08:14:53.781519573 UTC] Init project `https://github.com/kashav/fsql` from sample B.II (rank 30/100)
+[now: 2026-08-09 08:14:57.781831265 UTC] 	> Processing module `github.com/kashav/fsql`
+[now: 2026-08-09 08:14:58.283914839 UTC] 	< Module `github.com/kashav/fsql` SUCCEEDED in 500.900677ms
+[now: 2026-08-09 08:14:58.311807885 UTC] Init project `https://github.com/cznic/ql` from sample B.IV (rank 82/100)
+[now: 2026-08-09 08:14:59.991987358 UTC] 	> Processing module `github.com/cznic/ql`
+[now: 2026-08-09 08:17:11.585081625 UTC] 	< Module `github.com/cznic/ql` SUCCEEDED in 131.585825273s
+[now: 2026-08-09 08:17:11.612906667 UTC] Init project `https://gitlab.com/gitlab-org/opstrace/opstrace` from sample C.I (rank 14/100)
+[now: 2026-08-09 08:18:09.828474659 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/provisioning-api`
+[now: 2026-08-09 08:18:09.858854321 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/provisioning-api` SUCCEEDED in 29.880166ms
+[now: 2026-08-09 08:18:09.870336684 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/backup`
+[now: 2026-08-09 08:18:09.929696425 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/backup` SUCCEEDED in 58.887546ms
+[now: 2026-08-09 08:18:09.941269026 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/clickhouse-operator`
+[now: 2026-08-09 08:18:10.120796656 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/clickhouse-operator` SUCCEEDED in 178.331828ms
+[now: 2026-08-09 08:18:10.141217182 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/gatekeeper`
+[now: 2026-08-09 08:18:10.436051598 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/gatekeeper` FAILED (4/0) in 292.813118ms
+[now: 2026-08-09 08:18:10.454725820 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/go`
+[now: 2026-08-09 08:18:31.133501014 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/go` FAILED (16/13) in 20.660314962s
+[now: 2026-08-09 08:18:31.150967754 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/scheduler`
+[now: 2026-08-09 08:18:31.912674863 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/scheduler` SUCCEEDED in 757.896507ms
+[now: 2026-08-09 08:18:31.937333713 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/tenant-operator`
+[now: 2026-08-09 08:18:32.017739123 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/tenant-operator` SUCCEEDED in 78.950092ms
+[now: 2026-08-09 08:18:32.029706164 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/test/agent`
+[now: 2026-08-09 08:18:32.029809998 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/test/agent` EMPTY in 0ns
+[now: 2026-08-09 08:18:32.040375112 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/test/e2e`
+[now: 2026-08-09 08:18:32.151911002 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/test/e2e` FAILED (1/1) in 109.97273ms
+[now: 2026-08-09 08:18:32.170269724 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/test/sentry-sdk`
+[now: 2026-08-09 08:18:32.209779119 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/test/sentry-sdk` SUCCEEDED in 38.791761ms
+[now: 2026-08-09 08:18:32.221870423 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/test/sentry-sdk/testdata/supported-sdk-clients/go`
+[now: 2026-08-09 08:18:32.228889670 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/test/sentry-sdk/testdata/supported-sdk-clients/go` SUCCEEDED in 6.752346ms
+[now: 2026-08-09 08:18:32.239804769 UTC] 	> Processing module `gitlab.com/gitlab-org/opstrace/opstrace/test/smoke-tests/errortracking`
+[now: 2026-08-09 08:18:32.260408798 UTC] 	< Module `gitlab.com/gitlab-org/opstrace/opstrace/test/smoke-tests/errortracking` FAILED (8/0) in 19.946457ms
+[now: 2026-08-09 08:18:32.272318642 UTC] Init project `https://gitlab.com/trantor/trantor` from sample C.II (rank 39/100)
+[now: 2026-08-09 08:18:34.628663442 UTC] 	> Processing module `gitlab.com/trantor/trantor`
+[now: 2026-08-09 08:18:35.004067794 UTC] 	< Module `gitlab.com/trantor/trantor` FAILED (24/0) in 372.523282ms
+[now: 2026-08-09 08:18:35.022295520 UTC] Init project `https://gitlab.com/n0r1sk/docker-volume-cephfs` from sample C.IV (rank 97/100)
+[now: 2026-08-09 08:18:40.356928049 UTC] Init project `https://gitlab.com/awg-proxy/awg-proxy` from sample C.IV (rank 77/100)
+[now: 2026-08-09 08:18:41.946783963 UTC] 	> Processing module `gitlab.com/awg-proxy/awg-proxy`
+[now: 2026-08-09 08:18:43.024647613 UTC] 	< Module `gitlab.com/awg-proxy/awg-proxy` FAILED (0/13) in 1.076656037s
+[now: 2026-08-09 08:18:43.079327274 UTC] Init project `proxy://github.com/aliyun/fc-go-sdk` from sample A.I (rank 17/100)
+[now: 2026-08-09 08:18:43.777521877 UTC] 	> Processing module `github.com/aliyun/fc-go-sdk`
+[now: 2026-08-09 08:18:44.409174077 UTC] 	< Module `github.com/aliyun/fc-go-sdk` FAILED (65/3) in 627.355707ms
+[now: 2026-08-09 08:18:44.460134276 UTC] Init project `proxy://github.com/obot-platform/obot/logger` from sample A.II (rank 27/100)
+[now: 2026-08-09 08:18:44.692157869 UTC] 	> Processing module `github.com/obot-platform/obot/logger`
+[now: 2026-08-09 08:18:44.701969570 UTC] 	< Module `github.com/obot-platform/obot/logger` SUCCEEDED in 9.499035ms
+[now: 2026-08-09 08:18:44.746271890 UTC] Init project `proxy://github.com/kubedb/gomemcache` from sample A.III (rank 71/100)
+[now: 2026-08-09 08:18:44.989672508 UTC] 	> Processing module `github.com/kubedb/gomemcache`
+[now: 2026-08-09 08:18:45.143137782 UTC] 	< Module `github.com/kubedb/gomemcache` SUCCEEDED in 153.011103ms
+[now: 2026-08-09 08:18:45.199123411 UTC] Init project `proxy://buf.build/gen/go/credibil/entra/protocolbuffers/go` from sample A.IV (rank 99/100)
+[now: 2026-08-09 08:18:46.954702176 UTC] 	> Processing module `buf.build/gen/go/credibil/entra/protocolbuffers/go`
+[now: 2026-08-09 08:18:47.038994342 UTC] 	< Module `buf.build/gen/go/credibil/entra/protocolbuffers/go` SUCCEEDED in 82.567784ms
+[now: 2026-08-09 08:18:47.053780276 UTC] Init project `https://github.com/charmbracelet/crush` from sample B.I (rank 3/100)
+[now: 2026-08-09 08:19:07.586784514 UTC] 	> Processing module `github.com/charmbracelet/crush`
+[now: 2026-08-09 08:25:47.331586176 UTC] 	< Module `github.com/charmbracelet/crush` FAILED (122/16) in 399.71465326s
+[now: 2026-08-09 08:25:47.363416977 UTC] Init project `https://github.com/ChimeraCoder/gojson` from sample B.II (rank 44/100)
+[now: 2026-08-09 08:25:49.096782412 UTC] Init project `https://github.com/shunfei/cronsun` from sample B.II (rank 41/100)
+[now: 2026-08-09 08:25:55.258795030 UTC] 	> Processing module `github.com/shunfei/cronsun`
+[now: 2026-08-09 08:25:57.163683643 UTC] 	< Module `github.com/shunfei/cronsun` SUCCEEDED in 1.874735307s
+[now: 2026-08-09 08:25:57.193587060 UTC] Init project `https://github.com/88250/lute` from sample B.III (rank 67/100)
+[now: 2026-08-09 08:26:00.451493393 UTC] 	> Processing module `github.com/88250/lute`
+[now: 2026-08-09 08:26:34.734482354 UTC] 	< Module `github.com/88250/lute` FAILED (0/4) in 34.26739606s
+[now: 2026-08-09 08:26:34.767177035 UTC] Init project `https://github.com/kisielk/godepgraph` from sample B.IV (rank 85/100)
+[now: 2026-08-09 08:26:36.014704575 UTC] 	> Processing module `github.com/kisielk/godepgraph`
+[now: 2026-08-09 08:26:36.081398963 UTC] 	< Module `github.com/kisielk/godepgraph` SUCCEEDED in 66.340545ms
+[now: 2026-08-09 08:26:36.094132494 UTC] Init project `https://gitlab.com/glatteis/earthwalker` from sample C.I (rank 20/100)
+[now: 2026-08-09 08:26:47.325248820 UTC] 	> Processing module `gitlab.com/glatteis/earthwalker`
+[now: 2026-08-09 08:26:47.396743697 UTC] 	< Module `gitlab.com/glatteis/earthwalker` FAILED (9/0) in 70.543995ms
+[now: 2026-08-09 08:26:47.409810122 UTC] Init project `https://gitlab.com/beteras/zgui` from sample C.II (rank 44/100)
+[now: 2026-08-09 08:26:49.650870201 UTC] 	> Processing module `gitlab.com/beteras/zgui`
+[now: 2026-08-09 08:26:49.702922050 UTC] 	< Module `gitlab.com/beteras/zgui` FAILED (0/2) in 51.441265ms
+[now: 2026-08-09 08:26:49.716082482 UTC] Init project `https://gitlab.com/pulsechaincom/compressed-allocations` from sample C.III (rank 75/100)
+[now: 2026-08-09 08:28:30.692499201 UTC] 	> Processing module `gitlab.com/pulsechaincom/compressed-allocations`
+[now: 2026-08-09 08:28:30.736783230 UTC] 	< Module `gitlab.com/pulsechaincom/compressed-allocations` SUCCEEDED in 43.265429ms
+[now: 2026-08-09 08:28:30.786197506 UTC] Init project `proxy://github.com/tx7do/kratos-transport/broker` from sample A.I (rank 14/100)
+[now: 2026-08-09 08:28:32.646312171 UTC] 	> Processing module `github.com/tx7do/kratos-transport/broker`
+[now: 2026-08-09 08:28:32.695912345 UTC] 	< Module `github.com/tx7do/kratos-transport/broker` SUCCEEDED in 48.916583ms
+[now: 2026-08-09 08:28:32.746179720 UTC] Init project `proxy://gopkg.in/launchdarkly/go-server-sdk-evaluation.v1` from sample A.II (rank 33/100)
+[now: 2026-08-09 08:28:35.273634716 UTC] 	> Processing module `gopkg.in/launchdarkly/go-server-sdk-evaluation.v1`
+[now: 2026-08-09 08:28:35.575353853 UTC] 	< Module `gopkg.in/launchdarkly/go-server-sdk-evaluation.v1` SUCCEEDED in 300.53143ms
+[now: 2026-08-09 08:28:35.631648627 UTC] Skip init project `proxy://github.com/ajankovic/xdiff` from sample A.III (EXCLUDED)
+[now: 2026-08-09 08:28:35.676068019 UTC] Init project `proxy://github.com/newrelic/go-agent/v3/integrations/nrpgx5` from sample A.III (rank 65/100)
+[now: 2026-08-09 08:28:35.883917080 UTC] 	> Processing module `github.com/newrelic/go-agent/v3/integrations/nrpgx5`
+[now: 2026-08-09 08:28:35.896481093 UTC] 	< Module `github.com/newrelic/go-agent/v3/integrations/nrpgx5` SUCCEEDED in 12.22644ms
+[now: 2026-08-09 08:28:35.941145925 UTC] Init project `proxy://github.com/swaros/contxt/module/systools` from sample A.IV (rank 89/100)
+[now: 2026-08-09 08:28:38.710753692 UTC] 	> Processing module `github.com/swaros/contxt/module/systools`
+[now: 2026-08-09 08:28:38.786672726 UTC] 	< Module `github.com/swaros/contxt/module/systools` SUCCEEDED in 75.328467ms
+[now: 2026-08-09 08:28:38.801641598 UTC] Init project `https://github.com/Melkeydev/go-blueprint` from sample B.I (rank 13/100)
+[now: 2026-08-09 08:28:46.635133263 UTC] 	> Processing module `github.com/Melkeydev/go-blueprint`
+[now: 2026-08-09 08:28:47.088522804 UTC] 	< Module `github.com/Melkeydev/go-blueprint` FAILED (0/4) in 451.401655ms
+[now: 2026-08-09 08:28:47.109523453 UTC] Init project `https://github.com/mikespook/gorbac` from sample B.III (rank 67/100)
+[now: 2026-08-09 08:28:48.530031224 UTC] 	> Processing module `github.com/mikespook/gorbac`
+[now: 2026-08-09 08:28:48.562723602 UTC] 	< Module `github.com/mikespook/gorbac` SUCCEEDED in 31.977537ms
+[now: 2026-08-09 08:28:48.574466366 UTC] 	> Processing module `github.com/mikespook/gorbac/examples/persistence`
+[now: 2026-08-09 08:28:48.582458158 UTC] 	< Module `github.com/mikespook/gorbac/examples/persistence` SUCCEEDED in 7.802898ms
+[now: 2026-08-09 08:28:48.593554490 UTC] 	> Processing module `github.com/mikespook/gorbac/examples/playground`
+[now: 2026-08-09 08:28:48.643483921 UTC] 	< Module `github.com/mikespook/gorbac/examples/playground` FAILED (1/0) in 49.388988ms
+[now: 2026-08-09 08:28:48.655202771 UTC] 	> Processing module `github.com/mikespook/gorbac/examples/user-defined`
+[now: 2026-08-09 08:28:48.661347951 UTC] 	< Module `github.com/mikespook/gorbac/examples/user-defined` SUCCEEDED in 5.965864ms
+[now: 2026-08-09 08:28:48.675346083 UTC] Init project `https://github.com/autokitteh/autokitteh` from sample B.IV (rank 91/100)
+[now: 2026-08-09 08:29:02.296002738 UTC] 	> Processing module `github.com/autokitteh/autokitteh`
+[now: 2026-08-09 08:31:57.429550891 UTC] 	< Module `github.com/autokitteh/autokitteh` FAILED (126/30) in 175.087298349s
+[now: 2026-08-09 08:31:57.457129453 UTC] Init project `https://gitlab.com/geeks-accelerator/oss/saas-starter-kit` from sample C.I (rank 10/100)
+[now: 2026-08-09 08:32:09.227631614 UTC] 	> Processing module `gitlab.com/geeks-accelerator/oss/saas-starter-kit`
+[now: 2026-08-09 08:32:16.329452361 UTC] 	< Module `gitlab.com/geeks-accelerator/oss/saas-starter-kit` FAILED (25/1) in 7.092838049s
+[now: 2026-08-09 08:32:16.355002993 UTC] Init project `https://gitlab.com/gitlab-org/container-registry` from sample C.II (rank 30/100)
+[now: 2026-08-09 08:32:47.928703453 UTC] 	> Processing module `gitlab.com/gitlab-org/container-registry`
+[now: 2026-08-09 08:33:14.481452800 UTC] 	< Module `gitlab.com/gitlab-org/container-registry` FAILED (1/0) in 26.523319175s
+[now: 2026-08-09 08:33:14.505068056 UTC] 	> Processing module `gitlab.com/gitlab-org/container-registry/devvm/go`
+[now: 2026-08-09 08:33:15.266864384 UTC] 	< Module `gitlab.com/gitlab-org/container-registry/devvm/go` SUCCEEDED in 759.949ms
+[now: 2026-08-09 08:33:15.291128821 UTC] Init project `https://gitlab.com/kilexst/rabbitmq-docs` from sample C.III (rank 62/100)
+[now: 2026-08-09 08:34:26.714687857 UTC] 	> Processing module `gitlab.com/kilexst/rabbitmq-docs/generator`
+[now: 2026-08-09 08:34:26.738222850 UTC] 	< Module `gitlab.com/kilexst/rabbitmq-docs/generator` FAILED (11/0) in 23.020995ms
+[now: 2026-08-09 08:34:26.749762859 UTC] 	> Processing module `gitlab.com/kilexst/rabbitmq-docs/consumer`
+[now: 2026-08-09 08:34:26.787241643 UTC] 	< Module `gitlab.com/kilexst/rabbitmq-docs/consumer` FAILED (12/0) in 36.809145ms
+[now: 2026-08-09 08:34:26.799513252 UTC] Init project `https://gitlab.com/gitlab-org/duo-workflow/duo-workflow-executor` from sample C.IV (rank 78/100)
+[now: 2026-08-09 08:34:28.776588695 UTC] 	> Processing module `gitlab.com/gitlab-org/duo-workflow/duo-workflow-executor`
+[now: 2026-08-09 08:34:28.996834948 UTC] 	< Module `gitlab.com/gitlab-org/duo-workflow/duo-workflow-executor` FAILED (3/0) in 218.284368ms
+[now: 2026-08-09 08:34:29.047889643 UTC] Init project `proxy://github.com/loft-sh/admin-apis` from sample A.I (rank 22/100)
+[now: 2026-08-09 08:34:29.747435025 UTC] 	> Processing module `github.com/loft-sh/admin-apis`
+[now: 2026-08-09 08:34:29.863008543 UTC] 	< Module `github.com/loft-sh/admin-apis` SUCCEEDED in 113.379514ms
+[now: 2026-08-09 08:34:29.915164804 UTC] Init project `proxy://github.com/aserto-dev/openapi-authorizer` from sample A.II (rank 41/100)
+[now: 2026-08-09 08:34:31.499965666 UTC] 	> Processing module `github.com/aserto-dev/openapi-authorizer`
+[now: 2026-08-09 08:34:31.506345365 UTC] 	< Module `github.com/aserto-dev/openapi-authorizer` SUCCEEDED in 6.023127ms
+[now: 2026-08-09 08:34:31.554913969 UTC] Init project `proxy://github.com/hailaz/gotest/contrib/hello/v2` from sample A.IV (rank 87/100)
+[now: 2026-08-09 08:34:33.111254888 UTC] 	> Processing module `github.com/hailaz/gotest/contrib/hello/v2`
+[now: 2026-08-09 08:34:33.116610289 UTC] 	< Module `github.com/hailaz/gotest/contrib/hello/v2` SUCCEEDED in 5.143792ms
+[now: 2026-08-09 08:34:33.131321278 UTC] Init project `https://github.com/TwiN/gatus` from sample B.I (rank 10/100)
+[now: 2026-08-09 08:34:37.903348926 UTC] 	> Processing module `github.com/TwiN/gatus`
+[now: 2026-08-09 08:34:45.083642008 UTC] 	< Module `github.com/TwiN/gatus` FAILED (6/1) in 7.173175848s
+[now: 2026-08-09 08:34:45.121990281 UTC] Init project `https://github.com/RoaringBitmap/roaring` from sample B.II (rank 41/100)
+[now: 2026-08-09 08:36:52.567077360 UTC] 	> Processing module `github.com/RoaringBitmap/roaring`
+[now: 2026-08-09 08:37:21.344168718 UTC] 	< Module `github.com/RoaringBitmap/roaring` SUCCEEDED in 28.771814178s
+[now: 2026-08-09 08:37:21.368971540 UTC] Init project `https://github.com/tjfoc/gmsm` from sample B.III (rank 59/100)
+[now: 2026-08-09 08:37:23.388041845 UTC] 	> Processing module `github.com/tjfoc/gmsm`
+[now: 2026-08-09 08:37:42.510333169 UTC] 	< Module `github.com/tjfoc/gmsm` FAILED (1/12) in 19.114214722s
+[now: 2026-08-09 08:37:42.532562907 UTC] Init project `https://github.com/valyala/bytebufferpool` from sample B.IV (rank 81/100)
+[now: 2026-08-09 08:37:43.712906559 UTC] 	> Processing module `github.com/valyala/bytebufferpool`
+[now: 2026-08-09 08:37:43.727886163 UTC] 	< Module `github.com/valyala/bytebufferpool` SUCCEEDED in 14.577873ms
+[now: 2026-08-09 08:37:43.740466668 UTC] Init project `https://gitlab.com/cznic/ccgo` from sample C.I (rank 22/100)
+[now: 2026-08-09 08:38:07.228533878 UTC] 	> Processing module `gitlab.com/cznic/ccgo/v3`
+[now: 2026-08-09 08:48:53.860920545 UTC] 	< Module `gitlab.com/cznic/ccgo/v3` FAILED (7/1) in 646.627033163s
+[now: 2026-08-09 08:48:53.889893060 UTC] 	> Processing module `gitlab.com/cznic/ccgo`
+[now: 2026-08-09 08:53:31.185117105 UTC] 	< Module `gitlab.com/cznic/ccgo` FAILED (0/121) in 277.279884296s
+[now: 2026-08-09 08:53:31.209892795 UTC] 	> Processing module `gitlab.com/cznic/ccgo/v4`
+[now: 2026-08-09 08:53:51.384318596 UTC] 	< Module `gitlab.com/cznic/ccgo/v4` FAILED (2/2) in 20.169428918s
+[now: 2026-08-09 08:53:51.408416490 UTC] Init project `https://gitlab.com/esr/cvs-fast-export` from sample C.II (rank 32/100)
+[now: 2026-08-09 08:53:53.928341841 UTC] 	> Processing module `gitlab.com/esr/cvs-fast-export`
+[now: 2026-08-09 08:53:55.079733409 UTC] 	< Module `gitlab.com/esr/cvs-fast-export` SUCCEEDED in 1.150182523s
+[now: 2026-08-09 08:53:55.102117534 UTC] Skip init project `https://gitlab.com/cznic/cc` from sample C.III (EXCLUDED)
+[now: 2026-08-09 08:53:55.120603814 UTC] Init project `https://gitlab.com/pantomath-io/demo-grpc` from sample C.III (rank 59/100)
+[now: 2026-08-09 08:53:56.583553452 UTC] Init project `https://gitlab.com/E-Gurl/dns-mns` from sample C.III (rank 60/100)
+[now: 2026-08-09 08:55:15.058429727 UTC] 	> Processing module `gitlab.com/E-Gurl/dns-mns`
+[now: 2026-08-09 08:55:31.244649533 UTC] 	< Module `gitlab.com/E-Gurl/dns-mns` FAILED (3/11) in 16.174136525s
+[now: 2026-08-09 08:55:31.270109735 UTC] Init project `https://gitlab.com/kathelix/ci-cd/gitlab/merge-requests-triggers` from sample C.IV (rank 96/100)
+[now: 2026-08-09 08:55:33.129049978 UTC] Init project `https://gitlab.com/ez-mentor/ez-learn/ez-learn-apps/ez-golang-example-application` from sample C.IV (rank 93/100)
+[now: 2026-08-09 08:55:35.157816816 UTC] 	> Processing module `gitlab.com/ez-mentor/ez-learn/ez-learn-apps/ez-golang-example-application`
+[now: 2026-08-09 08:55:35.164212735 UTC] 	< Module `gitlab.com/ez-mentor/ez-learn/ez-learn-apps/ez-golang-example-application` SUCCEEDED in 6.209346ms
+[now: 2026-08-09 08:55:35.210716958 UTC] Init project `proxy://github.com/aws/aws-sdk-go-v2/service/iam` from sample A.I (rank 3/100)
+[now: 2026-08-09 08:55:37.017401150 UTC] 	> Processing module `github.com/aws/aws-sdk-go-v2/service/iam`
+[now: 2026-08-09 08:56:21.625623057 UTC] 	< Module `github.com/aws/aws-sdk-go-v2/service/iam` FAILED (0/2) in 44.585291784s
+[now: 2026-08-09 08:56:21.684524007 UTC] Init project `proxy://github.com/whosonfirst/go-whosonfirst-placetypes` from sample A.II (rank 35/100)
+[now: 2026-08-09 08:56:23.967587706 UTC] 	> Processing module `github.com/whosonfirst/go-whosonfirst-placetypes`
+[now: 2026-08-09 08:56:24.266218362 UTC] 	< Module `github.com/whosonfirst/go-whosonfirst-placetypes` FAILED (0/1) in 296.946397ms
+[now: 2026-08-09 08:56:24.322273990 UTC] Init project `proxy://github.com/controlplaneio-fluxcd/flux-operator` from sample A.III (rank 61/100)
+[now: 2026-08-09 08:56:31.537882486 UTC] 	> Processing module `github.com/controlplaneio-fluxcd/flux-operator`
+[now: 2026-08-09 08:56:42.597853658 UTC] 	< Module `github.com/controlplaneio-fluxcd/flux-operator` FAILED (9/0) in 11.042959985s
+[now: 2026-08-09 08:56:42.660949859 UTC] Init project `proxy://github.com/kierdavis/cfb8` from sample A.IV (rank 82/100)
+[now: 2026-08-09 08:56:44.472122401 UTC] Skip init project `proxy://github.com/yndd/ndda-network` from sample A.IV (EXCLUDED)
+[now: 2026-08-09 08:56:44.519711454 UTC] Init project `proxy://github.com/murkland/moreio` from sample A.IV (rank 92/100)
+[now: 2026-08-09 08:56:46.246304057 UTC] 	> Processing module `github.com/murkland/moreio`
+[now: 2026-08-09 08:56:46.252711123 UTC] 	< Module `github.com/murkland/moreio` SUCCEEDED in 6.042077ms
+[now: 2026-08-09 08:56:46.277394363 UTC] Init project `https://github.com/gomodule/redigo` from sample B.I (rank 11/100)
+[now: 2026-08-09 08:56:47.998885513 UTC] 	> Processing module `github.com/gomodule/redigo`
+[now: 2026-08-09 08:56:48.637345220 UTC] 	< Module `github.com/gomodule/redigo` SUCCEEDED in 636.625945ms
+[now: 2026-08-09 08:56:48.670422706 UTC] Init project `https://github.com/timelinize/timelinize` from sample B.II (rank 34/100)
+[now: 2026-08-09 08:57:09.940495922 UTC] 	> Processing module `github.com/timelinize/timelinize`
+[now: 2026-08-09 08:57:47.105989517 UTC] 	< Module `github.com/timelinize/timelinize` FAILED (8/6) in 37.152993859s
+[now: 2026-08-09 08:57:47.134345166 UTC] Init project `https://github.com/kbinani/screenshot` from sample B.III (rank 71/100)
+[now: 2026-08-09 08:57:49.742432395 UTC] 	> Processing module `github.com/kbinani/screenshot`
+[now: 2026-08-09 08:57:49.852014954 UTC] 	< Module `github.com/kbinani/screenshot` FAILED (0/8) in 108.717837ms
+[now: 2026-08-09 08:57:49.885001635 UTC] Init project `https://github.com/loklak/loklak_go_api` from sample B.IV (rank 96/100)
+[now: 2026-08-09 08:57:51.566858736 UTC] Init project `https://github.com/ddollar/forego` from sample B.IV (rank 75/100)
+[now: 2026-08-09 08:57:52.950164752 UTC] 	> Processing module `github.com/ddollar/forego`
+[now: 2026-08-09 08:57:53.130762503 UTC] 	< Module `github.com/ddollar/forego` FAILED (0/2) in 178.556839ms
+[now: 2026-08-09 08:57:53.161496120 UTC] Init project `https://gitlab.com/commento/commento` from sample C.I (rank 2/100)
+[now: 2026-08-09 08:57:55.291054680 UTC] 	> Processing module `gitlab.com/commento/commento/api`
+[now: 2026-08-09 08:57:56.878052815 UTC] 	< Module `gitlab.com/commento/commento/api` FAILED (81/8) in 1.583070612s
+[now: 2026-08-09 08:57:56.905585359 UTC] Init project `https://gitlab.com/msvechla/vaultbot` from sample C.II (rank 31/100)
+[now: 2026-08-09 08:57:58.529148547 UTC] 	> Processing module `gitlab.com/msvechla/vaultbot`
+[now: 2026-08-09 08:57:58.595286323 UTC] 	< Module `gitlab.com/msvechla/vaultbot` SUCCEEDED in 65.330602ms
+[now: 2026-08-09 08:57:58.641266905 UTC] Init project `proxy://github.com/diskfs/go-diskfs` from sample A.I (rank 5/100)
+[now: 2026-08-09 08:58:24.337885408 UTC] 	> Processing module `github.com/diskfs/go-diskfs`
+[now: 2026-08-09 08:58:26.176875790 UTC] 	< Module `github.com/diskfs/go-diskfs` CRASHED in 1.828676637s
+[now: 2026-08-09 08:58:26.227059546 UTC] Init project `proxy://github.com/interconnectedcloud/go-amqp` from sample A.II (rank 45/100)
+[now: 2026-08-09 08:58:28.322756202 UTC] Init project `proxy://github.com/wyx2685/sing-vmess` from sample A.II (rank 36/100)
+[now: 2026-08-09 08:58:29.963213342 UTC] 	> Processing module `github.com/wyx2685/sing-vmess`
+[now: 2026-08-09 08:58:30.369779676 UTC] 	< Module `github.com/wyx2685/sing-vmess` SUCCEEDED in 404.869622ms
+[now: 2026-08-09 08:58:30.429451004 UTC] Init project `proxy://github.com/redhat-developer/app-services-sdk-core/app-services-sdk-go/serviceaccountmgmt` from sample A.III (rank 56/100)
+[now: 2026-08-09 08:58:32.108463832 UTC] 	> Processing module `github.com/redhat-developer/app-services-sdk-core/app-services-sdk-go/serviceaccountmgmt`
+[now: 2026-08-09 08:58:32.357602673 UTC] 	< Module `github.com/redhat-developer/app-services-sdk-core/app-services-sdk-go/serviceaccountmgmt` SUCCEEDED in 247.252731ms
+[now: 2026-08-09 08:58:32.392033589 UTC] Init project `https://github.com/aarondl/sqlboiler` from sample B.I (rank 16/100)
+[now: 2026-08-09 08:58:34.479719784 UTC] 	> Processing module `github.com/aarondl/sqlboiler`
+[now: 2026-08-09 08:58:37.003303522 UTC] 	< Module `github.com/aarondl/sqlboiler` FAILED (2/0) in 2.518234482s
+[now: 2026-08-09 08:58:37.031914183 UTC] Skip init project `https://github.com/hashicorp/boundary` from sample B.II (EXCLUDED)
+[now: 2026-08-09 08:58:37.046254575 UTC] Init project `https://github.com/golang/lint` from sample B.II (rank 31/100)
+[now: 2026-08-09 08:58:38.538292500 UTC] 	> Processing module `github.com/golang/lint`
+[now: 2026-08-09 08:58:38.797119363 UTC] 	< Module `github.com/golang/lint` SUCCEEDED in 257.474611ms
+[now: 2026-08-09 08:58:38.820975121 UTC] Init project `https://github.com/charmbracelet/fang` from sample B.III (rank 59/100)
+[now: 2026-08-09 08:58:40.264388452 UTC] 	> Processing module `github.com/charmbracelet/fang`
+[now: 2026-08-09 08:58:40.417556503 UTC] 	< Module `github.com/charmbracelet/fang` SUCCEEDED in 152.61075ms
+[now: 2026-08-09 08:58:40.439628415 UTC] Init project `https://gitlab.com/postgres-ai/postgres-checkup` from sample C.I (rank 4/100)
+[now: 2026-08-09 08:58:42.731965966 UTC] 	> Processing module `gitlab.com/postgres-ai/postgres-checkup/pghrep`
+[now: 2026-08-09 08:58:43.970179385 UTC] 	< Module `gitlab.com/postgres-ai/postgres-checkup/pghrep` SUCCEEDED in 1.235062363s
+[now: 2026-08-09 08:58:44.000923762 UTC] Init project `https://gitlab.com/anthos-multicloud/anthos-multicloud-workshop` from sample C.II (rank 43/100)
+[now: 2026-08-09 08:59:29.578619224 UTC] 	> Processing module `gitlab.com/anthos-multicloud/anthos-multicloud-workshop/platform_admins/starter_repos/online_boutique/src/shipping`
+[now: 2026-08-09 08:59:29.676093548 UTC] 	< Module `gitlab.com/anthos-multicloud/anthos-multicloud-workshop/platform_admins/starter_repos/online_boutique/src/shipping` SUCCEEDED in 96.329183ms
+[now: 2026-08-09 08:59:29.689065013 UTC] 	> Processing module `gitlab.com/anthos-multicloud/anthos-multicloud-workshop/platform_admins/starter_repos/online_boutique/src/checkout`
+[now: 2026-08-09 08:59:29.850010754 UTC] 	< Module `gitlab.com/anthos-multicloud/anthos-multicloud-workshop/platform_admins/starter_repos/online_boutique/src/checkout` SUCCEEDED in 159.823555ms
+[now: 2026-08-09 08:59:29.871173765 UTC] 	> Processing module `gitlab.com/anthos-multicloud/anthos-multicloud-workshop/platform_admins/starter_repos/online_boutique/src/frontend`
+[now: 2026-08-09 08:59:30.064292039 UTC] 	< Module `gitlab.com/anthos-multicloud/anthos-multicloud-workshop/platform_admins/starter_repos/online_boutique/src/frontend` SUCCEEDED in 191.808863ms
+[now: 2026-08-09 08:59:30.087237332 UTC] 	> Processing module `gitlab.com/anthos-multicloud/anthos-multicloud-workshop/platform_admins/starter_repos/online_boutique/src/productcatalog`
+[now: 2026-08-09 08:59:30.164116927 UTC] 	< Module `gitlab.com/anthos-multicloud/anthos-multicloud-workshop/platform_admins/starter_repos/online_boutique/src/productcatalog` SUCCEEDED in 75.820838ms
+[now: 2026-08-09 08:59:30.179917089 UTC] Init project `https://gitlab.com/albertito/chasquid` from sample C.IV (rank 86/100)
+[now: 2026-08-09 08:59:32.289426990 UTC] 	> Processing module `gitlab.com/albertito/chasquid`
+[now: 2026-08-09 08:59:37.550743343 UTC] 	< Module `gitlab.com/albertito/chasquid` FAILED (0/3) in 5.255781369s
+[now: 2026-08-09 08:59:37.608658404 UTC] Init project `proxy://github.com/liamg/jfather` from sample A.I (rank 8/100)
+[now: 2026-08-09 08:59:37.866094050 UTC] 	> Processing module `github.com/liamg/jfather`
+[now: 2026-08-09 08:59:38.018563312 UTC] 	< Module `github.com/liamg/jfather` SUCCEEDED in 151.592276ms
+[now: 2026-08-09 08:59:38.075455122 UTC] Init project `proxy://github.com/alibaba/ioc-golang` from sample A.III (rank 68/100)
+[now: 2026-08-09 08:59:41.339141359 UTC] 	> Processing module `github.com/alibaba/ioc-golang`
+[now: 2026-08-09 08:59:51.794405682 UTC] 	< Module `github.com/alibaba/ioc-golang` FAILED (6/7) in 10.439535397s
+[now: 2026-08-09 08:59:51.820281942 UTC] Init project `https://github.com/smallstep/certificates` from sample B.I (rank 13/100)
+[now: 2026-08-09 09:00:41.674514801 UTC] 	> Processing module `github.com/smallstep/certificates`
+[now: 2026-08-09 09:01:08.484400373 UTC] 	< Module `github.com/smallstep/certificates` FAILED (0/1) in 26.79332879s
+[now: 2026-08-09 09:01:08.508035235 UTC] Init project `https://github.com/agiledragon/gomonkey` from sample B.III (rank 51/100)
+[now: 2026-08-09 09:01:09.783275279 UTC] 	> Processing module `github.com/agiledragon/gomonkey`
+[now: 2026-08-09 09:01:11.053299286 UTC] 	< Module `github.com/agiledragon/gomonkey` FAILED (0/13) in 1.268559976s
+[now: 2026-08-09 09:01:11.077847611 UTC] Init project `https://github.com/e2b-dev/infra` from sample B.IV (rank 89/100)
+[now: 2026-08-09 09:01:42.569442131 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/orchestrator`
+[now: 2026-08-09 09:02:05.679733869 UTC] 	< Module `github.com/e2b-dev/infra/packages/orchestrator` FAILED (24/3) in 23.088636082s
+[now: 2026-08-09 09:02:05.699200093 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/api`
+[now: 2026-08-09 09:02:11.871342980 UTC] 	< Module `github.com/e2b-dev/infra/packages/api` SUCCEEDED in 6.157483159s
+[now: 2026-08-09 09:02:11.889821450 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/auth`
+[now: 2026-08-09 09:02:12.134439859 UTC] 	< Module `github.com/e2b-dev/infra/packages/auth` SUCCEEDED in 243.130182ms
+[now: 2026-08-09 09:02:12.153805633 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/clickhouse`
+[now: 2026-08-09 09:02:12.263106123 UTC] 	< Module `github.com/e2b-dev/infra/packages/clickhouse` SUCCEEDED in 108.2027ms
+[now: 2026-08-09 09:02:12.282046795 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/client-proxy`
+[now: 2026-08-09 09:02:12.325932824 UTC] 	< Module `github.com/e2b-dev/infra/packages/client-proxy` SUCCEEDED in 43.35152ms
+[now: 2026-08-09 09:02:12.337480062 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/dashboard-api`
+[now: 2026-08-09 09:02:13.156405248 UTC] 	< Module `github.com/e2b-dev/infra/packages/dashboard-api` SUCCEEDED in 816.118934ms
+[now: 2026-08-09 09:02:13.175614537 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/db`
+[now: 2026-08-09 09:02:13.396297553 UTC] 	< Module `github.com/e2b-dev/infra/packages/db` SUCCEEDED in 217.239011ms
+[now: 2026-08-09 09:02:13.416689862 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/envd`
+[now: 2026-08-09 09:02:15.550369320 UTC] 	< Module `github.com/e2b-dev/infra/packages/envd` FAILED (20/1) in 2.126443701s
+[now: 2026-08-09 09:02:15.573393143 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/local-dev`
+[now: 2026-08-09 09:02:15.591260159 UTC] 	< Module `github.com/e2b-dev/infra/packages/local-dev` SUCCEEDED in 17.636352ms
+[now: 2026-08-09 09:02:15.602484438 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/nomad-nodepool-apm`
+[now: 2026-08-09 09:02:15.629133578 UTC] 	< Module `github.com/e2b-dev/infra/packages/nomad-nodepool-apm` SUCCEEDED in 26.248003ms
+[now: 2026-08-09 09:02:15.641345690 UTC] 	> Processing module `github.com/e2b-dev/infra/packages/shared`
+[now: 2026-08-09 09:02:28.316929090 UTC] 	< Module `github.com/e2b-dev/infra/packages/shared` FAILED (2/2) in 12.656409128s
+[now: 2026-08-09 09:02:28.341299541 UTC] 	> Processing module `github.com/e2b-dev/infra/tests/integration`
+[now: 2026-08-09 09:02:29.572405656 UTC] 	< Module `github.com/e2b-dev/infra/tests/integration` FAILED (1/0) in 1.226438321s
+[now: 2026-08-09 09:02:29.598814140 UTC] Init project `https://gitlab.com/purelb/purelb` from sample C.I (rank 20/100)
+[now: 2026-08-09 09:02:33.810361630 UTC] 	> Processing module `gitlab.com/purelb/purelb`
+[now: 2026-08-09 09:02:34.209653256 UTC] 	< Module `gitlab.com/purelb/purelb` SUCCEEDED in 397.395911ms
+[now: 2026-08-09 09:02:34.231652645 UTC] Init project `https://gitlab.com/davidjpeacock/kurly` from sample C.II (rank 37/100)
+[now: 2026-08-09 09:02:35.712997596 UTC] Init project `https://gitlab.com/yawning/obfs4` from sample C.II (rank 29/100)
+[now: 2026-08-09 09:02:37.438426994 UTC] 	> Processing module `gitlab.com/yawning/obfs4`
+[now: 2026-08-09 09:02:38.220362268 UTC] 	< Module `gitlab.com/yawning/obfs4` FAILED (0/23) in 779.053589ms
+[now: 2026-08-09 09:02:38.241916116 UTC] Init project `https://gitlab.com/semkodev/hercules` from sample C.III (rank 69/100)
+[now: 2026-08-09 09:02:46.424575046 UTC] Init project `https://gitlab.com/autovtools/autovrtfm/autovnet` from sample C.III (rank 57/100)
+[now: 2026-08-09 09:02:49.110298671 UTC] 	> Processing module `gitlab.com/autovtools/autovrtfm/autovnet/autovnet/docker/plugins/share`
+[now: 2026-08-09 09:02:49.129614177 UTC] 	< Module `gitlab.com/autovtools/autovrtfm/autovnet/autovnet/docker/plugins/share` FAILED (2/0) in 18.837354ms
+[now: 2026-08-09 09:02:49.142246680 UTC] Init project `https://gitlab.com/passelecasque/propolis` from sample C.IV (rank 79/100)
+[now: 2026-08-09 09:02:50.748235101 UTC] 	> Processing module `gitlab.com/passelecasque/propolis`
+[now: 2026-08-09 09:02:50.854706600 UTC] 	< Module `gitlab.com/passelecasque/propolis` FAILED (0/62) in 105.474078ms
+[now: 2026-08-09 09:02:50.915109169 UTC] Init project `proxy://github.com/ovirt/go-ovirt` from sample A.I (rank 15/100)
+[now: 2026-08-09 09:02:52.090839615 UTC] 	> Processing module `github.com/ovirt/go-ovirt`
+[now: 2026-08-09 09:04:00.216795047 UTC] 	< Module `github.com/ovirt/go-ovirt` FAILED (0/2) in 68.063366871s
+[now: 2026-08-09 09:04:00.280195544 UTC] Init project `proxy://tinygo.org/x/drivers` from sample A.II (rank 25/100)
+[now: 2026-08-09 09:04:08.099344141 UTC] 	> Processing module `tinygo.org/x/drivers`
+[now: 2026-08-09 09:04:08.458479352 UTC] 	< Module `tinygo.org/x/drivers` ABORTED (WORLDS) in 325.48952ms
+[now: 2026-08-09 09:04:08.519754831 UTC] Init project `proxy://github.com/r2day/enum` from sample A.III (rank 68/100)
+[now: 2026-08-09 09:04:10.099091451 UTC] 	> Processing module `github.com/r2day/enum`
+[now: 2026-08-09 09:04:10.106118451 UTC] 	< Module `github.com/r2day/enum` SUCCEEDED in 6.474047ms
+[now: 2026-08-09 09:04:10.151013242 UTC] Init project `proxy://github.com/filecoin-project/venus-market/v2` from sample A.IV (rank 88/100)
+[now: 2026-08-09 09:04:13.829716967 UTC] 	> Processing module `github.com/filecoin-project/venus-market/v2`
+[now: 2026-08-09 09:04:24.224384546 UTC] 	< Module `github.com/filecoin-project/venus-market/v2` FAILED (0/1) in 10.378031772s
+[now: 2026-08-09 09:04:24.257333121 UTC] Init project `https://github.com/OpenListTeam/OpenList` from sample B.I (rank 4/100)
+[now: 2026-08-09 09:04:28.535725037 UTC] 	> Processing module `github.com/OpenListTeam/OpenList`
+[now: 2026-08-09 09:11:14.725378338 UTC] 	< Module `github.com/OpenListTeam/OpenList` FAILED (44/11) in 406.146156882s
+[now: 2026-08-09 09:11:14.755669558 UTC] Init project `https://github.com/openshift/source-to-image` from sample B.II (rank 46/100)
+[now: 2026-08-09 09:11:35.003752254 UTC] 	> Processing module `github.com/openshift/source-to-image`
+[now: 2026-08-09 09:11:36.774503656 UTC] 	< Module `github.com/openshift/source-to-image` SUCCEEDED in 1.610849699s
+[now: 2026-08-09 09:11:36.821332924 UTC] Init project `https://github.com/denisenkom/go-mssqldb` from sample B.III (rank 60/100)
+[now: 2026-08-09 09:11:39.527264094 UTC] 	> Processing module `github.com/denisenkom/go-mssqldb`
+[now: 2026-08-09 09:11:49.698301350 UTC] 	< Module `github.com/denisenkom/go-mssqldb` FAILED (0/2) in 10.155882638s
+[now: 2026-08-09 09:11:49.724210667 UTC] Init project `https://github.com/linweiyuan/go-chatgpt-api` from sample B.IV (rank 78/100)
+[now: 2026-08-09 09:11:51.254856287 UTC] 	> Processing module `github.com/linweiyuan/go-chatgpt-api`
+[now: 2026-08-09 09:11:51.373718969 UTC] 	< Module `github.com/linweiyuan/go-chatgpt-api` SUCCEEDED in 117.843707ms
+[now: 2026-08-09 09:11:51.398814366 UTC] Skip init project `https://gitlab.com/thorchain/thornode` from sample C.I (EXCLUDED)
+[now: 2026-08-09 09:11:51.410522147 UTC] Init project `https://gitlab.com/signald/signald` from sample C.I (rank 8/100)
+[now: 2026-08-09 09:11:54.257575240 UTC] 	> Processing module `gitlab.com/signald/signald`
+[now: 2026-08-09 09:11:54.360645928 UTC] 	< Module `gitlab.com/signald/signald` SUCCEEDED in 102.470434ms
+[now: 2026-08-09 09:11:54.381787851 UTC] Init project `https://gitlab.com/golangdojo/bootcamp` from sample C.IV (rank 83/100)
+[now: 2026-08-09 09:11:56.100144386 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp`
+[now: 2026-08-09 09:11:56.188641405 UTC] 	< Module `gitlab.com/golangdojo/bootcamp` FAILED (1/1) in 82.656298ms
+[now: 2026-08-09 09:11:56.209295626 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/1beginner/4midtermproject1/problem/stage1`
+[now: 2026-08-09 09:11:56.223328651 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/1beginner/4midtermproject1/problem/stage1` SUCCEEDED in 13.749499ms
+[now: 2026-08-09 09:11:56.234624683 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/1beginner/4midtermproject1/problem/stage2`
+[now: 2026-08-09 09:11:56.264445451 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/1beginner/4midtermproject1/problem/stage2` FAILED (0/1) in 29.400633ms
+[now: 2026-08-09 09:11:56.276233664 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/1beginner/4midtermproject1/solution`
+[now: 2026-08-09 09:11:56.321472675 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/1beginner/4midtermproject1/solution` SUCCEEDED in 44.650269ms
+[now: 2026-08-09 09:11:56.332850742 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/2intermediate/1packagemanagement/goworkspaces/project1`
+[now: 2026-08-09 09:11:56.337388960 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/2intermediate/1packagemanagement/goworkspaces/project1` SUCCEEDED in 4.37539ms
+[now: 2026-08-09 09:11:56.348326805 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/2intermediate/1packagemanagement/goworkspaces/project2`
+[now: 2026-08-09 09:11:56.352604511 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/2intermediate/1packagemanagement/goworkspaces/project2` SUCCEEDED in 4.164011ms
+[now: 2026-08-09 09:11:56.363474067 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/3advanced/3webdevelopment/databasesql`
+[now: 2026-08-09 09:11:56.371133575 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/3advanced/3webdevelopment/databasesql` SUCCEEDED in 7.519423ms
+[now: 2026-08-09 09:11:56.381935403 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/3advanced/4finalproject/solution`
+[now: 2026-08-09 09:11:56.425925714 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/3advanced/4finalproject/solution` SUCCEEDED in 43.235986ms
+[now: 2026-08-09 09:11:56.437496496 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/masterclasses/microservices/solution/auth`
+[now: 2026-08-09 09:11:56.475762848 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/masterclasses/microservices/solution/auth` SUCCEEDED in 37.638816ms
+[now: 2026-08-09 09:11:56.487246093 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/masterclasses/microservices/solution/client`
+[now: 2026-08-09 09:11:56.521616782 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/masterclasses/microservices/solution/client` SUCCEEDED in 33.866836ms
+[now: 2026-08-09 09:11:56.537447074 UTC] 	> Processing module `gitlab.com/golangdojo/bootcamp/masterclasses/microservices/solution/healthcheck`
+[now: 2026-08-09 09:11:56.568104754 UTC] 	< Module `gitlab.com/golangdojo/bootcamp/masterclasses/microservices/solution/healthcheck` SUCCEEDED in 30.189916ms
+[now: 2026-08-09 09:11:56.611955071 UTC] Init project `proxy://gopkg.in/flanksource/yaml.v3` from sample A.I (rank 18/100)
+[now: 2026-08-09 09:11:57.411605151 UTC] 	> Processing module `gopkg.in/flanksource/yaml.v3`
+[now: 2026-08-09 09:12:00.643180899 UTC] 	< Module `gopkg.in/flanksource/yaml.v3` FAILED (3/0) in 3.229261333s
+[now: 2026-08-09 09:12:00.700504642 UTC] Init project `proxy://chainmaker.org/chainmaker/utils/v2` from sample A.II (rank 35/100)
+[now: 2026-08-09 09:12:05.674558959 UTC] 	> Processing module `chainmaker.org/chainmaker/utils/v2`
+[now: 2026-08-09 09:12:06.047990083 UTC] 	< Module `chainmaker.org/chainmaker/utils/v2` SUCCEEDED in 371.402629ms
+[now: 2026-08-09 09:12:06.103318961 UTC] Init project `proxy://cloud.google.com/go/apps` from sample A.III (rank 70/100)
+[now: 2026-08-09 09:12:06.694356924 UTC] 	> Processing module `cloud.google.com/go/apps`
+[now: 2026-08-09 09:12:08.363918030 UTC] 	< Module `cloud.google.com/go/apps` SUCCEEDED in 1.660116314s
+[now: 2026-08-09 09:12:08.419930419 UTC] Init project `proxy://alon.kr/x/stack` from sample A.IV (rank 91/100)
+[now: 2026-08-09 09:12:10.907149367 UTC] 	> Processing module `alon.kr/x/stack`
+[now: 2026-08-09 09:12:10.913903883 UTC] 	< Module `alon.kr/x/stack` SUCCEEDED in 6.497611ms
+[now: 2026-08-09 09:12:10.928990859 UTC] Init project `https://github.com/modelcontextprotocol/registry` from sample B.I (rank 17/100)
+[now: 2026-08-09 09:12:35.954442425 UTC] 	> Processing module `github.com/modelcontextprotocol/registry`
+[now: 2026-08-09 09:12:37.768530795 UTC] 	< Module `github.com/modelcontextprotocol/registry` FAILED (1/0) in 1.807386755s
+[now: 2026-08-09 09:12:37.790850887 UTC] 	> Processing module `github.com/modelcontextprotocol/registry/deploy`
+[now: 2026-08-09 09:12:37.870119150 UTC] 	< Module `github.com/modelcontextprotocol/registry/deploy` SUCCEEDED in 78.257583ms
+[now: 2026-08-09 09:12:37.885811726 UTC] Init project `https://github.com/TruthHun/BookStack` from sample B.II (rank 35/100)
+[now: 2026-08-09 09:12:59.135187987 UTC] 	> Processing module `github.com/TruthHun/BookStack`
+[now: 2026-08-09 09:13:02.068139782 UTC] 	< Module `github.com/TruthHun/BookStack` SUCCEEDED in 2.924737663s
+[now: 2026-08-09 09:13:02.091976133 UTC] Init project `https://github.com/basecamp/once` from sample B.III (rank 62/100)
+[now: 2026-08-09 09:13:09.738472745 UTC] 	> Processing module `github.com/basecamp/once/installer`
+[now: 2026-08-09 09:13:09.747503068 UTC] 	< Module `github.com/basecamp/once/installer` SUCCEEDED in 8.832018ms
+[now: 2026-08-09 09:13:09.759930571 UTC] 	> Processing module `github.com/basecamp/once`
+[now: 2026-08-09 09:13:12.409574740 UTC] 	< Module `github.com/basecamp/once` FAILED (4/2) in 2.64532107s
+[now: 2026-08-09 09:13:12.433663415 UTC] 	> Processing module `github.com/basecamp/once/integration/testapp`
+[now: 2026-08-09 09:13:12.438512588 UTC] 	< Module `github.com/basecamp/once/integration/testapp` SUCCEEDED in 4.642642ms
+[now: 2026-08-09 09:13:12.453828919 UTC] Init project `https://github.com/AliyunContainerService/log-pilot` from sample B.IV (rank 76/100)
+[now: 2026-08-09 09:13:26.260188192 UTC] Init project `https://github.com/flashbots/mev-boost` from sample B.IV (rank 76/100)
+[now: 2026-08-09 09:13:28.556178645 UTC] 	> Processing module `github.com/flashbots/mev-boost`
+[now: 2026-08-09 09:13:29.679653577 UTC] 	< Module `github.com/flashbots/mev-boost` SUCCEEDED in 1.12128285s
+[now: 2026-08-09 09:13:29.710875015 UTC] Init project `https://gitlab.com/IsolatedOctopi/greenboost` from sample C.II (rank 39/100)
+[now: 2026-08-09 09:14:04.003902109 UTC] Init project `https://gitlab.com/gitlab-org/gl-openshift/gitlab-runner-operator` from sample C.II (rank 26/100)
+[now: 2026-08-09 09:14:11.622424688 UTC] 	> Processing module `gitlab.com/gitlab-org/gl-openshift/gitlab-runner-operator`
+[now: 2026-08-09 09:14:12.155758201 UTC] 	< Module `gitlab.com/gitlab-org/gl-openshift/gitlab-runner-operator` FAILED (1/0) in 531.292858ms
+[now: 2026-08-09 09:14:12.178583399 UTC] Init project `https://gitlab.com/gitlab-com/gl-security/security-operations/redteam/redteam-public/tools/gitrob` from sample C.III (rank 72/100)
+[now: 2026-08-09 09:14:15.598875216 UTC] 	> Processing module `gitlab.com/gitlab-com/gl-security/security-operations/redteam/redteam-public/tools/gitrob`
+[now: 2026-08-09 09:14:15.861373936 UTC] 	< Module `gitlab.com/gitlab-com/gl-security/security-operations/redteam/redteam-public/tools/gitrob` FAILED (2/0) in 256.740343ms
+[now: 2026-08-09 09:14:15.883652180 UTC] Init project `https://gitlab.com/eduar/go-programming` from sample C.IV (rank 88/100)
+[now: 2026-08-09 09:14:17.466566302 UTC] Init project `https://gitlab.com/moneropay/moneropay` from sample C.IV (rank 84/100)
+[now: 2026-08-09 09:14:19.413634943 UTC] 	> Processing module `gitlab.com/moneropay/moneropay`
+[now: 2026-08-09 09:14:19.603178004 UTC] 	< Module `gitlab.com/moneropay/moneropay` FAILED (2/0) in 188.170348ms
+[now: 2026-08-09 09:14:19.659821672 UTC] Init project `proxy://github.com/michel-laterman/proxy-connect-dialer-go` from sample A.I (rank 14/100)
+[now: 2026-08-09 09:14:20.131399188 UTC] 	> Processing module `github.com/michel-laterman/proxy-connect-dialer-go`
+[now: 2026-08-09 09:14:20.143804631 UTC] 	< Module `github.com/michel-laterman/proxy-connect-dialer-go` SUCCEEDED in 12.029082ms
+[now: 2026-08-09 09:14:20.191555260 UTC] Init project `proxy://github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/ie` from sample A.II (rank 25/100)
+[now: 2026-08-09 09:14:21.902961787 UTC] 	> Processing module `github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/ie`
+[now: 2026-08-09 09:14:21.945929992 UTC] 	< Module `github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/ie` SUCCEEDED in 41.619277ms
+[now: 2026-08-09 09:14:21.991281159 UTC] Init project `proxy://github.com/floatpane/go-openpgp-card-hl` from sample A.III (rank 63/100)
+[now: 2026-08-09 09:14:22.338202776 UTC] 	> Processing module `github.com/floatpane/go-openpgp-card-hl`
+[now: 2026-08-09 09:14:22.386852473 UTC] 	< Module `github.com/floatpane/go-openpgp-card-hl` SUCCEEDED in 48.056005ms
+[now: 2026-08-09 09:14:22.432070577 UTC] Init project `proxy://gitlab.dms3.io/p2p/go-p2p-transport-upgrader` from sample A.IV (rank 93/100)
+[now: 2026-08-09 09:14:54.393407165 UTC] 	> Processing module `gitlab.dms3.io/p2p/go-p2p-transport-upgrader`
+[now: 2026-08-09 09:14:54.433454534 UTC] 	< Module `gitlab.dms3.io/p2p/go-p2p-transport-upgrader` SUCCEEDED in 39.572913ms
+[now: 2026-08-09 09:14:54.448903853 UTC] Init project `https://github.com/multica-ai/multica` from sample B.I (rank 1/100)
+[now: 2026-08-09 09:16:18.431972282 UTC] 	> Processing module `github.com/multica-ai/multica/server`
+[now: 2026-08-09 09:17:40.244680352 UTC] 	< Module `github.com/multica-ai/multica/server` FAILED (301/4) in 81.747267508s
+[now: 2026-08-09 09:17:40.266567709 UTC] Init project `https://github.com/kiali/kiali` from sample B.II (rank 33/100)
+[now: 2026-08-09 09:18:51.346808792 UTC] 	> Processing module `github.com/kiali/kiali`
+[now: 2026-08-09 09:19:02.968803335 UTC] 	< Module `github.com/kiali/kiali` CRASHED in 11.583809864s
+[now: 2026-08-09 09:19:02.996594956 UTC] Init project `https://github.com/earthboundkid/requests` from sample B.III (rank 67/100)
+[now: 2026-08-09 09:19:04.558877261 UTC] 	> Processing module `github.com/earthboundkid/requests`
+[now: 2026-08-09 09:19:04.642367965 UTC] 	< Module `github.com/earthboundkid/requests` SUCCEEDED in 82.39169ms
+[now: 2026-08-09 09:19:04.655086479 UTC] Init project `https://gitlab.com/WhyNotHugo/darkman` from sample C.I (rank 8/100)
+[now: 2026-08-09 09:19:06.346482500 UTC] 	> Processing module `gitlab.com/WhyNotHugo/darkman`
+[now: 2026-08-09 09:19:06.509391460 UTC] 	< Module `gitlab.com/WhyNotHugo/darkman` FAILED (15/0) in 161.672846ms
+[now: 2026-08-09 09:19:06.531332890 UTC] Init project `https://gitlab.com/opennota/tl` from sample C.III (rank 66/100)
+[now: 2026-08-09 09:19:10.875810584 UTC] 	> Processing module `gitlab.com/opennota/tl`
+[now: 2026-08-09 09:19:12.355820295 UTC] 	< Module `gitlab.com/opennota/tl` FAILED (46/5) in 1.476391742s
+[now: 2026-08-09 09:19:12.415641194 UTC] Init project `proxy://github.com/hashicorp/go-discover/provider/gce` from sample A.I (rank 14/100)
+[now: 2026-08-09 09:19:13.058411633 UTC] 	> Processing module `github.com/hashicorp/go-discover/provider/gce`
+[now: 2026-08-09 09:19:13.071696545 UTC] 	< Module `github.com/hashicorp/go-discover/provider/gce` SUCCEEDED in 12.938629ms
+[now: 2026-08-09 09:19:13.118063843 UTC] Init project `proxy://github.com/arana-db/parser` from sample A.II (rank 38/100)
+[now: 2026-08-09 09:19:15.730889019 UTC] 	> Processing module `github.com/arana-db/parser`
+[now: 2026-08-09 09:20:15.583681458 UTC] 	< Module `github.com/arana-db/parser` CRASHED in 59.80875583s
+[now: 2026-08-09 09:20:15.642554734 UTC] Init project `proxy://github.com/udhos/otelconfig` from sample A.III (rank 60/100)
+[now: 2026-08-09 09:20:17.306430860 UTC] 	> Processing module `github.com/udhos/otelconfig`
+[now: 2026-08-09 09:20:17.333433765 UTC] 	< Module `github.com/udhos/otelconfig` FAILED (18/0) in 26.239164ms
+[now: 2026-08-09 09:20:17.377868754 UTC] Init project `proxy://github.com/oarkflow/xsync` from sample A.IV (rank 87/100)
+[now: 2026-08-09 09:20:19.086572179 UTC] 	> Processing module `github.com/oarkflow/xsync`
+[now: 2026-08-09 09:20:19.451906009 UTC] 	< Module `github.com/oarkflow/xsync` SUCCEEDED in 364.181937ms
+[now: 2026-08-09 09:20:19.482007591 UTC] Init project `https://github.com/caddyserver/caddy` from sample B.I (rank 0/100)
+[now: 2026-08-09 09:20:25.531506209 UTC] 	> Processing module `github.com/caddyserver/caddy`
+[now: 2026-08-09 09:20:28.913263434 UTC] 	< Module `github.com/caddyserver/caddy` CRASHED in 3.363008897s
+[now: 2026-08-09 09:20:28.928125709 UTC] Init project `https://github.com/blacktop/ipsw` from sample B.II (rank 35/100)
+[now: 2026-08-09 09:21:03.533723593 UTC] 	> Processing module `github.com/blacktop/ipsw`
+[now: 2026-08-09 09:21:05.610105178 UTC] 	< Module `github.com/blacktop/ipsw` ABORTED (BUILD) in 2.010877788s
+[now: 2026-08-09 09:21:05.639637320 UTC] Init project `https://github.com/danielpaulus/go-ios` from sample B.III (rank 55/100)
+[now: 2026-08-09 09:21:56.200526282 UTC] 	> Processing module `github.com/danielpaulus/go-ios`
+[now: 2026-08-09 09:23:11.320049886 UTC] 	< Module `github.com/danielpaulus/go-ios` FAILED (2/8) in 75.105616406s
+[now: 2026-08-09 09:23:11.344655324 UTC] 	> Processing module `github.com/danielpaulus/go-ios/ncm`
+[now: 2026-08-09 09:23:11.469065149 UTC] 	< Module `github.com/danielpaulus/go-ios/ncm` SUCCEEDED in 123.863915ms
+[now: 2026-08-09 09:23:11.491545407 UTC] 	> Processing module `github.com/danielpaulus/go-ios/restapi`
+[now: 2026-08-09 09:23:11.562235531 UTC] 	< Module `github.com/danielpaulus/go-ios/restapi` FAILED (2/0) in 69.646115ms
+[now: 2026-08-09 09:23:11.579438224 UTC] Init project `https://github.com/kone-net/go-chat` from sample B.IV (rank 95/100)
+[now: 2026-08-09 09:23:16.277778323 UTC] 	> Processing module `github.com/kone-net/go-chat`
+[now: 2026-08-09 09:23:16.390048305 UTC] 	< Module `github.com/kone-net/go-chat` FAILED (1/0) in 110.430252ms
+[now: 2026-08-09 09:23:16.418003271 UTC] Init project `https://gitlab.com/jarv/cmdchallenge` from sample C.I (rank 9/100)
+[now: 2026-08-09 09:24:41.393899854 UTC] 	> Processing module `gitlab.com/jarv/cmdchallenge/cmdchallenge`
+[now: 2026-08-09 09:24:41.571857576 UTC] 	< Module `gitlab.com/jarv/cmdchallenge/cmdchallenge` SUCCEEDED in 176.503829ms
+[now: 2026-08-09 09:24:41.598527892 UTC] Init project `https://gitlab.com/pulsechaincom/pls-faucet` from sample C.II (rank 36/100)
+[now: 2026-08-09 09:24:43.310406812 UTC] 	> Processing module `gitlab.com/pulsechaincom/pls-faucet`
+[now: 2026-08-09 09:24:43.344235041 UTC] 	< Module `gitlab.com/pulsechaincom/pls-faucet` FAILED (4/0) in 32.998153ms
+[now: 2026-08-09 09:24:43.356771237 UTC] Init project `https://gitlab.com/gitlab-org/step-runner` from sample C.III (rank 54/100)
+[now: 2026-08-09 09:25:31.382642708 UTC] 	> Processing module `gitlab.com/gitlab-org/step-runner`
+[now: 2026-08-09 09:25:33.360363150 UTC] 	< Module `gitlab.com/gitlab-org/step-runner` FAILED (3/0) in 1.970070453s
+[now: 2026-08-09 09:25:33.385116307 UTC] 	> Processing module `gitlab.com/gitlab-org/step-runner/pkg/testutil/oci`
+[now: 2026-08-09 09:25:33.400742961 UTC] 	< Module `gitlab.com/gitlab-org/step-runner/pkg/testutil/oci` SUCCEEDED in 15.331046ms
+[now: 2026-08-09 09:25:33.412529853 UTC] Init project `https://gitlab.com/eddiezane/kubectl-gitlab_bootstrap` from sample C.IV (rank 87/100)
+[now: 2026-08-09 09:25:35.228346486 UTC] 	> Processing module `gitlab.com/eddiezane/kubectl-gitlab_bootstrap`
+[now: 2026-08-09 09:25:35.248450344 UTC] 	< Module `gitlab.com/eddiezane/kubectl-gitlab_bootstrap` SUCCEEDED in 19.773526ms
+[now: 2026-08-09 09:25:35.292902888 UTC] Init project `proxy://github.com/wader/gormstore/v2` from sample A.I (rank 21/100)
+[now: 2026-08-09 09:25:35.803807199 UTC] 	> Processing module `github.com/wader/gormstore/v2`
+[now: 2026-08-09 09:25:35.822581781 UTC] 	< Module `github.com/wader/gormstore/v2` FAILED (2/0) in 18.24883ms
+[now: 2026-08-09 09:25:35.866937161 UTC] Init project `proxy://github.com/jonas747/jdshardmanager` from sample A.II (rank 26/100)
+[now: 2026-08-09 09:25:37.949006539 UTC] 	> Processing module `github.com/jonas747/jdshardmanager`
+[now: 2026-08-09 09:25:37.988661924 UTC] 	< Module `github.com/jonas747/jdshardmanager` FAILED (2/0) in 38.970454ms
+[now: 2026-08-09 09:25:38.033488763 UTC] Init project `proxy://github.com/cgrates/kamevapi` from sample A.III (rank 70/100)
+[now: 2026-08-09 09:25:39.686245427 UTC] 	> Processing module `github.com/cgrates/kamevapi`
+[now: 2026-08-09 09:25:39.705183276 UTC] 	< Module `github.com/cgrates/kamevapi` SUCCEEDED in 18.522085ms
+[now: 2026-08-09 09:25:39.750715164 UTC] Init project `proxy://github.com/g-rath/osv-detector` from sample A.IV (rank 83/100)
+[now: 2026-08-09 09:25:45.593664425 UTC] 	> Processing module `github.com/g-rath/osv-detector`
+[now: 2026-08-09 09:25:46.120255775 UTC] 	< Module `github.com/g-rath/osv-detector` SUCCEEDED in 524.31732ms
+[now: 2026-08-09 09:25:46.150993790 UTC] Init project `https://github.com/iawia002/lux` from sample B.I (rank 2/100)
+[now: 2026-08-09 09:25:47.912337133 UTC] 	> Processing module `github.com/iawia002/lux`
+[now: 2026-08-09 09:25:49.904797831 UTC] 	< Module `github.com/iawia002/lux` SUCCEEDED in 1.988121434s
+[now: 2026-08-09 09:25:49.934582728 UTC] Init project `https://github.com/kube-vip/kube-vip` from sample B.II (rank 41/100)
+[now: 2026-08-09 09:25:52.531273084 UTC] 	> Processing module `github.com/kube-vip/kube-vip/testing/e2e/e2e`
+[now: 2026-08-09 09:25:52.537451346 UTC] 	< Module `github.com/kube-vip/kube-vip/testing/e2e/e2e` SUCCEEDED in 5.989838ms
+[now: 2026-08-09 09:25:52.548486420 UTC] 	> Processing module `github.com/kube-vip/kube-vip`
+[now: 2026-08-09 09:26:04.321605296 UTC] 	< Module `github.com/kube-vip/kube-vip` FAILED (10/0) in 11.762594866s
+[now: 2026-08-09 09:26:04.347925938 UTC] 	> Processing module `github.com/kube-vip/kube-vip/demo/server`
+[now: 2026-08-09 09:26:04.354214980 UTC] 	< Module `github.com/kube-vip/kube-vip/demo/server` SUCCEEDED in 6.073605ms
+[now: 2026-08-09 09:26:04.370061818 UTC] Init project `https://github.com/brocaar/chirpstack-network-server` from sample B.III (rank 73/100)
+[now: 2026-08-09 09:26:06.730839283 UTC] 	> Processing module `github.com/brocaar/chirpstack-network-server`
+[now: 2026-08-09 09:26:18.013616413 UTC] 	< Module `github.com/brocaar/chirpstack-network-server` SUCCEEDED in 11.27376339s
+[now: 2026-08-09 09:26:18.044218450 UTC] Init project `https://github.com/nytlabs/streamtools` from sample B.IV (rank 82/100)
+[now: 2026-08-09 09:26:22.958382067 UTC] Init project `https://github.com/STRRL/cloudflare-tunnel-ingress-controller` from sample B.IV (rank 90/100)
+[now: 2026-08-09 09:26:26.018344096 UTC] 	> Processing module `github.com/STRRL/cloudflare-tunnel-ingress-controller`
+[now: 2026-08-09 09:26:26.289807294 UTC] 	< Module `github.com/STRRL/cloudflare-tunnel-ingress-controller` SUCCEEDED in 270.161233ms
+[now: 2026-08-09 09:26:26.313206486 UTC] Init project `https://gitlab.com/NickBusey/HomelabOS` from sample C.I (rank 1/100)
+[now: 2026-08-09 09:26:42.310099649 UTC] 	> Processing module `gitlab.com/NickBusey/HomelabOS`
+[now: 2026-08-09 09:26:42.662574508 UTC] 	< Module `gitlab.com/NickBusey/HomelabOS` SUCCEEDED in 351.599979ms
+[now: 2026-08-09 09:26:42.687991605 UTC] Init project `https://gitlab.com/vk-golang/lectures` from sample C.II (rank 44/100)
+[now: 2026-08-09 09:27:25.952188066 UTC] 	> Processing module `gitlab.com/vk-golang/lectures/05_web_app/6_modules`
+[now: 2026-08-09 09:27:25.957135286 UTC] 	< Module `gitlab.com/vk-golang/lectures/05_web_app/6_modules` SUCCEEDED in 4.558316ms
+[now: 2026-08-09 09:27:25.970887292 UTC] 	> Processing module `gitlab.com/vk-golang/lectures`
+[now: 2026-08-09 09:27:26.487872389 UTC] 	< Module `gitlab.com/vk-golang/lectures` FAILED (18/9) in 502.029182ms
+[now: 2026-08-09 09:27:26.512848342 UTC] 	> Processing module `gitlab.com/vk-golang/lectures/04_net2/06_vendoring`
+[now: 2026-08-09 09:27:26.522233902 UTC] 	< Module `gitlab.com/vk-golang/lectures/04_net2/06_vendoring` SUCCEEDED in 5.360279ms
+[now: 2026-08-09 09:27:26.534027494 UTC] 	> Processing module `gitlab.com/vk-golang/lectures/05_web_app/7_crudapp`
+[now: 2026-08-09 09:27:26.565852534 UTC] 	< Module `gitlab.com/vk-golang/lectures/05_web_app/7_crudapp` FAILED (4/0) in 31.105232ms
+[now: 2026-08-09 09:27:26.578374590 UTC] 	> Processing module `gitlab.com/vk-golang/lectures/06_databases/04_crudapp_db`
+[now: 2026-08-09 09:27:26.609168555 UTC] 	< Module `gitlab.com/vk-golang/lectures/06_databases/04_crudapp_db` FAILED (4/0) in 30.120385ms
+[now: 2026-08-09 09:27:26.621506153 UTC] 	> Processing module `gitlab.com/vk-golang/lectures/09_conf_monitoring/99_hw/server`
+[now: 2026-08-09 09:27:26.632755608 UTC] 	< Module `gitlab.com/vk-golang/lectures/09_conf_monitoring/99_hw/server` SUCCEEDED in 10.604369ms
+[now: 2026-08-09 09:27:26.645045496 UTC] 	> Processing module `gitlab.com/vk-golang/lectures/10_ci_cd/0_docker/my_super_app`
+[now: 2026-08-09 09:27:26.653410782 UTC] 	< Module `gitlab.com/vk-golang/lectures/10_ci_cd/0_docker/my_super_app` SUCCEEDED in 8.170509ms
+[now: 2026-08-09 09:27:26.666638439 UTC] Init project `https://gitlab.com/ambrevar/demlo` from sample C.III (rank 69/100)
+[now: 2026-08-09 09:27:28.280332088 UTC] Init project `https://gitlab.com/gitlab-org/security-products/analyzers/secrets` from sample C.III (rank 53/100)
+[now: 2026-08-09 09:30:10.077044464 UTC] 	> Processing module `gitlab.com/gitlab-org/security-products/analyzers/secrets`
+[now: 2026-08-09 09:30:10.219842077 UTC] 	< Module `gitlab.com/gitlab-org/security-products/analyzers/secrets` SUCCEEDED in 141.36929ms
+[now: 2026-08-09 09:30:10.241758695 UTC] 	> Processing module `gitlab.com/gitlab-org/security-products/analyzers/secrets/qa/fixtures/allowlists`
+[now: 2026-08-09 09:30:10.245570453 UTC] 	< Module `gitlab.com/gitlab-org/security-products/analyzers/secrets/qa/fixtures/allowlists` EMPTY in 0ns
+[now: 2026-08-09 09:30:10.257678115 UTC] Init project `https://gitlab.com/pulsechaincom/prysm-pulse` from sample C.IV (rank 85/100)
+[now: 2026-08-09 09:30:24.354836608 UTC] 	> Processing module `gitlab.com/pulsechaincom/prysm-pulse`
+[now: 2026-08-09 09:30:28.097090631 UTC] 	< Module `gitlab.com/pulsechaincom/prysm-pulse` ABORTED (BUILD) in 3.624590968s
+[now: 2026-08-09 09:30:28.157216469 UTC] Init project `proxy://github.com/luxfi/compress` from sample A.I (rank 16/100)
+[now: 2026-08-09 09:30:29.974142609 UTC] 	> Processing module `github.com/luxfi/compress`
+[now: 2026-08-09 09:30:29.986735936 UTC] 	< Module `github.com/luxfi/compress` SUCCEEDED in 12.240001ms
+[now: 2026-08-09 09:30:30.037713734 UTC] Init project `proxy://github.com/hbstack/header/modules/search` from sample A.II (rank 45/100)
+[now: 2026-08-09 09:30:30.263750145 UTC] 	> Processing module `github.com/hbstack/header/modules/search`
+[now: 2026-08-09 09:30:30.263828914 UTC] 	< Module `github.com/hbstack/header/modules/search` EMPTY in 0ns
+[now: 2026-08-09 09:30:30.315496342 UTC] Init project `proxy://github.com/roadrunner-server/centrifuge/v3` from sample A.III (rank 57/100)
+[now: 2026-08-09 09:30:31.930185474 UTC] 	> Processing module `github.com/roadrunner-server/centrifuge/v3`
+[now: 2026-08-09 09:30:31.963150786 UTC] 	< Module `github.com/roadrunner-server/centrifuge/v3` SUCCEEDED in 32.362094ms
+[now: 2026-08-09 09:30:32.008890777 UTC] Init project `proxy://github.com/giantswarm/personio-go` from sample A.IV (rank 85/100)
+[now: 2026-08-09 09:30:32.278787445 UTC] 	> Processing module `github.com/giantswarm/personio-go`
+[now: 2026-08-09 09:30:32.342243622 UTC] 	< Module `github.com/giantswarm/personio-go` SUCCEEDED in 62.758673ms
+[now: 2026-08-09 09:30:32.358498514 UTC] Skip init project `https://github.com/slimtoolkit/slim` from sample B.I (EXCLUDED)
+[now: 2026-08-09 09:30:32.373359086 UTC] Init project `https://github.com/mislav/hub` from sample B.I (rank 4/100)
+[now: 2026-08-09 09:30:39.886835002 UTC] 	> Processing module `github.com/mislav/hub`
+[now: 2026-08-09 09:31:21.909229327 UTC] 	< Module `github.com/mislav/hub` FAILED (17/1) in 42.017560802s
+[now: 2026-08-09 09:31:21.944816612 UTC] Init project `https://github.com/italiaremote/awesome-italia-remote` from sample B.II (rank 45/100)
+[now: 2026-08-09 09:31:23.978782220 UTC] 	> Processing module `github.com/italiaremote/awesome-italia-remote/src`
+[now: 2026-08-09 09:31:23.989762294 UTC] 	< Module `github.com/italiaremote/awesome-italia-remote/src` SUCCEEDED in 10.599237ms
+[now: 2026-08-09 09:31:24.005601742 UTC] Init project `https://github.com/GoogleCloudPlatform/cloud-builders` from sample B.III (rank 75/100)
+[now: 2026-08-09 09:31:38.861578369 UTC] 	> Processing module `github.com/GoogleCloudPlatform/cloud-builders/gke-deploy`
+[now: 2026-08-09 09:31:39.956376174 UTC] 	< Module `github.com/GoogleCloudPlatform/cloud-builders/gke-deploy` FAILED (0/1) in 846.016744ms
+[now: 2026-08-09 09:31:40.002126672 UTC] 	> Processing module `github.com/GoogleCloudPlatform/cloud-builders/gcs-fetcher`
+[now: 2026-08-09 09:31:40.423689212 UTC] 	< Module `github.com/GoogleCloudPlatform/cloud-builders/gcs-fetcher` SUCCEEDED in 170.997374ms
+[now: 2026-08-09 09:31:40.469877514 UTC] 	> Processing module `github.com/GoogleCloudPlatform/cloud-builders/go/examples/module`
+[now: 2026-08-09 09:31:40.474253826 UTC] 	< Module `github.com/GoogleCloudPlatform/cloud-builders/go/examples/module` SUCCEEDED in 4.181545ms
+[now: 2026-08-09 09:31:40.485269979 UTC] 	> Processing module `github.com/GoogleCloudPlatform/cloud-builders/go/examples/multi_step`
+[now: 2026-08-09 09:31:40.488378770 UTC] 	< Module `github.com/GoogleCloudPlatform/cloud-builders/go/examples/multi_step` SUCCEEDED in 2.952317ms
+[now: 2026-08-09 09:31:40.500043986 UTC] Init project `https://gitlab.com/gitlab-com/runbooks` from sample C.I (rank 2/100)
+[now: 2026-08-09 09:34:37.691274671 UTC] 	> Processing module `gitlab.com/gitlab-com/runbooks/pingdom`
+[now: 2026-08-09 09:34:37.721734752 UTC] 	< Module `gitlab.com/gitlab-com/runbooks/pingdom` FAILED (12/0) in 29.77521ms
+[now: 2026-08-09 09:34:37.733539188 UTC] 	> Processing module `gitlab.com/gitlab-com/runbooks/alertmanager/templates`
+[now: 2026-08-09 09:34:37.733584093 UTC] 	< Module `gitlab.com/gitlab-com/runbooks/alertmanager/templates` EMPTY in 0ns
+[now: 2026-08-09 09:34:37.751023104 UTC] Init project `https://gitlab.com/cgbaker/demo-webapp` from sample C.II (rank 49/100)
+[now: 2026-08-09 09:34:39.221252625 UTC] 	> Processing module `gitlab.com/cgbaker/demo-webapp`
+[now: 2026-08-09 09:34:39.226280695 UTC] 	< Module `gitlab.com/cgbaker/demo-webapp` SUCCEEDED in 4.793999ms
+[now: 2026-08-09 09:34:39.238406408 UTC] Init project `https://gitlab.com/gitlab-org/rust/gitlab-code-parser` from sample C.IV (rank 94/100)
+[now: 2026-08-09 09:36:22.480731619 UTC] 	> Processing module `gitlab.com/gitlab-org/rust/gitlab-code-parser/bindings/go`
+[now: 2026-08-09 09:36:22.568126843 UTC] 	< Module `gitlab.com/gitlab-org/rust/gitlab-code-parser/bindings/go` SUCCEEDED in 86.718268ms
+[now: 2026-08-09 09:36:22.617160901 UTC] Init project `proxy://github.com/Azure/azure-sdk-for-go/sdk/storage/azqueue` from sample A.I (rank 9/100)
+[now: 2026-08-09 09:36:23.245357376 UTC] 	> Processing module `github.com/Azure/azure-sdk-for-go/sdk/storage/azqueue`
+[now: 2026-08-09 09:36:23.628435126 UTC] 	< Module `github.com/Azure/azure-sdk-for-go/sdk/storage/azqueue` SUCCEEDED in 380.858947ms
+[now: 2026-08-09 09:36:23.687095604 UTC] Init project `proxy://github.com/starainrt/astro` from sample A.II (rank 50/100)
+[now: 2026-08-09 09:36:31.931029893 UTC] 	> Processing module `github.com/starainrt/astro`
+[now: 2026-08-09 09:40:43.160153535 UTC] 	< Module `github.com/starainrt/astro` SUCCEEDED in 251.206666804s
+[now: 2026-08-09 09:40:43.217828426 UTC] Init project `proxy://github.com/TechMaster/eris` from sample A.III (rank 51/100)
+[now: 2026-08-09 09:40:46.470255240 UTC] 	> Processing module `github.com/TechMaster/eris`
+[now: 2026-08-09 09:40:46.541459979 UTC] 	< Module `github.com/TechMaster/eris` SUCCEEDED in 70.706857ms
+[now: 2026-08-09 09:40:46.589670613 UTC] Init project `proxy://github.com/sfomuseum/go-sfomuseum-export/v3` from sample A.IV (rank 99/100)
+[now: 2026-08-09 09:40:48.198188789 UTC] 	> Processing module `github.com/sfomuseum/go-sfomuseum-export/v3`
+[now: 2026-08-09 09:40:48.211769851 UTC] 	< Module `github.com/sfomuseum/go-sfomuseum-export/v3` FAILED (0/1) in 12.871503ms
+[now: 2026-08-09 09:40:48.228171798 UTC] Init project `https://github.com/ahmetb/kubectl-tree` from sample B.II (rank 36/100)
+[now: 2026-08-09 09:40:51.270357212 UTC] 	> Processing module `github.com/ahmetb/kubectl-tree`
+[now: 2026-08-09 09:40:51.409787334 UTC] 	< Module `github.com/ahmetb/kubectl-tree` SUCCEEDED in 138.875213ms
+[now: 2026-08-09 09:40:51.443219086 UTC] Init project `https://github.com/go-sonic/sonic` from sample B.III (rank 54/100)
+[now: 2026-08-09 09:41:05.116912567 UTC] 	> Processing module `github.com/go-sonic/sonic`
+[now: 2026-08-09 09:41:23.476435812 UTC] 	< Module `github.com/go-sonic/sonic` FAILED (2/1) in 18.345062039s
+[now: 2026-08-09 09:41:23.510096353 UTC] Init project `https://github.com/tylerstillwater/graceful` from sample B.IV (rank 84/100)
+[now: 2026-08-09 09:41:24.794922610 UTC] Init project `https://github.com/chromedp/examples` from sample B.IV (rank 85/100)
+[now: 2026-08-09 09:41:54.323723798 UTC] 	> Processing module `github.com/chromedp/examples`
+[now: 2026-08-09 09:41:54.396555721 UTC] 	< Module `github.com/chromedp/examples` SUCCEEDED in 71.262841ms
+[now: 2026-08-09 09:41:54.409439513 UTC] Init project `https://gitlab.com/gitlab-org/release-tools` from sample C.I (rank 17/100)
+[now: 2026-08-09 09:42:03.653096858 UTC] 	> Processing module `gitlab.com/gitlab-org/release-tools/metrics`
+[now: 2026-08-09 09:42:03.886717325 UTC] 	< Module `gitlab.com/gitlab-org/release-tools/metrics` FAILED (1/0) in 231.720616ms
+[now: 2026-08-09 09:42:03.913857076 UTC] Init project `https://gitlab.com/xavki/vagrant-stacks-library` from sample C.II (rank 44/100)
+[now: 2026-08-09 09:42:22.506640893 UTC] 	> Processing module `gitlab.com/xavki/vagrant-stacks-library/janusgraph/gogrem-main`
+[now: 2026-08-09 09:42:22.516782450 UTC] 	< Module `gitlab.com/xavki/vagrant-stacks-library/janusgraph/gogrem-main` SUCCEEDED in 9.839099ms
+[now: 2026-08-09 09:42:22.528257647 UTC] 	> Processing module `gitlab.com/xavki/vagrant-stacks-library/scrape_crypto_ch_rmq_graf/golang`
+[now: 2026-08-09 09:42:22.542887249 UTC] 	< Module `gitlab.com/xavki/vagrant-stacks-library/scrape_crypto_ch_rmq_graf/golang` SUCCEEDED in 14.350078ms
+[now: 2026-08-09 09:42:22.555335220 UTC] Init project `https://gitlab.com/thorchain/devops/node-launcher` from sample C.III (rank 56/100)
+[now: 2026-08-09 09:42:25.432540623 UTC] 	> Processing module `gitlab.com/thorchain/devops/node-launcher/ci/images/thornode-snapshot`
+[now: 2026-08-09 09:42:25.458361922 UTC] 	< Module `gitlab.com/thorchain/devops/node-launcher/ci/images/thornode-snapshot` SUCCEEDED in 25.472816ms
+[now: 2026-08-09 09:42:25.476729514 UTC] Init project `https://gitlab.com/kalilinux/packages/powershell-empire` from sample C.IV (rank 96/100)
+[now: 2026-08-09 09:42:59.614588327 UTC] 	> Processing module `gitlab.com/kalilinux/packages/powershell-empire/empire/server/data/agent/gopire`
+[now: 2026-08-09 09:42:59.848033012 UTC] 	< Module `gitlab.com/kalilinux/packages/powershell-empire/empire/server/data/agent/gopire` SUCCEEDED in 232.213806ms
+[now: 2026-08-09 09:42:59.903337878 UTC] Init project `proxy://github.com/thales-e-security/pool` from sample A.I (rank 4/100)
+[now: 2026-08-09 09:43:00.528759136 UTC] 	> Processing module `github.com/thales-e-security/pool`
+[now: 2026-08-09 09:43:00.575448462 UTC] 	< Module `github.com/thales-e-security/pool` SUCCEEDED in 46.166616ms
+[now: 2026-08-09 09:43:00.623081458 UTC] Init project `proxy://github.com/coscms/session-mysqlstore` from sample A.II (rank 40/100)
+[now: 2026-08-09 09:43:02.214247966 UTC] 	> Processing module `github.com/coscms/session-mysqlstore`
+[now: 2026-08-09 09:43:02.229413633 UTC] 	< Module `github.com/coscms/session-mysqlstore` SUCCEEDED in 14.753584ms
+[now: 2026-08-09 09:43:02.273147486 UTC] Init project `proxy://github.com/bunji2/cvssv3` from sample A.III (rank 67/100)
+[now: 2026-08-09 09:43:04.086581345 UTC] Init project `proxy://github.com/vikpe/udpclient` from sample A.III (rank 60/100)
+[now: 2026-08-09 09:43:05.677199870 UTC] 	> Processing module `github.com/vikpe/udpclient`
+[now: 2026-08-09 09:43:05.689897919 UTC] 	< Module `github.com/vikpe/udpclient` SUCCEEDED in 12.435477ms
+[now: 2026-08-09 09:43:05.738520455 UTC] Init project `proxy://github.com/monstercat/pgnull` from sample A.IV (rank 94/100)
+[now: 2026-08-09 09:43:07.223555222 UTC] 	> Processing module `github.com/monstercat/pgnull`
+[now: 2026-08-09 09:43:07.236582960 UTC] 	< Module `github.com/monstercat/pgnull` SUCCEEDED in 12.57601ms
+[now: 2026-08-09 09:43:07.251485375 UTC] Init project `https://github.com/prometheus/prometheus` from sample B.I (rank 0/100)
+[now: 2026-08-09 09:46:03.752113906 UTC] 	> Processing module `github.com/prometheus/prometheus/documentation/examples/remote_storage`
+[now: 2026-08-09 09:46:03.826137302 UTC] 	< Module `github.com/prometheus/prometheus/documentation/examples/remote_storage` FAILED (1/0) in 73.061209ms
+[now: 2026-08-09 09:46:03.839016291 UTC] 	> Processing module `github.com/prometheus/prometheus`
+[now: 2026-08-09 09:46:04.459660972 UTC] 	< Module `github.com/prometheus/prometheus` ABORTED (WORLDS) in 573.121506ms
+[now: 2026-08-09 09:46:04.480483199 UTC] 	> Processing module `github.com/prometheus/prometheus/compliance`
+[now: 2026-08-09 09:46:04.480542631 UTC] 	< Module `github.com/prometheus/prometheus/compliance` EMPTY in 0ns
+[now: 2026-08-09 09:46:04.493109163 UTC] 	> Processing module `github.com/prometheus/prometheus/internal/tools`
+[now: 2026-08-09 09:46:04.499214800 UTC] 	< Module `github.com/prometheus/prometheus/internal/tools` SUCCEEDED in 5.951047ms
+[now: 2026-08-09 09:46:04.511360331 UTC] 	> Processing module `github.com/prometheus/prometheus/web/ui/mantine-ui/src/promql/tools`
+[now: 2026-08-09 09:46:04.521851245 UTC] 	< Module `github.com/prometheus/prometheus/web/ui/mantine-ui/src/promql/tools` SUCCEEDED in 10.27067ms
+[now: 2026-08-09 09:46:04.537708306 UTC] Init project `https://github.com/shadowsocks/v2ray-plugin` from sample B.II (rank 42/100)
+[now: 2026-08-09 09:46:05.888823541 UTC] 	> Processing module `github.com/shadowsocks/v2ray-plugin`
+[now: 2026-08-09 09:46:05.983972295 UTC] 	< Module `github.com/shadowsocks/v2ray-plugin` SUCCEEDED in 94.444431ms
+[now: 2026-08-09 09:46:06.001034721 UTC] Init project `https://github.com/aws/amazon-ecs-cli` from sample B.III (rank 62/100)
+[now: 2026-08-09 09:46:16.916874102 UTC] Init project `https://github.com/gookit/color` from sample B.III (rank 69/100)
+[now: 2026-08-09 09:46:23.367675692 UTC] 	> Processing module `github.com/gookit/color`
+[now: 2026-08-09 09:46:25.123263037 UTC] 	< Module `github.com/gookit/color` SUCCEEDED in 1.753154124s
+[now: 2026-08-09 09:46:25.144966304 UTC] 	> Processing module `github.com/gookit/color/_examples`
+[now: 2026-08-09 09:46:25.159662659 UTC] 	< Module `github.com/gookit/color/_examples` FAILED (1/15) in 13.947409ms
+[now: 2026-08-09 09:46:25.172661516 UTC] Skip init project `https://gitlab.com/esr/reposurgeon` from sample C.I (EXCLUDED)
+[now: 2026-08-09 09:46:25.184715508 UTC] Init project `https://gitlab.com/olaris/olaris-server` from sample C.I (rank 6/100)
+[now: 2026-08-09 09:46:44.449575681 UTC] 	> Processing module `gitlab.com/olaris/olaris-server`
+[now: 2026-08-09 09:46:47.487699733 UTC] 	< Module `gitlab.com/olaris/olaris-server` FAILED (11/2) in 3.031891494s
+[now: 2026-08-09 09:46:47.507585109 UTC] Init project `https://gitlab.com/msvechla/gitlab-lambda-runner` from sample C.II (rank 30/100)
+[now: 2026-08-09 09:46:49.209171825 UTC] 	> Processing module `gitlab.com/msvechla/gitlab-lambda-runner`
+[now: 2026-08-09 09:46:49.219013995 UTC] 	< Module `gitlab.com/msvechla/gitlab-lambda-runner` SUCCEEDED in 9.642635ms
+[now: 2026-08-09 09:46:49.242954630 UTC] Init project `https://gitlab.com/n0r1sk/cursus` from sample C.III (rank 50/100)
+[now: 2026-08-09 09:47:18.760766633 UTC] 	> Processing module `gitlab.com/n0r1sk/cursus`
+[now: 2026-08-09 09:47:18.972554762 UTC] 	< Module `gitlab.com/n0r1sk/cursus` FAILED (0/122) in 210.112691ms
+[now: 2026-08-09 09:47:19.002580808 UTC] 	> Processing module `gitlab.com/n0r1sk/cursus/dependencies/hcichameleon`
+[now: 2026-08-09 09:47:19.027777811 UTC] 	< Module `gitlab.com/n0r1sk/cursus/dependencies/hcichameleon` SUCCEEDED in 24.972221ms
+[now: 2026-08-09 09:47:19.040205462 UTC] 	> Processing module `gitlab.com/n0r1sk/cursus/dependencies/hcicore`
+[now: 2026-08-09 09:47:19.063456108 UTC] 	< Module `gitlab.com/n0r1sk/cursus/dependencies/hcicore` SUCCEEDED in 22.949019ms
+[now: 2026-08-09 09:47:19.075356838 UTC] 	> Processing module `gitlab.com/n0r1sk/cursus/dependencies/hcielastic`
+[now: 2026-08-09 09:47:19.096235527 UTC] 	< Module `gitlab.com/n0r1sk/cursus/dependencies/hcielastic` FAILED (0/2) in 20.482545ms
+[now: 2026-08-09 09:47:19.107907217 UTC] 	> Processing module `gitlab.com/n0r1sk/cursus/dependencies/hcilog`
+[now: 2026-08-09 09:47:19.134208124 UTC] 	< Module `gitlab.com/n0r1sk/cursus/dependencies/hcilog` FAILED (0/10) in 25.862093ms
+[now: 2026-08-09 09:47:19.146645784 UTC] Init project `https://gitlab.com/gitlab-org/caproni` from sample C.IV (rank 94/100)
+[now: 2026-08-09 09:47:26.150897231 UTC] 	> Processing module `gitlab.com/gitlab-org/caproni`
+[now: 2026-08-09 09:47:39.793132486 UTC] 	< Module `gitlab.com/gitlab-org/caproni` FAILED (5/2) in 13.631864779s
+[now: 2026-08-09 09:47:39.854485855 UTC] Init project `proxy://github.com/minio/blake2b-simd` from sample A.I (rank 4/100)
+[now: 2026-08-09 09:47:40.631060800 UTC] Init project `proxy://github.com/amarbel-llc/tommy` from sample A.II (rank 38/100)
+[now: 2026-08-09 09:47:42.874481790 UTC] 	> Processing module `github.com/amarbel-llc/tommy`
+[now: 2026-08-09 09:47:47.354390690 UTC] 	< Module `github.com/amarbel-llc/tommy` SUCCEEDED in 4.476241318s
+[now: 2026-08-09 09:47:47.410837934 UTC] Init project `proxy://github.com/qtumproject/btcd/chaincfg/chainhash` from sample A.IV (rank 94/100)
+[now: 2026-08-09 09:47:49.126178821 UTC] 	> Processing module `github.com/qtumproject/btcd/chaincfg/chainhash`
+[now: 2026-08-09 09:47:49.137305770 UTC] 	< Module `github.com/qtumproject/btcd/chaincfg/chainhash` SUCCEEDED in 10.863444ms
+[now: 2026-08-09 09:47:49.151758489 UTC] Init project `https://github.com/onsi/ginkgo` from sample B.I (rank 12/100)
+[now: 2026-08-09 09:48:04.342581384 UTC] 	> Processing module `github.com/onsi/ginkgo`
+[now: 2026-08-09 09:50:39.442136210 UTC] 	< Module `github.com/onsi/ginkgo` FAILED (18/13) in 155.086604758s
+[now: 2026-08-09 09:50:39.466182659 UTC] 	> Processing module `github.com/onsi/ginkgo/ginkgo/performance/_fixtures/performance_fixture`
+[now: 2026-08-09 09:50:39.470708039 UTC] 	< Module `github.com/onsi/ginkgo/ginkgo/performance/_fixtures/performance_fixture` SUCCEEDED in 4.255563ms
+[now: 2026-08-09 09:50:39.481984063 UTC] 	> Processing module `github.com/onsi/ginkgo/integration/_fixtures/version_mismatch_fixture`
+[now: 2026-08-09 09:50:39.482027334 UTC] 	< Module `github.com/onsi/ginkgo/integration/_fixtures/version_mismatch_fixture` EMPTY in 0ns
+[now: 2026-08-09 09:50:39.495585610 UTC] Init project `https://github.com/hairyhenderson/gomplate` from sample B.II (rank 38/100)
+[now: 2026-08-09 09:50:51.747341108 UTC] 	> Processing module `github.com/hairyhenderson/gomplate`
+[now: 2026-08-09 09:50:54.296615453 UTC] 	< Module `github.com/hairyhenderson/gomplate` FAILED (7/0) in 2.54415099s
+[now: 2026-08-09 09:50:54.317992243 UTC] 	> Processing module `github.com/hairyhenderson/gomplate/docs`
+[now: 2026-08-09 09:50:54.318052437 UTC] 	< Module `github.com/hairyhenderson/gomplate/docs` EMPTY in 0ns
+[now: 2026-08-09 09:50:54.334522910 UTC] Init project `https://github.com/genuinetools/bane` from sample B.IV (rank 86/100)
+[now: 2026-08-09 09:50:58.103803214 UTC] 	> Processing module `github.com/genuinetools/bane`
+[now: 2026-08-09 09:50:58.161021028 UTC] 	< Module `github.com/genuinetools/bane` SUCCEEDED in 9.699481ms
+[now: 2026-08-09 09:50:58.174030343 UTC] Init project `https://gitlab.com/gitlab-org/project-templates/go-micro` from sample C.II (rank 46/100)
+[now: 2026-08-09 09:50:59.813358009 UTC] 	> Processing module `gitlab.com/gitlab-org/project-templates/go-micro`
+[now: 2026-08-09 09:50:59.828774511 UTC] 	< Module `gitlab.com/gitlab-org/project-templates/go-micro` FAILED (0/2) in 15.002053ms
+[now: 2026-08-09 09:50:59.840964726 UTC] Init project `https://gitlab.com/flattrack/flattrack` from sample C.III (rank 58/100)
+[now: 2026-08-09 09:51:28.761462613 UTC] 	> Processing module `gitlab.com/flattrack/flattrack`
+[now: 2026-08-09 09:51:30.469921709 UTC] 	< Module `gitlab.com/flattrack/flattrack` FAILED (53/0) in 1.511717399s
+[now: 2026-08-09 09:51:30.498519695 UTC] Init project `https://gitlab.com/hacklunch/ntsclient` from sample C.IV (rank 89/100)
+[now: 2026-08-09 09:51:32.333292579 UTC] 	> Processing module `gitlab.com/hacklunch/ntsclient`
+[now: 2026-08-09 09:51:32.348319672 UTC] 	< Module `gitlab.com/hacklunch/ntsclient` SUCCEEDED in 14.740814ms
+[now: 2026-08-09 09:51:32.368560591 UTC] No further modules - evaluation complete
+[now: 2026-08-09 09:51:32.370857851 UTC] Wrote results to /home/raf/Documents/KTH/TCYSM/thesis/master-thesis/real-world-eval/results.csv (371 reports)
