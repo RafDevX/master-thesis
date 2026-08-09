@@ -1,8 +1,6 @@
 #import "../utils/dependencies.typ": fletcher, zero
 #import "../utils/enum-refs.typ": enum-label, wrapped-enum-numbering
 
-#let source = what => box(fill: fuchsia, text(fill: black)[#what \[?\]])
-
 = Introduction <intro>
 
 Cybersecurity has become increasingly important over the last decades as society
@@ -155,7 +153,7 @@ This degree project aims to answer the following research questions:
     knowledge, as a starting point before human intervention?
   + #enum-label("rq-find-vulns") Can information flow analysis effectively
     identify true security vulnerabilities in Go projects with minimal
-    configuration, generic and without domain-specific knowledge?
+    configuration, generic and absent of domain-specific knowledge?
   + #enum-label("rq-prevalence") How prevalent are detectable security issues in
     popular production-grade applications and libraries written in Go?
 ]
@@ -219,6 +217,9 @@ primary project goals are established:
 These goals, bound to the project scope, represent the general approach taken in
 order to answer the relevant research questions.
 
+// TODO: strive for usability, soundness, comprehensive, efficiency
+// (adjust subtitle too)
+
 == Contributions
 
 This degree project brings forth a number of noteworthy contributions, all
@@ -226,18 +227,18 @@ developed in connection to the aforementioned research questions and project
 goals. This section presents an overview of each of them, including how they
 relate to each other.
 
-Firstly, *`glowy`,* a Rust library for static analysis of information flows
+First, *`glowy`,* a Rust library for static analysis of information flows
 within Go modules and enforcement of custom security policies. It supports a
 significant number of major Go constructs, allowing invokers to identify
 potential security issues relating to breaches of both confidentiality and
 integrity. If a problem is reported, it is always accompanied by a structured
 representation of all relevant contextual information. Additionally, the
-library's public interface is carefully and exhaustively documented#footnote[The
-  most recent version has its documentation mirrored at
-  #link("https://glowy.rso.pt/").]
-to maximize ease of use and reduce friction for both onboarding and debugging.
+library's public interface is carefully and exhaustively documented
+#footnote[The most recent version has its documentation mirrored at
+  #link("https://glowy.rso.pt").] to maximize ease of use and reduce friction
+for both onboarding and debugging.
 
-Secondly, *`glowy-parser`,* a Rust library capable of parsing source code
+Second, *`glowy-go-parser`,* a Rust library capable of parsing source code
 written in (a subset of) Go, processing raw text into structured @ast nodes
 representing the underlying Go constructs, for easier manipulation. The parser
 is oriented towards this project's specific needs (i.e., information flow
@@ -246,25 +247,28 @@ applications requiring a structured understanding of Go programs. This library
 has extensive unit tests and is used by the `glowy` library to parse each Go
 file in the input module(s).
 
-Thirdly, *`ifc-tests`,* a collection of test suites (written in Go) designed to
-showcase all the relevant behaviors, edge cases, and quirks that need to be
+Third, *`ifc-benchmarks`,* a collection of test suites (written in Go) designed
+to showcase all the relevant behaviors, edge cases, and quirks that need to be
 minded when applying @ifc techniques to Go static analysis. Each suite is a set
 of test cases related to a certain topic (e.g., loops), and each individual test
 case is an independent Go module clearly testing a specific facet of what is
 expected from an analysis tool of this kind. These tests can be used via
 `glowy-cli` (described below), but they also plug directly into the `glowy`
 library's main testing pipeline (managed by `cargo`). Since all test cases are
-written in plain Go source code text, any usage also indirectly tests that the
-`glowy-parser` library works correctly, but this is not a main focus.
+written in plain Go source code text, any usage also indirectly tests that
+Glowy's parser library works correctly, but this is not a main focus. In
+addition, these benchmarks are intentionally implementation-agnostic and thus
+can be used by other or future security tools to verify their correctness and
+soundness with respect to possible means for Go information propagation.
 
-Then, `glowy`'s *Base Security Policy,* a unified @toml:short file codifying
+Fourth, `glowy`'s *Base Security Policy,* a unified @toml:short file codifying
 blanket information source and sink directives in order to provide simple,
 heuristics-based defaults for what is secret, what is public, what is untrusted,
 and what is critical for a normal Go program. This file ships bundled with the
 `glowy` library and its configuration is applied by default unless explicitly
 disabled.
 
-Finally, *`glowy-cli`,* a Rust user-facing @cli application, puts it all
+Fifth, *`glowy-cli`,* a Rust user-facing @cli application, puts it all
 together by allowing stakeholders to orchestrate the analysis of one or more Go
 modules. This tool uses the `glowy` library to analyze the provided input files,
 collecting the reported results and digesting them into user-friendly
@@ -275,9 +279,30 @@ project's needs. Developers, reviewers, and security auditors alike can use
 `glowy-cli` to execute the analyzer and easily understand its output within the
 context of the codebase in question.
 
-#pagebreak()
+Then, *`glowy-eval`,* a higher-level orchestrator designed to automatically
+manage at-scale evaluation of the Glowy analysis pipeline, without the need for
+any human intervention. Also a Rust @cli application, this tool downloads
+real-world Go projects, detects each project's embedded modules, spawns
+`glowy-cli` to analyze each one of them, summarizes the results, and stores all
+relevant data and metadata in a database for aggregate processing. This
+contribution also includes the manual interpreting of the collected
+data, particularly regarding Glowy's estimated usefulness for real Go projects.
 
-These five primary contributions are different components of the same machine:
+Finally, a collection of *datasets listing real-world Go projects* deemed
+relevant or representative according to different metrics. These catalogs of
+Go projects are used as sources from where to select appropriate projects to
+serve as inputs to `glowy-eval`, so that the conclusions drawn from its data are
+awarded greater validity than if selection was conducted through biased, manual
+enumeration, or otherwise employed only subjective drawing.
+
+The `glowy` library, its underlying `glowy-parser`, the `glowy-cli` application,
+and the `ifc-benchmarks` corpus all primarily contribute to @rq-ifc[] and
+@pg-tool[], while Glowy's base security policy is patently related to
+@rq-base-policy[] and @pg-base-policy[]. The real-world Go project datasets and
+the `glowy-eval` tool are directly associated with @rq-find-vulns[] and
+@pg-evaluation[], besides supporting @rq-prevalence[] and @pg-interpret[].
+
+These seven primary contributions are different components of the same machine:
 even though they are each independent and can be useful on their own (including
 for other applications, such as Go-focused research in related fields), they are
 designed to operate together to form the Glowy ecosystem.
@@ -292,24 +317,36 @@ maroon nodes symbolizing static resources, and orange nodes referring to tests.
     import fletcher.shapes: hexagon, pill, rect, trapezium
 
     node((0, 0), [`glowy`], shape: pill, stroke: 2pt + blue)
-    edge("=>", [depends on])
-    node((2, 0), [`glowy-parser`], shape: pill, stroke: blue)
-    edge((0, 0), auto, "<=", label-side: left, [depends on])
+    edge("=>", [employs])
+    node((2, 0), [`glowy-go-parser`], shape: pill, stroke: blue)
+    edge((0, 0), auto, "<=", label-side: left, [employs])
     node((0, 1), [`glowy-cli`], shape: rect, stroke: purple)
-    edge("..|>", stroke: maroon, [uses])
+    edge("..|>", stroke: maroon, [references])
     node((2, 1), [Base Security Policy], shape: trapezium, stroke: maroon)
-    edge((0, 0), (2.5, 1), "..|>", stroke: maroon, [uses])
-    node((-1, 0), [`ifc-tests`], shape: hexagon, stroke: orange)
+    edge(
+      (0, 0.1),
+      (2.5, 1),
+      "..|>",
+      stroke: maroon,
+      label-pos: 70%,
+      label-sep: 8pt,
+      [references],
+    )
+    node((-1, 0), [`ifc-benchmarks`], shape: hexagon, stroke: orange)
     edge(auto, (0, 0), "--|>", stroke: orange, [tests])
     edge((-1.4, 0), (-0.2, 1.1), "--|>", stroke: orange, [tests])
+    node((0, 2), [`glowy-eval`], shape: rect, stroke: purple)
+    edge(auto, (0, 1), "=>", label-side: right, [employs])
+    edge("..|>", stroke: maroon, [references])
+    node((2, 2), [Go Project Datasets], shape: trapezium, stroke: maroon)
   }),
   caption: [Relationship between contributions],
 ) <intro:contributions:relationship>
 
-Put together, these five major pieces form a substantial research contribution
+Put together, these major pieces form a substantial research contribution
 to the areas of Cybersecurity and Information Security, consolidating this
 work's overall relevance and value to both academia and the engineering
-community. In total, these components comprise approximately #zero.num(34000)
+community. In total, these components comprise approximately #zero.num(37000)
 lines of Rust and Go source code (excluding blanks).
 
 == Scope & Limitations <intro:limitations>
@@ -396,15 +433,9 @@ overloading such external servers, including if requested via a `Retry-After`
 
 Secondly, from the very beginning of the project, a commitment has been made and
 upheld to report (via responsible disclosure channels) any and all potential
-security vulnerabilities to the respective project maintainers, if they are
-discovered to be true security issues, especially if exploitable or particularly
-impactful.
-#text(fill: red)[
-  It should be noted, however, that this was never deemed necessary due to no
-  relevant, true vulnerability being found.
-]
-// ^ if the above paragraph becomes smaller, add "... for immediate patching"
-// after "project maintainers" - but it's fine to keep it cut if doesn't fit
+security vulnerabilities to the respective project maintainers for immediate
+patching, if they are discovered to be true security issues, especially if
+exploitable or particularly impactful.
 
 Thirdly, the Glowy library and all other contributions (such as the @cli
 application) are all released as open-source software and artifacts, with the
