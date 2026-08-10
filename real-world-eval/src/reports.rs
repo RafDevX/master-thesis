@@ -392,7 +392,7 @@ impl AnalysisStderrSummary {
                 n_errors += 1;
             } else if line.starts_with("warning[") {
                 n_warnings += 1;
-            } else if !line.starts_with("   | ") {
+            } else if !line.trim_start().starts_with("| ") {
                 // if a line number is provided, then it's actually source code
             } else if line.contains("has label {secret:*}, but") {
                 n_confidentiality_flows += 1;
