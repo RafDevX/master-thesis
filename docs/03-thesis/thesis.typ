@@ -3,6 +3,7 @@
 #import "./utils/code-blocks.typ": setup-codly
 #import "./utils/dependencies.typ": codly, glossarium, kthesis
 #import "./utils/enum-refs.typ": setup-enum-refs
+#import "./utils/tables.typ": setup-tables
 
 #import codly: codly, codly-init
 #import glossarium: make-glossary, print-glossary, register-glossary
@@ -11,6 +12,7 @@
 #show: make-glossary
 #register-glossary(acronyms)
 
+#show: setup-tables
 #show: setup-enum-refs
 #show: setup-algorithms
 #show: codly-init

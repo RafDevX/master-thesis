@@ -2605,14 +2605,15 @@ total.
             + (
               strong(directive.name),
               strong(property.name),
-              table.cell(colspan: 2, fill: black, repeat[---~]),
+              table.cell(colspan: 2, repeat(sym.dot)),
               strong[#{ property.groups.fold(0, (sum, g) => sum + g.amount) }],
             )
+            + (table.hline(stroke: gray + 0.5pt),),
         ))
         .flatten()
         + (
           strong(directive.name),
-          table.cell(colspan: 3, fill: black, repeat[---~]),
+          table.cell(colspan: 3, repeat(sym.dot)),
           strong[#{
             directive
               .properties
@@ -2620,8 +2621,10 @@ total.
               .fold(0, (sum, amount) => sum + amount)
           }],
         )
+        + (table.hline(stroke: gray + 0.5pt),),
     ))
     .flatten()
+    + (table.hline(stroke: 1pt + black),)
     + (
       table.cell(colspan: 4, strong[TOTAL]),
       strong[#{
