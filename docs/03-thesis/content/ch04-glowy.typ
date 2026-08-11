@@ -274,9 +274,9 @@ index supports different lookup strategies for convenience and efficiency).
 Recognized type kinds are:
 - _Opaque,_ representing built-in types (such as `int` or `string`) or otherwise
   any type whose shape could not be resolved and is thus opaque to analysis;
-- _Named,_ associated with the newtype pattern (e.g., `type Wrapper Other`), but
-  storing a reference to the inner type so that its underlying shape is still
-  accessible wherever useful;
+- _Named,_ associated with the newtype pattern (e.g.,
+  ```go type Wrapper Other```), but storing a reference to the inner type so
+  that its underlying shape is still accessible wherever useful;
 - _Pointer,_ similarly holding a reference to its inner type;
 - _Struct,_ nesting per-field type information; and
 - _Map, Slice, Array, Channel, Interface, and Function,_ with no additional
@@ -2715,8 +2715,8 @@ Without the `len` revocation, the entire program would be tainted by the
 
 For analogous reasons, the second and third revocations in
 @glowy:base-policy:revocations register an exception for when a tainted
-environment variable is compared to the empty string (`""`), respectively for
-equality and inequality.
+environment variable is compared to the empty string (```go ""```), respectively
+for equality and inequality.
 
 The three referenced blanket revocation directives handle only hyper-focused
 cases in order to offset other policy directives that would otherwise be too

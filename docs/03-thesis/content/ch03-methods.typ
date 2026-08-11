@@ -478,12 +478,13 @@ extend this project's contributions to support some or all of what is here
 considered out of scope, with varying degrees of difficulty.
 
 Most Go features are supported and considered to be in scope, including but not
-limited to the general usage of control-flow constructs (`if` branching,
-expression and type `switch` statements, `for` loops, labeled and unlabeled
-`break` and `continue` statements, forwards and backwards `goto`, etc.),
-functions, methods, closures and captures, deferred calls, variable and constant
-operations, type assertions, receiving from and sending to channels, and
-component-based operations (slicing, indexing, `struct` field selection, etc.).
+limited to the general usage of control-flow constructs (```go if``` branching,
+expression and type ```go switch``` statements, ```go for``` loops, labeled and
+unlabeled ```go break``` and ```go continue``` statements, forwards and
+backwards ```go goto```, etc.), functions, methods, closures and captures,
+deferred calls, variable and constant operations, type assertions, receiving
+from and sending to channels, and component-based operations (slicing, indexing,
+```go struct``` field selection, etc.).
 
 Nevertheless, several other features or patterns are not considered, as they
 are deemed too complex to be supported in an initial prototype. This section
@@ -524,9 +525,10 @@ analysis.
 In general, only pure, base Go is considered for this degree project. Assembly
 implementations, plugins#footnote(link("https://pkg.go.dev/plugin")), reflection
 #footnote(link("https://pkg.go/dev/reflect")), finalizers and pointer cleanup
-functions, signal handling, and `//go:linkname` directives for arbitrary linking
-are not modeled, since they would require extremely complex handling, as well as
-much more contextual information, leading to greatly reduced performance.
+functions, signal handling, and ```go //go:linkname``` directives for arbitrary
+linking are not modeled, since they would require extremely complex handling, as
+well as much more contextual information, leading to greatly reduced
+performance.
 
 All functions and methods without known implementations, such as those from
 external packages not under analysis or from `cgo`-powered @ffi mechanisms, are

@@ -190,12 +190,12 @@ only execute for certain code paths. For example:
 ) <bg:ifc:flows:implicit:example>
 
 Line 4 of the above Go snippet is a simple assignment that binds a constant
-value (`true`) to `isEven`, but though it may seem an innocuous operation at
-first, it still represents a security problem because of what implicit
+value (```go true```) to `isEven`, but though it may seem an innocuous operation
+at first, it still represents a security problem because of what implicit
 information can be inferred from its execution: an attacker can observe `isEven`
-and determine that `secret` is an even number if the former's value is `true`,
-as that is the only possible reason for the highlighted assignment to have
-occurred.
+and determine that `secret` is an even number if the former's value is
+```go true```, as that is the only possible reason for the highlighted
+assignment to have occurred.
 
 The case where `secret` is odd is more challenging to detect, as no operations
 in its respective execution branch are problematic, but it is nevertheless still
@@ -1183,11 +1183,11 @@ goroutines into dynamically-managed @os threads, growing and shrinking each of
 their stacks' memory allocations as necessary, which powers a very
 resource-efficient mechanism, without any manual developer intervention @gofaq.
 
-Syntactically, they are deployed using `go` statements, which enclose function
-calls; `go` statements cause the associated function call to be executed in a
-separate goroutine, i.e., in another thread of execution. The invoking
-goroutine evaluates the call's arguments, but then does not wait for the
-function to return, and just continues executing the subsequent statements.
+Syntactically, they are deployed using ```go go``` statements, which enclose
+function calls; ```go go``` statements cause the associated function call to be
+executed in a separate goroutine, i.e., in another thread of execution. The
+invoking goroutine evaluates the call's arguments, but then does not wait for
+the function to return, and just continues executing the subsequent statements.
 
 #codly(highlighted-lines: (2,))
 #figure(
@@ -1199,7 +1199,7 @@ function to return, and just continues executing the subsequent statements.
   caption: [Example of spawning a new goroutine],
 ) <bg:go:overview:goroutines:example>
 
-@bg:go:overview:goroutines:example above shows an example of using a `go`
+@bg:go:overview:goroutines:example above shows an example of using a ```go go```
 statement (highlighted) to induce the concurrent handling of two invocations of
 `fmt.Println`.
 
@@ -1309,22 +1309,22 @@ receive.
 Finally, channels can be _closed_ to indicate that no more values will be sent,
 as seen in @bg:go:overview:channels:buffered above. Receiving from a closed
 channel (after receiving any pending values, if the channel is buffered) never
-blocks and yields the element type's zero value (e.g., `0` for `int`). This is
-especially useful to signal termination to for-range loops on channels, as
-otherwise they would block forever, thus allowing patterns such as the one used
-at the end of @bg:go:overview:channels:buffered.
+blocks and yields the element type's zero value (e.g., ```go 0``` for `int`).
+This is especially useful to signal termination to for-range loops on channels,
+as otherwise they would block forever, thus allowing patterns such as the one
+used at the end of @bg:go:overview:channels:buffered.
 
 #pagebreak()
 
 ==== Communication Selection
 
 The final major language primitive for supporting concurrent programming is
-`select` statements, which allow combining multiple channel operations. A
-`select` statement defines multiple communication cases and, when executed,
-chooses exactly one of them to proceed.
+```go select``` statements, which allow combining multiple channel operations. A
+```go select``` statement defines multiple communication cases and, when
+executed, chooses exactly one of them to proceed.
 
-A single `default` case may be provided, with all remaining cases corresponding
-to channel send or receive operations.
+A single ```go default``` case may be provided, with all remaining cases
+corresponding to channel send or receive operations.
 
 #figure(
   ```go
@@ -1343,27 +1343,28 @@ to channel send or receive operations.
     fmt.Println("Select executed before both sends")
   }
   ```,
-  caption: [Example usage of `select` statement],
+  caption: [Example usage of ```go select``` statement],
 ) <bg:go:overview:select:basic>
 
 In the example above, @bg:go:overview:select:basic, either of the three
 `fmt.Println` may execute depending on parallelism and scheduling, but Go
-guarantees that exactly one of them will execute. In general, `select` operates
-as follows:
+guarantees that exactly one of them will execute. In general, ```go select```
+operates as follows:
 - if exactly one case is ready (i.e., a receive or send would not block), then
   that case is selected;
 - if more than one case is ready, one of them is selected pseudo-randomly;
-- if no case is ready and there is a `default`, it is selected; and
-- if no case is ready and there is no `default`, the `select` statement blocks
-  the current goroutine until any of the cases is ready.
+- if no case is ready and there is a ```go default```, it is selected; and
+- if no case is ready and there is no ```go default```, the ```go select```
+  statement blocks the current goroutine until any of the cases is ready.
 
 Importantly, cases can appear in any order, and no priority is given to those
 first in the source code; if multiple cases are are ready upon selection, all
 those cases have an equal probability of being chosen.
 
-Moreover, `select` statements are frequently used in event loops, capturing the
-next available value from multiple sources so that it may be processed before
-the next iteration. @bg:go:overview:select:event exemplifies this pattern.
+Moreover, ```go select``` statements are frequently used in event loops,
+capturing the next available value from multiple sources so that it may be
+processed before the next iteration. @bg:go:overview:select:event exemplifies
+this pattern.
 
 #figure(
   ```go
@@ -1389,11 +1390,11 @@ the next iteration. @bg:go:overview:select:event exemplifies this pattern.
     }
   }
   ```,
-  caption: [Example event loop using `select`],
+  caption: [Example event loop using ```go select```],
 ) <bg:go:overview:select:event>
 
-Overall, `select` statements can prove very useful when orchestrating tasks at a
-higher level, especially when combined with other constructs.
+Overall, ```go select``` statements can prove very useful when orchestrating
+tasks at a higher level, especially when combined with other constructs.
 
 ==== Closures <bg:go:overview:closures>
 
@@ -1433,14 +1434,15 @@ binding, even if it was changed after the closure's definition.
 
 ==== Structs, Embedding, and Promotions <bg:go:overview:structs>
 
-Go supports C-style `struct` datatypes, aggregating typed _fields_ under a
-common structure. Each field declaration may specify an optional tag, which is a
-string literal exposed via reflection @api:pl, commonly used for configuring
+Go supports C-style ```go struct``` datatypes, aggregating typed _fields_ under
+a common structure. Each field declaration may specify an optional tag, which is
+a string literal exposed via reflection @api:pl, commonly used for configuring
 external functionality operating on struct instances.
 
 Fields are accessed through selection operations of the form `x.f`, where `x`
 is an expression corresponding to a struct value and `f` is an identifier
-matching a declared field name. Structs are initialized using `struct` literals.
+matching a declared field name. Structs are initialized using ```go struct```
+literals.
 
 A distinctive Go feature is _embedded fields,_ through which another struct is
 embedded so that its fields are accessible from the first through its
@@ -1514,9 +1516,9 @@ $I$ (which defines $m$) will actually invoke $m$'s implementation for $v$'s
 concrete type $T$ as determined at run-time.
 
 The predeclared identifier `any` is syntactic sugar for the empty interface,
-`interface{}`, which all types necessarily implement. Other, more complex kinds
-of interfaces exist, but they are omitted here for simplicity, especially given
-that the base concept is essentially the same.
+```go interface{}```, which all types necessarily implement. Other, more complex
+kinds of interfaces exist, but they are omitted here for simplicity, especially
+given that the base concept is essentially the same.
 
 ==== Build-Tag Constraints <bg:go:overview:build-constraints>
 
@@ -1532,12 +1534,13 @@ semantics), or represent a well-known compilation parameter, such as the
 target @os (usually denoted `GOOS`), the target architecture (`GOARCH`), or the
 compiler being used (one of `gc` or `gccgo`), among others.
 
-Constraints are primarily specified using a `//go:build` comment at the top of
-the applicable source file. For example, a provided build constraint comment of
-`//go:build (linux && amd64) || gccgo` indicates that the file in question
-should only be included for compilation when targeting Linux systems using an
-AMD64 instruction-set architecture, or when using the `gccgo` compiler, possibly
-because the file contains non-portable code. In all other cases, it is omitted.
+Constraints are primarily specified using a ```go //go:build``` comment at the
+top of the applicable source file. For example, a provided build constraint
+comment of ```go //go:build (linux && amd64) || gccgo``` indicates that the file
+in question should only be included for compilation when targeting Linux systems
+using an AMD64 instruction-set architecture, or when using the `gccgo` compiler,
+possibly because the file contains non-portable code. In all other cases, it is
+omitted.
 
 Typically, two or more complementing source files implement the same interface
 (e.g., declare the same top-level symbols) using mutually exclusive build
@@ -1546,17 +1549,17 @@ constraints, so that relying code can transparently invoke platform-specific
 low-level function interacting directly with @os functionality might be
 implemented thrice, for each of `linux`, `darwin`, and `windows`.
 
-In addition to `//go:build` comments, an alternative legacy form of multiple
-`// +build` comments is also recognized as declaring build constraints, though
-using a different syntax. When formatting a file, the Go toolchain automatically
-adds an equivalent `//go:build` if only `// +build` directives are present,
-since the former are always preferred and the latter are supported purely
-for legacy compatibility.
+In addition to ```go //go:build``` comments, an alternative legacy form of
+multiple ```go // +build``` comments is also recognized as declaring build
+constraints, though using a different syntax. When formatting a file, the Go
+toolchain automatically adds an equivalent ```go //go:build``` if only
+```go // +build``` directives are present, since the former are always preferred
+and the latter are supported purely for legacy compatibility.
 
 Finally, simple constraints may also be specified via a filename suffix before
 the `.go` extension using `GOOS` or `GOARCH` names. For example, a file named
 `utils_windows.go` will only be included when Windows is the target @os,
-without any need for an explicit `//go:build` directive.
+without any need for an explicit ```go //go:build``` directive.
 
 ==== Foreign Implementations
 
