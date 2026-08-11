@@ -45,7 +45,8 @@ patterns.
 
 Glowy is made up of the following principal components, each its own independent
 Rust crate#footnote[Crates are Rust's fundamental unit for compilation,
-  versioning, and dependency management, existing at a similar level of abstraction to Go modules.]:
+  versioning, and dependency management, existing at a similar level of
+  abstraction to Go modules.]:
 - the Glowy library, including the core taint analysis engine;
 - the Glowy @cli application, optimized for end-user usability; and
 - the Glowy parser, for translating Go files into @ast:pl.
@@ -131,7 +132,7 @@ described in more detail in @glowy:construct:build-constraints.
 However, while still useful to understand the general orchestration at a
 birds-eye view, @glowy:design:workflow:overview is very high-level,
 encapsulating most of the workload and complexity under a single step on
-@glowy:design:workflow:overview:analysis. The remainder of the present Chapter
+@glowy:design:workflow:overview:analysis. The remainder of the present chapter
 elaborates on each applicable point, especially that step.
 
 == Analysis Procedure <glowy:procedure>
@@ -288,7 +289,7 @@ This information is derived from type declarations at the package level.
 At any point during the analysis, if a problem of any kind is identified, it can
 be reported to the global Problem Set $Pi$ to later be included in the analysis'
 output. This behavior is preferable to a pipeline-interrupting abort (such as
-the more idiomatic cascading `Result` pattern in Rust, or exceptions in
+the more idiomatic cascading ```rust Result``` pattern in Rust, or exceptions in
 Java/Python) because this allows analysis to proceed so that problems can be
 surfaced to consumers as an aggregate, rather than one at a time.
 
@@ -346,8 +347,8 @@ state and surrounding context.
 
 This includes, among other datapoints, the relative path of the file currently
 undergoing processing, as well as various internal state for the
-necessarily-decentralized handling of `goto` statements, range functions, and
-per-iteration loop bindings.
+necessarily-decentralized handling of ```go goto``` statements, range functions,
+and per-iteration loop bindings.
 
 #pagebreak()
 
@@ -369,7 +370,7 @@ order as they were already listed in $TT_cal(P)$, i.e., they are kept in the
 same order that they were registered to the analyzer.
 
 The ordering operation requires a graph with packages as nodes and dependency
-relationships (from `import` directives) as edges. However, rather than
+relationships (from ```go import``` directives) as edges. However, rather than
 calculating the entire graph, it is sufficient to make accessible some specific
 information about the graph; in particular, it is necessary to know how many
 other packages each package imports (DependencyCounts) and what other packages
@@ -550,7 +551,8 @@ declarations, and so on until the @ast tree's leaf nodes are reached.
   + Partition $TT_cal(P)$ by package into an ordered set of blocks $BB_cal(P)$
   + *for each* $b in BB_cal(P):$
     + #lovelace.line-label(<glowy:design:procedure:stage2:taint-pass:phase>)
-      *for each* $omega in Omega:$ #h(1fr) $italic(underline((Omega "is defined below")))$
+      *for each* $omega in Omega:$
+      #h(1fr) $italic(underline((Omega "is defined below")))$
       + *for each* $cal(T)_cal(F) in b:$
         + $"visit_source_file"_omega (cal(T)_cal(F))$
 ]) <glowy:design:procedure:stage2:taint-pass>
@@ -672,26 +674,28 @@ operated on by a source, or representing the propagation of taint originating
 from other values initially subject to a source.
 
 This control may target any constant, variable, or function declaration, as well
-as any assignment (including complex assignments, such as `a += b`), and send
-statements (such as `ch <- x`). Some of these are associated with a right-value,
-in which case its label $L$ is preserved and not overwritten; for bindings
-(constants and variables), this corresponds to the specified initialization
-expression (or $bot$ if the declaration is not initialized, since a type's
-zero-value has no taint), for assignments it is the right-value being assigned
-to the mutation left-value, and for send statements it is the value being sent.
-Is is always considered $bot$ for function declarations, as the source's effect
-is in that case applied upon function access, including for each returned
-value's taint at invocation sites, since calls necessarily constitute access.
+as any assignment (including complex assignments, such as ```go a += b```), and
+send statements (such as ```go ch <- x```). Some of these are associated with a
+right-value, in which case its label $L$ is preserved and not overwritten; for
+bindings (constants and variables), this corresponds to the specified
+initialization expression (or $bot$ if the declaration is not initialized, since
+a type's zero-value has no taint), for assignments it is the right-value being
+assigned to the mutation left-value, and for send statements it is the value
+being sent. Is is always considered $bot$ for function declarations, as the
+source's effect is in that case applied upon function access, including for each
+returned value's taint at invocation sites, since calls necessarily constitute
+access.
 
 Sources are therefore construct-specific controls instructing the analyzer to
-increase an existing label $L$ by the source's configured label, $cal(L)_"Source"$, instead considering the new combined security label
+increase an existing label $L$ by the source's configured label,
+$cal(L)_"Source"$, instead considering the new combined security label
 
 $ L' = L union.sq cal(L)_"Source" $
 
 for the purposes of the underlying operation.
 
-For example, if an assignment `a = b` is marked as an information source with
-inherent label $cal(L)_"Source"$, then `a`'s taint is updated to hold label
+For example, if an assignment ```go a = b``` is marked as an information source
+with inherent label $cal(L)_"Source"$, then `a`'s taint is updated to hold label
 
 $ L_a = L_b union.sq cal(L)_"Source" union.sq beta $
 
@@ -932,7 +936,8 @@ to report problems with much more detailed information.
 Backtraces are defined recursively, as they comprise trees where each instance
 is the composition of its children complemented by additional context, as
 relevant especially for problem reporting and in-depth understanding of taint
-encountered at policy enforcement checks. Each label backtrace tracks the following properties:
+encountered at policy enforcement checks. Each label backtrace tracks the
+following properties:
 - *Kind:* the type of operation causing the present label attribution, such as
   Assignment, Function Parameter, or Branch;
 - *Label:* the security label associated with a piece of information;
@@ -968,7 +973,7 @@ possible, they enforce the following two invariants over their children:
     forall i, j, quad i != j and max(i, j) < \#B space.third ==> space.third
     L_B_i inter.sq L_B_j = bot
   $
-  where $B$ is a backtrace and $B_i$ its $i$th child (zero-indexed).
+  where $B$ is a backtrace and $B_i$ its $i$#super[th] child (zero-indexed).
 
 In addition, specialized pruning is performed upon construction in an attempt to
 keep backtraces more shallow, manageable, and efficient, since otherwise their
@@ -1015,8 +1020,9 @@ The following broad value shapes are supported:
   use with special language constructs that present differing cardinality
   depending on where they are used;
   - For example, indexing from a map can yield either one or two values
-    (e.g., `v = m[k]` or `v, ok = m[k]`), represented here as an expandable
-    value with primary corresponding to `v` and `ok` as the single secondary.
+    (e.g., ```go v = m[k]``` or ```go v, ok = m[k]```), represented here as an
+    expandable value with primary corresponding to `v` and `ok` as the single
+    secondary.
 - *Möbius:* represents an infinite strip expandable to any cardinality based on
   a single encapsulated value, commonly used to support blackboxing;
   - Optional overrides allow per-index precision when more is known.
@@ -1040,16 +1046,17 @@ evaluation of statically-known values and expressions.
 
 This mechanism is provided as a best-effort improvement to precision, only
 supporting very simple constant expressions, especially for literal composition
-with an obvious result. For example, the expression `2 + 3` is recognized as
-evaluating to the constant integer `5`.
+with an obvious result. For example, the expression ```go 2 + 3``` is recognized
+as evaluating to the constant integer ```go 5```.
 
-Besides the `nil` identifier and isolated boolean, integer, and string literals,
-some degree of manipulation is modeled, including:
-- the identity operator (e.g., `+3` is `3`);
-- string concatenation (e.g., `"a" + "b"` is `"ab"`);
-- constant equality and inequality (e.g., `(2 + 3) == (3 + 2)` is `true`);
-- logical operations (e.g., `true && false` is `false`); and
-- calculations between integer constants (e.g., `5 * 5` is `25`).
+Besides the ```go nil``` identifier and isolated boolean, integer, and string
+literals, some degree of manipulation is modeled, including:
+- the identity operator (e.g., ```go +3``` is ```go 3```);
+- string concatenation (e.g., ```go "a" + "b"``` is ```go "ab"```);
+- constant equality and inequality (e.g., ```go (2 + 3) == (3 + 2)``` is
+  ```go true```);
+- logical operations (e.g., ```go true && false``` is ```go false```); and
+- calculations between integer constants (e.g., ```go 5 * 5``` is ```go 25```).
 
 When a computation result would surpass numeric bounds, no constant value is
 recognized, rather than a different (e.g., overflowing) number being used, to
@@ -1106,7 +1113,8 @@ not used anywhere in the library (or any of the other contributions), as
 enforced at the compiler level by a `#![deny(unsafe_code)]` lint.
 
 The main exported interface is the `Analyzer` type, supporting different kinds
-of initialization and configuration, so as to suit a variety of use cases. It is also through `Analyzer` that the topmost-level analysis mechanisms are
+of initialization and configuration, so as to suit a variety of use cases. It is
+also through `Analyzer` that the topmost-level analysis mechanisms are
 implemented, deferring specific steps to other private modules.
 
 Analysis in `glowy` is implemented according to the theoretical procedure
@@ -1239,7 +1247,8 @@ is its construction of rich error and warning diagnostics, including annotated
 source code snippets and clear but concise tailored explanatory messages. For
 policy violations, the complete propagation chain from source to sink is shown,
 allowing stakeholders to easily identify the issue. For example,
-@glowy:impl:cli:diagnostic (below) shows a real diagnostic output from analysis of a real-world project, taken from a longer output report.
+@glowy:impl:cli:diagnostic (below) shows a real diagnostic output from analysis
+of a real-world project, taken from a longer output report.
 
 #cmd-output(
   read("../assets/openlist.ansi"),
@@ -1466,7 +1475,8 @@ at keys `sources`, `revocations`, `allow_sinks` and `deny_sinks` are
 deserialized into typed Rust representations following documented procedures,
 with blanket directive targets in particular being parsed from a well-formed
 string conformant to what is essentially a minimal and well-documented
-#footnote(link("https://glowy.rso.pt/glowy/policy/struct.BlanketDirectiveTarget.html#parsing-and-deserializing")) @dsl.
+#footnote(link("https://glowy.rso.pt/glowy/" + //
+"policy/struct.BlanketDirectiveTarget.html#parsing-and-deserializing")) @dsl.
 
 #codly(highlights: ((line: 2, start: 2, end: 27),))
 #figure(
@@ -1527,7 +1537,8 @@ label is used.
 
 This is a convenience aimed at simplifying security policies by keeping them
 more concise, given that confidentiality and integrity are two very common
-concerns when applying taint analysis, but the referenced axes are otherwise not given any special treatment besides the stated shorthand construction. Such
+concerns when applying taint analysis, but the referenced axes are otherwise not
+given any special treatment besides the stated shorthand construction. Such
 behavior is supported for all directives, including in source-code annotations
 and in `glowy.toml` files.
 
@@ -1563,8 +1574,8 @@ grossly imprecise) in general for three reasons:
   values and each depends on different provided inputs.
 + A function or method's returned values, or any blackboxed value in general,
   depends on other input than expected by the blackbox modeling, such as in the
-  case of `const Exported = secret` in an external dependency, thus comprising
-  an unsound underapproximation.
+  case of ```go const Exported = secret``` in an external dependency, thus
+  comprising an unsound underapproximation.
 + A function or method's unknown implementation, or a declared binding's
   unknown initialization expression, have side effects that would ordinarily
   result in the application of policy enforcement checks but do not since their
@@ -1608,8 +1619,8 @@ in @bg:go:overview:org is not necessarily related to the package path.
 
 If the package exists in the codebase under analysis, its native name is
 already available in its respective Package Scope Envelope stored in the Symbol
-Table, as originally extracted from its files' `package` clauses. In that case,
-the inferred qualifier is always set correctly.
+Table, as originally extracted from its files' ```go package``` clauses. In that
+case, the inferred qualifier is always set correctly.
 
 Otherwise, for external dependencies, the package path is the only available
 piece of information, so inference must assume the package name can be derived
@@ -1626,7 +1637,8 @@ as a `go-`/`-go` or `lib-`/`-lib` prefix/suffix, as those generally do not
 correspond to the declared root package name, representing only a naming
 artifact for the project's publication repository.
 
-In addition, the Symbol Table stores a set of package paths corresponding to the current file's wildcard imports (dot-imports). These have no associated
+In addition, the Symbol Table stores a set of package paths corresponding to the
+current file's wildcard imports (dot-imports). These have no associated
 qualifier and cannot be referenced by qualified operand names, instead having
 all its exported members directly accessible by name.
 
@@ -1660,7 +1672,8 @@ expressions based on contextual information, namely depending on whether the
 selection base corresponds to a known package qualifier.
 
 In particular, the implementation relies on a special shape denoted Package Ref,
-additional to the ones listed in @glowy:primitives:shapes, for the pseudo-values obtained from accessing a qualifier as if an operand name. Such a shape does not
+additional to the ones listed in @glowy:primitives:shapes, for the pseudo-values
+obtained from accessing a qualifier as if an operand name. Such a shape does not
 support any other operations besides selections, which in fact correspond to an
 access to a qualified operand name. Package Ref values are thus treated
 specially by the selection handling visitor, which redirects evaluation to the
@@ -1671,11 +1684,12 @@ operand name visitor.
 // starting qualification required to exclude receive
 In general, unary operations simply relay their inner value's existing label, as
 they do not perform any operation capable of modifying taint. For example, the
-value associated with expression `!x` has the same label as for `x`.
+value associated with expression ```go !x``` has the same label as for `x`.
 
 Binary operations similarly combine their operands' labels, as expected. For
-example, the label of `x + y` is equivalent to $L_X inter.sq L_Y$, where $L_X$
-and $L_Y$ are the labels derived for expressions `x` and `y`, respectively.
+example, the label of ```go x + y``` is equivalent to $L_X inter.sq L_Y$, where
+$L_X$ and $L_Y$ are the labels derived for expressions `x` and `y`,
+respectively.
 
 For short-circuiting binary operations (i.e., where the operator is either
 logical AND, `&&`, or logical OR, `||`), the left operand's evaluated label is
@@ -1691,15 +1705,16 @@ is applicable.
 === Branching <glowy:constructs:branching>
 
 For simplicity and to prevent an explosion of memory usage, Glowy does not
-handle split control flow regions (such as the different arms of an `if`
+handle split control flow regions (such as the different arms of an ```go if```
 statement) independently and then union the two results.
 
 Instead, upon mutation, it heuristically determines when to perform strong
 updates (overriding) and when to perform weak updates (adding to but not
 replacing taint). Concretely, a weak update is always performed unless both:
 - the target symbol was declared within the current control-flow split; and
-- the assignment type is simple (e.g., `x = 2`, rather than `x += 2` or `x++`,
-  with the latter being considered syntactic sugar for `x = x + 1`).
+- the assignment type is simple (e.g., ```go x = 2```, rather than
+  ```go x += 2``` or ```go x++```, with the latter being considered syntactic
+  sugar for ```go x = x + 1```).
 
 Such a policy is sound, but it may also be overconservative in some rare cases,
 as illustrated by @bg:taint:flow-sensitivity:weak in @bg:taint:flow-sensitivity,
@@ -1710,8 +1725,8 @@ it tainted).
 
 When branching on a condition, its calculated label is always pushed to the
 branch label $beta$ until the end of the construct. For instance, the body of an
-`else if` is subject to the branch label of all the conditions above it, not
-just its own, since that condition is only evaluated when the others fail.
+```go else if``` is subject to the branch label of all the conditions above it,
+not just its own, since that condition is only evaluated when the others fail.
 
 === Loops <glowy:constructs:loops>
 
@@ -1720,10 +1735,10 @@ expressions and statements that would only be executed depending on another
 value, per the general branching procedure laid out in
 @glowy:procedure:context:branch and the prior @glowy:constructs:branching. For
 instance, a for-clause's "post" statement is only executed if the condition
-expression evaluates to `true` at least once, so a dependency relationship is
-formed. Another notable case is, evidently, that the loop body is always tainted
-by the condition or loop expression that causes a number of iterations directly
-observable from the body.
+expression evaluates to ```go true``` at least once, so a dependency
+relationship is formed. Another notable case is, evidently, that the loop body
+is always tainted by the condition or loop expression that causes a number of
+iterations directly observable from the body.
 
 Go does not specify map iteration order and explicitly allows entries created
 during iteration to be observed by subsequent iterations. For analysis
@@ -1759,7 +1774,7 @@ the current iteration (not a merge).
 Moreover, if the range expression corresponds to an iterable function, taint is
 propagated both from the function to the loop (via `yield`) as well as from the
 loop to the function, through `yield`'s return value, which can be used by
-conditional `break` statements to convey information to the function.
+conditional ```go break``` statements to convey information to the function.
 
 #pagebreak()
 
@@ -1811,17 +1826,17 @@ program, with `yield` being synthetized by the language as glue.
 
 === Value Matching <glowy:constructs:switch-expr>
 
-Go supports `switch` statements matching on an expression's value. Since clause
-ordering matters and each clause is implicitly affected not only by its own
-condition, but also all the ones prior, all pushed branch labels are kept until
-the end of the construct.
+Go supports ```go switch``` statements matching on an expression's value. Since
+clause ordering matters and each clause is implicitly affected not only by its
+own condition, but also all the ones prior, all pushed branch labels are kept
+until the end of the construct.
 
-This means that `fallthrough` statements can be largely ignored, as their
+This means that ```go fallthrough``` statements can be largely ignored, as their
 semantics are effectively always applied, for the purposes of this work.
 
-The `default` clause, if it exists, is only processed after all others (even if
-textually it appears first in source-order) and is subject to all other branch
-labels, reflecting the prescribed execution behavior in Go.
+The ```go default``` clause, if it exists, is only processed after all others
+(even if textually it appears first in source-order) and is subject to all other
+branch labels, reflecting the prescribed execution behavior in Go.
 
 === Type Matching
 
@@ -1910,8 +1925,8 @@ precisely. These correspond to:
 - *Capacity:* taint dependency of the channel's immutable buffer capacity.
 
 This means that different channel operations are only tainted by their
-applicable backtraces; for instance `cap(ch)` depends on the declared buffer
-size, not on the aggregate taint of the values sent to the channel.
+applicable backtraces; for instance ```go cap(ch)``` depends on the declared
+buffer size, not on the aggregate taint of the values sent to the channel.
 
 In cases where multiple aggregate structures are possible, especially when
 a Channel value contains references to multiple allocations as a result of
@@ -1938,8 +1953,8 @@ This means that each case's body is considered to depend on every communication,
 since information may be inferred from a case always being selected instead of
 others, even if the choice is randomized if multiple cases are ready.
 
-No special handling takes place for a `default` case, since it requires the same
-joint-dependency already implemented for all other arms.
+No special handling takes place for a ```go default``` case, since it requires
+the same joint-dependency already implemented for all other arms.
 
 #pagebreak()
 
@@ -1960,9 +1975,9 @@ method-only functionality, such as described in @glowy:constructs:selection.
 For simplicity, in this work the term "parameter" is taken to mean each of a
 function's input slots for concrete arguments, unlike the standard Go
 terminology which is based on parameter declarations. For instance, a function
-with signature `func(a, b int, c string)` is here considered to have 3 distinct
-parameters (even if the first two coincidentally have the same type), rather
-than just 2 parameters (with the first one defining two names).
+with signature ```go func(a, b int, c string)``` is here considered to have 3
+distinct parameters (even if the first two coincidentally have the same type),
+rather than just 2 parameters (with the first one defining two names).
 
 Additionally, whenever type declarations are found during analysis, a Function
 value with the same name is registered to the Symbol Table $Sigma$ to emulate a
@@ -1998,9 +2013,9 @@ Moreover, each synthetic tag is associated with a particular placeholder slot:
 - Parameter $\#i$: represents the taint of the function argument passed at
   (zero-indexed) position $\#i$ during a particular invocation;
 - Receiver: represents the taint of a method's receiver;
-- Capture $\#i$: represents the taint of the $i$th captured outer symbol (which
-  may change between capturing and function invocation, as mutations may occur
-  between those two points and are observable from the capture);
+- Capture $\#i$: represents the taint of the $i$#super[th] captured outer symbol
+  (which may change between capturing and function invocation, as mutations may
+  occur between those two points and are observable from the capture);
 - Call Site Branch: represents the taint of the implicit branch label $beta$ at
   a particular invocation; and
 - Yield Feedback: represents the taint of loop exit operations that cause a
@@ -2076,17 +2091,18 @@ In particular, Glowy defines the following kinds of built-in functions:
   - Includes `min`, `max`, `print`, `println`, `complex`, `real`, and `imag`.
 
 Type I built-in functions have their own associated @ast node, since their shape
-can vary significantly. For instance, `make` supports invocation as `make(T)`,
-`make(T, n)`, and `make(T, n, m)`.
+can vary significantly. For instance, `make` supports invocation as
+```go make(T)```, ```go make(T, n)```, and ```go make(T, n, m)```.
 
 The built-in `new` takes only one argument, but it may be either a type or an
-expression (`new(T)` or `new(S)`). This cannot always be distinguished at
-parse-time, especially for plain names, such as in the case of `new(x)`, so
-when the argument is syntactically ambiguous, the parser reports the ambiguity
-(as a variant of @ast `NewArgNode`) and defers to the analyzer to resolve into
-either case using contextual information, such as if `x` is a known type. Cases
-where the variant is syntactically evident are nonetheless resolved immediately
-at the parser level, such as for `new(x + 2)` or `new(map[string]int)`.
+expression (```go new(T)``` or ```go new(S)```). This cannot always be
+distinguished at parse-time, especially for plain names, such as in the case of
+```go new(x)```, so when the argument is syntactically ambiguous, the parser
+reports the ambiguity (as a variant of @ast `NewArgNode`) and defers to the
+analyzer to resolve into either case using contextual information, such as if
+`x` is a known type. Cases where the variant is syntactically evident are
+nonetheless resolved immediately at the parser level, such as for
+```go new(x + 2)``` or ```go new(map[string]int)```.
 
 Type II special handling makes use of the existing precision information when
 possible, modeling each return value with the correct associated taint.
@@ -2108,8 +2124,8 @@ conservatively take the aggregate of all elements in `const`, in addition to
 `dyn`.
 
 Additional state is also kept, such as aggregate key backtraces and an exact
-length when statically known (so that `len(x)` may sometimes be resolved as a
-simple constant value).
+length when statically known (so that ```go len(x)``` may sometimes be resolved
+as a simple constant value).
 
 Struct field selection and indexing both use this unified composite interface to
 provide the best possible precision while retaining soundness. Slicing uses it
@@ -2121,7 +2137,8 @@ situations, the ambiguity is marked by the parser with pseudo-expression
 @ast `AmbiguousBracketAccessNode` and resolved in the analyzer based on
 contextual information, such as whether `b` is a known type. The parser only
 commits to indexing or type instantiation when syntactically evident, such as
-with `arr[i + 2]` (indexing) or `f[chan-> int]` (type instantiation).
+with ```go arr[i + 2]``` (indexing) or ```go f[chan-> int]``` (type
+instantiation).
 
 Similarly, syntactically ambiguous composite literals, such as `T{}`, are
 reported by the parser as an unknown composite literal, which is later resolved
@@ -2239,33 +2256,34 @@ method declarations, only in real functions.
 
 === Execution Jumps
 
-Jumps are supported via `goto` statements, bound to the restrictions set forth
-by the language. This is implemented in this work at the function level: if a
-function body is detected to contain a `goto` statement, special handling kicks
-in, relying on an internal convergence loop.
+Jumps are supported via ```go goto``` statements, bound to the restrictions set
+forth by the language. This is implemented in this work at the function level:
+if a function body is detected to contain a ```go goto``` statement, special
+handling kicks in, relying on an internal convergence loop.
 
 The body is visited repeatedly (speculatively, with problem reporting
-suppressed) until the per-label taint state converges, after which a final authoritative visit is conducted.
+suppressed) until the per-label taint state converges, after which a final
+authoritative visit is conducted.
 
-At each `goto` statement, the current branch label $beta$ is merged into the
-target label's pending state, whereas at each labeled statement the label's
+At each ```go goto``` statement, the current branch label $beta$ is merged into
+the target label's pending state, whereas at each labeled statement the label's
 pending security labels are pushed onto $beta$ so that taint may be propagated
-from the `goto` to all statements at and after its target.
+from the ```go goto``` to all statements at and after its target.
 
 This supports both forwards and backwards jumps.
 
 === Deferred Execution
 
-In order to support `defer f()` statements, function call processing is split
-into two phases: resolution, where callee and arguments are evaluated, and
+In order to support ```go defer f()``` statements, function call processing is
+split into two phases: resolution, where callee and arguments are evaluated, and
 application, where actual effects take place, including outcome-based
 realization and capture write-backs.
 
-A `defer` statement, when found, therefore immediately executes the first stage
-(call resolution) and stores its result in the global Analysis Context $Gamma$
-alongside additional necessary contextual information. At the end of function
-definitions, any registered deferred calls are taken from $Gamma$ in reverse
-order and applied.
+A ```go defer``` statement, when found, therefore immediately executes the first
+stage (call resolution) and stores its result in the global Analysis Context
+$Gamma$ alongside additional necessary contextual information. At the end of
+function definitions, any registered deferred calls are taken from $Gamma$ in
+reverse order and applied.
 
 #v(1fr)
 #highlight[more]
@@ -2299,25 +2317,25 @@ propagated using this pattern.
     fmt.Println(result)
   }
   ```,
-  caption: [Example implicit flow from conditional `break`],
+  caption: [Example implicit flow from conditional ```go break```],
 ) <glowy:constructs:early-abort:break>
 
 The highlighted line affects control flow while under the influence of branch
 label $beta = {"private"}$, but in ordinary circumstances $beta$ would be popped
-after line 10 when the respective `if` statement terminates, meaning that the
-assignment to `result` on line 11 would not be tainted.
+after line 10 when the respective ```go if``` statement terminates, meaning that
+the assignment to `result` on line 11 would not be tainted.
 
 In order to counteract this, Glowy implements _deferred branch labels,_ which
 cause a branch label to remain active during longer than it otherwise would.
-This mechanism is used by `return`, `continue`, and `break` statements, since
-all three abort the current execution flow.
+This mechanism is used by ```go return```, ```go continue```, and ```go break```
+statements, since all three abort the current execution flow.
 
 Return statements always defer the current branch label $beta$ until the end of
-the current function, while `continue` and `break` defer until the end of the
-enclosing context identified by the provided label, or the innermost one if no
-label is specified. Whereas `continue` only affects loops, `break` may also
-target `switch` and `select` statements, so the closest innermost construct may
-differ between the two.
+the current function, while ```go continue``` and ```go break``` defer until the
+end of the enclosing context identified by the provided label, or the innermost
+one if no label is specified. Whereas ```go continue``` only affects loops,
+```go break``` may also target ```go switch``` and ```go select``` statements,
+so the closest innermost construct may differ between the two.
 
 === Deferred Enforcement Checks
 
@@ -2362,12 +2380,13 @@ the final label is known.
 
 === Build Constraints <glowy:construct:build-constraints>
 
-Build-tag constraints are parsed from `//go:build` directives at the top of
-source-code files, representing conditions for file inclusion, as introduced in
-@bg:go:overview:build-constraints. If no such directive is present, Glowy
-additionally supports parsing legacy `// +build` constraints, as it is still
-prevalent among real-world projects. Moreover, well-formed filename suffixes may
-also set restrictions at the @os (`GOOS`) or architectural (`GOARCH`) level.
+Build-tag constraints are parsed from ```go //go:build``` directives at the top
+of source-code files, representing conditions for file inclusion, as introduced
+in @bg:go:overview:build-constraints. If no such directive is present, Glowy
+additionally supports parsing legacy ```go // +build``` constraints, as it is
+still prevalent among real-world projects. Moreover, well-formed filename
+suffixes may also set restrictions at the @os (`GOOS`) or architectural
+(`GOARCH`) level.
 
 One of the first tasks performed during analysis preparation is the enumeration
 of build constraint permutations. This consists of collecting all mentioned
@@ -2690,7 +2709,7 @@ in Go to write code such as the one in @glowy:base-policy:revoke-len.
 ) <glowy:base-policy:revoke-len>
 
 Without the `len` revocation, the entire program would be tainted by the
-`return` statement, based on the propagated branch label.
+```go return``` statement, based on the propagated branch label.
 
 For analogous reasons, the second and third revocations in
 @glowy:base-policy:revocations register an exception for when a tainted

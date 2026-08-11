@@ -845,11 +845,11 @@ for allow-sinks, as well as that $bot inter.sq cal(L)_"Sink" = bot$, for
 deny-sinks.
 
 Finally, assertions are similar to sinks (and often treated equivalently), but
-are here defined specifically for traceability, testing, and debugging. Assertions
-are thus not intended to be used in real analysis, and are often omitted in
-explanations and examples, since sinks are the designated first-class checks.
-Given an assertion with label $cal(L)_"Assertion"$, any flow to it by a value
-with label $L$ is only considered legal if $L = cal(L)_"Assertion"$; exact
+are here defined specifically for traceability, testing, and debugging.
+Assertions are thus not intended to be used in real analysis, and are often
+omitted in explanations and examples, since sinks are the designated first-class
+checks. Given an assertion with label $cal(L)_"Assertion"$, any flow to it by a
+value with label $L$ is only considered legal if $L = cal(L)_"Assertion"$; exact
 equality is required.
 
 Together, sinks and assertions are denoted *policy enforcement checks* in this
@@ -1157,11 +1157,11 @@ source files are found. For example, a package path of
 `user/repo`.
 
 All packages have a native _package name,_ declared at the top of all its source
-files with a directive such as `package utils`. This name is a single identifier
-and must match for all of a package's source files. It is important to note,
-however, that it does not necessarily have to match the last component of the
-package path; for instance, a package with path `example.com/mod/pkg` may
-declare its name with `package unrelated`. Other packages' source files
+files with a directive such as ```go package utils```. This name is a single
+identifier and must match for all of a package's source files. It is important
+to note, however, that it does not necessarily have to match the last component
+of the package path; for instance, a package with path `example.com/mod/pkg` may
+declare its name with ```go package unrelated```. Other packages' source files
 importing `example.com/mod/pkg` without specifying a custom qualifier would
 then refer to its exported declarations via `unrelated.Name`, not `pkg.Name`.
 
@@ -1267,13 +1267,14 @@ not necessarily) parallelizing workload.
   caption: [Example concurrent processing of expensive operations],
 ) <bg:go:overview:channels:expensive>
 
-Channels can be _directional_ (receive-only, typed as `<-chan T`, or send-only,
-typed as `chan<- T`) or _bidirectional_ (if no restriction is specified). On
-line 1 of @bg:go:overview:channels:expensive, for instance, the `ch` parameter
-is declared as a channel with send direction, since `process` only ever needs
-to send values through `ch`. Nevertheless, the function call at line 9 is still
-accepted, despite `results` having a different type from `ch`, because
-bidirectional channel are always assignable to directional channel types.
+Channels can be _directional_ (receive-only, typed as ```go <-chan T```, or
+send-only, typed as ```go chan<- T```) or _bidirectional_ (if no restriction is
+specified). On line 1 of @bg:go:overview:channels:expensive, for instance, the
+`ch` parameter is declared as a channel with send direction, since `process`
+only ever needs to send values through `ch`. Nevertheless, the function call at
+line 9 is still accepted, despite `results` having a different type from `ch`,
+because bidirectional channel are always assignable to directional channel
+types.
 
 Moreover, channels can be _buffered_ or _unbuffered._ Channels are unbuffered by
 default, in which case all send operations block the current goroutine until a
@@ -1532,7 +1533,8 @@ target @os (usually denoted `GOOS`), the target architecture (`GOARCH`), or the
 compiler being used (one of `gc` or `gccgo`), among others.
 
 Constraints are primarily specified using a `//go:build` comment at the top of
-the applicable source file. For example, a provided build constraint comment of `//go:build (linux && amd64) || gccgo` indicates that the file in question
+the applicable source file. For example, a provided build constraint comment of
+`//go:build (linux && amd64) || gccgo` indicates that the file in question
 should only be included for compilation when targeting Linux systems using an
 AMD64 instruction-set architecture, or when using the `gccgo` compiler, possibly
 because the file contains non-portable code. In all other cases, it is omitted.
@@ -1564,15 +1566,15 @@ underlying @ffi mechanism is implemented and controlled by the `cgo` tool
 #footnote(link("https://pkg.go.dev/cmd/cgo")).
 
 From Go source code, it is possible to access C-level symbols through the
-pseudo-package `C`, i.e., `import "C"`. Alternatively, to permit C code to
-execute Go functions, they must have an `//export SomeName` coment immediately
-preceding their definition.
+pseudo-package `C`, i.e., ```go import "C"```. Alternatively, to permit C code
+to execute Go functions, they must have an ```go //export SomeName``` coment
+immediately preceding their definition.
 
 The pseudo-package `C` contains all accessible C symbols. If its import
 directive is immediately preceded by a comment (denoted the _preamble_), then
 that comment's contents are included in a header file when compiling the
-package's C elements; for instance, an `import "C"` declaration might follow an
-`// #include <stdio.h>` preamble.
+package's C elements; for instance, an ```go import "C"``` declaration might
+follow an ```go // #include <stdio.h>``` preamble.
 
 This kind of @ffi is not given any special handling by the present work, since
 it is sound for the `C` package to be treated as any other black box external
@@ -1792,7 +1794,8 @@ Glowy's own licensability. Glowy's Git repository is rooted in Glowy-Zero's,
 retaining full history; the last Glowy-Zero commit is tagged
 `langsec-project-submission`, so a full diff of the changes made within the
 framework of the present degree project is easily accessible
-#footnote(link("https://github.com/RafDevX/glowy/compare/" + "langsec-project-submission...master")).
+#footnote(link("https://github.com/RafDevX/glowy/compare/" + //
+"langsec-project-submission...master")).
 
 The fundamental conceptualization and some core properties of the model were
 retained from Glowy-Zero, having thus been jointly produced by both original
@@ -1934,8 +1937,8 @@ Go Flow Levee#footnote(link("https://github.com/google/go-flow-levee")) is a
 taint analyzer developed by Google, relying on lower-level ecosystem analysis
 primitives to detect insecure flows from sources to sinks, as configured through
 @yaml:short files and struct field tags. Sanitizers are supported, and false
-positives can be suppressed via `// levee.DoNotReport` source code annotation
-comments.
+positives can be suppressed via ```go // levee.DoNotReport``` source code
+annotation comments.
 
 Implicit information flows are not detected, and the analysis is
 intraprocedural, considering each single function in isolation.
@@ -1945,10 +1948,10 @@ indirection.
 
 Kubernetes added this tool to its @ci pipeline in 2021, after a Trail of Bits
 codebase audit @trailofbits2019kubernetes identified multiple sensitive data
-leakage vulnerabilities @kep1933levee. This led to multiple struct fields being annotated
-with `datapolicy:"..."` tags, demonstrating how even large and high-profile
-projects can be willing to annotate their source code and take the time to
-properly configure their security tools.
+leakage vulnerabilities @kep1933levee. This led to multiple struct fields being
+annotated with `datapolicy:"..."` tags, demonstrating how even large and
+high-profile projects can be willing to annotate their source code and take the
+time to properly configure their security tools.
 
 However, Go Flow Levee has not had material developments since 2021 and its
 GitHub repository is archived. It was dropped from Kubernetes in 2024 for
