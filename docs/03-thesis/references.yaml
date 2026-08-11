@@ -2087,3 +2087,42 @@ kahn1962topological:
     volume: 5
     issue: 11
     publisher: Association for Computing Machinery
+
+bernstein2008chacha20:
+  type: article
+  title: "ChaCha, a variant of Salsa20"
+  author: Bernstein, Daniel J.
+  date: 2018-01-28
+  page-range: 3-5
+  parent:
+    type: proceedings
+    title: >-
+      Workshop Record of SASC 2008: The State of the Art in Stream Cyphers
+    volume: 8
+    issue: 1
+    location: Lausanne, Switzerland
+
+go2018modules:
+  type: article
+  title: "Go Modules in 2019"
+  author: Cox, Russ
+  date: 2018-12-19
+  url:
+    value: https://go.dev/blog/modules2019
+    date: 2026-07-31
+  parent:
+    type: blog
+    title: "The Go Blog"
+
+moses2025commento:
+  type: entry
+  title: "PSA: Commento Outage (since 03/09/2025)"
+  author: Moses, Brian
+  date: 2025-04-07
+  url:
+    value: https://gitlab.com/commento/commento/-/work_items/436
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: Commento
+    publisher: GitLab

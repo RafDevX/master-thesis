@@ -1096,6 +1096,8 @@ This section explores in more detail how each of the architectural components
 listed in @glowy:design:architecture are implemented, allowing for a better
 understanding on how concretely they operate and work together.
 
+More detailed usage instructions are provided in @usage.
+
 === Glowy Library
 
 The principal software contribution provided by this degree project is `glowy`,
@@ -1348,7 +1350,7 @@ for `glowy-cli`). In fact, `glowy-cli` defers parsing error summarization to
 `glowy-go-parser`'s existing intuitive messages, which is exported by the parser
 library in a structured form.
 
-=== Glowy Evaluation Utility
+=== Glowy Evaluation Utility <glowy:impl:eval>
 
 In order to support the systematic evaluation of the Glowy pipeline against
 real-world Go projects, `glowy-eval` is implemented as a separate and

@@ -5,6 +5,9 @@
 #import "@preview/codly:1.3.0"
 #import "@preview/fletcher:0.5.8"
 #import "@preview/glossarium:0.5.10"
+#import "@preview/headcount:0.1.1"
 #import "@preview/kthesis:0.1.7"
+#import "@preview/lilaq:0.6.0" as lq
 #import "@preview/lovelace:0.3.1"
+#import "@preview/subpar:0.2.2"
 #import "@preview/zero:0.6.1"

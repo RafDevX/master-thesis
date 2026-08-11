@@ -44,6 +44,13 @@
     long: "Common Weakness Enumeration",
   ),
   (
+    key: "dns",
+    short: "DNS",
+    long: "Domain Name Service",
+    description: [Distributed, hierarchical directory service mapping domain
+      names to internet addresses],
+  ),
+  (
     key: "dsl",
     short: "DSL",
     long: "Domain-Specific Language",
@@ -108,6 +115,13 @@
     long: "Regular Expression",
   ),
   (
+    key: "sloc",
+    short: "SLOC",
+    long: "Source Lines of Code",
+    description: [Number of textual lines of source-code, excluding blanks and
+      comments],
+  ),
+  (
     key: "smtp",
     short: "SMTP",
     long: "Simple Mail Transfer Protocol",
@@ -116,7 +130,7 @@
     key: "sql",
     short: "SQL",
     long: "Structured Query Language",
-    description: [... for interacting with database engines],
+    description: [Standardized notation for interacting with database engines],
   ),
   (
     key: "ssrf",

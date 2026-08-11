@@ -1,0 +1,12 @@
+#import "./aborts.typ": chart as aborts
+#import "./avg-problems.typ": chart as avg-problems
+#import "./iterations.typ": chart as iterations
+#import "./median-errors.typ": chart as median-errors
+#import "./median-problems.typ": chart as median-problems
+#import "./outcomes.typ": chart as outcomes
+#import "./outliers.typ": chart as outliers
+#import "./problem-boxes.typ": chart as problem-boxes
+#import "./run-time-by-outcome.typ": chart as run-time-by-outcome
+#import "./run-time-outliers.typ": chart as run-time-outliers
+#import "./run-time-scaling.typ": chart as run-time-scaling
+#import "./stages.typ": chart as stages

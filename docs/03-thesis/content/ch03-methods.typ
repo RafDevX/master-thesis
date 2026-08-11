@@ -11,7 +11,7 @@ This chapter describes in detail the research process employed throughout the
 project's implementation and evaluation, motivating each concrete elected method
 and justifying why it was chosen for each applicable task.
 
-== Research Process
+== Research Process <methods:process>
 
 Various research subprocesses are necessary in order to answer the research
 questions presented in @intro:rq and fulfill the project goals established in
@@ -685,7 +685,7 @@ As such, the final Dataset B is the list of public repositories on GitHub with
 at least #zero.num(1000) stars and Go as their primary language, at a particular
 date, ordered from most to least stars.
 
-==== Dataset C: GitLab Repositories by Stars
+==== Dataset C: GitLab Repositories by Stars <methods:collection:discovery:c>
 
 The third dataset is very similar to Dataset B, but focuses instead on GitLab
 #footnote(link("https://gitlab.com")), the second primary hub for open-source
@@ -831,7 +831,7 @@ which is necessarily dataset-specific. For Dataset A, each project corresponds
 to a single Go module, but for Datasets B and C, a project denotes a hosted Git
 repository, which may contain multiple related modules.
 
-=== Inter-Dataset Duplicates
+=== Inter-Dataset Duplicates <methods:collection:duplicates>
 
 It is possible for the same module to be selected from separate datasets, since
 sampling is conducted independently for each strata. While entries are

@@ -1,0 +1,24 @@
+[1m[91merror[F003][0m[1m: insecure data flow to sink in function call[0m
+  [1m[94m--> [0m/07_sec/06_ssrf/ssrf.go:25:16
+   [1m[94m|[0m
+[1m[94m18[0m [1m[94m|[0m     clientSideServer.Handler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+[1m[94m19[0m [1m[94m|[0m         urls, ok := r.URL.Query()["url"]
+   [1m[94m|[0m         [1m[94m--------------------------------[0m
+   [1m[94m|[0m         [1m[94m|[0m           [1m[94m|[0m
+   [1m[94m|[0m         [1m[94m|[0m           [1m[94mexpression has label {untrusted:http}[0m
+   [1m[94m|[0m         [1m[94m|[0m           [1m[94mfunction is an explicitly registered blanket source with label {untrusted:http}[0m
+   [1m[94m|[0m         [1m[94msymbol `urls` has been declared with initialization expression labeled {untrusted:http}[0m
+[1m[94m20[0m [1m[94m|[0m         if !ok || len(urls) != 1 {
+[1m[94m21[0m [1m[94m|[0m             http.Error(w, "bad url param", 500)
+[1m[94m...[0m
+[1m[94m24[0m [1m[94m|[0m
+[1m[94m25[0m [1m[94m|[0m         resp, err := http.Get(urls[0])
+   [1m[94m|[0m                      [1m[91m^^^^^^^^^[0m[1m[94m-------[0m[1m[91m^[0m
+   [1m[94m|[0m                      [1m[91m|[0m        [1m[94m|[0m
+   [1m[94m|[0m                      [1m[91m|[0m        [1m[94mexpression has label {untrusted:http}[0m
+   [1m[94m|[0m                      [1m[91m|[0m        [1m[94msymbol `urls` has label {untrusted:http}[0m
+   [1m[94m|[0m                      [1m[91mdeny sink (blacklist) has label {untrusted:*}, but an argument has label {untrusted:http}[0m
+[1m[94m26[0m [1m[94m|[0m         if err != nil {
+[1m[94m27[0m [1m[94m|[0m             http.Error(w, err.Error(), 500)
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: if this is expected behavior, consider adjusting the security policy
