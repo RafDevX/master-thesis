@@ -1,0 +1,19 @@
+[1m[91merror[F003][0m[1m: insecure data flow to sink in function call[0m
+  [1m[94m--> [0m/server/webdav.go:69:3
+   [1m[94m|[0m
+[1m[94m67[0m [1m[94m|[0m     if !ok {
+[1m[94m68[0m [1m[94m|[0m         bt := c.GetHeader("Authorization")
+   [1m[94m|[0m         [1m[94m----------------------------------[0m
+   [1m[94m|[0m         [1m[94m|[0m     [1m[94m|[0m
+   [1m[94m|[0m         [1m[94m|[0m     [1m[94mexpression has label {secret:http}[0m
+   [1m[94m|[0m         [1m[94m|[0m     [1m[94mfunction is an explicitly registered blanket source with label {secret:http}[0m
+   [1m[94m|[0m         [1m[94msymbol `bt` has been declared with initialization expression labeled {secret:http}[0m
+[1m[94m69[0m [1m[94m|[0m         log.Debugf("[webdav auth] token: %s", bt)
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[1m[94m--[0m[1m[91m^[0m
+   [1m[94m|[0m         [1m[91m|[0m                                     [1m[94m|[0m
+   [1m[94m|[0m         [1m[91m|[0m                                     [1m[94msymbol `bt` has label {secret:http}[0m
+   [1m[94m|[0m         [1m[91mdeny sink (blacklist) has label {secret:*}, but an argument has label {secret:http, untrusted:http}[0m
+[1m[94m70[0m [1m[94m|[0m         if strings.HasPrefix(bt, "Bearer") {
+[1m[94m71[0m [1m[94m|[0m             bt = strings.TrimPrefix(bt, "Bearer ")
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: if this is expected behavior, consider adjusting the security policy

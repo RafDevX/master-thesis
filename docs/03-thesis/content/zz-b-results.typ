@@ -74,7 +74,7 @@ In addition, for Aborts, #text(maroon)[`PARSE`] denotes a parsing error,
   if row.secondary_project != "" {
     footnote[This module has a secondary project from sample
       #row.secondary_project_dataset.#row.secondary_project_band with version
-      #raw(row.secondary_project_rev_hash.slice(0, 6)). Only the primary
+      #raw(row.secondary_project_rev_hash.slice(0, 7)). Only the primary
       project's version (as reported in the table) was analyzed, not this
       secondary one.]
   }
@@ -94,7 +94,7 @@ In addition, for Aborts, #text(maroon)[`PARSE`] denotes a parsing error,
     return row.primary_project_rev_name
   }
 
-  hash.slice(0, 6)
+  hash.slice(0, 7)
 }
 
 #let outcome-for(row) = {
