@@ -503,3 +503,7 @@ the course of the project. Implementation details and design choices are
 outlined in @glowy, and evaluation results are presented in @eval. Finally,
 @discussion interprets and reflects on the project's results, while @conclusion
 briefly summarizes and concludes this degree project report.
+
+Furthermore, @usage details how to operate the developed analysis tool, whereas
+@results includes more extensive information in relation to its evaluation
+through the auditing of real-world Go projects.
