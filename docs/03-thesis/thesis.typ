@@ -33,26 +33,26 @@
   primary-lang: "en",
   localized-info: (
     en: (
-      title: "Glowy: Efficiently Tracking Information Flow in Go",
-      subtitle: "A Modern Approach to Problem-Solving", // TODO
+      title: "Glowy: Flexibly Tracking Information Flow in Go Programs",
+      subtitle: "Striving for Soundness, Efficiency, and Usability",
       abstract: include "./content/abstract-1-en.typ",
-      keywords: ("Dogs", "Chicken nuggets"),
+      keywords: ("Information flow", "Static analysis", "Taint analysis", "Go"),
     ),
     sv: (
       title: "Svenska Översättningen av Titeln",
       subtitle: "Svenska Översättningen av Undertiteln",
       abstract: include "./content/abstract-2-sv.typ",
-      keywords: ("Hundar", "Kycklingnuggets"),
+      keywords: ("Ord1", "Ord2"),
     ),
-    pt: (
-      alpha-3: "por",
-      title: "Tradução em Português do Título",
-      subtitle: "Tradução em Português do Subtítulo",
-      abstract-heading: "Resumo",
-      keywords-heading: "Palavras-chave",
-      abstract: include "./content/abstract-3-pt.typ",
-      keywords: ("Cães", "Nuggets de frango"),
-    ),
+    // pt: (
+    //   alpha-3: "por",
+    //   title: "Tradução em Português do Título",
+    //   subtitle: "Tradução em Português do Subtítulo",
+    //   abstract-heading: "Resumo",
+    //   keywords-heading: "Palavras-chave",
+    //   abstract: include "./content/abstract-3-pt.typ",
+    //   keywords: ("Cães", "Nuggets de frango"),
+    // ),
   ),
   authors: (
     (
@@ -142,7 +142,7 @@
   doc-date: datetime.today(), // TODO
   doc-city: "Stockholm",
   doc-extra-keywords: ("master thesis",),
-  with-for-diva: true,
+  with-for-diva: false,
   style: (
     use-arial: false,
     more-sans-serif: false,
