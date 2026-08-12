@@ -18,6 +18,12 @@
 #show: codly-init
 #setup-codly()
 
+// Use "at al." when citing references with 3+ authors, per IEEE Style Guide.
+// Upstream wrongly does so only at 7+ authors, so we use a modified file.
+// https://github.com/typst/hayagriva/issues/164
+// This does not change bibliography style, only in-text citations.
+#set cite(style: "./assets/ieee-et-al-3.csl")
+
 // --------------------------------------------------------------------- //
 // ---------- MAIN THESIS TEMPLATE ENTRYPOINT & CONFIGURATION ---------- //
 // --------------------------------------------------------------------- //
