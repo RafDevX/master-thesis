@@ -115,6 +115,12 @@
     long: "Regular Expression",
   ),
   (
+    key: "sarif",
+    short: "SARIF",
+    long: "Static Analysis Results Interchange Format",
+    description: [Standard format for the output of static analysis tools],
+  ),
+  (
     key: "sloc",
     short: "SLOC",
     long: "Source Lines of Code",

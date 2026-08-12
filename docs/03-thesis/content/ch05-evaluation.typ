@@ -417,7 +417,7 @@ available in a public GitHub repository
 
 #pagebreak()
 
-== Results
+== Results <eval:results>
 
 This section presents the results obtained from auditing the
 #zero.num(results.len()) Go modules extracted from popular, open-source,
@@ -806,7 +806,7 @@ confidentiality and integrity reports is not an undesired property: the two
 kinds operate on orthogonal axes and complement each other; any parity would be
 artificial and coincidental.
 
-=== Effectiveness
+=== Effectiveness <eval:results:effectiveness>
 
 It is difficult to measure if and to what extent Glowy was effective at
 identifying security vulnerabilities across the #zero.num(results.len())
@@ -949,7 +949,7 @@ positives.
 
 #pagebreak()
 
-=== Performance
+=== Performance <eval:results:performance>
 
 Another significant aspect to Glowy's usability and overall goal accomplishment
 is the analyzer's efficiency and speed, since a faster tool is more suitable for
@@ -1194,7 +1194,7 @@ positives corresponding to real security vulnerabilities, proving Glowy's
 worth and capabilities as a security tool.
 
 In general, performance was adequate to the project goals, with a median module
-audit time of $151.11$ milliseconds for modules which completed analysis (the
+audit time of $152.11$ milliseconds for modules which completed analysis (the
 vast majority) and #zero.num(median-global-run-time) milliseconds when
 considering all non-empty modules.
 

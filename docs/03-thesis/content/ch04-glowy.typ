@@ -52,7 +52,7 @@ Rust crate#footnote[Crates are Rust's fundamental unit for compilation,
 - the Glowy parser, for translating Go files into @ast:pl.
 
 In addition, several other satellite Rust programs are also part of Glowy's
-larger ecosystem, particularly in connection to its evaluation:
+larger ecosystem, particularly in connection with its evaluation:
 - the Glowy evaluation orchestration utility, also a @cli application;
 - multiple evaluation dataset generation scripts;
 - a dataset stratification script for supporting evaluation; and

@@ -2126,3 +2126,41 @@ moses2025commento:
     type: reference
     title: Commento
     publisher: GitLab
+
+witschey2015adoption:
+  type: article
+  title: "Quantifying Developers' Adoption of Security Tools"
+  author:
+    - Witschey, Jim
+    - Zielinska, Olga
+    - Welk, Allaire
+    - Murphy-Hill, Emerson
+    - Mayhorn, Chris
+    - Zimmermann, Thomas
+  date: 2015-08-30
+  page-range: 260-271
+  serial-number:
+    doi: "10.1145/2786805.2786816"
+  parent:
+    type: proceedings
+    title: >-
+      Proceedings of the 2015 10th Joint Meeting on Foundations of Software
+      Engineering
+    publisher: Association for Computing Machinery
+    location: Bergamo, Italy
+
+fanning2020sarif:
+  type: report
+  title: "Static Analysis Results Interchange Format (SARIF) Version 2.1.0"
+  author:
+    - Fanning, Michael C.
+    - Golding, Laurence J.
+  date: 2020-03-27
+  genre: OASIS Standard
+  serial-number:
+    oasis: sarif-v2.1.0-os
+  url:
+    value: >-
+      https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html
+    date: 2026-07-31
+  publisher: OASIS Open

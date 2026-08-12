@@ -161,7 +161,7 @@ This degree project aims to answer the following research questions:
 These research questions reflect the implementation and validation of the
 proposed solution to the problem previously stated.
 
-== Purpose
+== Purpose <intro:purpose>
 
 This project's central objective is to establish a robust framework to
 systematically and effectively track information flow in Go programs, detecting
@@ -223,7 +223,7 @@ order to answer the relevant research questions.
 == Contributions
 
 This degree project brings forth a number of noteworthy contributions, all
-developed in connection to the aforementioned research questions and project
+developed in connection with the aforementioned research questions and project
 goals. This section presents an overview of each of them, including how they
 relate to each other.
 

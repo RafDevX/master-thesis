@@ -643,7 +643,7 @@ flexibility when compared to other enforcement paradigms, but this comes at a
 heavy cost in terms of performance, resource consumption, need for specialized
 equipment, and/or confidence in the reported results.
 
-=== Static Analysis
+=== Static Analysis <intro:enforcement:static>
 
 The remaining major category for @ifc enforcement paradigms is static analysis,
 through which a program's information flows are assessed against security
