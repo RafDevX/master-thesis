@@ -497,6 +497,9 @@ simplifying auditing even for large codebases. It prioritizes usability and
 flexibility over rigidness, but highlights potentially unsafe decisions so
 that their justifications can be noticed and reviewed often.
 
+#v(1fr)
+#highlight[more paragraphs]
+
 #pagebreak()
 
 == Enforcement Mechanisms for @ifc:short
@@ -856,10 +859,6 @@ Together, sinks and assertions are denoted *policy enforcement checks* in this
 work, as they represent the boundaries at which taint is validated when reaching
 security-sensitive operations.
 
-#v(1fr)
-#highlight[more paragraphs]
-#v(1fr)
-
 === Intraprocedural and Interprocedural Analysis
 
 Taint analysis can be either intraprocedural or interprocedural depending on
@@ -885,6 +884,9 @@ taint through `load`'s return value.
 The present work models information according to interprocedural analysis,
 relying on function summaries to propagate labels and metadata across function
 boundaries.
+
+#v(1fr)
+#highlight[more paragraphs (probably in the top-half before heading)]
 
 #pagebreak()
 

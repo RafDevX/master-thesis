@@ -540,15 +540,14 @@ sound in general because it does not take into account any potential
 side-effects. In addition, external dependency resolution (including through
 `replace` directives) is also not supported.
 
-#v(1fr)
-#highlight[more]
-#v(1fr)
-
 Overall, these limitations are considerable, but many of the excluded language
 features are relatively niche and used only in hyper-specialized contexts. This
 means that a very significant share of all Go programs is considered to be in
 scope for this work and are modeled correctly, which is appropriate for a degree
 project of this nature.
+
+#v(1fr)
+#highlight[more paragraphs, probably in the middle of these existing 2]
 
 #pagebreak()
 
