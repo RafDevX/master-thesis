@@ -1,44 +1,60 @@
 = Usage Instructions <usage>
 
-appendix overview
+The present appendix specifies how to use the Glowy static taint analyzer
+Rust implementation.
 
-this appendix about cli tool specifically, but
-detailed documentation for the library is on docs.rs and mirrored on glowy.rso.pt
+Focus is put specifically on the `glowy-cli` tool, but detailed documentation
+for the the underlying `glowy` library is available on the crate's `docs.rs`
+page and is mirrored at #link("https://glowy.rso.pt").
 
 == Installing
 
-2 different ways
+There are two alternative possible ways for installing Glowy: either directly
+from `crates.io` (the Rust central package registry) or from the latest source
+code in the public GitHub repository.
+
+Both alternatives require Cargo to be installed.
 
 === Rust Package Registry
 
-install directly from crates.io
+Run:
 
-ensure cargo+rustc stable >=1.91 and cc linker (usually installed via gcc package)
+```
+cargo install glowy-cli
+```
 
-cargo install
-
-have to make sure `~/.cargo/bin` is added to PATH
+The binary is made available at `~/.cargo/bin`, which should be added to `PATH`.
 
 === Building From Source
 
-git clone
+On a system with Git available, run:
 
-`nix develop -f shell.nix`, or ensure cargo+rustc stable >=1.91 and cc linker (usually installed via gcc package)
-
+```
+git clone https://github.com/RafDevX/glowy
+cd glowy
 cargo build --release
+```
+
+The command `nix develop -f shell.nix` can be used to install the relevant
+supporting programs if not already available, if Nix is.
 
 == Analyzing Go Projects
 
-...
+After installing, run:
 
-you can use --time or wtv to time the actual analysis step (excluding or including parsing? define better)
+```
+glowy-cli ./path/to/go/module/directory
+```
 
-== Running Validation Suites
+Additional parameters and flags are available. Run `glowy-cli --help` to list
+usage information.
 
-for all of them, do: [cmd]
+== Running the Benchmarks Corpus
 
-for only one of them, do: [cmd]
+After installing, run:
 
-similarly to above, you can use --time or wtv
+```
+glowy-cli --multi-suites ./ifc-benchmarks
+```
 
-...
+The `--summary-only` flag can also be specified for more concise output.
