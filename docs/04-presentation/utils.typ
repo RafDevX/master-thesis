@@ -16,7 +16,7 @@
     offset += 1
   }
 
-  let body = {
+  item-by-item({
     for item in items.pos() {
       [- #item.item]
 
@@ -24,13 +24,7 @@
         parbreak()
       }
     }
-  }
-
-  if ITEM-BY-ITEM {
-    item-by-item(body)
-  } else {
-    body
-  }
+  })
 
   for (i, item) in items.pos().enumerate(start: 1) {
     let note = item.at("note", default: none)

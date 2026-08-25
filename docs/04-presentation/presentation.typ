@@ -223,7 +223,7 @@
     ],
   ),
   (
-    item: strong[Identify faults by tracking information flows],
+    item: strong[Identify faults by tracking information flows in Go],
     note: [
       This work applies Information Flow Control techniques
 
@@ -692,7 +692,7 @@ Branch label $beta$ propagates contextual taint (= _pc_ label)
     note: [Only PLAIN tags; BOUND tags; can COEXIST in the same label],
   ),
   (
-    item: [Axes are strictly opt-in, promoting simplicity],
+    item: [Axes are strictly opt-in, promoting simplicity & flexibility],
     note: [
       Stakeholders can choose whether their use case
 
