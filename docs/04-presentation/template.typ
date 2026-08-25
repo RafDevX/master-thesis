@@ -43,7 +43,7 @@
   let header(self) = {
     set std.align(top)
     grid(
-      columns: (3.3em, 1fr, 8em),
+      columns: (3.3em, 1fr, 8.5em),
       box(
         width: 100%,
         inset: 0.4em,
@@ -146,13 +146,21 @@
           curve.line((-4.5 * f, 648.5 * f)),
           curve.move((426.12 * f, -6.5 * f)),
           curve.line((426.12 * f, 215.07 * f)),
-          curve.cubic((426.12 * f, 332.11 * f), (331.24 * f, 427 * f), (214.19 * f, 427 * f)),
+          curve.cubic(
+            (426.12 * f, 332.11 * f),
+            (331.24 * f, 427 * f),
+            (214.19 * f, 427 * f),
+          ),
           curve.line((-5.5 * f, 427 * f)),
         ))
         place(top + right, scale(x: -100%, curve(
           stroke: self.colors.primary-lighter,
           curve.move((427.13 * f, 1080.31 * f)),
-          curve.cubic((427.13 * f, 955.36 * f), (325.84 * f, 854.06 * f), (200.88 * f, 854.06 * f)),
+          curve.cubic(
+            (427.13 * f, 955.36 * f),
+            (325.84 * f, 854.06 * f),
+            (200.88 * f, 854.06 * f),
+          ),
           curve.line((-4.5 * f, 854.06 * f)),
         )))
       },
@@ -176,13 +184,18 @@
       center + horizon,
       {
         if info.logo-white != none {
-          text(fill: self.colors.neutral-lightest, box(width: 5em, info.logo-white))
+          text(fill: self.colors.neutral-lightest, box(
+            width: 5em,
+            info.logo-white,
+          ))
         }
         block(
           inset: (y: 0em, x: 3em),
           breakable: false,
           {
-            text(size: 1.5em, fill: self.colors.neutral-lightest, strong(info.title))
+            text(size: 1.5em, fill: self.colors.neutral-lightest, strong(
+              info.title,
+            ))
             if info.subtitle != none {
               parbreak()
               text(size: 1em, fill: self.colors.neutral-lightest, info.subtitle)
@@ -200,7 +213,11 @@
           ))
         )
         if info.date != none {
-          place(bottom + left, text(size: .5em, fill: self.colors.secondary, utils.display-info-date(self)))
+          place(bottom + left, text(
+            size: .5em,
+            fill: self.colors.secondary,
+            utils.display-info-date(self),
+          ))
         }
       },
     )
@@ -240,17 +257,28 @@
           stroke: self.colors.primary-lighter,
           curve.move((1066.04 * f, -3 * f)),
           curve.line((1066.04 * f, 426.38 * f)),
-          curve.cubic((948.93 * f, 426.38 * f), (854 * f, 331.45 * f), (854 * f, 214.34 * f)),
+          curve.cubic(
+            (948.93 * f, 426.38 * f),
+            (854 * f, 331.45 * f),
+            (854 * f, 214.34 * f),
+          ),
           curve.line((1921.5 * f, 214.34 * f)),
           curve.move((1493 * f, 0 * f)),
-          curve.cubic((1493 * f, 235.83 * f), (1684.17 * f, 427 * f), (1920 * f, 427 * f)),
+          curve.cubic(
+            (1493 * f, 235.83 * f),
+            (1684.17 * f, 427 * f),
+            (1920 * f, 427 * f),
+          ),
         ))
       },
     ),
   )
   let slide-body = {
     if self.info.logo-white != none {
-      place(top + left, text(fill: self.colors.neutral-lightest, box(width: 3em, self.info.logo-white)))
+      place(top + left, text(fill: self.colors.neutral-lightest, box(
+        width: 3em,
+        self.info.logo-white,
+      )))
     }
     set std.align(bottom + left)
     show: pad.with(right: 30%)
@@ -291,7 +319,11 @@
           curve.line((-4.5 * f, 648.5 * f)),
           curve.move((426.12 * f, -6.5 * f)),
           curve.line((426.12 * f, 215.07 * f)),
-          curve.cubic((426.12 * f, 332.11 * f), (331.24 * f, 427 * f), (214.19 * f, 427 * f)),
+          curve.cubic(
+            (426.12 * f, 332.11 * f),
+            (331.24 * f, 427 * f),
+            (214.19 * f, 427 * f),
+          ),
           curve.line((-5.5 * f, 427 * f)),
         )))
       },
@@ -299,7 +331,10 @@
   )
   let slide-body = {
     if self.info.logo != none {
-      place(top + left, text(fill: self.colors.neutral-lightest, box(width: 3em, self.info.logo)))
+      place(top + left, text(fill: self.colors.neutral-lightest, box(
+        width: 3em,
+        self.info.logo,
+      )))
     }
     set std.align(horizon + center)
     show: pad.with(x: 15%)
@@ -401,7 +436,9 @@
       // ensure the page numbers don't jump around (as much)
       box(
         width: 4em,
-        align(right, context utils.slide-counter.display() + " / " + utils.last-slide-number),
+        align(right, context utils.slide-counter.display()
+          + " / "
+          + utils.last-slide-number),
       ),
     )
   },
@@ -463,7 +500,7 @@
     config-colors(
       primary: rgb("#004791"),
       primary-lighter: rgb("#0029ed"),
-      secondary: rgb("#6298D2"),
+      secondary: rgb("#6298d2"),
       secondary-lighter: rgb("#def0ff"),
       tertiary: rgb("#000061"),
       neutral-lightest: rgb("#ffffff"),
