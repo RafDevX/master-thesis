@@ -483,7 +483,7 @@ first bar, notably, shows an aggregate global summary across all modules. Values
 above each bar specify the absolute number of modules considered.
 
 #figure(
-  charts.outcomes,
+  charts.outcomes(),
   caption: [Analysis outcomes by dataset and popularity band],
 ) <eval:results:overview:outcomes>
 
@@ -779,7 +779,7 @@ audits reporting insecure flows tend to have more confidentiality-related
 problems detected than integrity-based.
 
 #figure(
-  charts.median-errors,
+  charts.median-errors(),
   caption: [Median insecure flows in modules with errors without warnings],
 ) <eval:results:warnings:median-errors>
 

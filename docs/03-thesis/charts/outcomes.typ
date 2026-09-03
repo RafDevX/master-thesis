@@ -67,14 +67,14 @@
 #let indices = range(groups.len() + 1)
 #indices.remove(1)
 
-#let chart = {
+#let chart = (big: false) => {
   show lq.selector(lq.legend): set grid(columns: 6)
 
   lq.diagram(
     width: 100%,
-    height: 5.3cm,
-    margin: (y: 15%),
-    legend: (position: top + center, dy: -25%),
+    height: if big { 7cm } else { 5.3cm },
+    margin: (y: if big { 20% } else { 15% }),
+    legend: (position: top + center, dy: if big { -30% } else { -25% }),
     xlabel: [Sample],
     ylabel: [Share of Modules (%)],
     xaxis: (

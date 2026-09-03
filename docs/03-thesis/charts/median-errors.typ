@@ -56,13 +56,13 @@
 
 #let indices = range(groups.len())
 
-#let chart = {
+#let chart = (big: false) => {
   show lq.selector(lq.legend): set grid(columns: 6)
 
   lq.diagram(
     width: 100%,
     height: 6cm,
-    legend: (position: top + center, dy: -15%),
+    legend: (position: top + center, dy: if big { -25% } else { -15% }),
     xlabel: [Sample],
     ylabel: [Median Reported Errors],
     xaxis: (
