@@ -10,4 +10,4 @@
 #import "@preview/lilaq:0.6.0" as lq
 #import "@preview/lovelace:0.3.1"
 #import "@preview/subpar:0.2.2"
-#import "@preview/zero:0.6.1"
+#import "@preview/zero:0.7.0"
