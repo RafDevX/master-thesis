@@ -1960,7 +1960,8 @@ time to properly configure their security tools.
 
 However, Go Flow Levee has not had material developments since 2021 and its
 GitHub repository is archived. It was dropped from Kubernetes in 2024 for
-not supporting modern Go features @, but the `datapolicy` tags remain.
+not supporting modern Go features @srinivas2024levee, but the `datapolicy` tags
+remain.
 
 #pagebreak()
 

@@ -1,6 +1,6 @@
 #import "../utils/algorithms.typ": algorithm
 #import "../utils/cmd-outputs.typ": cmd-output
-#import "../utils/dependencies.typ": codly, fletcher, lovelace, zero
+#import "../utils/dependencies.typ": codly, lovelace, zero
 
 #import codly: codly
 
@@ -637,7 +637,7 @@ on where they have defined semantics and provide a legitimate security value. It
 should be noted, however, that all controls that accept function declarations or
 function calls likewise accept method declarations or method calls, since this
 work generally treats methods as a specialized kind of function, as explained in
-@.
+@glowy:constructs:funcs.
 
 Some controls' security labels support a special wildcard notation for more
 convenient handling of tag axes; concretely, the tag
@@ -1960,7 +1960,7 @@ the same joint-dependency already implemented for all other arms.
 
 #pagebreak()
 
-=== Functions and Methods
+=== Functions and Methods <glowy:constructs:funcs>
 
 Functions constitute perhaps the most extensive part of the implementation, as
 they interact with a great deal of mechanisms and must consider many different

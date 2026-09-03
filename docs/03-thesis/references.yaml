@@ -1937,7 +1937,7 @@ donovan2023pointer:
     value: https://github.com/golang/go/issues/59676
     date: 2026-07-31
   parent:
-    type: repository
+    type: reference
     title: golang/go
     publisher: GitHub
 
@@ -2007,6 +2007,21 @@ kep1933levee:
   url:
     value: https://github.com/kubernetes/enhancements/blob/master/keps/sig-security/1933-secret-logging-static-analysis
     date: 2026-07-31
+
+srinivas2024levee:
+  type: entry
+  title: "Drop hack/verify-govet-levee"
+  author: Srinivas, Davanum
+  date: 2024-01-05
+  serial-number:
+    github-pr: "kubernetes/kubernetes#122596"
+  url:
+    value: https://github.com/kubernetes/kubernetes/pull/122596
+    date: 2026-07-31
+  parent:
+    type: reference
+    title: kubernetes/kubernetes
+    publisher: GitHub
 
 gosecrules:
   type: reference
