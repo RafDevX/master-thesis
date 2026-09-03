@@ -1614,7 +1614,7 @@ Cybersecurity and Infrastructure Security Agency @cwefaq.
 @cwe is a sister project to @cve#footnote(link("https://cve.org")), a
 similarly-maintained and similarly-sponsored initiative focused on the
 identification, definition and cataloguing of concrete, publicly-disclosed
-cybersecurity vulnerabilities @cvefaq.
+Cybersecurity vulnerabilities @cvefaq.
 
 Finally, the @nvd#footnote(link("https://nvd.nist.gov")) is a third independent
 project, operated by the U.S. National Institute of Standards and Technology's
@@ -1701,7 +1701,7 @@ not used in any public dashboards @cve202627877grafana, among others.
 Overall, there are varied attacker-observable information sinks through which
 sensitive data can be leaked, frequently resulting in disastrous consequences,
 as demonstrated through the vulnerabilities referenced above. Confidentiality is
-an essential pillar of cybersecurity, so any improvement in detecting
+an essential pillar of Cybersecurity, so any improvement in detecting
 information leaks is already an exceptional advantage.
 
 === Path Traversal
@@ -1824,7 +1824,7 @@ which, while limited, are still broader than for a course project.
 == Related Work <bg:related>
 
 Static taint analysis and information flow enforcement are not new developments
-within cybersecurity, and extensive work has been conducted on the subject,
+within Cybersecurity, and extensive work has been conducted on the subject,
 targeting a wide range of languages and environments.
 
 Some notable examples include Pysa
