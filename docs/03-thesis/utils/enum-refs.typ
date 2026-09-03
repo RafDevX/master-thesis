@@ -3,7 +3,7 @@
 
 /// Metadata marker for enum items labels,
 /// used to allow reference with the `enum-label` function
-#let enu-label-mark = metadata("enumeration_label")
+#let enum-label-mark = metadata("enumeration_label")
 
 /// Add a label to an enumeration item.
 ///
@@ -25,7 +25,7 @@
     assert(label.has("text"), message: "enum-label requires text content")
     label = label.text
   }
-  [#enu-label-mark#std.label(label)]
+  [#enum-label-mark#std.label(label)]
 }
 
 /// Counter name for tracking of enumeration items
@@ -83,7 +83,7 @@
 #let setup-enum-refs(body) = {
   show ref: it => {
     let el = it.element
-    if el != none and el.func() == metadata and el == enu-label-mark {
+    if el != none and el.func() == metadata and el == enum-label-mark {
       let supp = it.supplement
       if supp == auto {
         supp = "Item"
