@@ -715,6 +715,12 @@ highest quality fix, in time and when appropriate, even before shipping a new
 release, as opposed to, e.g., having developers scramble to apply the fastest
 possible fix in order to restore service availability.
 
+Furthermore, it is known from results based on Rice's Theorem that, for
+non-trivial semantic abstract domains over Turing-complete programs, no total
+computable static analyzer can exhibit both perfect soundness and perfect
+precision, so a practical static analyzer for detecting arbitrary information
+flows must always choose which of these properties to sacrifice @cousot2018rice.
+
 Finally, it ought to be noted that security type systems
 (@intro:enforcement:types) could be considered under some definitions to be
 included in the category of static analysis, but this work distinguishes the two
@@ -793,6 +799,8 @@ revocation uses subtraction rather than full overriding (i.e.,
 $L' != cal(L)_"Revocation"$) to force stakeholders to be exhaustively aware
 about which tags are being removed. For the same reason, it is redundant for
 $cal(L)_"Revocation"$ to ever be $bot$.
+
+#pagebreak()
 
 Sinks require values passed to them to obey certain constraints. For convenience
 and flexibility, two distinct kinds of sinks are defined, representing

@@ -798,6 +798,29 @@ russosabelfeld2010vs:
       Proceedings of the 23rd IEEE Computer Security Foundations Symposium
     publisher: IEEE Computer Society
 
+cousot2018rice:
+  type: article
+  title: >-
+    Program Analysis is Harder than Verification: A Computability Perspective
+  author:
+    - Cousot, Patrick
+    - Giacobazzi, Roberto
+    - Ranzato, Francesco
+  date: 2018-07
+  page-range: 75-95
+  serial-number:
+    doi: "10.1007/978-3-319-96142-2_8"
+  parent:
+    type: proceedings
+    title: "30th International Conference on Computer Aided Verification"
+    editor:
+      - Chockler, Hana
+      - Weissenbacher, Georg
+    volume: 10982
+    publisher:
+      name: Springer
+      location: Cham, Switzerland
+
 livshitslam2005taint:
   type: article
   title: >-
