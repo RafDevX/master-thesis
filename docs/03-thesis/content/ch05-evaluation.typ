@@ -1164,7 +1164,6 @@ for graphical presentation.
   caption: [Distribution of the maximum convergence iterations],
 ) <eval:results:performance:cumulative>
 
-
 Together, @eval:results:performance:iters and
 @eval:results:performance:cumulative definitively show that the vast majority of
 modules converge within a reasonable number of iterations.

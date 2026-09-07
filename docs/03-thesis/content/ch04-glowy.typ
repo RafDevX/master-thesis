@@ -908,7 +908,6 @@ instead of requiring equality, substring presence suffices.
 
 #pagebreak()
 
-
 == Fundamental Primitives
 
 This section describes basic primitives used by this work's implementation of
