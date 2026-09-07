@@ -855,8 +855,9 @@ C.II project hosted on GitLab under `vk-golang/lectures`
 #footnote(link("https://gitlab.com/vk-golang/lecture")), which is a
 Russian-language educational repository presumably supporting a
 university-style course about Go. VK is the largest Russian social media
-service, with its VK Education program interfacing with schools and universities
-to collaborate so that its engineers teach students about particular topics.
+company, with its VK Education program interfacing with schools and universities
+to collaborate so that its engineers teach students about particular topics
+@vk2025education.
 
 The file path within the repository where the vulnerability was found is
 explicitly `/07_sec/06_ssrf/ssrf.go`, which confirms that the finding is a real

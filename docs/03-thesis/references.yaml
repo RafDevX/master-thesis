@@ -2152,6 +2152,21 @@ go2018modules:
     type: blog
     title: "The Go Blog"
 
+vk2025education:
+  type: report
+  title: >-
+    VK Education otkryvayet nabor na besplatnyye kursy v IT, digital i kreative
+    (VK Education Opens Enrollment for Free Courses in IT, Digital, and Creative
+    Fields)
+  language: ru
+  note: In Russian
+  author: VK
+  date: 2025-08-20
+  genre: Press Release
+  url:
+    value: https://vk.company.ru/ru/press/releases/12073
+    date: 2026-08-01
+
 moses2025commento:
   type: entry
   title: "PSA: Commento Outage (since 03/09/2025)"
