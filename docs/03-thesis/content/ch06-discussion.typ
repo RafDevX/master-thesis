@@ -1,4 +1,5 @@
 #import "../utils/dependencies.typ": codly, zero
+#import "../utils/symbols.typ" as symbols
 
 #import codly: codly
 
@@ -617,9 +618,181 @@ to understand error messages, as well as intuitive taint history trace
 visualizations based on annotated code snippets which enable users to easily
 understand what is insecure and why.
 
+@discussion:related:side-by-side below illustrates the chief differences between
+the various aforementioned tools, recapitulating important characteristics in a
+side-by-side layout for easier comparison. Preferred values are presented in
+bold, while undesired facts are shown in red; the symbol #symbols.partial
+denotes partial fulfillment.
+
+#let tools = (
+  (
+    name: [Gotcha],
+    max-version: [1.7],
+    max-version-inferred: false,
+    pointers: true,
+    multi-taint: false,
+    implicit: false,
+    interprocedural: true,
+    call-site-sensitive: true,
+    flow-sensitive: true,
+    configurable: [OK],
+    defaults: true,
+  ),
+  (
+    name: [GoKart],
+    max-version: [1.19],
+    max-version-inferred: true,
+    pointers: true,
+    multi-taint: false,
+    implicit: false,
+    interprocedural: true,
+    call-site-sensitive: false,
+    flow-sensitive: false,
+    configurable: strong[Very],
+    defaults: true,
+  ),
+  (
+    name: [Levee],
+    max-version: [1.16],
+    max-version-inferred: true,
+    pointers: true,
+    multi-taint: false,
+    implicit: false,
+    interprocedural: false,
+    call-site-sensitive: false,
+    flow-sensitive: true,
+    configurable: [OK],
+    defaults: false,
+  ),
+  (
+    name: [Gosec],
+    max-version: [1.26],
+    max-version-inferred: false,
+    pointers: true,
+    multi-taint: false,
+    implicit: false,
+    interprocedural: true,
+    call-site-sensitive: symbols.partial,
+    flow-sensitive: false,
+    configurable: false,
+    defaults: true,
+  ),
+  (
+    name: [Gruber's],
+    max-version: [1.26],
+    max-version-inferred: true,
+    pointers: true,
+    multi-taint: false,
+    implicit: false,
+    interprocedural: true,
+    call-site-sensitive: true,
+    flow-sensitive: true,
+    configurable: strong[Very],
+    defaults: true,
+  ),
+  (
+    name: [Argot],
+    max-version: [1.26],
+    max-version-inferred: true,
+    pointers: true,
+    multi-taint: false,
+    implicit: [Rigid#footnote[All taint-dependent branches are rejected with
+        prejudice; imprecise and inflexible.]],
+    interprocedural: true,
+    call-site-sensitive: true,
+    flow-sensitive: true,
+    configurable: [Good],
+    defaults: false,
+  ),
+  (
+    name: [Glowy],
+    self: true,
+    max-version: [1.26],
+    max-version-inferred: false,
+    pointers: false,
+    multi-taint: true,
+    implicit: true,
+    interprocedural: true,
+    call-site-sensitive: true,
+    flow-sensitive: symbols.partial,
+    configurable: strong[Most],
+    defaults: true,
+  ),
+)
+
+#let bool-field(key) = tools.map(tool => {
+  let value = tool.at(key, default: none)
+
+  if value == none {
+    [?]
+  } else if value == true {
+    text(sym.checkmark, stroke: 1.5pt)
+  } else if value == false {
+    text(red, sym.ballot.cross)
+  } else {
+    value
+  }
+})
+
+#pad(x: -5%, [
+  #figure(
+    table(
+      columns: 8 * (auto,),
+
+      table.header(
+        strong[Characteristic],
+        ..tools.map(tool => if tool.at("self", default: false) {
+          strong(tool.name)
+        } else {
+          tool.name
+        }),
+      ),
+      table.vline(x: 1, stroke: 1pt),
+
+      [Max. Go Vers.#footnote[
+          Maximum Go version officially supported by the tool. A #sym.dagger
+          marking indicates that this is inferred from the last release date,
+          but the actual figure might be lower than stated.
+        ]],
+      ..tools.map(tool => {
+        let marking = if tool.max-version-inferred { super(sym.dagger) } else []
+        let cell = [#tool.max-version#marking]
+
+        if tool.max-version == [1.26] {
+          strong(cell)
+        } else {
+          text(red, cell)
+        }
+      }),
+      [Pointers],
+      ..bool-field("pointers"),
+      [Multi-Taint],
+      ..bool-field("multi-taint"),
+      [Implicit Flows],
+      ..bool-field("implicit"),
+      [Interprocedural],
+      ..bool-field("interprocedural"),
+      [C.S.-Sensitive#footnote[Whether the tool is call-site-sensitive, per
+          @bg:taint:call-site-sensitivity.]],
+      ..bool-field("call-site-sensitive"),
+      [Flow-Sensitive],
+      ..bool-field("flow-sensitive"),
+      [Configurable#footnote[Whether the tool allows for sufficient, flexible,
+          and relatively easy customization.]],
+      ..bool-field("configurable"),
+      [Defaults#footnote[Whether the tool ships with some sort of plug-and-play
+          sensible base presets.]],
+      ..bool-field("defaults"),
+    ),
+    caption: [High-level comparison between related Go security tools],
+  ) <discussion:related:side-by-side>
+])
+
 In summary, Glowy introduces substantial new contributions to the research
 space, including when compared to the relevant tools within the Go ecosystem,
 especially in terms of flexibility, specialized modeling, and usability.
+
+#pagebreak()
 
 == Reflections
 
