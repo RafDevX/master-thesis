@@ -16,7 +16,7 @@ and justifying why it was chosen for each applicable task.
 Various research subprocesses are necessary in order to answer the research
 questions presented in @intro:rq and fulfill the project goals established in
 @intro:goals. These compose to form an overall workflow, as shown in
-@methods:process:workflow below.
+@methods:process:workflow on the next page.
 
 #figure(
   fletcher.diagram(node-stroke: 1pt, spacing: 2em, {
@@ -91,24 +91,25 @@ requirements. It is denoted by node B in @methods:process:workflow and
 correlates with @rq-ifc[] and @pg-tool[]. This subprocess is further detailed
 in @methods:process:tool.
 
-After an initial prototype is complete, the next logical step is to write an
-initial draft for the analyzer's base security policy, per @rq-base-policy[] and
+After an initial prototype is complete, the next logical step is to write a
+first draft for the analyzer's base security policy, per @rq-base-policy[] and
 @pg-base-policy[]. This subprocess, represented by node C in the diagram above,
 is further described in @methods:process:base-policy.
 
 Following that, determining which real-world projects to evaluate the analyzer
-against is a key subject, with real concern on the degree project's results and
-their overall validity, depending on the representativeness of the universe
-under sampling and the attributes exhibited by the selected Go projects. This
-subprocess, indicated by node D, is crucial for supporting @rq-find-vulns[] and
-@pg-evaluation[]. It is further developed in @methods:process:real-world and
-@methods:collection:discovery.
+against is a key subject, with direct implications for the degree project's
+results and their overall validity, depending on the representativeness of the
+universe under sampling and the attributes exhibited by the selected Go
+projects. This subprocess, indicated by node D, is crucial for supporting
+@rq-find-vulns[] and @pg-evaluation[]. It is further developed in
+@methods:process:real-world and @methods:collection:discovery.
 
 After real-world Go projects have been selected for evaluating the analyzer (and
-the ecosystem as a whole), the subsequent step is to execute the implemented
-prototype with each of those projects as input, as the core component of
-@rq-find-vulns[] and @pg-evaluation[], per node E of @methods:process:workflow.
-This is also described in @methods:process:real-world below.
+the Glowy ecosystem as a whole), the subsequent step is to execute the
+implemented prototype with each of those projects as input, as the core
+component of @rq-find-vulns[] and @pg-evaluation[], per node E of
+@methods:process:workflow. This is also described in the later
+@methods:process:real-world.
 
 Next, when the analysis is complete, a cursory review of the reported results
 (node F in the flowchart) is conducted in order to obtain sufficient context to
@@ -123,14 +124,14 @@ process in order to improve the contributions to their best possible state or
 otherwise intentionally determine certain patterns as out of scope, in either
 case directly contributing to @rq-ifc[] and @pg-tool[].
 
-This cycle of subprocesses E, F, G, and H repeats until the verdict in node G
-changes and, also bearing time and complexity constraints, it is decided that
-all remaining faults are considered out of the scope of the research work. In
-that case, a more in-depth examination of the reported analysis results takes
-place (node I of the diagram) in order to find patterns and correlations
-between the different variables being tracked, so as to serve as the final piece
-for @rq-find-vulns[] and @pg-evaluation[]. This subprocess is discussed in
-@methods:process:real-world..
+The cycle of subprocesses E, F, G, and H repeats until the verdict in node G
+changes and, also bearing time and complexity constraints in mind, it is decided
+that all remaining faults are considered out of the scope of the research work.
+In that case, a more in-depth examination of the reported analysis results takes
+place (diagram node I) in order to find patterns and correlations between the
+different variables being tracked, so as to serve as the final piece for
+@rq-find-vulns[] and @pg-evaluation[]. This subprocess is discussed in
+@methods:process:real-world.
 
 Finally, the last step in this research process is embodied by the subprocess
 denoted by node J in the @methods:process:workflow flowchart, consisting of a
@@ -142,19 +143,19 @@ of conclusions and high-level reflections directly correlates to
 
 === Tool Design <methods:process:tool>
 
-In order to answer @rq-ifc[] and fulfill @pg-tool[], it is necessarily to design
-a static analysis tool capable of consuming virtually any Go program and
-tracking its information flows throughout all possible code paths, as to be able
-to identify any potentially insecure gadgets. In particular,
+In order to answer @rq-ifc[] and fulfill @pg-tool[], it is necessary to design a
+static analysis tool capable of consuming virtually any Go program and tracking
+its information flows throughout all possible code paths, so as to be able to
+identify any potentially insecure gadgets. In particular,
 @rq-ifc-confidentiality[] and @rq-ifc-integrity[] require that both
 confidentiality and integrity faults can be detected, respectively, with both of
 those relying on the tracing of information provenance.
 
 ==== Core Desired Values
 
-In addition to the substantial efficacy evidently necessary to achieve this
+In addition to the substantial efficacy evidently required to achieve this
 goal, it is also essential for the tool in question to strive towards maximum
-usability, as to allow the greatest possible number of stakeholders to easily
+usability, so as to allow the greatest possible number of stakeholders to easily
 make use of it where appropriate. This implies a need for simplicity and smooth
 onboarding by means of a gentle learning curve, but also a significant degree of
 flexibility in order to support more advanced use cases.
@@ -176,11 +177,11 @@ false negative rate significantly harms a security mechanism's usefulness, so
 soundness must always be a priority.
 
 On the other hand, a useful tool cannot be too conservative either, requiring
-sufficient precision to ensure a low rate of false positives, at the risk of
+sufficient precision to ensure a low rate of false positives, to avoid
 inducing alert fatigue that compromises the output diagnostics' credibility and
 can lead to real vulnerabilities being inadvertently dismissed by stakeholders
 under the impression that most or all reported security issues are
-inconsequential. As such, it is important for the tool to not make too broad
+inconsequential. As such, it is important for the tool to not make overly broad
 assumptions about information flows, instead focusing on real propagation.
 
 ==== Comprehensiveness
@@ -202,15 +203,15 @@ associated with a project of this nature to offer full language support spanning
 all possibilities compliant with the Go specification with maximal soundness and
 precision, it is still vital for the tool to be developed under the guiding
 principle of ambition for breadth and broadness, aiming to handle as many
-constructs as feasible as gracefully as possible.
+constructs as feasible, as gracefully as possible.
 
 In particular, precedence should, in most cases, be awarded to more commonly
 used functionality, especially as use case patterns emerge from empirical
 observations across real-world Go projects, in connection with
 @methods:process:real-world. It is thus imperative for there to be an iterative
 process under which the analyzer is developed and improved based on feedback
-from it being run on real projects, as described above and represented visually
-by the cycle between nodes E, F, G, and H in the diagram from
+from it being run on real projects, as described previously and represented
+visually by the cycle between nodes E, F, G, and H in the diagram from
 @methods:process:workflow.
 
 The final Go subset considered for analysis is further detailed in
@@ -235,8 +236,8 @@ constructs support an intuitive codebase, while low-level utilities are still
 available when necessary.
 
 In addition, its first-class support for powerful algebraic data types (via
-`enum`) makes it easier to represent many concepts important to this work, such
-as @ast nodes, and allows more expressive pattern matching.
+```rust enum```) makes it easier to represent many concepts important to this
+work, such as @ast nodes, and allows more expressive pattern matching.
 
 #pagebreak()
 
@@ -263,7 +264,7 @@ multi-language parsing framework with a C runtime. Rust bindings
 #footnote(link("https://crates.io/crates/tree-sitter")) and a Go grammar
 #footnote(link("https://crates.io/crates/tree-sitter-go")) are available and
 actively maintained, allowing consumers to parse Go code into queryable Rust
-structures. Since is it very beneficial for analysis to be able to
+structures. Since it is very beneficial for analysis to be able to
 pattern-match across @ast nodes, a possible solution could be to define new
 @ast types for use in this work, as well as a translation mechanism to move from
 string-based fields to expressive strong typing. This would result in a
@@ -291,21 +292,21 @@ required by the analyzer, as part of a generalized iterative process exploiting
 the tight coupling between the two components.
 
 An owned, custom parsing procedure keeps semantic control close to the analyzer,
-besides being simpler to version and distribute with the consumer, forming a
-safe and native abstraction, rather than relying on @ffi with limited safety
+besides being simpler to version and distribute to the consumer, forming a safe
+and native abstraction, rather than relying on @ffi with limited safety
 guarantees, as is required with Tree-sitter. Customized behavior specific to the
 Go language is much more convenient than generic and language-agnostic
 data structuring, even if in some cases the latter could be converted into the
 former for simpler and safer manipulation.
 
-Given the points considered above, the present degree project provides a
-full-fledged first-party custom parser implementation, depending on its own
-parsing rules in accordance with the Go language specification @go126spec.
+Given the points considered in this subsection, the present degree project
+provides a full-fledged first-party custom parser implementation, employing its
+own parsing rules in accordance with the Go language specification @go126spec.
 
 ==== Implementation Process
 
-Taking into account the subsections above, the analyzer's implementation is an
-iterative process composed of careful development strides always conducted in
+Taking into account the preceding subsections, the analyzer's implementation is
+an iterative process composed of careful development strides always conducted in
 tandem with extensive testing, especially through the parallel establishment and
 repeated extension of a significant number of focused correctness benchmarks in
 the form of short, independent Go programs exercising different features.
@@ -351,17 +352,19 @@ survey would actually have to be repeated often, adding more overhead and
 workload, as well as potentially giving stakeholders a false sense of security
 if it is ever not up-to-date.
 
-In alternative, this work uses a static, globally-applicable base security
+Alternatively, this work uses a static, globally-applicable base security
 policy, bypassing the need for regular project surveying by always enabling all
 controls by default, since they will only ever actually manifest themselves in
 codebases that use the @api:pl to which they are associated, and there is
 negligible overhead for the analyzer to track all controls as always enabled,
-compared to if they were only considered under detected usage. For example, even
-if Go operations for fetching the value of an @http `Authorization` header
+compared to if they were only considered under detected usage.
+
+For example, even if Go operations for fetching the value of an @http
+`Authorization` header
 #footnote(link("https://httpwg.org/specs/rfc9110.html#field.authorization"))
 are marked as information sources, this will never affect, neither semantically
-nor performance-wise, any programs which have no external communication, since
-they will necessarily never access such a header.
+nor performance-wise, any programs which contain no external communication logic
+whatsoever, since they will necessarily never access such a header.
 
 Thus, in order to answer @rq-base-policy[] and fulfill @pg-base-policy[], it is
 necessary to draft specifications of information sources, enforcement sinks, and
@@ -379,8 +382,8 @@ specific security requirements and risk appetite.
 
 === Real-World Problem Detection <methods:process:real-world>
 
-For the purposes of answering @rq-find-vulns[] and @pg-evaluation[], it is
-necessary to select a reasonable number of real-world Go projects and then
+For the purposes of answering @rq-find-vulns[] and fulfilling @pg-evaluation[],
+it is necessary to select a reasonable number of real-world Go projects and then
 deploy the analyzer tool to inspect each of them. This is useful both as
 real-world evaluation for the analyzer and as data collection regarding detected
 potential vulnerabilities present in projects across and throughout the
@@ -419,7 +422,7 @@ usage, as well as to promote reproducibility in machines with fewer available
 computational resources.
 
 After the static analyzer has inspected each sampled project's codebase in
-search for insecure information flows, all necessary results and outputs are
+search of insecure information flows, all necessary results and outputs are
 available and easily accessible in a structured format, such as through a
 database engine. This makes it simple to perform a broad high-level review of
 the collected findings, so as to trace patterns and potentially identify any
@@ -429,25 +432,25 @@ true positives, corresponding to real vulnerabilities.
 
 The final research method, associated with @rq-prevalence[] and @pg-interpret[],
 consists of the aggregate interpretation of the results obtained from the
-process described in @methods:process:real-world above, in order to
+process described in the preceding @methods:process:real-world, in order to
 quantitatively describe the sampled corpus of real-world Go projects, in an
 attempt to uncover insights and draw conclusions regarding the entire Go
 ecosystem at large.
 
 This is at its core a pattern-matching exercise, employing various statistical
-tools to find interesting correlations and metrics, the foremost of which
+tools to find interesting correlations and metrics, the foremost of which are
 especially related to perceived vulnerability prevalence across popular
 production-grade applications and libraries in Go.
 
-Given this information, the last piece is the informed hypothesizing of the
-general applicability of @ifc techniques to Go as a useful security device,
+Given this information, the last missing piece is the informed hypothesizing of
+the general applicability of @ifc techniques to Go as a useful security device,
 particularly within the context of static source-code analysis.
 
 == Research Paradigm
 
-The research process described above comprises three complementing facets.
-Firstly, deductive processes are used to implement initial versions of the
-analyzer and the benchmarks corpus, based on reference material, such as the
+The research process described in this chapter comprises three complementing
+facets. Firstly, deductive processes are used to implement initial versions of
+the analyzer and the benchmarks corpus, based on reference material, such as the
 Go specification and the state-of-the-art literature review supporting this
 document's @bg. Secondly, empirical observations from real Go projects guide
 the subsequent development, as the work's different components are iteratively
@@ -459,9 +462,9 @@ findings for each sampled project.
 
 This work is centered on the static analysis of Go programs compliant with Go
 1.26, currently the latest stable version of the language. All input is expected
-to be compliant with the Go specification (i.e., all code must compile); the
-tools' behavior is undefined for faulty programs, though a best-effort attempt
-is made to report clear problems and to isolate their impact so as not to fully
+to adhere to the Go specification (i.e., all code must compile); the tools'
+behavior is undefined for faulty programs, though a best-effort attempt is made
+to report clear problems and to isolate their impact so as not to fully
 compromise the results for other unrelated sections.
 
 However, even correct Go 1.26 programs are not necessarily supported, as
@@ -484,18 +487,18 @@ Nevertheless, several other features or patterns are not considered, as they
 are deemed too complex to be supported in an initial prototype. This section
 outlines the chief areas determined to be out of scope.
 
-Firstly, heap locations and general pointer aliasing is not modeled. Very simple
-pointer usage may be correctly handled, as in most cases pointers are here
-considered equivalent to their targets, but more complex patterns can lead to
-unsound results. Alias relationships in general may not be preserved, and calls
-do not perform mutation write-backs through reference-holding arguments (e.g.,
-pointers, maps, slices, channels) nor through pointer-typed receivers, in the
-case of methods.
+Firstly, heap locations and general pointer aliasing are not modeled. Very
+simple pointer usage may be correctly handled, as in most cases pointers are
+here considered equivalent to their targets, but more complex patterns can lead
+to unsound results. Alias relationships in general may not be preserved, and
+calls do not perform mutation write-backs through reference-holding arguments
+(e.g., pointers, maps, slices, channels) nor through pointer-typed receivers, in
+the case of methods.
 
 Secondly, interface-typed dynamic dispatch is not supported, nor is method
-promotion through embedded interfaces. Simple generic constructs are handled
-correctly, but behavior dependent on dynamic type restrictions, constraints, and
-shapes is not supported.
+promotion through embedded interfaces (just through concrete structs). Simple
+generic constructs are handled correctly, but behavior dependent on dynamic type
+restrictions, constraints, and shapes is not supported.
 
 Thirdly, `panic` to `recover` chains are not modeled, and contextual
 `panic`-based propagation is excluded as a termination covert channel, as
@@ -508,7 +511,7 @@ Moreover, while simple concurrency cases are in scope as one of Go's most
 distinctive features, complex channel and goroutine chains are not, and
 advanced happens-before/synchronization precision is not a project goal,
 including some forms of data races. In particular, goroutine effects that
-require argument/receiver write-backs are not supported, as stated above.
+require argument/receiver write-backs are not supported, as had been stated.
 
 Additionally, no usages of the `unsafe` package
 #footnote(link("https://pkg.go.dev/unsafe")) are supported, as it allows
@@ -518,7 +521,7 @@ analysis.
 
 In general, only pure, base Go is considered for this degree project. Assembly
 implementations, plugins#footnote(link("https://pkg.go.dev/plugin")), reflection
-#footnote(link("https://pkg.go/dev/reflect")), finalizers and pointer cleanup
+#footnote(link("https://pkg.go.dev/reflect")), finalizers and pointer cleanup
 functions, signal handling, and ```go //go:linkname``` directives for arbitrary
 linking are not modeled, since they would require extremely complex handling, as
 well as much more contextual information, leading to greatly reduced
@@ -537,15 +540,15 @@ side-effects. In addition, external dependency resolution (including through
 Overall, these limitations are considerable, but many of the excluded language
 features are relatively niche and used only in hyper-specialized contexts. This
 means that a very significant share of all Go programs is considered to be in
-scope for this work and are modeled correctly, which is appropriate for a degree
+scope for this work and modeled correctly, which is appropriate for a degree
 project of this nature.
 
 #pagebreak()
 
 == Data Collection <methods:collection>
 
-As stated above, it is necessary to select real-world Go projects as part of the
-defined research process, especially for the evaluation of this work's
+As previously stated, it is necessary to select real-world Go projects as part
+of the defined research process, especially for the evaluation of this work's
 contributions relative to the Go ecosystem, as referenced in
 @methods:process:real-world.
 
@@ -559,8 +562,8 @@ representatively characterize, as most Go programs are not easily accessible
 secrets, or exist locally in ad-hoc files in one particular machine).
 
 Instead, for the purposes of this degree project, the most suitable population
-is limited to popular, production-grade, open-source Go projects, which
-represent projects likely to be truly relevant and in use, either as libraries
+is limited to popular, production-grade, open-source Go codebases, which
+represent those likely to be truly relevant and in use, either as libraries
 depended on across the entire ecosystem, or applications used directly by
 end-users for a particular purpose (or both, in some cases).
 
@@ -573,7 +576,7 @@ recognition.
 
 This degree project opts to do so according to three different principles, so
 that they can complement each other's limitations and thus collectively form a
-better birds-eye representation of the pertinent population.
+better bird's-eye representation of the pertinent population.
 
 Each set of criteria results in an ordered dataset of Go projects, ranked from
 best-scoring (according to the dataset's own metric) and down to the
@@ -600,9 +603,9 @@ open-source Go modules throughout the ecosystem.
 
 In parallel, another service provided by the Go team and hosted by Google is the
 index at #link("https://index.golang.org"), which serves a feed of module
-versions published to `proxy.golang.org` since April 10, 2019 at 19:08:52.997264
+versions cached by `proxy.golang.org` since April 10, 2019 at 19:08:52.997264
 @utc:short, corresponding to when the service entered operation. Each entry
-contains the module path, version, and publication timestamp.
+contains the module path, version, and first-cached timestamp.
 
 Since `pkg.go.dev`'s @api does not support listing
 modules#footnote[As part of this degree project, a request was made at
@@ -613,7 +616,7 @@ its user-facing website, nor the `GOPROXY` protocol itself), an acceptable
 alternative is to traverse the entire `index.golang.org` feed and collect all
 unique module paths mentioned, thereby obtaining the set of modules known to
 `proxy.golang.org` (or rather, those that were at one point known to it) with at
-least one version published since the aforementioned April 2019 date, up to and
+least one version cached since the aforementioned April 2019 date, up to and
 including some other particular date.
 
 #let index-modules-truncation = zero.num(100000)
@@ -626,7 +629,7 @@ be unmanageable and excessively time consuming to process the entirety of the
 calculated set, corresponding to millions of records.
 
 For each listed module in the truncated list, `proxy.golang.org` is then queried
-to obtain the `go.mod` file for the module's latest published version. All of
+to obtain the `go.mod` file for the module's latest cached version. All of
 the module's stated dependencies, both direct and transitive, then have their
 tally incremented by one, so as to end up with a mapping of Go modules to the
 number of dependents they have within the #index-modules-truncation\-entry
@@ -634,7 +637,7 @@ truncated set obtained from the `index.golang.org` feed.
 
 The final Dataset A is then the list of public modules depended on (directly or
 indirectly, at any version) by at least one of the top #index-modules-truncation
-modules by published version count since April 10, 2019 at 19:08:52.997264 @utc,
+modules by indexed version count since April 10, 2019 at 19:08:52.997264 @utc,
 as reported by the official module mirror at `proxy.golang.org`.
 
 ==== Dataset B: GitHub Repositories by Stars
@@ -690,8 +693,8 @@ share of the language rather than whether it matches the primary language.
 
 Since GitLab operates at a much smaller scale than GitHub (especially since only
 the main `gitlab.com` instance is considered, and GitLab is often self-hosted
-for proprietary contexts), the minimum star threshold is reduced two orders of
-magnitude compared to Dataset B, which results in a minimum requirement of at
+for proprietary contexts), the minimum star threshold is reduced by two orders
+of magnitude compared to Dataset B, which results in a minimum requirement of at
 least 10 stars for admission. Despite being very low in absolute terms, this
 threshold strikes a balance appropriate for GitLab.
 
@@ -702,8 +705,9 @@ ordered from most to least stars, excluding those marked as archived.
 ==== Rejected Alternatives
 
 It should be noted that other selection processes are worthy of consideration,
-especially in alternative to Dataset A as described above. The present
-subsection describes some of the possibilities explored.
+especially as an alternative to Dataset A as described in
+@methods:collection:discovery:a. The present subsection describes some of the
+possibilities explored.
 
 Firstly, `pkg.go.dev` has an experimental publicly-available
 @api#footnote(link("https://pkg.go.dev/v1beta/api")) released at the end of May
@@ -754,10 +758,10 @@ the one in @methods:collection:discovery:rejected:bigquery below.
   caption: [Example dependents query to `deps.dev`'s BigQuery dataset],
 ) <methods:collection:discovery:rejected:bigquery>
 
-Nevertheless, while Google allows queries to this BigQuery dataset up to 1 TiB
-of processing per month, Google Cloud Console estimates the query in
-@methods:collection:discovery:rejected:bigquery as processing 54.32 TiB of data,
-which would reportedly cost an equivalent to approximately \$340 U.S. dollars to
+Nevertheless, while Google allows queries to this public BigQuery dataset up to
+$1$ TiB of processing per month, Google Cloud Console estimates the query in
+@methods:collection:discovery:rejected:bigquery as processing $54.32$ TiB of
+data, which would reportedly cost an equivalent to approximately $"US"\$340$ to
 run and is thus not suitable for this work, even if the resulting dataset would
 likely be of higher quality.
 
@@ -771,10 +775,10 @@ equivalent semantics. However, this is not actually a valid solution because
 this particular endpoint is only available for npm (JavaScript), Cargo (Rust),
 Maven (Java), and PyPI (Python), but not the Go ecosystem.
 
-In summary, taking into account the reasoning above, the pipeline described in
-@methods:collection:discovery:a is deemed the most appropriate for this degree
-project's purposes, even if convoluted, as it is the only real solution
-available.
+In summary, taking into account the reasoning here laid out, the pipeline
+described in @methods:collection:discovery:a is deemed the most appropriate for
+this degree project's purposes, even if convoluted, as it is the only real
+solution available.
 
 === Stratification <methods:collection:stratification>
 
@@ -823,7 +827,7 @@ repository, which may contain multiple related modules.
 === Inter-Dataset Duplicates <methods:collection:duplicates>
 
 It is possible for the same module to be selected from separate datasets, since
-sampling is conducted independently for each strata. While entries are
+sampling is conducted independently for each stratum. While entries are
 guaranteed unique within each dataset, duplication is possible across datasets,
 making this a real concern.
 
@@ -848,7 +852,7 @@ the differences between the two versions (if any) are assumed to be negligible.
 
 == Data Evaluation <methods:data-eval>
 
-This section presents a final and brief evaluation on the methods selected for
+This section presents a final and brief evaluation of the methods selected for
 fulfillment of the degree project's research questions (@intro:rq) and stated
 goals (@intro:goals), particularly in regard to the evaluation subprocesses, in
 terms of project selection, systematic results collection, and interpretation of
@@ -922,7 +926,9 @@ In conclusion, this degree project uses clear and appropriate methods to further
 its stated purpose. It comprises the development of a static analyzer for
 tracking and enforcing @ifc, as well as a base security policy for it to employ,
 and a corpus of correctness benchmarks, all using a combination of deductive and
-iterative empirical-led processes. In addition, it evaluates such contributions
-by scrutinizing the findings reported for $300$ popular real-world Go projects,
-randomly selected using stratified sampling from datasets based on public
-dependent count, GitHub stars, and GitLab stars.
+iterative empirically-led processes.
+
+In addition, it evaluates such contributions by scrutinizing the findings
+reported for $300$ popular real-world Go projects, randomly selected using
+stratified sampling from datasets based on public dependent count, GitHub stars,
+and GitLab stars.

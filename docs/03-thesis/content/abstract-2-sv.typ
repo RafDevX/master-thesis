@@ -3,7 +3,7 @@ blir informationens ursprung allt viktigare, även utöver de konkreta uppgifter
 det är förknippat med. Sådan proveniensmetadata spelar i synnerhet en viktig
 roll inom cybersäkerhet, eftersom den ofta avgör var och hur information kan
 användas: hemliga indata bör inte vara offentligt observerbara, medan opålitliga
-indata behöver i regel saneras innan de når kritiska delar.
+indata i regel behöver saneras innan de når kritiska delar.
 
 // "taintanalys" is not real Swedish, but FOI translates it as
 // "dataflödesanalys av potentiellt osäkra data", which is too long

@@ -25,7 +25,7 @@
   height: 6cm,
   xlim: (1, auto),
   ylim: (0, 100),
-  xlabel: [$\#$ Max Stabilization Iterations],
+  xlabel: [$\#$ Max. Stabilization Iterations],
   ylabel: [Converged Modules (%)],
   xaxis: (subticks: none),
   yaxis: (tick-distance: 20),

@@ -9,7 +9,7 @@ This degree project is centered around several ambitious goals and core tenets,
 striving to address a fundamental problem to the utmost extent possible within
 the scope and constraints it is bound to. It prioritizes robustness,
 flexibility, and usability, aiming to contribute balanced and well-designed
-solutions to the overarching field of Cybersecurity.
+solutions to the surrounding field of Cybersecurity.
 
 The present chapter considers each research question and stated goal, weighing
 the project's contributions against the overall requirements set forth by this
@@ -18,14 +18,14 @@ report and evaluating their merit as a research development.
 == Research Questions
 
 This section addresses each of the research questions defined in @intro:rq,
-considering them under the light of this work's contributions and results,
+considering them in light of this work's contributions and results,
 as well as linking them to the project goals established in @intro:goals,
 which are in turn derived from and a complement to the project's stated
 purpose, introduced in @intro:purpose.
 
 In particular, the findings presented in @eval:results of the foregoing @eval,
-corresponding to the the auditing of $371$ Go modules, are interpreted in
-connection with each research question, establishing a stronger link between the
+corresponding to the auditing of $371$ Go modules, are interpreted in connection
+with each research question, establishing a stronger link between the
 results and the overarching degree project.
 
 #pagebreak()
@@ -33,7 +33,7 @@ results and the overarching degree project.
 === Information Flow Analyzer <discussion:rq:analyzer>
 
 The first and most foundational research question, @rq-ifc[], centers around
-the effective and systematic tracking of information flow in Go problems,
+the effective and systematic tracking of information flow in Go projects,
 employing static analysis to accomplish it. This research question ties
 directly with @pg-tool[], which prescribes the development of a static analysis
 tool for detecting potential security vulnerabilities using @ifc techniques,
@@ -91,22 +91,22 @@ flows reported by the analysis tool, no in-scope false negative was found
 through empirical observation during manual variable-granularity reviews of
 the reported result set. It would also be very difficult for such cases to not
 be detected and flagged by the benchmarks corpus, which evidences a high
-likelihood that any hypothetical false negatives uses very strange constructions
+likelihood that any hypothetical false negatives use very strange constructions
 or gadget-like configurations that are not covered by the benchmarks.
 
 In any case, though, the purpose of the analyzer is strictly to report findings
 it detects for stakeholder review and potential resolution, but nothing can be
 inferred from no findings being reported; i.e., Glowy does not endorse any
 conclusions regarding a lack of diagnostics implying a completely secure
-proram. Other security vulnerabilities may still be present and undetectable.
+program. Other security vulnerabilities may still be present and undetected.
 
-It is thus on the presence of diagnostics that Glowy's security value rests,
-never on their absence, since the analyzer is intended to aggregate potential
-problems rather than perform formal verification of a program's behavior and
-underlying security. This distinction is essential and stated multiple times as
-clearly as possible, since stakeholders may otherwise make incorrect assumptions
-and fallaciously use the tool's lack of diagnostics to evidence an unfounded
-sense of security.
+It is thus on the presence of potential vulnerability reports that Glowy's
+security value rests, never on their absence, since the analyzer is intended to
+aggregate potential problems rather than perform formal verification of a
+program's behavior and underlying security. This distinction is essential and
+stated multiple times as clearly as possible, since stakeholders may otherwise
+make incorrect assumptions and fallaciously use the tool's lack of findings to
+evidence an unfounded sense of security.
 
 In addition, the results reported by Glowy naturally depend on the security
 control configuration registered for analysis, which means that some pattern may
@@ -118,8 +118,8 @@ authoritative guide for how the analyzer should operate and make decisions.
 This consequently means that Glowy fully trusts the configured security policy,
 as well as the source code under analysis (which may contain source-code
 annotations that comprise security policy directives). This is necessary and
-intentional, given that the analyzers considers developers and other such
-stakeholders to be the ultimate truth for a particular project.
+intentional, given that the analyzer considers developers and other such
+stakeholders to be the ultimate source of truth for a particular project.
 
 Moreover, several figures and inferences in @eval:results demonstrate a clear
 support for both confidentiality and integrity, as required by @pg-tool[].
@@ -158,9 +158,10 @@ largely agnostic to confidentiality, integrity, and any other axes, thus
 generalizing even one level further than otherwise required by the research
 question.
 
-In this way, given the reasoning above, this degree projects considers
-@pg-tool[] accomplished and @rq-ifc[] answered, including the latter's
-sub-questions, @rq-ifc-confidentiality[] and @rq-ifc-integrity[].
+In this way, given the reasoning presented in the present subsection, this
+degree project considers @pg-tool[] accomplished and @rq-ifc[] answered,
+including the latter's sub-questions, @rq-ifc-confidentiality[] and
+@rq-ifc-integrity[].
 
 #pagebreak()
 
@@ -173,7 +174,7 @@ starting point before a real project-specific policy can be defined by the
 appropriate stakeholders.
 
 The associated project goal is @pg-base-policy[], which essentially narrows
-down the @rq-base-policy[] by tying it to Glowy concretely: the objective is to
+down @rq-base-policy[] by tying it to Glowy concretely: the objective is to
 develop a reasonable, even if imperfect, policy to serve as input to the
 analyzer.
 
@@ -183,7 +184,7 @@ in more detail under @glowy:base-policy.
 
 Glowy's Base Security Policy is subject to the same multi-module evaluation
 process as the analyzer itself, since each module audit takes place without
-any-project specific configuration and thus relies on the default blanket
+any project-specific configuration and thus relies on the default blanket
 directives to extract any security value from the analysis process.
 
 The arguments used in the preceding section for overall effectiveness are thus
@@ -199,7 +200,7 @@ virtually no revocations, as justified at the end of @glowy:base-policy;
 sanitizers only clear input to be used in a specific target context, not for
 unconditional broad usage, so they are necessarily situation-dependent and thus
 should never be defined in a generic security policy, since sanitizer
-sufficiency semantics depends on how the input is used by the project.
+sufficiency semantics always depend on how the input is used by the project.
 
 For instance, `path.Clean` might sufficiently sanitize a file path if it is
 only used for (privileged) file reads, but often it will also be necessary to
@@ -209,13 +210,14 @@ safe for, e.g., being included in @html without further escaping, since paths
 may contain characters with defined special meaning in @html documents.
 
 The referenced example showcases how a generic policy cannot soundly assume how
-each tainted input will be used, as it depends on the project under scrutiny. It
-thus nevertheless mean that analysis can report false positives even if input is
-already sanitized in a way appropriate for the project.
+each tainted input will be used, as that necessarily depends on the project
+under scrutiny and can vary for different domains. It thus nevertheless means
+that analysis can report false positives even if input is already sanitized in a
+way appropriate for the project.
 
-Glowy's Base Security Policy cannot safely accept a great deal of pattern kinds
-without explicit stakeholder instructions that acknowledge and elect the risk
-associated with specific operations or chains thereof.
+Glowy's Base Security Policy therefore cannot safely accept a great deal of
+pattern kinds without explicit stakeholder instructions that acknowledge and
+elect the risk associated with specific operations or chains thereof.
 
 This makes the generic approach taken by this work less appropriate for
 mass analysis, but does not compromise the significant usefulness of the base
@@ -225,10 +227,10 @@ root causes which are easy to fix under project-specific configuration. It
 would, in comparison, prove too unsound to attempt to do this generically for
 arbitrary programs via the base policy itself.
 
-Important to highlight is the fact, though, that this work explicitly defines a
+Important to highlight, though, is the fact that this work explicitly defines a
 base policy only to better support project and user onboarding, since providing
-nothing would require an immediate investment from stakeholders for defining an
-appropriate security policy immediately when trialing usage, and greatly
+nothing at all would require an immediate time investment from stakeholders for
+defining an appropriate security policy right when trialing usage, and greatly
 steepen the necessary learning curve, as users would have to learn how to
 define a sound policy for their project right away.
 
@@ -242,12 +244,12 @@ no need for additional security tool usage.
 
 Glowy's Base Security Policy is thus still considered a success, as it
 recognizes genuine flows in real-world projects and, even if it may generate
-false positives, in general they tend to be very evident and trivial, with the
-associated risk being very trivially accepted at the local level through one or
-few well-placed revocation directives after consideration that they align with
-the project's attacker model and security posture. Any reported flows that are
-not trivial to safely resolve likely correspond to a real security
-vulnerability.
+false positives, in general they tend to be very evident and superficial, with
+the associated risk being very trivially accepted at the local level through one
+or a few well-placed revocation directives after consideration that they align
+with the project's attacker model and security posture. Any reported flows that
+are not trivial to safely resolve, in contrast, likely correspond to a real
+security vulnerability and their underlying root causes should be patched.
 
 Moreover, false positives are, in the median case, not of a sufficient number to
 overwhelm stakeholders, making the workflow manageable even upon first use, and
@@ -294,10 +296,10 @@ sample size would select virtually the entire Dataset C (stratum size of 59) and
 it would put too much load on the manual results processing, which is the chief
 bottleneck when thousands of diagnostics are emitted.
 
-As mentioned in @discussion:rq:analyzer and described in
-@eval:results:effectiveness, true security vulnerabilities were identified in
+As described in @eval:results:effectiveness and mentioned in
+@discussion:rq:analyzer, true security vulnerabilities were identified in
 several real-world Go projects, so this work considers @rq-find-vulns[]
-positively answered and @pg-interpret[] accomplished.
+positively answered and @pg-evaluation[] accomplished.
 
 #pagebreak()
 
@@ -321,19 +323,19 @@ in addition to investigating the $23$ other modules for which analysis did not
 complete.
 
 This would have almost certainly inflated the results processing stage into a
-multi-week endeavor, given that while it is simple for project stakeholders to
-easily understand reported flows, it is much more difficult for those with zero
-domain knowledge (including regarding the very nature and exposure of the
-project) to swiftly and systematically comprehend the high-level operations
-represented by the reported control paths, as well as additionally determine if
-they are affected by an exploitable vulnerability.
+multi-week/month endeavor, given that while it is simple for project
+stakeholders to easily understand reported flows, it is much more difficult for
+those with zero domain knowledge (including regarding the very nature and
+exposure of the project) to swiftly and systematically comprehend the high-level
+operations represented by the reported control paths, as well as additionally
+determine if they are affected by an exploitable vulnerability.
 
-In addition, all the time spent manually inspecting each finding would only have
+Moreover, all the time spent manually inspecting each finding would only have
 yielded dubious conclusions, as categorizations performed without any
 domain knowledge would have a decreased correctness confidence.
 
-Instead, this work opted to perform a high-level survey and cursory review of
-the reported findings, only performing a finer-grained inspection for some of
+Instead, this work opted to conduct a high-level survey and cursory review of
+the reported findings, only resorting to a finer-grained inspection for some of
 the modules, according to what seemed to exhibit interesting properties.
 
 As such, no exact number can be given regarding detectable vulnerability
@@ -343,7 +345,7 @@ multiple true positives were identified.
 
 Nevertheless, such security issues do not appear to be very widespread in
 high-profile projects, as approximately two thirds of completed audits did not
-report any problem, only a quarter of completed audits found insecure
+report any problem; only a quarter of completed audits found insecure
 information flows, and few of those policy violations were substantial.
 
 #pagebreak()
@@ -377,7 +379,7 @@ As such, there are thus various aspects that were deemed too costly to support
 up to the extent that would otherwise be desired or expected, with certain parts
 having to be heavily simplified or even put aside completely. In particular,
 Glowy is a research prototype and is not feature-complete, nor is the
-implementation intended for real production usage at its current state.
+implementation intended for real production usage in its current state.
 
 @methods already describes, under its @methods:subset, several language-level
 features and patterns that are not considered part of the supported subset of
@@ -434,8 +436,9 @@ resolution and handling, with analysis focusing exclusively on one module and
 using black-box techniques to model all external code. This leads to severe
 lacks of precision and major soundness faults, even if in many cases it is still
 correct. Recursively downloading and analyzing all dependencies would introduce
-network dependency (i.e., limit sandboxing) and configure much more complex
-handling, possibly for no significant benefits in findings.
+network dependency (i.e., limit sandboxing) and require much more complex
+handling, possibly for no overly significant improvements in terms of concrete
+findings.
 
 Moreover, the current label backtrace mechanism does not support representing
 revocations in the taint trace chain, since the operation corresponds to the
@@ -446,10 +449,10 @@ which directive affected each backtrace, but that would increase complexity and
 does not handle the case where a label is fully revoked, becoming $bot$, since
 it does not make sense to propagate a Bottom label.
 
-Furthermore, a significant problem experienced during real-world analysis is
-regarding the systematic and robust handling of build-tag constraints, since
+Furthermore, a significant problem experienced during real-world analysis
+regards the systematic and robust handling of build-tag constraints, since
 there is no unified way to know which combinations of custom user-defined tags
-are valid, since it is common for there to be some exclusivity or dependency
+are valid, as it is common for there to be some exclusivity or dependency
 relationships between them, though purely as a convention.
 
 For the real-world analysis procedure, pinning execution to just a constant set
@@ -458,28 +461,28 @@ warning count, as the analyzer takes the union of all errors across all
 permutations. This is not done due to time constraints (since it means that the
 tool must support build tag pinning) but also because it is somewhat
 disingenuous to presume that some arbitrary combination is representative of
-the entire module, thus ensuing in misleading results.
+the entire module, thus producing in misleading results.
 
 In general, the reason why Glowy performs this enumeration and exhaustive
 analysis of build-tag permutations is out of a concern for usability, since
-some obscure @cli flag for build tag selection could lead to stakeholders always
-executing analysis with the same tags, and thus perhaps missing real insecure
+some obscure @cli flag for build-tag selection could lead to stakeholders always
+executing analysis with the same tags, and thus perhaps miss real insecure
 flows that would not be detected because the respective file is never checked,
-leaving to a false sense of security, which is arguably worse than the current
-exhaustive handling.
+leading to a false sense of security, which is arguably worse than the drawbacks
+associated with the current exhaustive handling.
 
 Finally, as already mentioned in @intro:enforcement:static, analysis based on
 source code assumes that the final set of executed instructions is actually
 faithful to the original source code, which means that the compiler, target
-@os, processor, and the entire adjacent chain is implicitly trusted. However,
-this is not a major problem, as the purpose with the developed analyzer is not
-to assert that execution will be secure, but rather just to detect specific
-cases when an abstract program is not.
+@os, processor, and the entire adjacent chain is implicitly trusted.
+/*However, this is not a major concern, as*/ Regardless, the purpose with the
+developed analyzer is not to assert that execution will be secure, but rather
+just to detect specific cases when an abstract program is not.
 
-In summary, this work presents a number of significant limitations, as a result
-of the necessarily applicable time and simplicity constraints, but they do not
-compromise the overall integrity of the contributions, as can be seen from the
-evaluation results.
+In summary, this work presents a number of significant limitations as a result
+of the /*necessarily*/ applicable time and simplicity constraints, but they do
+not compromise the overall integrity of the contributions, as
+/*can be seen from*/ per the evaluation results.
 
 #pagebreak()
 
@@ -489,20 +492,20 @@ In connection with the limitations presented in the preceding section, there are
 significant points of improvement that can be considered for future developments
 to this work within static taint analysis of Go programs.
 
-First of all, it is paramount that the analyzer should be extended up to the
-point of full language support, so that any truly arbitrary Go programs may be
-subject to analysis. Argument write-backs are especially important and should
-not require a major refactor, as it should be possible to generalize the
-existing plumbing for capture write-backs.
+First of all, it is paramount that the analyzer be extended up to the point of
+full language support, so that any truly arbitrary Go programs may be subject to
+analysis. Argument write-backs are especially important and should not require a
+major refactor, as it should be possible to generalize the existing plumbing for
+capture write-backs to also handle argument effects.
 
 Secondly, Glowy's @cli application should support more output formats for more
 structured logging and tracking of findings, especially one compliant with the
 conventional @sarif specification @fanning2020sarif, so that Glowy can be more
-easily integrated with generic tooling and adheres to standard interoperability
+easily integrated with generic tooling and adhere to standard interoperability
 practices.
 
 Thirdly, it should be possible to specify sets of mutually exclusive build tags
-in the `glowy.toml` project configuration, as well sets of tags that are always
+in the `glowy.toml` project configuration, as well as tags that are always
 satisfied in tandem, in an attempt to avoid analyzing illegal permutations.
 
 Furthermore, it might make sense to consider pre-analyzing the entire Go
@@ -522,7 +525,7 @@ would be viable to support each of the additional covert information flow
 channels identified in @bg:ifc:covert, such as timing- and exhaustion-based.
 This likely comprises, however, a major extension to the existing model and
 implementation, so it would possibly be preferred to only consider a subset of
-each kind at, at first; for instance, modeling panic-to-recover chains and
+each kind at first; for instance, modeling panic-to-recover chains and
 adding the `panic` function to the existing early-abort deferred branch labels
 mechanism is much simpler than supporting all termination channels.
 
@@ -535,7 +538,7 @@ the existing projects introduced in @bg:related.
 
 Firstly, Gotcha's pointer handling makes it more precise than Glowy for all
 related flows, but it is, in most cases, strictly inferior to Glowy in terms of
-realistic, practical usage, since it only has support Go 1.7 and earlier,
+realistic, practical usage, since it only has support for Go 1.7 and earlier,
 meaning that any modern functionality is not implemented, including modules,
 generics, and iterable functions in for-range constructs.
 
@@ -572,10 +575,10 @@ both properties. It also does not track control flow dependencies.
 
 Finally, the Argot Taint Analyzer is the strongest existing tool, performing
 pointer-aware and precise interprocedural analysis based on @regex\-based
-security policy configuration, though no initial configuration is provided.
-It can also take implicit flows into account (opt-in), but merely rejects all
-branches on tainted values, rather than propagating a branch label, so it cannot
-distinguish harmless branches from branch-dependent critical operations. This
+security policy configuration, though no initial rules are provided. It can also
+take implicit flows into account (opt-in), but merely rejects all branches on
+tainted values, rather than propagating a branch label, so it cannot distinguish
+harmless branches from branch-dependent critical operations. This
 no-branching-on-secret policy is more robust and protects more against side
 channels, but is much more restrictive. Additionally, Argot notably advertises
 soundness guarantees unless concurrency, `unsafe`, or reflection are used in
@@ -595,13 +598,13 @@ use, it severely limits applications, and it can be mimicked with labeling
 (e.g., ${"secret"}$) if desired. Glowy is generic when required and simple when
 preferred.
 
-Glowy's axes mechanic, in particular, permit very powerful constructions,
+Glowy's axes mechanic, in particular, permits very powerful constructions,
 promoting the separate reasoning about orthogonal concerns. By having axis
-binding be optional, tags seamlessly support a natural learning curve; unbound,
+binding be optional, tags seamlessly support a natural learning curve: unbound,
 plain tags are preferred for simple situations, but stakeholders can then use
 axes to unlock support for more complex use cases, without having to enable any
-new feature or learning any new controls, as both kinds are already supported
-for free under the same name, and can even coexist simultaneously in the same
+new feature or learn any new controls, as both kinds are already supported for
+free under the same name, and can even coexist simultaneously in the same
 labels.
 
 The second principal advance is Glowy's support for *tracking implicit flows,*
@@ -610,7 +613,7 @@ propagation impact, especially for confidentiality. Glowy's handling of implicit
 flows is not limited to just basic branching-on-secret, but also comprises
 several mechanisms targeting Go-specific concerns, such as tainting the rest of
 a function after ```go if secret { return; }```, and analogously for other
-early-abort utilities (e.g., ```go break 'label```), among other mechanics.
+early-abort utilities (e.g., ```go break label```), among other mechanics.
 
 The third primary advantage Glowy offers in comparison to the referenced
 existing tools is *rich problem reporting,* characterized by concise and simple
@@ -809,7 +812,7 @@ security tool and thus detect potential issues earlier, leading to more secure
 software in general.
 
 Digital systems are fundamental to society in this day and age, so increased
-confidentiality, integrity, and availability has crucial economic, social, and
+confidentiality, integrity, and availability have crucial economic, social, and
 environmental implications. This degree project thus contributes, however
 marginally, to a better world.
 

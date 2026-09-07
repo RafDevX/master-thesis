@@ -2,6 +2,7 @@
 #import "../utils/cmd-outputs.typ": cmd-output
 #import "../utils/dependencies.typ": codly, lq, zero
 #import "../utils/subfigures.typ": subfigures
+#import "../utils/symbols.typ" as symbols
 #import "./zz-b-results.typ": results
 
 #import codly: codly
@@ -81,18 +82,18 @@ of interest and test the analyzer's handling of them, in connection with
 @rq-ifc[].
 
 These correctness benchmarks were produced in tandem with the analyzer itself,
-thus benefiting both contributions from a mutual feedback loop, in an iterative
-process striving for soundness and precision across the Go program space, as
-described in @methods:process of earlier @methods.
+thus allowing both contributions to benefit from a mutual feedback loop, in an
+iterative process striving for soundness and precision across the Go program
+space, as described in @methods:process of earlier @methods.
 
-As to better support this symbiosis, the corpus integrates directly with Glowy's
-test environment, enabling unified reporting with the remainder of the testing
-apparatus, including doctests and unit tests.
+In order to better support this symbiosis, the corpus integrates directly with
+Glowy's test environment, enabling unified reporting with the remainder of the
+testing apparatus, including doctests and unit tests.
 
 Although quality is more important than quantity for the careful enumeration of
 the primary possible means of propagation, some degree of exhaustiveness and
-thoroughness is advantage in identifying and documenting the various points of
-observability within the Go language.
+thoroughness is advantageous for identifying and documenting the various points
+of observability within the Go language.
 
 #let benchmarks-lines = benchmarks-data.map(item => int(item.Lines))
 #let benchmark-lines-avg = calc.round(
@@ -106,7 +107,7 @@ demonstrating one particular aspect or functionality, as concisely and clearly
 as possible. Prioritizing test case simplicity means that each module is easy to
 understand, making the corpus as a whole more accessible. Modules have an
 average of $#benchmark-lines-avg$ lines across all Go files and a median of
-$#benchmark-lines-median$, which indicate relatively short programs.
+$#benchmark-lines-median$, which indicates relatively short programs.
 
 All modules consist of an independent directory containing a `go.mod` file, a
 `main.go` file with declared native package name `main`, and in some cases one
@@ -127,7 +128,7 @@ value, no matter how simple or complex. They are additionally relatively
 target-agnostic (except the annotations themselves, which are simple to replace
 if needed), not testing very specific implementation details, but rather
 attempting to represent what should be expected from any generic Go static taint
-analyzer. This means that the the corpus may be used to test others tools'
+analyzer. This means that the corpus may be used to test other tools'
 correctness with minimal changes, therefore constituting a significant research
 contribution on its own.
 
@@ -159,15 +160,15 @@ flows. The corpus has #benchmark-suites.len() suites, as shown in
       ))
       .flatten(),
     table.hline(stroke: 1pt),
-    [], strong[TOTAL], strong[#total-benchmarks], [/],
+    [], strong[TOTAL], strong[#total-benchmarks], symbols.partial,
   ),
   caption: [Benchmarks corpus suites],
 ) <eval:benchmarks:suites>
 
 Suites have an associated letter that identifies them, and each module is
 numbered within its respective suite. This means that modules may be succinctly
-referred to by the combination of its suite letter and inherent number, such as
-$"L"03$ for module `suite-l-loops/03-condition-mutation`.
+referred to by the combination of their suite letter and inherent number, such
+as $"L"03$ for module `suite-l-loops/03-condition-mutation`.
 
 The last suite, Failures ($"X"$), corresponds to major cases that should
 ordinarily be handled by a taint analyzer, but are considered out of scope for
@@ -301,11 +302,10 @@ The GitLab @api was queried for all public repositories with Go as one of their
 detected languages, not archived, and at least #zero.num(10) stars, as of July
 26, 2026.
 
-This resulted in a dataset of #zero.num(dataset-c-total) repositories, much less
-than in comparison to GitHub, with an average of #zero.num(74.63) and a median
-of #zero.num(24) stars, again showing some degree of skewness. Only
-#zero.num(49) repositories (#share(49, dataset-c-total)) held more stars than
-the average.
+This resulted in a dataset of #zero.num(dataset-c-total) repositories, far fewer
+than for GitHub, with an average of #zero.num(74.63) and a median of
+#zero.num(24) stars, again showing some degree of skewness. Only #zero.num(49)
+repositories (#share(49, dataset-c-total)) held more stars than the average.
 
 ==== Sampling
 
@@ -336,11 +336,17 @@ the procedure described in @methods:collection:duplicates applying.
 
 Out of the #total-sampled sampled projects, #excluded-projects had to be
 manually excluded:
-- 4 because they caused resource exhaustion;
+- 4 because they caused resource exhaustion (the evaluation environment did not
+  present sufficient available memory for their analysis);
 - 3 because they used unsupported constructs (analysis never converged);
-- 2 because their source code is no longer publicly available.
+- 2 because their source code is no longer publicly available#footnote[
+    One of them is a public GitLab project with private code (indistinguishable
+    from the @api results; no code is available, only a landing page), and the
+    other is no longer present in the Go module proxy (but in any case had a
+    single dependent as its Dataset A score).
+  ].
 
-This means that #total-projects projects were submitted for analysis.
+This means that #total-projects projects were ultimately submitted for analysis.
 
 === Analysis Execution
 
@@ -366,8 +372,8 @@ minimal (e.g., isolated utility scripts).
 #let unfolded-projects = total-projects - empty-projects
 
 The remaining #zero.num(unfolded-projects) projects were unfolded
-into a total of #zero.num(results.len()) Go modules, with each project
-containing an average of #zero.num(1.65) detected modules, as shown in
+into a total of #zero.num(results.len()) Go modules, with each Dataset B or C
+project containing an average of #zero.num(1.65) detected modules, as shown in
 @eval:real-world:execution:modules-per-project below.
 
 /*
@@ -389,7 +395,9 @@ FROM (
   table(
     columns: (auto, 5em, 5em, 5em),
 
-    table.header(strong[Dataset], strong[Average], strong[Median], strong[Max]),
+    table.header(
+      strong[Dataset], strong[Average], strong[Median], strong[Max.]
+    ),
     table.vline(x: 1, stroke: 1pt),
 
     [B: GitHub], zero.num(1.52), zero.num(1), zero.num(12),
@@ -398,7 +406,7 @@ FROM (
     table.hline(stroke: 1pt),
     [Both], zero.num(1.65), zero.num(1), zero.num(18),
   ),
-  caption: [Modules per project not empty nor manually excluded],
+  caption: [Modules per B/C project not empty nor manually excluded],
 ) <eval:real-world:execution:modules-per-project>
 
 Each of the aforementioned #zero.num(results.len()) Go modules was subject to
@@ -459,11 +467,12 @@ WHERE r.status = 'E'
 */
 
 Modules classified as empty are generally composed entirely of test fixtures, or
-otherwise declare exclusion from normal builds (such as with a conventional
-```go //go:build ignore``` constraint). All but one are associated with
-multi-module projects, with the latter comprising a Hugo
-#footnote(link("https://gohugo.io")) statically-generated website; Hugo uses
-Go's module utilities to manage in-framework plugins.
+otherwise all their `.go` files declare exclusion from normal builds (such as
+with a conventional ```go //go:build ignore``` constraint), if any at all are
+present. All but one are associated with multi-module projects, with the
+remaining one comprising a Hugo #footnote(link("https://gohugo.io"))
+statically-generated website; Hugo uses Go's module utilities to manage
+in-framework plugins.
 
 Crashed runs, in turn, correspond to implementation defects or bugs. A notable
 example is tied to the implementation's design decision to panic if a synthetic
@@ -533,7 +542,7 @@ Aborted outcome, which encompasses the following three cases:
   raw text to an @ast:long.
 - *World Limit (3):* The specified build-tag constraint dimensions correspond to
   more enumerable build worlds than the set $2^20$ limit.
-- *Permutation Limit (3):* The total build permutations that would be
+- *Permutation Limit (3):* The total number of build permutations that would be
   independently analyzed exceeds the configured limit of $256$ permutations
   after deduplication by set of admitted files.
 
@@ -546,7 +555,7 @@ Aborted outcome, which encompasses the following three cases:
 //   ],
 // ) <xx2>
 
-The two parse errors correspond to extremely particular cases, the first one
+The two parse errors correspond to exceptionally particular cases, the first one
 caused by an extremely large float literal in a fuzzing tool's payloads list
 (`glowy-go-parser` only supports up to 64 bits of precision) and the other one
 an unresolvable escape sequence in an enormous string literal with close to a
@@ -556,14 +565,14 @@ On the other hand, the world limit was reached by well-known production-grade
 modules, namely Prometheus
 #footnote(link("https://github.com/prometheus/prometheus")) (in sample B.I),
 Tailscale#footnote(link("https://github.com/tailscale/tailscale")) (B.I), and
-TinyGo's drivers#footnote(link("https://github.com/tinygo-org/drivers")) (B.II).
+TinyGo's drivers#footnote(link("https://github.com/tinygo-org/drivers")) (A.II).
 Glowy calculated approximately $2^38$, $2^109$, and $2^66$ potential
 combinations for them, respectively, which are undoubtedly too many worlds to
 consider. The underlying problem, however, is that the majority of these
-combinations is impossible for the project's build model, so they should not be
+combinations are impossible for the project's build model, so they should not be
 counted at all, as many tags are never or are always satisfied together. It is
 nevertheless impossible for Glowy to systematically determine these
-domain-specific assumptions, so this behavior is still appropriate for the
+domain-specific assumptions, so its behavior is still appropriate for the
 general case.
 
 Finally, the permutation limit follows the same logic as discussed in the
@@ -572,10 +581,11 @@ deduplication by admitted files, meaning that a violation genuinely corresponds
 to distinct file configurations, even if they are still impossible in practice.
 The three modules whose analysis was aborted would require, under Glowy's
 heuristics, the independent analysis of $352$, $768$, and $896$ build
-permutations all above the default limit of $256$.
+permutations, all definitively surpassing the default limit of $256$.
 
-In light of the explanations above, this work therefore considers the 8 abort
-cases to be acceptable, given the degree project's limitations.
+In light of the explanations above, this work therefore considers the $8$ abort
+cases to be acceptable (at #share(8, results.len())), given the degree project's
+limitations.
 
 #pagebreak()
 
@@ -602,9 +612,9 @@ modules with at least one warning or error.
 
 It should be noted that the division into confidentiality or integrity errors is
 only possible in light of the distinction made by the Base Security Policy,
-used for these evaluation runs, which uses different deny-sink labels for each
-kind, namely $cal(L)_"Conf" = {"secret" thin : thin *}$ and
-$cal(L)_"Int" = {"untrusted" thin : thin *}$.
+used for these evaluation runs, which employs different deny-sink labels for
+each kind, namely $cal(L)_"Conf." = {"secret" thin : thin *}$ and
+$cal(L)_"Int." = {"untrusted" thin : thin *}$.
 
 === Outliers
 
@@ -633,11 +643,12 @@ demonstrating a significant skew attributable to some few modules with very high
 diagnostic counts.
 
 This is especially true for insecure flow errors, which disappear entirely
-between @eval:results:overview:avg-median-problems grand total columns's when
+between @eval:results:overview:avg-median-problems's grand total columns when
 switching from average to median, and is clear from the unusually-large upper
 whiskers of @eval:results:outliers:problem-boxes. Notably, the upper whisker
 corresponding to confidentiality flows is shorter simply because the next
-datapoint exceeds the conventional $1.5 thin times thin "IQR"$ limit.
+datapoint exceeds the conventional $1.5 thin times thin #ref(<iqr:short>)$
+limit.
 
 As such, there is a clear indication that outliers are of particular relevance
 to these results, requiring finer-grained examination.
@@ -666,12 +677,12 @@ instances of conservative taint propagation causing essentially the entire
 codebase to be tainted, as returning from `main` on secret validation failure
 will implicitly taint the remainder of the function with a
 ${underline("secret") thin : thin "env"}$ branch label (early abort).
-Moreover, some cases trigger Blanket Security Policy directives even if they
+Moreover, some cases trigger Base Security Policy directives even if they
 are not applicable, such as reading the environment variable `AUTH_TOKEN_TTL`,
-which is a blanket source for containing `_TOKEN`.
+which is a blanket source as its name contains the substring `_TOKEN`.
 
 It is thus clear that these policy violations, as reported by Glowy, are
-primarily instances of Blanket Security Policy not offering sufficient
+primarily instances of the Base Security Policy not offering sufficient
 precision, as it cannot distinguish between safe and unsafe patterns around
 potentially dangerous constructs. Glowy prioritizes soundness at all times
 unless it is otherwise aware of specific guidance in a certain direction.
@@ -681,9 +692,9 @@ unless it is otherwise aware of specific guidance in a certain direction.
 Considering the results from a different angle, there is a significant
 number of modules reporting analysis warnings, as had been shown in
 @eval:results:overview:avg-median-problems and
-@eval:results:outliers:problem-boxes. Specifically, out of the the $126$ modules
-with diagnostics, $78$ of them reported at least one warning, corresponding that
-figure to #share(78, 126).
+@eval:results:outliers:problem-boxes. Specifically, out of the $126$ modules
+with diagnostics, $78$ of them reported at least one warning, corresponding to
+#share(78, 126).
 
 This is concerning because warnings typically compromise the reported findings,
 as they represent situations wherein the analyzer detected a broken invariant
@@ -810,19 +821,19 @@ artificial and coincidental.
 
 It is difficult to measure if and to what extent Glowy was effective at
 identifying security vulnerabilities across the #zero.num(results.len())
-examined modules since there exists no objective set of vulnerabilities for the
-sampled projects.
+examined modules since there exists no objective set of known vulnerabilities
+for the sampled projects.
 
-As already noted at the beginning of the present @eval:real-world, it is not
-feasible nor desired to attempt to determine a ground truth for every evaluated
-module against which the obtained results could be compared, since security
-validation and risk acceptance is necessarily a domain-specific endeavor
-reserved to each project's stakeholders, such as developers and maintainers.
+As already noted at the beginning of @eval:real-world, it is not feasible nor
+desired to attempt to determine a ground truth for every evaluated module
+against which the obtained results could be compared, since security validation
+and risk acceptance are necessarily domain-specific endeavors reserved for each
+project's stakeholders, such as developers and maintainers.
 
-However, while a set of true positives, is not accessible to this work in the
-general case, some are distinguishable based on an individual basis, stemming
-from manual perusal of the reported findings and the corresponding codebase
-sections for each respective module.
+However, while a set of true positives is not accessible to this work in the
+general case, some are distinguishable on an individual basis, stemming from
+manual perusal of the reported findings and the corresponding codebase sections
+for each respective module.
 
 Through the thorough examination of selected cases and a high-level surveying of
 the results, it is clear that the majority of the reported findings constitute
@@ -837,7 +848,8 @@ performing any validation. This is an @ssrf vulnerability because remote,
 unauthenticated clients can mislead the server into performing a request to any
 address, including within the server's internal network and to services bound to
 loopback addresses. @ssrf is a serious attack because it exploits the server's
-authority and abuses the access it has.
+authority and abuses the access it holds to adjacent systems and resources,
+often constituting lateral movement.
 
 Glowy's reported error finding is reproduced below in
 @eval:results:effectiveness:vk-golang (trimmed).
@@ -852,7 +864,7 @@ Glowy's reported error finding is reproduced below in
 The example diagnostic displayed above, standing as a representative of the
 several comparable findings across the results set, corresponds to the sample
 C.II project hosted on GitLab under `vk-golang/lectures`
-#footnote(link("https://gitlab.com/vk-golang/lecture")), which is a
+#footnote(link("https://gitlab.com/vk-golang/lectures")), which is a
 Russian-language educational repository presumably supporting a
 university-style course about Go. VK is the largest Russian social media
 company, with its VK Education program interfacing with schools and universities
@@ -870,7 +882,7 @@ students taking part in VK Education's Go course.
 This is therefore a definite true positive, in the technical sense, even if
 intentionally and artificially crafted for explanatory purposes. Importantly,
 the reasoning behind the vulnerability and the educational character of the
-overarching repository does not in any way reduce or demerit the analyzer's
+overarching repository do not in any way reduce or demerit the analyzer's
 capabilities. On the contrary, the very explicitness of the security issue
 substantiates the conclusion that Glowy can identify true security issues and
 brings real security value.
@@ -880,9 +892,9 @@ Another case is that of Commento
 C.I, an open-source commenting platform aiming to be an alternative to Disqus
 #footnote(link("https://disqus.com")), a widely-used service. The underlying
 premise is that publishers and blog owners can embed Commento (or Disqus) on
-their website, and the conversation service provides and manages comments and
-discussions for a particular article, so that such complex handling (including
-user sessions) does not have to be implemented by the host website.
+their website, and the conversation service then provides and manages comments
+and discussions for a particular article, so that such complex handling
+(including user sessions) does not have to be implemented by the host website.
 
 Glowy detected two independent @ssrf vulnerabilities in Commento. The first one
 relates to two individual but analogous flows in the project's data importing
@@ -900,7 +912,7 @@ requests to Commento's @api endpoint for that user's profile picture trigger a
 GET request to the configured @url, since the server attempts to download the
 image to rescale it as required.
 
-Neither of these external-request mechanisms have protection against iterative
+Neither of these external-request mechanisms have protections against iterative
 redirects, @dns rebinding, or reject internal or loopback network addresses.
 Both vulnerabilities present high exploitability and can be used to cause
 denial of service to either the server itself, or to other targets; e.g.,
@@ -942,8 +954,8 @@ and possibly authenticated, when authentication is enabled).
 
 In general, the collected results support that Glowy is effective at identifying
 security vulnerabilities in real Go projects, though without any additional
-project-specific configuration it also reports a significant number of false
-positives.
+domain-specific configuration it also reports a significant number of false
+positives, as would be expected for analysis of this nature.
 
 #pagebreak()
 
@@ -1008,7 +1020,7 @@ of the #zero.num(all-global-run-times.len()) non-empty modules' global run time.
 
 In addition, besides individual and cumulative contributions, the chart also
 plots each project's total aggregate @sloc#footnote[@sloc corresponds to the
-  total lines of source-code across all of a module's Go files, excluding blank
+  total lines of source code across all of a module's Go files, excluding blank
   lines, comments, and (in this work) also inner multi-line string literals.] on
 a separate axis, scaled for each module by multiplying the recorded @sloc by the
 module's build permutation count. This operates under the assumption that, in
@@ -1060,18 +1072,19 @@ The log-log fit shown as a dashed line follows the approximate equation
 
 $ y(x) = e^(-9.28) times x^(1.06) $
 
-which empirically shows slightly superlinear relationship between a project's
+which empirically shows a slightly superlinear relationship between a module's
 global run time and its calculated @sloc. The fit is decent in log-log space but
 not perfect ($R^2 = 0.78$), supporting a general relationship between the two
 variables.
 
-Morever, in an effort to better understand the composition of this global run
+Moreover, in an effort to better understand the composition of this global run
 time, @eval:results:performance:stages showcases per-stage run time distribution
 according to a reconstructed time for each module that completed analysis, which
 corresponds to the sum of each stage's recorded elapsed time as reported by
 `glowy-cli` itself. Each stage time is an average for all build permutations,
 and all averages are additionally multiplied by that number of build constraint
-permutations. Parsing is not multiplied because it only takes place once.
+permutations. Parsing is not multiplied because it only takes place once, before
+build-tag constraint worlds enumeration.
 
 #figure(
   charts.stages,
@@ -1088,13 +1101,14 @@ program multiple times until label convergence.
 
 Regarding convergence iterations, when summarizing outputs, `glowy-eval`
 recorded for each successful run the minimum, maximum, and total Stage \#2
-passes required for security labels to stabilize, acros all of the module's
+passes required for security labels to stabilize, across all of the module's
 build permutations. For example, if a module required 4 independent build
 permutation analyses and each of their respective convergence loops terminated
-after $2$, $6$, $4$, and $2$ iterations, then the minimum observed iterations is
-$2$, the maximum is $6$, and the total is $14$. The average iterations per
-build permutation can additionally be derived by dividing the total number by
-the number of permutations, such as $frac(14, 4, style: "skewed") = 3$ here.
+after $2$, $6$, $4$, and $2$ iterations, then the minimum observed number of
+iterations is $2$, the maximum is $6$, and the total is $14$. The average
+iterations per build permutation can additionally be derived by dividing the
+total number by the number of permutations, such as
+$frac(14, 4, style: "skewed") = 3.5$ here.
 
 @eval:results:performance:iters summarizes the aforementioned datapoints
 according to their lowest observed value, median, average, and highest value
@@ -1125,15 +1139,15 @@ within the results set, for modules which completed analysis.
   caption: [Summary of convergence iterations by build permutations],
 ) <eval:results:performance:iters>
 
-The notable similarity between indicates how different build permutations for
-the same module tend to converge under the same amount of iterations. In
-particular, there are only $8$ cases in the results set where the minimum
-required iterations differed from the maximum required iterations, whereas $80$
-modules with multiple build permutations still had the same minimum and maximum
-required iterations values.
+The notable similarity between entries across table rows indicates how different
+build permutations for the same module tend to converge under the same number of
+iterations. In particular, there are only $8$ cases in the results set where the
+minimum required iterations differed from the maximum required iterations,
+whereas $80$ modules with multiple build permutations still had the same minimum
+and maximum required iteration counts.
 
-The disparity on the bottom-right of the table is simply because the number of
-total iterations is multiplied by the number of build permutations.
+The disparity in the bottom-right corner of the table is simply because the
+number of total iterations is multiplied by the number of build permutations.
 
 #pagebreak()
 
@@ -1180,7 +1194,7 @@ its Base Security Policy by using the developed tool to audit
 real-world projects, selected using stratified sampling from complementing
 datasets.
 
-The analysis produced a significative number of false positives due to the
+The analysis produced a significant number of false positives due to the
 necessary soundness-preserving over-conservativeness, as it lacked any
 project-specific configuration and relied only on the Base Security Policy's
 generic assumptions, but it also identified a considerable number of true
@@ -1192,7 +1206,7 @@ audit time of $152.11$ milliseconds for modules which completed analysis (the
 vast majority) and #zero.num(median-global-run-time) milliseconds when
 considering all non-empty modules.
 
-Moreover, a corpus of #zero.num(total-benchmarks) correctness benchmarks were
+Moreover, a corpus of #zero.num(total-benchmarks) correctness benchmarks was
 developed to represent the ground truth in terms of what is expected of a Go
 security analyzer with respect to @ifc:long. This corpus is a significant
 research contribution as it can be used for future work, but it also directly

@@ -27,7 +27,7 @@ the *availability* of information @iso27000.
 
 Confidentiality means that no unauthorized users, computers, and processes
 (generically, "principals") may access the information in question, while
-integrity safeguards that the information remains accurate and complete, and
+integrity ensures that the information remains accurate and complete, and
 availability refers to the information being accessible and usable on demand
 by authorized principals @iso27000.
 
@@ -42,15 +42,15 @@ In particular, the qualities of confidentiality and integrity are similar in
 that they both imply the categorization of information, with the former
 requiring the distinction of _secret_ information from what is _public_, while
 the latter separates _trusted_ (and accurate) information from _untrusted_
-information (which is not necessarily accurate and should, for example, be
+data (which is not necessarily accurate and should, for example, be
 rejected or treated differently during an update operation).
 
-Importantly, this requires differentiating between different "colors" of
+In essence, this requires differentiating between different "colors" of
 information, which is not trivial: for instance, the very same bits can be
 trusted or not depending on their provenance, but origin is not measurable or
 derivable from the information itself, so it must be tracked indirectly. This is
 because "color" is not a property inherent to information, but rather metadata
-that is independent to its nature.
+that is independent of its nature.
 
 The present "color" analogy, adapted from Skala's "What Colour are your bits?"
 essay about copyright law @skala2004colour, illustrates how at times it is
@@ -93,28 +93,28 @@ ecosystem in detecting potential vulnerabilities, as the latter's numbers and
 impact will inevitably rise proportionally to the flourishing adoption of Go,
 especially in core services, libraries, and applications.
 
-Furthermore, as stated above, in order to safeguard confidentiality, integrity,
+Furthermore, as stated before, in order to safeguard confidentiality, integrity,
 and (to a somewhat lesser extent) availability, it is necessary to always assess
 a program's outputs (as well as what they depend on) and inputs (as well as what
 they affect), distinguishing throughout the course of each execution path what
 is secret from what is public, and what is trusted from what is not.
 
 However, it is difficult for programmers and reviewers to always keep track of
-these subtle distinctions (differences in "color", per the analogy above),
+these subtle distinctions (differences in "color", per the prior analogy),
 especially in large and complex codebases with many layers of abstraction: for
 instance, adding some secret key to an application state object for access
 convenience might make another part of the code insecure if the whole state
-object is being sent to a third party, making this change insecure and
+object is being sent to a third party, making this change unsafe and
 unacceptable even if at a glance it may seem innocuous (e.g., from the diff).
 
-Thus, it is better to automate this kind of checks so that they can run often,
+Thus, it is better to automate these kinds of checks so that they can run often,
 systematically, and robustly. This reduces human error and significantly
-lightens the necessary mental load to acquiring a satisfactory level of
-confidence in a program's security, helping find problems that could otherwise
-have been missed by a cursory human consideration.
+lightens the mental load necessary to acquire a satisfactory level of confidence
+in a program's security, helping find problems that could otherwise have been
+missed by a cursory human consideration.
 
 As such, there is a clear need for security tooling that can assist developers,
-reviewers, and security auditors at detecting potential problems and
+reviewers, and security auditors in detecting potential problems and
 vulnerabilities in applications and libraries written in Go, tracking
 information flow to identify possible lapses in confidentiality or integrity.
 
@@ -152,8 +152,8 @@ This degree project aims to answer the following research questions:
     policy applicable to arbitrary Go projects, without domain-specific
     knowledge, as a starting point before human intervention?
   + #enum-label("rq-find-vulns") Can information flow analysis effectively
-    identify true security vulnerabilities in Go projects with minimal
-    configuration, generic and absent of domain-specific knowledge?
+    identify true security vulnerabilities in Go projects with minimal and
+    generic configuration, absent of domain-specific knowledge?
   + #enum-label("rq-prevalence") How prevalent are detectable security issues in
     popular production-grade applications and libraries written in Go?
 ]
@@ -171,7 +171,7 @@ analysis can be integrated into a feedback loop for developers and reviewers.
 Ideally, this analysis framework should be reasonably useful even with minimal
 configuration, and improve in accuracy even further proportionally to how much
 domain-specific information the user makes available. This allows for a scalable
-mass analysis of high-profile Go programs, in search for data on vulnerability
+mass analysis of high-profile Go programs, in search of data on vulnerability
 prevalence and validation of the technique employed.
 
 This purpose benefits the research field and the engineering community because
@@ -185,8 +185,8 @@ Go software, requiring less human effort in security consciousness.
 
 == Goals <intro:goals>
 
-Given the research questions and the purpose laid out above, the following
-primary project goals are established:
+Given the research questions and the purpose laid out in the previous section,
+the following primary project goals are established:
 
 #[
   #set enum(
@@ -227,8 +227,9 @@ developed in connection with the aforementioned research questions and project
 goals. This section presents an overview of each of them, including how they
 relate to each other.
 
-First, *`glowy`,* a Rust library for static analysis of information flows
-within Go modules and enforcement of custom security policies. It supports a
+First, *Glowy,* a theoretical model for static analysis of information flows
+within Go modules and enforcement of custom security policies, as well as a
+corresponding Rust library implementation *`glowy`.* It supports a
 significant number of major Go constructs, allowing invokers to identify
 potential security issues relating to breaches of both confidentiality and
 integrity. If a problem is reported, it is always accompanied by a structured
@@ -255,7 +256,7 @@ case is an independent Go module clearly testing a specific facet of what is
 expected from an analysis tool of this kind. These tests can be used via
 `glowy-cli` (described below), but they also plug directly into the `glowy`
 library's main testing pipeline (managed by `cargo`). Since all test cases are
-written in plain Go source code text, any usage also indirectly tests that
+written in plain Go source-code text, any usage also indirectly tests that
 Glowy's parser library works correctly, but this is not a main focus. In
 addition, these benchmarks are intentionally implementation-agnostic and thus
 can be used by other or future security tools to verify their correctness and
@@ -295,11 +296,11 @@ serve as inputs to `glowy-eval`, so that the conclusions drawn from its data are
 awarded greater validity than if selection was conducted through biased, manual
 enumeration, or otherwise employed only subjective drawing.
 
-The `glowy` library, its underlying `glowy-parser`, the `glowy-cli` application,
-and the `ifc-benchmarks` corpus all primarily contribute to @rq-ifc[] and
-@pg-tool[], while Glowy's base security policy is patently related to
-@rq-base-policy[] and @pg-base-policy[]. The real-world Go project datasets and
-the `glowy-eval` tool are directly associated with @rq-find-vulns[] and
+The `glowy` library, its underlying `glowy-go-parser`, the `glowy-cli`
+application, and the `ifc-benchmarks` corpus all primarily contribute to
+@rq-ifc[] and @pg-tool[], while Glowy's base security policy is patently related
+to @rq-base-policy[] and @pg-base-policy[]. The real-world Go project datasets
+and the `glowy-eval` tool are directly associated with @rq-find-vulns[] and
 @pg-evaluation[], besides supporting @rq-prevalence[] and @pg-interpret[].
 
 These seven primary contributions are different components of the same machine:
@@ -334,7 +335,7 @@ maroon nodes symbolizing static resources, and orange nodes referring to tests.
     )
     node((-1, 0), [`ifc-benchmarks`], shape: hexagon, stroke: orange)
     edge(auto, (0, 0), "--|>", stroke: orange, [tests])
-    edge((-1.4, 0), (-0.2, 1.1), "--|>", stroke: orange, [tests])
+    edge((-1.4, 0), (-0.2, 1), "--|>", stroke: orange, [tests])
     node((0, 2), [`glowy-eval`], shape: rect, stroke: purple)
     edge(auto, (0, 1), "=>", label-side: right, [employs])
     edge("..|>", stroke: maroon, [references])
@@ -342,6 +343,8 @@ maroon nodes symbolizing static resources, and orange nodes referring to tests.
   }),
   caption: [Relationship between contributions],
 ) <intro:contributions:relationship>
+
+#pagebreak()
 
 Put together, these major pieces form a substantial research contribution
 to the areas of Cybersecurity and Information Security, consolidating this
@@ -356,13 +359,13 @@ limited to its scope, inherent to a degree project. Glowy targets programs
 compliant with the Go 1.26 specification @go126spec but is not focused on
 validating this assumption, so incorrect programs that are provided as input
 will lead to undefined behavior. However, a best-effort attempt is made to warn
-the user of obvious Go errors and specification violations, despite the no
-guarantees.
+the user of obvious Go errors and specification violations, although no
+guarantees are provided on this front.
 
 Furthermore, not even all specification-compliant Go programs will be accepted,
 as in reality this work assumes only a subset of the Go programming language,
-chosen as to represent as many core constructs as possible within the time and
-complexity limitations imposed on the project. Despite an attempt to be
+chosen so as to represent as many core constructs as possible within the time
+and complexity limitations imposed on the project. Despite an attempt to be
 extensive to the greatest feasible degree, this still means that certain Go
 features are unsupported, such as pointer aliasing modeling.
 // not saying "subset as defined in @some-section" because introduction has to
@@ -386,6 +389,8 @@ by how much time it takes to execute. Although these are valid security
 concerns, due to time and simplicity limitations, such alternative channels are
 not considered to be in scope for this degree project.
 
+#pagebreak()
+
 Finally, the base security policy developed for easy onboarding of projects
 without one is extremely coarse and does not use any domain-specific knowledge
 about the project under analysis, so it is far from perfect. While an effort is
@@ -394,7 +399,7 @@ average) than no configuration whatsoever, and should not be construed to
 represent the full benefit of using Glowy when extensively and carefully
 (manually) configured for a given Go project.
 
-Nevertheless, despite the above limitations (essential due to the necessarily
+Nevertheless, despite the present limitations (essential due to the necessarily
 reduced scope), this work still produces considerable strides within its field,
 both from a scientific and an ecosystem point of view.
 
@@ -457,14 +462,14 @@ contexts, just as the MIT License does. Using Glowy does not pose an additional
 All in all, these conveniences and reduced barriers mean that more people and
 organizations can use the tool, which is helpful to society as a whole, since
 more reliance on security mechanisms is presumed to lead to more secure
-software, in general. When combined with society's present day dependence on
+software, in general. When combined with the world's present-day dependence on
 critical software and digital systems (as described at the beginning of this
 chapter), this means that the present work comprises a development promoting
 both economic and social sustainability.
 
 By the same token, this degree project can also indirectly benefit ecological
 sustainability, as it contributes towards Cybersecurity at large and so can
-plausibly indirectly aid with the protection and overall resilience of
+plausibly help aid with the protection and overall resilience of
 critical software, such as that for disaster relief or control of smart green
 devices.
 
@@ -477,7 +482,7 @@ preservation.
 
 Moreover, there is empirical evidence of low trust in digital services
 @duenascid2023distrust @thales2025trust, despite their prevalence and
-undeniable impact to today's society. While this is undoubtedly a consequence of
+undeniable impact on today's society. While this is undoubtedly a consequence of
 a plethora of different factors, promoting software security should presumably
 have a positive effect on this matter, increasing trust in digital
 infrastructure.

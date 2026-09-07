@@ -5,9 +5,9 @@
 = Background <bg>
 
 This degree project comprises contributions to a very particular area of the
-Information Security field, therefore it is necessary to present a number of
+Information Security field; therefore, it is necessary to present a number of
 technical concepts and generally contextualize the work before further
-developing on the advances made.
+elaborating on the advances made.
 
 As such, this chapter introduces essential background aspects and terminology,
 as well as existing related work, as part of a comprehensive literature review
@@ -79,7 +79,7 @@ following core properties (for confidentiality, but analogous for integrity):
 - *No read up:* principals cannot access information at a higher classification
   level than their own authority/clearance; and
 - *No write down:* principals cannot write information to a lower classification
-  level than their own authority, as to prevent downstream leakage.
+  level than their own authority, so as to prevent downstream leakage.
 
 However, it would be useful to enforce these assurances on arbitrary programs
 without relying on them to implement one of these mechanisms correctly, since
@@ -102,10 +102,10 @@ question is used securely @hedinsabelfeld2012perspective.
 This applies analogously to both confidentiality and integrity guarantees, with
 the former being traditionally and intuitively associated with _accessing_
 information, while the latter is tied to performing _writes_ and _updates_. In
-this work, focus is primarily put on confidentiality, therefore examples and
-textual descriptions refer to it for the most part unless otherwise stated.
-Nevertheless, identical or reversed logic often applies for integrity, and this
-is sometimes highlighted where appropriate.
+this report, for explanatory simplicity and conciseness, examples and textual
+descriptions primarily refer to the property of confidentiality, but identical
+or reversed logic often applies for integrity, and this is sometimes highlighted
+where appropriate.
 
 On the other hand, @ifc does not have so strong a bond with availability, the
 third and final component of the @cia triad, as that quality is generally more
@@ -123,15 +123,15 @@ In any case, @ifc techniques are commonly qualified in terms of *soundness* and
 flows are rejected (i.e., no false negatives), while the latter means that
 all rejected flows are insecure (i.e., no false positives).
 
-In general, @ifc is profoundly related with studying the relationships between
-a program's inputs and its outputs. Many inputs tend to be noteworthy in some
-way, either because they comprise secrets (such as @api:short tokens) or because
-they are attacker-controlled (such as @http form fields), and most outputs are
-either attacker-visible (such as a @cli application's writes to `stdout`) or
-critical parts (such as database entries), with the latter case often becoming
-inputs to other programs. It is therefore vital and a relevant measure of
-security to track if and how these inputs flow into outputs over the course of
-the program's lifetime, across all possible execution paths.
+In general, @ifc is profoundly related to studying the relationships between a
+program's inputs and its outputs. Many inputs tend to be noteworthy in some way,
+either because they comprise secrets (such as @api:short tokens) or because they
+are attacker-controlled (such as @http form fields), and most outputs are either
+attacker-visible (such as a @cli application's writes to `stdout`) or critical
+parts (such as database entries), with the latter case often becoming inputs to
+other programs. It is therefore vital and a relevant measure of security to
+track if and how these inputs flow into outputs over the course of the program's
+lifetime, across all possible execution paths.
 
 #pagebreak()
 
@@ -174,8 +174,8 @@ $"secret" = "output" - 4$.
 ==== Implicit Flows <bg:ifc:flows:implicit>
 
 On the other hand, implicit flows are more subtle, as they propagate information
-based on contextual details, especially based on conditional operations that
-only execute for certain code paths. For example:
+through contextual details, especially based on conditional operations that only
+execute for certain code paths. For example:
 
 #codly(highlighted-lines: (4,))
 #figure(
@@ -189,13 +189,14 @@ only execute for certain code paths. For example:
   caption: [Example of an implicit flow via conditional assignment],
 ) <bg:ifc:flows:implicit:example>
 
-Line 4 of the above Go snippet is a simple assignment that binds a constant
+Line 4 of the provided Go snippet is a simple assignment that binds a constant
 value (```go true```) to `isEven`, but though it may seem an innocuous operation
 at first, it still represents a security problem because of what implicit
 information can be inferred from its execution: an attacker can observe `isEven`
 and determine that `secret` is an even number if the former's value is
 ```go true```, as that is the only possible reason for the highlighted
-assignment to have occurred.
+assignment to have occurred, meaning that secret information can be derived from
+public outputs, simply in a more convoluted way than with explicit flows.
 
 The case where `secret` is odd is more challenging to detect, as no operations
 in its respective execution branch are problematic, but it is nevertheless still
@@ -264,9 +265,8 @@ project.
 
 Finally, it is worth noting that #cite(<sabelfeldmyers2003lang>, form: "author")
 consider even implicit flows to be covert channels and thus part of the category
-under description here, but this work explicitly opts to distinguish implicit
-flows from the rest due their importance and first-class focus in this degree
-project.
+under description here, but this work explicitly opts to distinguish them from
+the rest due to their importance and first-class focus in this degree project.
 
 === Axes and Label Polarity <intro:ifc:axes>
 
@@ -282,7 +282,7 @@ models to robustly describe properties based specifically on confidentiality and
 integrity, and especially the relationship between them. Nevertheless, such
 rigid bindings bring no significant advantages when taking into account this
 degree project's limited scope, so this work does not require modeling labels as
-the aggregation of two mutually exclusive confidentiality and integrity factors.
+the aggregation of two separate confidentiality and integrity factors.
 
 Instead, in an endeavor to promote usability and flexibility, this degree
 project reasons about labels as comprising a simple set of _tags_ (i.e.,
@@ -340,9 +340,9 @@ When discussing @ifc and formalizing its application in Information Security,
 the property of *non-interference* is often of the highest relevance, used as a
 cornerstone or starting point for many proposed models in the field. In essence,
 a program exhibits non-interference if its high inputs have no influence on its
-low outputs @goguenmesseguer1982noninterference,
-meaning that all attacker-visible information is completely independent of any
-secret data @rushby1992noninterference @mantel2025noninterference.
+low outputs @goguenmeseguer1982noninterference, meaning that all
+attacker-visible information is completely independent of any secret data
+@rushby1992noninterference @mantel2025noninterference.
 
 This concept is built on the premise that all programs can be described as
 functions mapping a sequence of inputs into a sequence of outputs
@@ -404,20 +404,20 @@ attacks necessary to exploit, for instance, probabilistic non-determinism
 vulnerabilities are considered out of scope of this degree project as they fall
 under the category of other covert channels for information propagation, already
 described in @bg:ifc:covert. This means that, for the purpose of this work, it
-is sufficient to consider the simplest definition of non-interference, stated
-and explained above, even if reliant on determinism.
+is sufficient to consider the simplest definition of non-interference, as stated
+and explained before, even if reliant on determinism.
 
 Lastly, it should be pointed out that non-interference is usually expressed in
 much more general terms. For example,
-#cite(<goguenmesseguer1982noninterference>, form: "prose")
+#cite(<goguenmeseguer1982noninterference>, form: "prose")
 originally put it as "one group of users, using a certain set of commands, is
 noninterfering with another group of users if what the first group does with
 those commands has no effect on what the second (...) can see", and
 #cite(<rushby1992noninterference>, form: "prose") words it "a security domain
 $u$ is noninterfering with domain $v$ if no action performed by $u$ can
-influence subsequent output seen by $v$"). However, in the context of this
+influence subsequent output seen by $v$". However, in the context of this
 project, it is equivalent to collapse such domain/user/process-centric
-formulations into the simpler concrete versions stated above, based on the
+formulations into the simpler concrete versions stated before, based on the
 relationship between high and low inputs and outputs.
 
 #pagebreak()
@@ -426,7 +426,7 @@ relationship between high and low inputs and outputs.
 
 This work takes a common approach to bypass the foregoing problem of
 non-interference being too strict for real-world usage, essentially allowing
-developers the flexibility to explicitly opt-out of the general non-interference
+developers the flexibility to explicitly opt out of the general non-interference
 condition at specific points of the program, respecting *revocation overrides*
 as an escape hatch for handling trade-offs that cannot be decided
 mathematically. This is a pragmatic solution that equips stakeholders with a
@@ -483,18 +483,19 @@ those two downgrading operations are functionally equivalent in semantics and
 behavior, given the lack of polarity. As such, this work contemplates explicit
 revocation as its single, unified form of label downgrading.
 
-Revocation of $L_R$ from $L$ is defined as the set difference between them, that
-is, $L' = L \\ L_R$, even if it would not otherwise be sound to forget $L_R$
-from $L$, assuming $L$ is a value's accumulated label over the course of a
-program's execution path. This mechanism allows stakeholders to make informed,
-risk-aware decisions and manually override the rigid requirements that would
-otherwise be enforced by purely mathematical @ifc principles.
+Revocation of some label $cal(L)_"Revocation"$ from another label $L$ is defined
+as the set difference between them, that is, $L' := L \\ cal(L)_"Revocation"$,
+even if it would not otherwise be sound to forget $cal(L)_"Revocation"$ from
+$L$, assuming $L$ is a value's accumulated label over the course of a program's
+execution path. This mechanism allows stakeholders to make informed, risk-aware
+decisions and manually override the rigid requirements that would otherwise be
+enforced by purely mathematical @ifc principles.
 
 Moreover, this practice of explicit revocation forces codebases to keep a
-roster of several crucial-yet-small areas of code that need to be reviewed more
-carefully but are clearly identified and can easily be found if the need arises,
-simplifying auditing even for large codebases. It prioritizes usability and
-flexibility over rigidness, but highlights potentially unsafe decisions so
+roster of one or more crucial-yet-narrow areas of code that need to be reviewed
+more carefully but are clearly identified and can easily be found if the need
+arises, simplifying auditing even for large codebases. It prioritizes usability
+and flexibility over rigidness, but highlights potentially unsafe decisions so
 that their justifications can be noticed and reviewed often.
 
 #pagebreak()
@@ -505,7 +506,7 @@ that their justifications can be noticed and reviewed often.
 
 There are several different paradigms regarding possible kinds of techniques
 that can be employed, in practice, for enforcing @ifc:long and its related
-conditions and security measures. Evidently, each have their own inherent
+conditions and security measures. Evidently, each has their own inherent
 advantages and disadvantages, so it is consequential to select the most
 appropriate one for each situation, as it is a significant factor in the extent
 to which it is possible to reduce friction on developing, maintaining, and
@@ -530,10 +531,10 @@ In the former case, this often requires development using a security-oriented
 language designed expressly with this purpose in mind, with numerous such
 languages having been prototyped or released over the past few decades
 @palsbergorbek1995trust @smithvolpano1998multithreaded @heintzeriecke1998slam
-@banerjee2002javalike, some of them as (breaking) extensions to existing
+@banerjee2002javalike, some of them as (breaking) extensions to existing other
 languages @myers1999jflow @myersliskov2000jif @pottiersimonet2003ml. While these
 are robust and usually proven sound, stakeholders often prefer to use widespread
-programming languages for their development tasks, or they have a legacy
+programming languages for their development tasks, or they might have a legacy
 codebase already bound to some existing language without specific security
 typing guarantees.
 
@@ -612,8 +613,8 @@ as in the scope of an Operating System ensuring inter-process security
 @enck2014taintdroid, or even at the level of the processor's instruction-set
 architecture @vachharajani2004rifle.
 
-Dynamic @ifc tracking and enforcement can be software-based, as described above,
-but it might also be hardware-based, or even hardware-assisted.
+Dynamic @ifc tracking and enforcement can be software-based, as previously
+described, but it might also be hardware-based, or even hardware-assisted.
 #cite(<chen2021dynamic>, form: "prose") compare the three approaches and
 conclude that each presents a different trade-off between flexibility,
 performance, and deployment cost. According to the survey's authors, the first
@@ -621,7 +622,7 @@ case allows for the most flexibility and makes it simple to modify the security
 policy, besides being more scalable and not relying on niche hardware support,
 but it has the strong drawback of very high runtime overhead. The second case
 has lower overhead and can be transparent to the software layer (except for
-interruptions generated in case of detected security breach), but it is
+interruptions generated in case of a detected security breach), but it is
 difficult to deploy on commercial systems, entails a high hardware manufacturing
 cost, and offers very limited flexibility after production, besides the evident
 scalability issues. The third case comprises a good balance between flexibility
@@ -632,11 +633,11 @@ software tracking, as well as a custom execution environment.
 
 Finally, as a consequence of its runtime nature, detected illegal information
 flows can only be reported during program execution, in which case it must
-reject the flow and abort either the current task or the entire program
-execution, since it would not be semantically sound to proceed blindly without
-applying the flow in question. This means that dynamic enforcement must
-necessarily compromise availability in favor of confidentiality or integrity,
-even in high-stakes production contexts where uptime is essential.
+reject the flow and abort either the current task or the entire run, since it
+would not be semantically sound to proceed blindly without applying the flow in
+question. This means that dynamic enforcement must necessarily compromise
+availability in favor of confidentiality or integrity, even in high-stakes
+production contexts where uptime is essential.
 
 In general, dynamic analysis brings indisputable benefits in precision and
 flexibility when compared to other enforcement paradigms, but this comes at a
@@ -669,27 +670,27 @@ precise flow tracking across the different layers of the program under
 inspection. Static analysis of a program's executable binary, in contrast, is
 typically affected by register reuse, loss of symbolic information, and
 nontrivial identification of sources and sinks based on raw memory locations.
-Implicit flows are especially difficult to track soundly without source code
+Implicit flows are especially difficult to track soundly without source-code
 access, as conditions and effects are sometimes merged together by compiler
 optimizations and instructions are organized to privilege branchless arithmetic
 that presents equivalent behavior but is less granular in flow.
 
 Given this reasoning, while binary file analysis has legitimate uses for some
-very specific use cases, source code analysis tends to be, in general, much more
+very specific use cases, source-code analysis tends to be, in general, much more
 convenient to use, maintain, and rely on. It makes it simpler to define clear
 security policies based on meaningful abstractions rather than memory addresses,
 and its higher degree of context allows more focused decision-making, which in
 turn permits more precise tracking of information flows.
 
-In spite of this, all static analysis is inevitably less precise (in most cases)
-than dynamic analysis, as some context is only known during the program's
-execution. This means that, in order to preserve soundness, the analyzer must be
-conservative and always assume the worst case scenario for any given situation
-unless it can statically prove that a given possibility cannot be true, which
-translates into a higher false positive rate than other paradigms. There exist
-scenarios in which static analysis is more precise than dynamic analysis,
-especially if relying on a "no-sensitive-upgrade" rule that automatically
-rejects high assignments to low variables even if they would later be
+In spite of this, all static analysis is usually less precise than dynamic
+analysis, as some context is only known during the program's execution. This
+means that, in order to preserve soundness, the analyzer must be conservative
+and always assume the worst case scenario for any given situation unless it can
+statically prove that a given possibility cannot be true, which translates into
+a higher false positive rate than other paradigms. There exist scenarios in
+which static analysis is more precise than dynamic analysis, especially if
+relying on a "no-sensitive-upgrade" rule that automatically rejects in high
+contexts all assignments to low variables, even if they would later be
 overwritten @russosabelfeld2010vs, but for most ordinary programs dynamic
 analysis tends to prevail, with static analysis relying more on conservative
 choices.
@@ -732,7 +733,7 @@ compilation.
 In summary, static analysis is in most cases less precise than its dynamic
 counterpart, sometimes relying on conservativeness and overapproximations to
 guarantee soundness, but it allows for better usability, more robustness, and
-higher confidence, all at zero-cost for program execution.
+higher confidence, all at no cost for program execution.
 
 For the foregoing reasons, and taking into account the trade-off between the
 advantages and disadvantages it entails, static analysis of source code
@@ -782,20 +783,20 @@ security policy:
 - *Deny-Sinks,* enforcing a label tag blacklist; and
 - *Assertions,* requiring an exact label match.
 
-Sources follow the simple and intuitive semantics already described above,
-adding the specified label tags to a value's existing label. If value has label
-$L$ before reaching a configured source with label $cal(L)_"Source"$, then it
-is modeled as having label $L' = L union.sq cal(L)_"Source"$.
+Sources follow the simple and intuitive semantics already described previously,
+adding the specified label tags to a value's existing label. If a value has
+label $L$ before reaching a configured source with label $cal(L)_"Source"$, then
+it is modeled as having label $L' := L union.sq cal(L)_"Source"$.
 
-Revocations have the opposite effect, such that $L' = L \\ cal(L)_"Revocation"$.
-These have the semantics already defined in @intro:ifc:revocation and are meant
-as an exceptional escape hatch for intentionally overriding taint analysis, such
-as in sanitizers. Revocations are unsafe by nature, but represent calculated
-and informed manual risk acceptance. Nevertheless, it should be stressed that
-revocation uses subtraction rather than full overriding (i.e.,
-$L' != cal(L)_"Revocation"$) to force stakeholders to be exhaustively aware
-about which tags are being removed. For the same reason, it is redundant for
-$cal(L)_"Revocation"$ to ever be $bot$.
+Revocations have the opposite effect, such that
+$L' := L \\ cal(L)_"Revocation"$. These have the semantics already defined in
+@intro:ifc:revocation and are meant as an exceptional escape hatch for
+intentionally overriding taint analysis, such as in sanitizers. Revocations are
+unsafe by nature, but represent calculated and informed manual risk acceptance.
+Nevertheless, it should be stressed that revocation uses subtraction rather than
+full overriding (i.e., $L' thin :!= thin cal(L)_"Revocation"$) to force
+stakeholders to be exhaustively aware of which tags are really being removed.
+For the same reason, it is redundant for $cal(L)_"Revocation"$ to ever be $bot$.
 
 #pagebreak()
 
@@ -919,9 +920,9 @@ mutation can completely overwrite a value's associated label and produce
 absolute effects for any subsequent statements.
 
 The present degree project implements taint analysis as partially
-flow-sensitive. Simple cases, such as the one on
+flow-sensitive. Simple cases, such as the one in
 @bg:taint:flow-sensitivity:strong are correctly accepted, but the model relies
-on weak upgrades for any mutations to symbols declared outside of the current
+on weak updates for any mutations to symbols declared outside of the current
 control-flow split. This heuristic is sound in the general case, but can lead to
 a loss of precision in some specific cases; @bg:taint:flow-sensitivity:weak
 showcases a situation under which flow sensitivity is not observed by this work,
@@ -939,7 +940,7 @@ should be low, since it was defined outside the current control-flow split.
   }
   sink(x)
   ```,
-  caption: [Example program with incorrect weak update],
+  caption: [Example program with imprecise weak update],
 ) <bg:taint:flow-sensitivity:weak>
 
 This kind of situation is relatively rare (conditional upgrade is much more
@@ -960,7 +961,7 @@ call-site-insensitive analysis.
 #figure(
   ```go
   var identity = func(x int) int { return x }
-  sink(identity(source()))
+  var _ = identity(source())
   sink(identity(0))
   ```,
   caption: [Example program accepted under call-site sensitivity],
@@ -973,7 +974,7 @@ would model `identity` as exhibiting one single static return value, derived
 from one single static argument value, corresponding to the (sound) union of
 all possible values passed as that particular argument, across all invocations.
 This means that both invocations of `identity` would be tainted high due to the
-taint passed by the first invocation, even if independent to the second.
+taint passed by the first invocation, even if it is independent of the second.
 
 This work's taint analysis model is fully call-site-sensitive. When processing a
 function definition, all parameters and similar inputs are assigned synthetic
@@ -982,7 +983,7 @@ dependent on those synthetic tags. At each call-site, the synthetics are
 realized (replaced) with the concrete labels of the values passed as arguments
 (and other inputs, such as method receivers) for that particular invocation.
 
-The approach above described uses function summaries and corresponds, for the
+The approach described above uses function summaries and corresponds, for the
 most part, to a process first introduced by
 #cite(<sharirpnueli1981interprocedural>, form: "prose"). Its modeling of
 function outputs as dependent on inputs allows for interprocedural
@@ -1010,9 +1011,9 @@ Go is used extensively in modern development. Stack Overflow's 2025 Developer
 Survey @stackoverflow2025 listed Go as the 13#super[th] most used language
 #footnote[Developers were asked "Which programming, scripting, and markup
   languages have you done extensive development work in over the past year
-  (...)?"], just after C and PHP. It further reports that, from its
-#zero.num(31771) respondents, $23.4%$ of developers wanted to start working in
-Go during the following year.
+  (...)?"], just after C and PHP. It further reports that, among
+#zero.num(31771) respondents, $23.4%$ of developers wanted to work in Go during
+the following year.
 
 In particular, there are various well-known, widely-used, high-profile projects
 implemented in Go, corroborating the language's relevance. For instance, these
@@ -1083,13 +1084,12 @@ below.
   caption: [Examples of high-profile projects primarily written in Go],
 ) <bg:go:prevalence:high-profile>
 
-In @bg:go:prevalence:high-profile above, the "Reported Usage" column
+In @bg:go:prevalence:high-profile, the "Reported Usage" column
 corresponds to the percentage of respondents to the aforementioned Stack
 Overflow 2025 Developer Survey's "Cloud development" category question who had
 done "extensive development work" with the tool over the previous year, if
-applicable. The "GitHub Stars" column denotes to the approximate number of
-stars held by the project's main GitHub repository, if any, at the time of
-writing.
+applicable. The "GitHub Stars" column denotes the approximate number of stars
+held by the project's main GitHub repository, if any, at the time of writing.
 
 Besides the open-source environment, Go is also widely used by a multitude of
 well-known large companies across the industry, including Google @gogoogle,
@@ -1150,8 +1150,8 @@ distributed, and depended on together, as a coherent unit.
 Each module is identified by its _module path,_ as indicated by a `module`
 directive in `go.mod`. This usually corresponds to where the module can be
 downloaded from, such as `github.com/user/repo/sub`. Modules can be obtained
-directly from its code repository, or alternatively from a module proxy server
-(a module mirror, such as the official #link("https://proxy.golang.org").
+directly from their code repository, or alternatively from a module proxy server
+(a module mirror, such as the official #link("https://proxy.golang.org")).
 
 A module's packages are identified by a _package path_ that is always prefixed
 by the module path and then indicates the module's subdirectory under which its
@@ -1160,7 +1160,7 @@ source files are found. For example, a package path of
 `utils/` of the module accessible at directory `sub/` of the GitHub repository
 `user/repo`.
 
-All packages have a native _package name,_ declared at the top of all its source
+All packages have a native _package name,_ declared at the top of all source
 files with a directive such as ```go package utils```. This name is a single
 identifier and must match for all of a package's source files. It is important
 to note, however, that it does not necessarily have to match the last component
@@ -1224,10 +1224,10 @@ synchronization and coordination between logical threads, without any explicit
 locking or special handling.
 
 @bg:go:overview:channels:basic exemplifies how channels are created with
-`make` and then operated on via send statements (`<-`) and receive expressions
-(`->`). @bg:go:overview:channels:expensive, in turn, demonstrates how channels
-can complement goroutines to coordinate expensive calculations, possibly (but
-not necessarily) parallelizing workload.
+`make` and then operated on via send statements and receive expressions.
+@bg:go:overview:channels:expensive, in turn, demonstrates how channels can
+complement goroutines to coordinate expensive calculations, possibly (but not
+necessarily) parallelizing workload.
 
 #figure(
   ```go
@@ -1263,7 +1263,7 @@ not necessarily) parallelizing workload.
     // results can arrive in any order, so "result #j"
     // does not necessarily match "input #i"
     total += <-results
-    fmt.Println("Collected", j, "out of 5")
+    fmt.Println("Collected", j + 1, "out of 5")
   }
 
   fmt.Println("Sum is", total)
@@ -1277,8 +1277,8 @@ specified). On line 1 of @bg:go:overview:channels:expensive, for instance, the
 `ch` parameter is declared as a channel with send direction, since `process`
 only ever needs to send values through `ch`. Nevertheless, the function call at
 line 9 is still accepted, despite `results` having a different type from `ch`,
-because bidirectional channel are always assignable to directional channel
-types.
+because bidirectional channels are always assignable to directional channel
+types of identical element type.
 
 Moreover, channels can be _buffered_ or _unbuffered._ Channels are unbuffered by
 default, in which case all send operations block the current goroutine until a
@@ -1322,8 +1322,8 @@ used at the end of @bg:go:overview:channels:buffered.
 
 ==== Communication Selection
 
-The final major language primitive for supporting concurrent programming is
-```go select``` statements, which allow combining multiple channel operations. A
+The final major language primitive for supporting concurrent programming is the
+```go select``` statement, which allows combining multiple channel operations. A
 ```go select``` statement defines multiple communication cases and, when
 executed, chooses exactly one of them to proceed.
 
@@ -1350,8 +1350,8 @@ corresponding to channel send or receive operations.
   caption: [Example usage of ```go select``` statement],
 ) <bg:go:overview:select:basic>
 
-In the example above, @bg:go:overview:select:basic, either of the three
-`fmt.Println` may execute depending on parallelism and scheduling, but Go
+In the example above, @bg:go:overview:select:basic, any of the three
+`fmt.Println` calls may execute depending on parallelism and scheduling, but Go
 guarantees that exactly one of them will execute. In general, ```go select```
 operates as follows:
 - if exactly one case is ready (i.e., a receive or send would not block), then
@@ -1362,8 +1362,8 @@ operates as follows:
   statement blocks the current goroutine until any of the cases is ready.
 
 Importantly, cases can appear in any order, and no priority is given to those
-first in the source code; if multiple cases are are ready upon selection, all
-those cases have an equal probability of being chosen.
+first in the source code; if multiple cases are ready upon selection, all those
+cases have an equal probability of being chosen.
 
 Moreover, ```go select``` statements are frequently used in event loops,
 capturing the next available value from multiple sources so that it may be
@@ -1454,12 +1454,14 @@ unqualified type name. This means that if $X$ embeds $Y$, the pseudo-field `Y`
 on instances of $X$ is an instance of $Y$.
 
 Moreover, the language defines _field promotion,_ which allows fields from
-(recursively) embedded structs to be directly accessible. If there would be
-ambiguity, the shallowest depth contributing exactly one field prevails. For
-example, the highlighted line 22 of @bg:go:overview:structs:example shows two
-equivalent ways of accessing the `big` field. Line 23, in constrast,
-demonstrates how no promotion occurs if it would clash with an existing field
-name at a higher depth.
+(recursively) embedded structs to be directly accessible. The field at the
+shallowest matching depth is selected only if its name is unique at that depth
+(i.e., if there would be no ambiguity).
+
+For example, the highlighted line 22 of @bg:go:overview:structs:example shows
+two equivalent ways of accessing the `big` field. Line 23, in contrast,
+demonstrates how no promotion occurs if it would clash with an existing
+(shallower) field name.
 
 #codly(highlighted-lines: (22,))
 #figure(
@@ -1498,8 +1500,8 @@ extracted automatically (via reflection) by the implementing mechanism.
 
 Finally, it should be noted that promotion does not apply solely to fields: a
 _promoted method_ is defined analogously, hoisting (non-clashing) methods from
-the embedded struct's method set to become accessible directly at the embedder's
-level, as if they had been there declared.
+the embedded structs' method sets to become accessible directly at the
+embedder's level, as if they had been there declared.
 
 ==== Interfaces and Dynamic Dispatch
 
@@ -1511,7 +1513,7 @@ In particular, interfaces are not implemented directly; instead, types which
 (coincidentally or otherwise) declare methods of matching signatures are
 automatically considered to implement the interface, without ever referencing
 it. A consequence of this is that any code may declare and use whichever
-interfaces are necessary without relying on others to manually implement it.
+interfaces it needs without relying on others to manually implement them.
 
 Values may be typed as a particular interface, in which case their method set is
 exclusively the interface's method set. Dynamic dispatch is supported, meaning
@@ -1574,7 +1576,7 @@ underlying @ffi mechanism is implemented and controlled by the `cgo` tool
 
 From Go source code, it is possible to access C-level symbols through the
 pseudo-package `C`, i.e., ```go import "C"```. Alternatively, to permit C code
-to execute Go functions, they must have an ```go //export SomeName``` coment
+to execute Go functions, they must have an ```go //export SomeName``` comment
 immediately preceding their definition.
 
 The pseudo-package `C` contains all accessible C symbols. If its import
@@ -1596,8 +1598,8 @@ There are a number of previously-reported security vulnerabilities and past
 incidents across the Go ecosystem that could have theoretically been detected by
 static taint analysis of source code and subsequently fully eradicated or
 mitigated before ever being released, if specialized techniques such as the
-ones set forth by this work could have had been part of the respective teams'
-development processes.
+ones set forth by this work had been part of the respective teams' development
+processes.
 
 It should be noted that the incidents mentioned in this section are not
 exhaustive and merely constitute representative examples of different security
@@ -1657,7 +1659,7 @@ Foundry problem where credential logging allowed lower-privileged remote users
 and several related Kubernetes vulnerabilities @cve20208563kubernetes
 @cve20208564kubernetes @cve20208565kubernetes @cve20208566kubernetes
 @cve20257445kubernetes. Other projects with high or critical severity @cve:pl
-mapped to CWE-552 are Docker @cve201913509docker, HashiCorp Vault
+mapped to CWE-532 are Docker @cve201913509docker, HashiCorp Vault
 @cve202013223vault, HashiCorp consul-template @cve202238149consultemplate,
 Mattermost @cve202137861mattermost, Atlantis @cve202452009atlantis, Argo CD
 @cve202340029argocd, Weave GitOps @cve202231098weave, NooBaa @cve20213528noobaa,
@@ -1666,7 +1668,7 @@ Terraform providers for Linode @cve202627900linode and Microsoft's
 Power Platform @cve202447083microsoft.
 
 However, logs are not the only exfiltration medium. Pterodactyl's server
-control plane (Wings) exposed secrets into templated configuration files
+control plane (Wings) exposed secrets to templated configuration files
 @cve202652855pterodactyl, while Grafana sent credentials to third-party plugins
 @cve202231130grafana @cve202239201grafana, and Mattermost included various
 secrets in support packets @cve20262476mattermost @cve20266346mattermost
@@ -1688,7 +1690,7 @@ Furthermore, some related vulnerabilities are instead mapped to CWE-209
 such as in free5GC, where publicly-visible errors exposed internal
 infrastructure details @cve202642459free5gc, in monetr, where attackers
 exploiting a separate @ssrf vulnerability could access the triggered request's
-response via monetr's returned error structure @cve202641644monetr, and in the
+response via monetr's returned error structure @cve202641644monetr, and in
 Algernon, where the web server sent sensitive script source code to remote users
 as part of error responses @cve202645728algernon.
 
@@ -1702,7 +1704,7 @@ not used in any public dashboards @cve202627877grafana, among others.
 
 Overall, there are varied attacker-observable information sinks through which
 sensitive data can be leaked, frequently resulting in disastrous consequences,
-as demonstrated through the vulnerabilities referenced above. Confidentiality is
+as demonstrated through the vulnerabilities referenced here. Confidentiality is
 an essential pillar of Cybersecurity, so any improvement in detecting
 information leaks is already an exceptional advantage.
 
@@ -1761,7 +1763,7 @@ Other related categories include CWE-601 "URL Redirection to Untrusted Site
 (@ssrf:short)" @cwe918ssrf. The former applies, for instance, to a ZITADEL
 vulnerability where the server emailed users secret-carrying password reset
 links rooted to the (possibly attacker-controlled) `Forwarded` (or
-`X-Forwarded-By`) @http header without validating that it matched the
+`X-Forwarded-Host`) @http header without validating that it matched the
 instance's own domain @cve202629067zitadel, and the latter is associated with,
 for example, a vulnerability resulting from Prebid Server not validating
 untrusted, user-supplied outbound request targets, exposing internal network
@@ -1781,7 +1783,7 @@ and configuring them to achieve the best possible results.
 
 This degree project's author previously co-authored a small prototype analyzer
 for Go source code, here referred to as Glowy-Zero. Said prototype was developed
-in equal parts with Diogo Correia as part of a 3 credits project for the
+in equal parts with Diogo Correia as part of a 3-credit project for the
 DD2525 Language-Based Security
 #footnote(link("https://www.kth.se/student/kurser/kurs/DD2525?l=en"))
 course at the KTH Royal Institute of Technology, which is also the present
@@ -1795,10 +1797,10 @@ exclusively in the Go lexer of the parser library.
 
 A snapshot of Glowy-Zero and the surrounding course project documentation is
 publicly available in its now-archived GitHub repository
-#footnote(link("https://github.com/ist199211-ist199311/glowy-langsec")), and it
-has been MIT-Licensed since the very first commit, thereby not compromising
-Glowy's own licensability. Glowy's Git repository is rooted in Glowy-Zero's,
-retaining full history; the last Glowy-Zero commit is tagged
+#footnote(link("https://github.com/ist199211-ist199311/glowy-langsec")). Since
+Glowy-Zero has been MIT-Licensed since the very first commit, it does not
+compromise Glowy's own licensability. Glowy's Git repository is rooted in
+Glowy-Zero's, retaining full history; the last Glowy-Zero commit is tagged
 `langsec-project-submission`, so a full diff of the changes made within the
 framework of the present degree project is easily accessible
 #footnote(link("https://github.com/RafDevX/glowy/compare/" + //
@@ -1882,9 +1884,9 @@ It models possible alias relationships and general points-to heap location
 tracing, implementing an algorithm first introduced by
 #cite(<andersen1994pointers>, form: "prose") for C. Its documentation claims
 deterministic bounded soundness for all pure Go inputs, except those using
-reflection or `unsafe.Pointer` conversions, and it is both flow-insensitive and
-context-insensitive, thereby representing conservative estimations for where
-pointers may point to.
+reflection or `unsafe.Pointer` conversions, and it is flow-insensitive as well
+as mostly context-insensitive, thereby representing conservative estimations for
+where pointers may point to.
 
 In 2023, the Go team decided to deprecate and freeze Go Pointer
 @donovan2023pointer, citing slow execution, scalability issues, difficult to
@@ -1916,7 +1918,7 @@ Gotcha is primarily a single-author research artifact and has therefore not been
 updated since 2017. It explicitly only supports Go 1.7 and earlier, which means
 that it has no support for the major language developments from the past decade,
 including modules and generics. As such, it is thus not a realistic candidate
-to real use in modern Go projects.
+for real use in modern Go projects.
 
 #pagebreak()
 
@@ -1944,21 +1946,22 @@ Go Flow Levee#footnote(link("https://github.com/google/go-flow-levee")) is a
 taint analyzer developed by Google, relying on lower-level ecosystem analysis
 primitives to detect insecure flows from sources to sinks, as configured through
 @yaml:short files and struct field tags. Sanitizers are supported, and false
-positives can be suppressed via ```go // levee.DoNotReport``` source code
+positives can be suppressed via ```go // levee.DoNotReport``` source-code
 annotation comments.
 
 Implicit information flows are not detected, and the analysis is
 intraprocedural, considering each single function in isolation.
-The documentation is also scarse and incomplete, and some configuration
+The documentation is also scarce and incomplete, and some configuration
 patterns are somewhat awkward and unintuitive, significantly relying on
 indirection.
 
 Kubernetes added this tool to its @ci pipeline in 2021, after a Trail of Bits
 codebase audit @trailofbits2019kubernetes identified multiple sensitive data
-leakage vulnerabilities @kep1933levee. This led to multiple struct fields being
-annotated with `datapolicy:"..."` tags, demonstrating how even large and
-high-profile projects can be willing to annotate their source code and take the
-time to properly configure their security tools.
+leakage vulnerabilities @kep1933levee. This led to a significant number of
+struct fields being manually annotated with `datapolicy:"..."` tags,
+demonstrating how even large and high-profile projects can be willing to
+annotate their source code and take the time to properly configure their
+security tools.
 
 However, Go Flow Levee has not had material developments since 2021 and its
 GitHub repository is archived. It was dropped from Kubernetes in 2024 for
@@ -1970,19 +1973,19 @@ remain.
 === Gosec
 
 Gosec#footnote(link("https://github.com/securego/gosec")) is an active, broad
-source code inspector for statically finding potential security issues. It
+source-code inspector for statically finding potential security issues. It
 applies pattern matching and several different techniques to identify and
 surface 7 different categories of errors, matching more than 60 security rules
 that it ships with.
 
-One of aforementioned 7 rule categories corresponds to taint analysis, which is
-capable of detecting explicit (but not implicit) insecure flows. While it is
+One of the aforementioned 7 rule categories corresponds to taint analysis, which
+is capable of detecting explicit (but not implicit) insecure flows. While it is
 technically possible to depend on the taint engine directly and configure its
 sources and sinks from a wrapper program, the Gosec @cli restricts analysis to
 the 10 built-in rules, respectively tied to SQL injection, command injection,
-path traversal, @ssrf, @xss, log injection, @smtp command/header injection,
-server-side template injection, unsafe deserialization of untrusted data, and
-open redirect vulnerabilities @gosecrules.
+path traversal, @ssrf, @xss, log injection, @smtp:short command/header
+injection, server-side template injection, unsafe deserialization of untrusted
+data, and open redirect vulnerabilities @gosecrules.
 
 While this makes it simpler to extract immediate value from running the tool
 without a need for configuration, it also means stagnation for the returns it
@@ -2017,7 +2020,7 @@ The final Go-specific project of interest is `ar-go-tools`
 #footnote(link("https://github.com/awslabs/ar-go-tools")), developed by Amazon
 Web Services and branded as Argot (which stands for Automated Reasoning Go
 Tools). It is a collection of static analyzers focusing on different aspects,
-the foremost of which (`taint`) a taint analyzer.
+the foremost of which (`taint`) is a taint analyzer.
 
 It performs whole-program interprocedural analysis using pointer aliasing and
 call-graph information. The project claims a strong soundness guarantee for all
@@ -2049,7 +2052,7 @@ is the clearest example of such a tool, since it allows executing very powerful
 semantic queries capable of identifying insecure flows. However, even if
 possible, it is not ergonomic to encode sources and sinks in queries (especially
 for indirect flows), when compared to a human-readable security policy. In
-addition, CodeQL is heavy and not practical to run in developer machines (e.g.,
+addition, CodeQL is heavy and not practical to run on developer machines (e.g.,
 pre-commit hooks), besides being a commercial product requiring paid licensing
 for proprietary use.
 
@@ -2070,10 +2073,11 @@ sensitivity and partial flow sensitivity to reliably detect them.
 
 Taint analysis tracks how values are propagated throughout a program's execution
 paths from sources to sinks, as measured by security labels composed of tags,
-which may in turn be plain or bound to an axis, in this work. Two distinct kinds
-of sinks are defined, in a novel attempt to combine simplicity with flexibility
-in security policy definition, and a mechanism of explicit revocation is
-additionally recognized as a manual override for rigid soundness invariants.
+which, in this work, may in turn be plain or bound to an axis. Two distinct
+kinds of sinks are defined, in a novel attempt to combine simplicity with
+flexibility in security policy definition, and a mechanism of explicit
+revocation is additionally recognized as a manual override for rigid soundness
+invariants.
 
 Go is a compiled general-purpose programming language with widespread usage and
 a number of interesting properties for static analysis and security research in

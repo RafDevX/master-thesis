@@ -15,6 +15,7 @@
       booktabs: true,
       numbered-title: caption,
       line-number-alignment: top + right,
+      line-number-supplement: [line],
       body,
     ),
     caption: caption,

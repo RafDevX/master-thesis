@@ -52,7 +52,7 @@ shorthands being used:
 )))
 
 In addition, for Aborts, #text(maroon)[`PARSE`] denotes a parsing error,
-#text(maroon)[`WRLDS`] excessive enumerable words $(>2^20)$, and
+#text(maroon)[`WRLDS`] excessive enumerable worlds $(>2^20)$, and
 #text(maroon)[`PERMS`] too many build permutations $(>256)$.
 
 #pagebreak()

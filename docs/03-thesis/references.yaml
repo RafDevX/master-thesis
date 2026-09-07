@@ -226,7 +226,7 @@ santiagocalderon2022oss:
 
 udhr:
   type: legislation
-  title: "Universal Declaration on Human Rights"
+  title: "Universal Declaration of Human Rights"
   date: 1948-12-10
   serial-number:
     un-res: "A/RES/217(III)"
@@ -400,12 +400,12 @@ turing1936computable:
     issue: 1
     publisher: London Mathematical Society
 
-goguenmesseguer1982noninterference:
+goguenmeseguer1982noninterference:
   type: article
   title: "Security Policies and Security Models"
   author:
     - Goguen, Joseph A.
-    - Messeguer, José
+    - Meseguer, José
   date: 1982-04-26
   page-range: 11-20
   serial-number:
@@ -970,7 +970,7 @@ ubergo:
   title: "Data Race Patterns in Go"
   author:
     - Chabbi, Milind
-    - Ramananthan, Murali Krishna
+    - Ramanathan, Murali Krishna
   date: 2022-06-02
   url:
     value: https://www.uber.com/in/en/blog/data-race-patterns-in-go
@@ -1281,7 +1281,7 @@ cve202231098weave:
 cve20213528noobaa:
   type: entry
   title: "CVE-2021-3528"
-  date: 2026-05-13
+  date: 2021-05-13
   serial-number:
     cve: "CVE-2021-3528"
   url:
@@ -1663,7 +1663,7 @@ cve202635393goshs:
 cve20204053helm:
   type: entry
   title: "CVE-2020-4053"
-  date: 2026-06-16
+  date: 2020-06-16
   serial-number:
     cve: "CVE-2020-4053"
   url:
@@ -1677,7 +1677,7 @@ cve20204053helm:
 cve202013347gitlab:
   type: entry
   title: "CVE-2020-13347"
-  date: 2026-10-07
+  date: 2020-10-07
   serial-number:
     cve: "CVE-2020-13347"
   url:
@@ -1878,10 +1878,12 @@ cve202654735prebid:
 
 likang2022odgen:
   type: article
-  title: "Mining Node.js Vulnerabilities via Object Dependene Graph and Query"
+  title: "Mining Node.js Vulnerabilities via Object Dependence Graph and Query"
   author:
     - Li, Song
     - Kang, Mingqing
+    - Hou, Jianwei
+    - Cao, Yinzhi
   date: 2022-08
   page-range: 143-160
   parent:
@@ -2130,7 +2132,7 @@ bernstein2008chacha20:
   type: article
   title: "ChaCha, a variant of Salsa20"
   author: Bernstein, Daniel J.
-  date: 2018-01-28
+  date: 2008-01-28
   page-range: 3-5
   parent:
     type: proceedings

@@ -3,7 +3,7 @@ information provenance itself grows in significance even beyond what is
 attributed to the concrete data it is associated with. In particular, such
 provenance metadata plays a meaningful role in Cybersecurity, as it often
 determines where and how different kinds of information can be used: secret
-inputs should usually not be publicly observable, whereas untrusted inputs
+inputs should usually not be publicly observable, whereas untrusted ones
 commonly require sanitization before safely reaching critical parts.
 
 This work uses information flow control techniques to model flexible static
@@ -26,11 +26,11 @@ In general, a significant share of Go programs are supported. Analysis focuses
 on source code, incurs no runtime costs, and is characterized as
 interprocedural, call-site sensitive, and partially flow sensitive. It considers
 Go modules as its fundamental unit of operation, independently scrutinizing all
-possible permutations of build-tag constraints.
+possible combinations of build-tag constraints.
 
 // cannot use zero.num because it uses context; not for-diva-serializable
 // (sym.spacing.thin, == h, is also not serializable, so we use a normal space)
-Major contributions arising from this degree project include Glowy, including
+Major contributions arising from this degree project include Glowy, encompassing
 both the theoretical Go static taint analysis model itself and a corresponding
 $35" "000$-line Rust implementation, as well as a $230$-module corpus of
 correctness benchmarks illustrating possible flows in Go, and an extensive

@@ -37,9 +37,9 @@
   (
     key: "cli",
     short: "CLI",
-    long: "Command Line Interface",
-    description: [Text-based method for interacting with software (sometimes
-      referred to as a terminal)],
+    long: "Command-Line Interface",
+    description: [Text-based method for interacting with software by entering
+      commands, typically through a terminal],
   ),
   (
     key: "cve",
@@ -97,6 +97,13 @@
     short: "IFC",
     long: "Information Flow Control",
     description: [Mechanisms for restricting information propagation],
+  ),
+  (
+    key: "iqr",
+    short: "IQR",
+    long: "Inter-Quartile Range",
+    description: [Statistical measure of dispersion equivalent to the difference
+      between a dataset's third and first quartiles],
   ),
   (
     key: "ldap",
