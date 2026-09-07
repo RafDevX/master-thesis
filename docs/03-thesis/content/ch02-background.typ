@@ -497,9 +497,6 @@ simplifying auditing even for large codebases. It prioritizes usability and
 flexibility over rigidness, but highlights potentially unsafe decisions so
 that their justifications can be noticed and reviewed often.
 
-#v(1fr)
-#highlight[more paragraphs]
-
 #pagebreak()
 
 == Enforcement Mechanisms for @ifc:short
@@ -892,9 +889,6 @@ taint through `load`'s return value.
 The present work models information according to interprocedural analysis,
 relying on function summaries to propagate labels and metadata across function
 boundaries.
-
-#v(1fr)
-#highlight[more paragraphs (probably in the top-half before heading)]
 
 #pagebreak()
 

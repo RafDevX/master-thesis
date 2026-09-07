@@ -27,9 +27,6 @@ corresponding to the the auditing of $371$ Go modules, are interpreted in
 connection with each research question, establishing a stronger link between the
 results and the overarching degree project.
 
-#v(1fr)
-#highlight[more]
-
 #pagebreak()
 
 === Information Flow Analyzer <discussion:rq:analyzer>

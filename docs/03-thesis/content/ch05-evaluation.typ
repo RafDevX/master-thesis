@@ -865,9 +865,6 @@ explicitly `/07_sec/06_ssrf/ssrf.go`, which confirms that the finding is a real
 the said kind of attack within the context of the Go programming language to
 students taking part in VK Education's Go course.
 
-#v(1fr)
-#highlight[more]
-
 #pagebreak()
 
 This is therefore a definite true positive, in the technical sense, even if
@@ -1137,9 +1134,6 @@ required iterations values.
 
 The disparity on the bottom-right of the table is simply because the number of
 total iterations is multiplied by the number of build permutations.
-
-#v(1fr)
-#highlight[more]
 
 #pagebreak()
 

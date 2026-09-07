@@ -238,9 +238,6 @@ In addition, its first-class support for powerful algebraic data types (via
 `enum`) makes it easier to represent many concepts important to this work, such
 as @ast nodes, and allows more expressive pattern matching.
 
-#v(1fr)
-#highlight[more stuff]
-
 #pagebreak()
 
 ==== First-Party Parser
@@ -317,9 +314,6 @@ The core analyzer rules for modeling information flow and enforcement are
 derived from the thorough interpretation of the Go language specification,
 which is this work's primary reference material and offers authoritative
 guidelines for all development work.
-
-#v(1fr)
-#highlight[more stuff]
 
 #pagebreak()
 
@@ -546,9 +540,6 @@ means that a very significant share of all Go programs is considered to be in
 scope for this work and are modeled correctly, which is appropriate for a degree
 project of this nature.
 
-#v(1fr)
-#highlight[more paragraphs, probably in the middle of these existing 2]
-
 #pagebreak()
 
 == Data Collection <methods:collection>
@@ -588,9 +579,6 @@ Each set of criteria results in an ordered dataset of Go projects, ranked from
 best-scoring (according to the dataset's own metric) and down to the
 lowest-scoring project that still meets the dataset's specific admission
 criteria.
-
-#v(1fr)
-#highlight[more]
 
 #pagebreak()
 

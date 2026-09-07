@@ -24,8 +24,6 @@
 // This does not change bibliography style, only in-text citations.
 #set cite(style: "./assets/ieee-et-al-3.csl")
 
-#show highlight: hide // Layout adjustment markers
-
 // --------------------------------------------------------------------- //
 // ---------- MAIN THESIS TEMPLATE ENTRYPOINT & CONFIGURATION ---------- //
 // --------------------------------------------------------------------- //

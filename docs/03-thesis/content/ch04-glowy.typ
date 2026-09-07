@@ -65,10 +65,6 @@ the main library (`glowy`) and the @cli application that makes use of it
 negligible for the point under discussion. When necessary, the two components
 are disambiguated as library and @cli application, respectively.
 
-#v(1fr)
-#highlight[more paragraphs]
-#v(1fr)
-
 #pagebreak()
 
 === Usage Workflow <glowy:design:workflow>
@@ -206,9 +202,6 @@ should preferably be reported rather than happen silently.
 Some of the steps from @glowy:design:procedure:overview are described in more
 detail in the subsequent subsections, especially the three major analysis
 stages.
-
-#v(1fr)
-#highlight[add more]
 
 #pagebreak()
 
@@ -1491,9 +1484,6 @@ string conformant to what is essentially a minimal and well-documented
   caption: [Example `glowy.toml` blanket directives configuration],
 ) <glowy:directives:toml>
 
-#v(1fr)
-#highlight[a little more]
-
 #pagebreak()
 
 For instance, the highlighted source key in line 2 of @glowy:directives:toml
@@ -1542,9 +1532,6 @@ concerns when applying taint analysis, but the referenced axes are otherwise not
 given any special treatment besides the stated shorthand construction. Such
 behavior is supported for all directives, including in source-code annotations
 and in `glowy.toml` files.
-
-#v(1fr)
-#highlight[a little more]
 
 #pagebreak()
 
@@ -2043,9 +2030,6 @@ implementation prefers to panic and abort execution if such a bug is detected
 at the relevant abstraction boundary, since it necessarily means a correctness
 fault and thus compromises any analysis results.
 
-#v(1fr)
-#highlight[more]
-
 #pagebreak()
 
 ==== Captures
@@ -2209,9 +2193,6 @@ blanket directives which require call resolution (e.g., targets referencing
 return values or arguments), with the latter case implying that the selection
 result corresponds to a method.
 
-#v(1fr)
-#highlight[more]
-
 #pagebreak()
 
 The final possible strategy is Blackbox Softening, which takes a failure of
@@ -2250,9 +2231,6 @@ as known type names during processing.
 It is also relevant to mention that Go does not allow type parameters in
 method declarations, only in real functions.
 
-#v(1fr)
-#highlight[more]
-
 #pagebreak()
 
 === Execution Jumps
@@ -2285,9 +2263,6 @@ stage (call resolution) and stores its result in the global Analysis Context
 $Gamma$ alongside additional necessary contextual information. At the end of
 function definitions, any registered deferred calls are taken from $Gamma$ in
 reverse order and applied.
-
-#v(1fr)
-#highlight[more]
 
 #pagebreak()
 
@@ -2450,10 +2425,6 @@ further through the `GLOWY_MAX_THREADS` environment variable.
 This work therefore conducts taint analysis on all possible execution paths,
 even across build configurations, so as to not promote a false sense of security
 for stakeholders less familiar with the implementation's assumptions.
-
-#v(1fr)
-#highlight[more]
-#v(1fr)
 
 #pagebreak()
 
