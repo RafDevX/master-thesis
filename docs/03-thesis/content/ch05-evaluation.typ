@@ -1146,16 +1146,26 @@ minimum required iterations differed from the maximum required iterations,
 whereas $80$ modules with multiple build permutations still had the same minimum
 and maximum required iteration counts.
 
-The disparity in the bottom-right corner of the table is simply because the
-number of total iterations is multiplied by the number of build permutations.
+In addition, the entry disparity present in the bottom-right corner of the table
+is simply because the number of total iterations is multiplied by the number of
+build permutations.
+
+Moreover, it is important to highlight that the number of convergence iterations
+corresponds solely to the number of taint analysis passes required for
+stabilization to be reached, as explained in @glowy:design:procedure:stage2,
+meaning that it does not represent a comparable unit of work across different
+modules, since each pass can be faster or slower depending on the complexity and
+size of the Go files admitted for analysis. Nevertheless, iteration count is
+still an interesting metric because it essentially indicates a threshold of
+repeated work.
 
 #pagebreak()
 
-The maximum number of convergence iterations is plotted graphically in
-@eval:results:performance:cumulative, which presents the value's empirical
-cumulative distribution for modules which completed analysis. The chart is read
-as a cumulative share, since modules that have converged at lower iteration
-counts have necessarily also already converged at higher counts.
+The maximum number of convergence iterations for the evaluation results is
+plotted graphically in @eval:results:performance:cumulative, which presents the
+value's empirical cumulative distribution for modules which completed analysis.
+The chart is read as a cumulative share, since modules that have converged at
+lower iteration counts have necessarily also already converged at higher counts.
 
 It is worth mentioning that the minimum number of iterations, for instance, is
 not plotted because it has a very high correlation with the maximum value (as

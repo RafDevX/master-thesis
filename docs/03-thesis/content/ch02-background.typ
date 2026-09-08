@@ -491,6 +491,17 @@ execution path. This mechanism allows stakeholders to make informed, risk-aware
 decisions and manually override the rigid requirements that would otherwise be
 enforced by purely mathematical @ifc principles.
 
+In particular, it is important to highlight that these semantics allow for
+selective, partial revocation of only a subset of a label's tags. For instance,
+a `<`/`"`-based sanitizer revoking
+$cal(L)_"Revocation" = {underline("unsafe") thin : thin "html"}$ from an input
+with security label $L = {underline("unsafe") thin : thin "sql", thick
+  underline("unsafe") thin : thin "html"}$ will result in the output still
+holding label $L' = {underline("unsafe") thin : thin "sql"}$,
+intuitively expressing that it has not been sanitized for use in @sql queries
+and is thus not safe for such contexts, as it can cause, for example, @sql
+injections.
+
 Moreover, this practice of explicit revocation forces codebases to keep a
 roster of one or more crucial-yet-narrow areas of code that need to be reviewed
 more carefully but are clearly identified and can easily be found if the need
@@ -871,7 +882,8 @@ Taint analysis can be either intraprocedural or interprocedural depending on
 whether it examines each function independently or if it follows flows across
 function boundaries, respectively. @bg:taint:intra-inter:example below shows an
 insecure program that would be (correctly) rejected by an interprocedural
-analysis but (incorrectly) accepted by an intraprocedural analysis.
+analysis but could plausibly be (incorrectly) accepted by an intraprocedural
+analysis.
 
 #figure(
   ```go
@@ -886,6 +898,13 @@ Since the taint information crosses a function boundary, intraprocedural
 analysis would generally not be able to recognize that `x` should be high, while
 interprocedural analysis would recognize the insecure flow, by propagating the
 taint through `load`'s return value.
+
+It should be noted that intraprocedural analyzers can select whichever
+overapproximation they consider appropriate for their target use case; for
+instance, an analyzer that conservatively overtaints all call results as high
+would correctly reject the program shown in @bg:taint:intra-inter:example, but
+such a heuristic would almost certainly lead to a very significant drop in
+precision.
 
 The present work models information according to interprocedural analysis,
 relying on function summaries to propagate labels and metadata across function

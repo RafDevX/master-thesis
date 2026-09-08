@@ -239,6 +239,15 @@ In addition, its first-class support for powerful algebraic data types (via
 ```rust enum```) makes it easier to represent many concepts important to this
 work, such as @ast nodes, and allows more expressive pattern matching.
 
+Nevertheless, it is worth stressing that implementation safety is distinct from
+analysis soundness: Rust's ownership checks, exhaustive pattern matching, and
+other guarantees are a strong advantage specifically to help narrow the gap
+between the theoretical model and the concrete artifact behavior, serving as a
+tool to mitigate, avoid, and prevent some kinds of bugs, defects, and
+inconsistencies, but Rust alone does not influence the properties attributable
+to the underlying analysis model itself. This project's security value depends
+chiefly on the theoretical work and not the implementation language.
+
 #pagebreak()
 
 ==== First-Party Parser
@@ -315,6 +324,16 @@ The core analyzer rules for modeling information flow and enforcement are
 derived from the thorough interpretation of the Go language specification,
 which is this work's primary reference material and offers authoritative
 guidelines for all development work.
+
+Moreover, it ought to be noted that each correctness benchmark's expected
+invariant is defined manually based on critical deliberation regarding how
+information can propagate in different contexts and through various Go
+functionalities, according to the semantics set forth by the aforementioned
+language specification. This means that each benchmark represents a
+carefully-crafted test case, and does not constitute just a simple regression
+test set to reflect the current tool output; in other words, the benchmarks
+corpus sets correctness objectives and is developed separately from the
+analyzer, even if sometimes in response to newly-supported analyzer features.
 
 #pagebreak()
 
@@ -543,8 +562,6 @@ means that a very significant share of all Go programs is considered to be in
 scope for this work and modeled correctly, which is appropriate for a degree
 project of this nature.
 
-#pagebreak()
-
 == Data Collection <methods:collection>
 
 As previously stated, it is necessary to select real-world Go projects as part
@@ -567,11 +584,18 @@ represent those likely to be truly relevant and in use, either as libraries
 depended on across the entire ecosystem, or applications used directly by
 end-users for a particular purpose (or both, in some cases).
 
+This work performs project selection in three parts: broad candidate discovery,
+attribute-preserving stratification, and randomized sampling within each stratum
+so as to obtain a focused set of real-world Go projects. The following
+subsections expand on each of these three steps.
+
+#pagebreak()
+
 === Project Discovery <methods:collection:discovery>
 
 Objective metrics are necessary to select concrete real-world projects to be
-analyzed, in an attempt to be faithful to the general guidelines above regarding
-a desired population based on some form of actual widespread usage or
+analyzed, in an attempt to be faithful to the general aforestated guidelines
+regarding a desired population based on some form of actual widespread usage or
 recognition.
 
 This degree project opts to do so according to three different principles, so
@@ -582,8 +606,6 @@ Each set of criteria results in an ordered dataset of Go projects, ranked from
 best-scoring (according to the dataset's own metric) and down to the
 lowest-scoring project that still meets the dataset's specific admission
 criteria.
-
-#pagebreak()
 
 ==== Dataset A: Published Modules by Dependents <methods:collection:discovery:a>
 
@@ -647,14 +669,18 @@ The second dataset considered by this degree project focuses on GitHub
 project hosting platform widely used across the entire open-source community,
 which has Go as its 10#super[th] most common programming language across all
 630 million Git#footnote(link("https://git-scm.com")) repositories, as of
-Octoverse 2025 @github2025octoverse. This complements the real-world projects
-population under consideration since not all relevant Go modules are dependency
-libraries, especially in the case of end-user-oriented applications, which are
-executed directly and not depended on.
+Octoverse 2025 @github2025octoverse.
+
+This complements the real-world projects population under consideration since
+not all relevant Go modules are dependency libraries, especially in the case of
+end-user-oriented applications, which are executed directly and not depended on,
+and would thus be excluded from Dataset A's selection criteria.
 
 Since popularity is a desired trait for projects in the target population,
 the best possible metric on GitHub is star count (stars are awarded by users to
 repositories as they see fit, but usually based on merit or interest).
+
+#pagebreak()
 
 GitHub detects the programming languages present in a repository using the
 open-source tool Linguist
@@ -738,9 +764,12 @@ including Go's. As part of this initiative, a public BigQuery dataset is made
 available#footnote(link("https://docs.deps.dev/bigquery/v1")), which includes
 pre-calculated direct and indirect dependents information for all public Go
 modules as part of its `Dependents` table, which also uses modules (rather than
-packages) as its unit of operation, as desired. A very appropriate alternative
-to this work's Dataset A could thus be obtained through an @sql query such as
-the one in @methods:collection:discovery:rejected:bigquery below.
+packages) as its unit of operation, as desired.
+
+A very appropriate alternative to this work's Dataset A could thus be obtained
+through an @sql query such as the one shown in
+@methods:collection:discovery:rejected:bigquery on the next page, greatly
+improving dataset generation simplicity.
 
 #figure(
   ```sql
@@ -764,8 +793,6 @@ $1$ TiB of processing per month, Google Cloud Console estimates the query in
 data, which would reportedly cost an equivalent to approximately $"US"\$340$ to
 run and is thus not suitable for this work, even if the resulting dataset would
 likely be of higher quality.
-
-#pagebreak()
 
 Instead of using the BigQuery dataset directly, it would also be reasonable to
 query `deps.dev`'s @api for each module in the set derived from the

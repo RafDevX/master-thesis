@@ -51,6 +51,24 @@ Rust crate#footnote[Crates are Rust's fundamental unit for compilation,
 - the Glowy @cli application, optimized for end-user usability; and
 - the Glowy parser, for translating Go files into @ast:pl.
 
+This partitioning is essential for promoting a generalized separation of
+concerns, as well as to improve maintainability and extensibility, since each
+of the three crates is associated with a separate purpose and targets very
+distinct kinds of end users. The @cli application is the broadest in this
+respect, as it must be intuitive for stakeholders with all levels of security
+expertise, from junior developers to senior security auditors. The parser
+library is the narrowest, as it is for the most part an internal dependency, and
+its external use case is that of an opinionated, specialized worker that takes
+in minimal configuration and outputs an @ast following a virtually-standardized
+shape according to Go grammar. Finally, the Glowy library itself sits in the
+middle, designed to support the @cli application but also be sufficiently
+extensible for direct programmatic usage, especially for advanced use cases.
+
+Furthermore, even within each of these components, Glowy is remarkably modular
+and all its logic is organized into complementing utilities to promote code
+reuse and architectural clarity. In the provided implementation, the
+aforementioned Rust crates are divided into $86$ modules and submodules.
+
 In addition, several other satellite Rust programs are also part of Glowy's
 larger ecosystem, particularly in connection with its evaluation:
 - the Glowy evaluation orchestration utility, also a @cli application;
@@ -1490,7 +1508,7 @@ string conformant to what is essentially a minimal and well-documented
 
 #pagebreak()
 
-For instance, the highlighted source key in line 2 of @glowy:directives:toml
+For instance, the highlighted source key on line 2 of @glowy:directives:toml
 is unmarshaled into a blanket directive target applying to the first returned
 value by calls to the `LookupEnv` function of the standard library's `os`
 package, but only when the value passed as first argument cannot be proved to
@@ -2180,7 +2198,7 @@ It is thus necessary to use heuristics, applying different strategies in order,
 from most to least sound, until a decision is reached. These strategies are
 briefly summarized in the present subsection.
 
-The first such strategy is Typed Dispatch, which is the best case scenario and
+The first such strategy is _Typed Dispatch,_ which is the best case scenario and
 (if applicable) is guaranteed to be correct, even cross-package. Essentially,
 when the selection base has a known declared type (tracked via the internal
 materialized value representation, per @glowy:primitives:shapes), it is used to
@@ -2189,7 +2207,7 @@ that this needs to take into account method and field promotion, as introduced
 in @bg:go:overview:structs, so it is still a complicated process.
 
 Otherwise, if Typed Dispatch did not succeed, the subsequent strategy is
-Attempted Upgrade, which checks whether it is possible to coerce the base into
+_Attempted Upgrade,_ which checks whether it is possible to coerce the base into
 a Struct shape from either a Simple or Unknown Composite shape. This is only
 attempted when it is plausible (based on any available precision information)
 for the base to be a struct, in addition to there not being any registered
@@ -2197,9 +2215,22 @@ blanket directives which require call resolution (e.g., targets referencing
 return values or arguments), with the latter case implying that the selection
 result corresponds to a method.
 
+This latter restriction is important because it allows the analyzer to use
+information from a seemingly-unrelated mechanism (blanket directives in the
+security policy resolution subsystem) to improve the analysis approximation in
+question (selection ambiguity). As previously stated in this report, the
+configured security policy is assumed in this work to be an absolute source of
+truth, meaning that it can reliably indicate information about certain targets,
+even if unintentionally. For instance, a
+```toml "pkg.T.X->2" = ["hidden"]``` line in the ```toml ["sources"]```
+table of a project's `glowy.toml` file is included there purely to configure the
+security policy under enforcement, but the analyzer can additionally take it as
+definitive proof that `pkg.T.X` is a method and not a struct field, as
+return-value constraint `->2` would otherwise not make sense.
+
 #pagebreak()
 
-The final possible strategy is Blackbox Softening, which takes a failure of
+The final possible strategy is _Blackbox Softening,_ which takes a failure of
 Attempted Upgrade as an indication that the selection refers to a method. It
 thus tests four different criteria and models the selection as a function
 black box if any of them hold. These four criteria are:
@@ -2230,8 +2261,20 @@ Since the analyzer only performs lightweight type tracking, as described in
 for analysis.
 
 However, they are still tracked in the global Analysis Context $Gamma$ for the
-current function whose definition is being processed, so that they are treated
-as known type names during processing.
+current functions whose definition are being processed, so that they are treated
+as known type names during handling. For instance,
+@glowy:constructs:generics:func below shows how a function body might operate on
+a type parameter.
+
+#codly(highlighted-lines: (2,))
+#figure(
+  ```go
+  func cast[T ~int](x int) T {
+    return T(x) // the name `T` cannot be rejected here
+  }
+  ```,
+  caption: [Example function bound to generic type parameter],
+) <glowy:constructs:generics:func>
 
 It is also relevant to mention that Go does not allow type parameters in
 method declarations, only in real functions.
@@ -2268,6 +2311,23 @@ stage (call resolution) and stores its result in the global Analysis Context
 $Gamma$ alongside additional necessary contextual information. At the end of
 function definitions, any registered deferred calls are taken from $Gamma$ in
 reverse order and their effects are applied, as prescribed by the specification.
+
+This handling is essential to correctly support cases such as that shown in
+@glowy:constructs:defer:example: the call on line 2 represents an insecure flow
+because argument `x` is evaluated immediately (even if the sink invocation is
+only finalized later), while the call on line 3 is accepted because `x` is
+overwritten before `sink` is invoked, and here `x` is a capture rather than a
+(frozen) argument.
+
+#figure(
+  ```go
+    x := source()
+    defer sink(x) // fails enforcement
+    defer func() { sink(x) }() // ok
+    x = 0x445443
+  ```,
+  caption: [Example flows through ```go defer``` statements],
+) <glowy:constructs:defer:example>
 
 #pagebreak()
 
@@ -2417,9 +2477,37 @@ build permutations, however, analysis is not performed and an error is reported.
 This limit defaults to $256$ permutations but is configurable programmatically
 and through the project's `glowy.toml` configuration file.
 
-Otherwise, if there is more than one permutation to analyze and Cargo feature
-`parallelism` is not manually disabled, the implementation attempts to analyze
-multiple permutations at once, as they are fully independent.
+These two limits are considered separately because they are enforced at
+different points in time, but also because they represent different
+measurements. @glowy:construct:build-constraints:enumeration shows the worlds
+enumerated for a codebase containing only a `common.go` file (declaring no
+build constraint) and an `optional.go` file with
+```go //go:build alpha || beta```. The table clearly shows that this codebase
+would have $W = 2^2 times 1 times 1 times 1 = 4$, which evidently differs from
+the actual number of unique admitted file sets ($\#TT_cal(P) = 2$).
+
+#figure(
+  table(
+    columns: (4em, 7em, 7em),
+    align: horizon,
+
+    table.header([], strong[`beta`], strong[---]),
+    table.vline(x: 1),
+
+    strong[`alpha`],
+    [`common.go` \ `optional.go`],
+    [`common.go` \ `optional.go`],
+    strong[---],
+    [`common.go` \ `optional.go`],
+    [`common.go`],
+  ),
+  caption: [Example enumerated build-tag constraint worlds],
+) <glowy:construct:build-constraints:enumeration>
+
+If neither of the stated limits is reached, if there is more than one
+permutation to analyze, and if Cargo feature `parallelism` is not manually
+disabled, the implementation attempts to analyze multiple permutations at once,
+as they are fully independent.
 
 Glowy defaults to processing, at most, $\#"Cores" - 2$ permutations at a time,
 leaving two processing cores to not overwhelm the system, but always at minimum

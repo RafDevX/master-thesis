@@ -791,9 +791,15 @@ denotes partial fulfillment.
   ) <discussion:related:side-by-side>
 ])
 
-In summary, Glowy introduces substantial new contributions to the research
-space, including when compared to the relevant tools within the Go ecosystem,
-especially in terms of flexibility, specialized modeling, and usability.
+The table above and this section's comparison in general are insufficient to
+accurately represent each tool's detection effectiveness and performance, but
+they highlight the various trade-offs that must be taken into account when
+selecting which solution is the most appropriate for a given use case. Each of
+the works mentioned here holds a respectable place in the Go security scene and
+has a number of merits and drawbacks, including Glowy, which overall introduces
+substantial new contributions to the research space, including when compared to
+the relevant tools within the Go ecosystem, especially in terms of flexibility,
+specialized modeling, and usability.
 
 #pagebreak()
 
@@ -825,7 +831,9 @@ accomplishing its stated goals to further knowledge regarding @ifc:long when
 applied to the Go programming language.
 
 It comprises robust advancements to the field, offering strong advantages in
-comparison to existing work within the Go ecosystem, and sets the pace for
+comparison to existing tooling within the Go ecosystem, and sets the pace for
 future work in the same area.
 
-Overall, this work contributes towards a world with more secure software.
+Overall, this work contributes towards a world with more secure software, which
+can have a significant societal, economic, and environmental impact through the
+indirect preservation of essential human rights.
