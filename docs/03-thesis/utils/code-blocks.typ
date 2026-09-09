@@ -21,6 +21,7 @@
     ),
     languages: (
       go: (name: "Go", color: colors.go-blue),
+      sh: (name: "Shell", color: rgb("#293138")),
       sql: (name: "SQL", color: orange),
       toml: (name: "TOML", color: rgb("#7b341e")),
     ),
